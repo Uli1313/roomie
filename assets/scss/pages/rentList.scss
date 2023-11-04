@@ -1,0 +1,11 @@
+.dropdown-toggle {
+    width: 100px; 
+    position: relative; 
+}
+.dropdown-toggle::after {
+    content: "";
+    position: absolute;
+    right: 5px; 
+    top: 50%; 
+    transform: translateY(-50%);
+}
