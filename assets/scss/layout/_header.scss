@@ -1,4 +1,8 @@
-.header {
-  background: #69f0ae;
-  font-size: 64px;
+.notification {
+  &-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
 }

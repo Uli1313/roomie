@@ -26,8 +26,12 @@
 @import "./base/base";
 
 // custom components
+@import "./component/navbar";
+@import "./component/dropdown";
+@import "./component/offcanvas";
 
 // custom utilities
+@import "./utilities/hover";
 
 // layout
 @import "./layout/header.scss";
