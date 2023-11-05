@@ -1,5 +1,14 @@
+button{
+    border: none;
+    background: none;
+    color: #575656;
+}
+.btn-size{
+    width: 112px;
+    height: 56px;
+}
 .dropdown-toggle {
-    width: 100px; 
+    width: 100%;
     position: relative; 
 }
 .dropdown-toggle::after {
@@ -8,4 +17,55 @@
     right: 5px; 
     top: 50%; 
     transform: translateY(-50%);
+}
+.searchBtn{
+    position: absolute;
+    top: 50%;
+    left: 15px;   
+}
+.searchInput{
+    width: 358px; 
+    height: 56px;
+    padding-left: 45px;
+    transition: .3s;
+    &:focus{
+        outline: none;
+        box-shadow: 0 0 0 2px #FE8541;
+    }
+}
+.btn-primary{
+    background-color: #337757!important;
+    color:#fff!important;
+    border: none!important;
+    &:hover{
+        background-color: #54C490!important;
+    }
+    &:active{
+        background-color: #285E45!important; 
+    }
+}
+
+// 手機
+@media screen and (max-width: 576px) {
+    .searchInput{
+        width: 211px; 
+        height: 40px;
+    }
+    .btn-size{
+        width: 88px;
+        height: 40px;
+        padding: 0;
+    }
+  }
+// 邊框設定
+@media screen and (min-width: 768px) {
+    .border-bottom-sm-1{
+        border-bottom: 1px solid #dee2e6!important;
+    } 
+    .border-end-sm-0{
+        border-right: 0!important;
+    }
+    .border-start-sm-0{
+        border-left: 0!important;
+    }
 }

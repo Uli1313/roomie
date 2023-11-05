@@ -6,24 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>合租列表</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <style>
-        button{
-            border: none;
-            background: none;
-            color: #575656;
-        }
-        .dropdown-toggle {
-            width: 100px; 
-            position: relative; 
-        }
-        .dropdown-toggle::after {
-            content: "";
-            position: absolute;
-            right: 5px; 
-            top: 50%; 
-            transform: translateY(-50%);
-        }
-    </style>
 </head>
 <body>
     <div class="container bg-light-200">
@@ -33,8 +15,8 @@
             </div>
         </div>
 <!-- 縣市 下拉選單 -->
-        <div class="row pb-2">
-            <div class="col-xxl-1">
+        <div class="row pb-2 align-items-center">
+            <div class="col-xxl-1 col-xl-1 col-lg-2 me-xl-2 me-xxl-2 mb-md-3 mb-sm-3 mb-2">
                 <div class="dropdown">
                     <button class="btn btn-light btn-sm border dropdown-toggle text-start"  type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside"  aria-expanded="false">
                       縣市
@@ -147,7 +129,7 @@
                 </div> 
             </div>
 <!-- 行政區 下拉選單 -->
-            <div class="col-xxl-1">
+            <div class="col-xxl-1 col-xl-1 col-lg-2 me-xl-2 me-xxl-2 mb-md-3 mb-sm-3 mb-2">
                 <div class="dropdown">
                     <button class="btn btn-light btn-sm border dropdown-toggle text-start"  type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside"  aria-expanded="false">
                       行政區
@@ -212,7 +194,7 @@
                 </div> 
             </div>
 <!-- 租金 下拉選單 -->
-            <div class="col-xxl-1">
+            <div class="col-xxl-1 col-xl-1 col-lg-2 me-xl-2 me-xxl-2 mb-md-3 mb-sm-3 mb-2">
                 <div class="dropdown">
                     <button class="btn btn-light btn-sm border dropdown-toggle text-start"  type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside"  aria-expanded="false">
                       租金
@@ -262,7 +244,7 @@
                 </div> 
             </div>
 <!-- 房屋類型 下拉選單 -->
-            <div class="col-xxl-1">
+            <div class="col-xxl-1 col-xl-1 col-lg-2 me-xl-2 me-xxl-2 mb-md-3 mb-sm-3 mb-2">
                 <div class="dropdown">
                     <button class="btn btn-light btn-sm border dropdown-toggle text-start"  type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside"  aria-expanded="false">
                       房屋類型
@@ -312,14 +294,14 @@
                 </div> 
             </div>
 <!-- 其他特色 下拉選單 -->
-            <div class="col-xxl-1">
+            <div class="col-xxl-1 col-xl-1 col-lg-2 me-xl-2 me-xxl-2 mb-md-3 mb-sm-3 mb-2">
                 <div class="dropdown">
                     <button class="btn btn-light btn-sm border dropdown-toggle text-start"  type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside"  aria-expanded="false">
-                      縣市
+                      其他特色
                     </button>
                     <ul class="dropdown-menu bg-light" aria-labelledby="dropdownMenuClickableInside">
                       <li class="px-4 pb-2">
-                        <span class="form-check-inline fw-bold">型態</span>
+                        <p class="fw-bold">型態</p>
                         <div class="form-check-inline">
                             <input class="form-check-input" type="checkbox" id="type1" value="typeOption1">
                             <label class="form-check-label" for="type1">公寓</label>
@@ -338,7 +320,7 @@
                         </div>
                       </li>
                       <li class="px-4 pb-2">
-                        <span class="form-check-inline fw-bold">鄰近</span>
+                        <p class="fw-bold">鄰近</p>
                         <div class="form-check-inline">
                             <input class="form-check-input" type="checkbox" id="closeTo1" value="closeToOption1">
                             <label class="form-check-label" for="closeTo1">學校</label>
@@ -357,7 +339,7 @@
                         </div>
                       </li>
                       <li class="px-4 pb-2">
-                        <span class="form-check-inline fw-bold">設備</span>
+                        <p class="fw-bold">設備</p>
                         <div class="form-check-inline">
                             <input class="form-check-input" type="checkbox" id="device1" value="deviceOption1">
                             <label class="form-check-label" for="device1">網路</label>
@@ -380,7 +362,7 @@
                         </div>
                       </li>
                       <li class="px-4 pb-2">
-                        <span class="form-check-inline fw-bold">家俱</span>
+                        <p class="fw-bold">家俱</p>
                         <div class="form-check-inline">
                             <input class="form-check-input" type="checkbox" id="furniture1" value="furnitureOption1">
                             <label class="form-check-label" for="furniture1">床</label>
@@ -399,7 +381,7 @@
                         </div>
                       </li>
                       <li class="px-4 pb-2">
-                        <span class="form-check-inline fw-bold">身分</span>
+                        <p class="fw-bold">身分</p>
                         <div class="form-check-inline">
                             <input class="form-check-input" type="checkbox" id="identity1" value="identityOption1">
                             <label class="form-check-label" for="identity1">學生</label>
@@ -414,7 +396,7 @@
                         </div>
                       </li>
                       <li class="px-4 pb-2">
-                        <span class="form-check-inline fw-bold">性別</span>
+                        <p class="fw-bold">性別</p>
                         <div class="form-check-inline">
                             <input class="form-check-input" type="checkbox" id="sex1" value="sexOption1">
                             <label class="form-check-label" for="sex1">皆可</label>
@@ -429,7 +411,7 @@
                         </div>
                       </li>
                       <li class="px-4 pb-2">
-                        <span class="form-check-inline fw-bold">其他</span>
+                        <p class="fw-bold">其他</p>
                         <div class="form-check-inline">
                             <input class="form-check-input" type="checkbox" id="other1" value="otherOption1">
                             <label class="form-check-label" for="other1">可開伙</label>
@@ -443,19 +425,17 @@
                 </div> 
             </div>
 <!-- 清空按鈕 -->
-            <div class="col-xxl-1">
-                <span class="align-middle">清空</span>
-                <button type="button" class="btn-close align-middle" aria-label="Close"></button>
+            <div class="col-xxl-1 col-xl-1 col-lg-2 me-xl-2 me-xxl-2 mb-md-3 mb-sm-3 mb-2 d-flex justify-content-end justify-content-lg-start">
+                <span class="m-0">清空</span>
+                <button type="button" class="btn-close" aria-label="Close"></button>
             </div>
 <!-- 搜尋按鈕 -->  
-            <div class="col-xxl-2">
-                <div class="input-group">
-                        <span class="material-symbols-outlined input-group-text border-end-0">
-                        search
-                        </span>
-                    <input class="form-control border-start-0 bg-light ps-0" type="search" placeholder="搜尋" aria-label="search">
+            <div class="col-xxl col-xl col-lg-12 d-flex justify-content-sm-end justify-content-center pt-md-0 pt-sm-0">
+                <div class="position-relative d-flex align-items-center gap-2">
+                    <input type="search" class="border rounded-pill searchInput" placeholder="搜尋"> 
+                    <span class="material-symbols-outlined searchBtn" style="transform:translateY(-50%);">search</span>
+                    <button type="submit" class="btn btn-primary btn-size">確定</button>
                 </div>
-
             </div>
         </div>
 <!-- 麵包屑 --> 
@@ -480,15 +460,16 @@
         </div>
 <!-- 文章 -->
         <div class="row p-2 mb-4">
-            <div class="col-3 ps-0 border border-end-0 bg-light">
+            <div class="col-12 col-md-3 p-0 border border-bottom-0 border-bottom-sm-1 border-end-sm-0 bg-light">
                 <img src="http://fakeimg.pl/300/" class="img-fluid" alt="house photo">
             </div>
-            <div class="col-9 p-3 border border-start-0 bg-light">
-                <div class="w-100 d-flex justify-content-between pb-2">
-                    <p class="h3">新竹市科學園區套房找室友</p>
-                    <button class=""><span class="material-symbols-outlined">heart_plus</span></button>
-                </div>
+            <div class="col-12 col-md-9 p-3 border border-start-sm-0 bg-light">
                 <ul>
+                    <li class="w-100 d-flex justify-content-between py-2">
+                    <a href="#" class="h3">新竹市科學園區套房找室友</a>
+                    <button class=""><span class="material-symbols-outlined">heart_plus</span></button></li>
+                
+                
                     <li class="pb-3">1房1廳1衛 | 15坪7F/21F | 電梯大樓</li>
                     <li class="pb-2"><button><span class="material-symbols-outlined pe-2" style="transform: translateY(25%);">location_on</span></button>新竹市東區-埔頂路一段</li>
                     <li class="pb-2"><button><span class="material-symbols-outlined pe-2" style="transform: translateY(25%);">map</span></button>距光武國中站657公尺</li>
@@ -500,10 +481,10 @@
             </div>
         </div>
         <div class="row p-2 mb-4">
-            <div class="col-3 ps-0 border border-end-0 bg-light">
+            <div class="col-12 col-md-3 p-0 border border-bottom-0 border-bottom-sm-1 border-end-sm-0 bg-light">
                 <img src="http://fakeimg.pl/300/" class="img-fluid" alt="house photo">
             </div>
-            <div class="col-9 p-3 border border-start-0 bg-light">
+            <div class="col-12 col-md-9 p-3 border border-start-sm-0 bg-light">
                 <div class="w-100 d-flex justify-content-between pb-2">
                     <p class="h3">極簡黑白共生宅民生東路電梯大樓</p>
                     <button class=""><span class="material-symbols-outlined">heart_plus</span></button>
@@ -520,10 +501,10 @@
             </div>
         </div>
         <div class="row p-2 mb-4">
-            <div class="col-3 ps-0 border border-end-0 bg-light">
+            <div class="col-12 col-md-3 p-0 border border-bottom-0 border-bottom-sm-1 border-end-sm-0 bg-light">
                 <img src="http://fakeimg.pl/300/" class="img-fluid" alt="house photo">
             </div>
-            <div class="col-9 p-3 border border-start-0 bg-light">
+            <div class="col-12 col-md-9 p-3 border border-start-sm-0 bg-light">
                 <div class="w-100 d-flex justify-content-between pb-2">
                     <p class="h3">新竹市科學園區套房找室友</p>
                     <button class=""><span class="material-symbols-outlined">heart_plus</span></button>
@@ -540,10 +521,10 @@
             </div>
         </div>
         <div class="row p-2 mb-4">
-            <div class="col-3 ps-0 border border-end-0 bg-light">
+            <div class="col-12 col-md-3 p-0 border border-bottom-0 border-bottom-sm-1 border-end-sm-0 bg-light">
                 <img src="http://fakeimg.pl/300/" class="img-fluid" alt="house photo">
             </div>
-            <div class="col-9 p-3 border border-start-0 bg-light">
+            <div class="col-12 col-md-9 p-3 border border-start-sm-0 bg-light">
                 <div class="w-100 d-flex justify-content-between pb-2">
                     <p class="h3">新竹市科學園區套房找室友</p>
                     <button class=""><span class="material-symbols-outlined">heart_plus</span></button>
