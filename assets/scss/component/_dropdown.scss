@@ -1,0 +1,32 @@
+.navbar {
+  .dropdown-toggle::after {
+    display: none;
+  }
+  .dropdown-menu {
+    border: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    background: $white;
+    top: 66px;
+  }
+  .dropdown-item {
+    border-bottom: 1px solid $light-300;
+    &:active {
+      background: $white;
+      color: $dark;
+    }
+  }
+}
+.navbar-account {
+  .dropdown-menu {
+    left: -180px;
+  }
+  .dropdown-item {
+    padding: 20px 24px;
+  }
+}
+.navbar-notification {
+  .dropdown-menu {
+    left: -480px;
+  }
+}
