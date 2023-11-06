@@ -1,0 +1,30 @@
+.cursor{
+    cursor: pointer;
+}
+.imgCursor{
+    cursor: pointer;
+    transition: .3s;
+    &:hover{
+        transform: scale(1.1);
+    }
+}
+button{
+    border: none;
+    background: none;
+    color: #575656;
+}
+.btn-size{
+    width: 112px;
+    height: 56px;
+}
+.btn-primary{
+    background-color: #337757!important;
+    color:#fff!important;
+    border: none!important;
+    &:hover{
+        background-color: #54C490!important;
+    }
+    &:active{
+        background-color: #285E45!important; 
+    }
+}
