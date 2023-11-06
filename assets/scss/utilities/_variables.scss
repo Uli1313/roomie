@@ -1476,7 +1476,7 @@ $accordion-button-active-bg: var(--#{$prefix}primary-bg-subtle) !default;
 $accordion-button-active-color: var(--#{$prefix}primary-text-emphasis) !default;
 
 $accordion-button-focus-border-color: $input-focus-border-color !default;
-$accordion-button-focus-box-shadow: $btn-focus-box-shadow !default;
+$accordion-button-focus-box-shadow: 0; // custom $btn-focus-box-shadow !default;
 
 $accordion-icon-width: 1.25rem !default;
 $accordion-icon-color: $body-color !default;

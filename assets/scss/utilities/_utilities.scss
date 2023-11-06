@@ -820,6 +820,7 @@ $utilities: map-merge(
     "rounded":
       (
         property: border-radius,
+        responsive: true,
         class: rounded,
         values: (
           null: var(--#{$prefix}border-radius),
@@ -831,6 +832,9 @@ $utilities: map-merge(
           5: var(--#{$prefix}border-radius-xxl),
           circle: 50%,
           pill: var(--#{$prefix}border-radius-pill),
+          // custom
+          6: 24px,
+          10: 40px,
         ),
       ),
     "rounded-top": (

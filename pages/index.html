@@ -19,75 +19,168 @@
   </head>
   <body>
     <%- include('./layout/header'); -%>
-
-    <h1 class="index-title fs-5 fs-md-1">我是首頁</h1>
-    <form>
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-        />
-        <div id="emailHelp" class="form-text">
-          We'll never share your email with anyone else.
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-        />
-      </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <img src="../assets/images/cat.jpg" style="width: 300px" alt="cat" />
-    <!-- Button trigger modal -->
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
-      Launch demo modal
-    </button>
-
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">...</div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
+    <!-- FAQ -->
+    <div class="bg-primary">
+      <div class="faq container-xxl position-relative pb-4">
+        <div class="row">
+          <div class="col-md-9 col-lg-7 z-1">
+            <h2 class="mb-10 text-light d-none d-sm-block">FAQ</h2>
+            <div
+              class="accordion rounded-6 rounded-md-10 overflow-hidden"
+              id="accordionFaq"
             >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+              <div class="accordion-item border-0">
+                <h4 class="accordion-header">
+                  <button
+                    class="accordion-button h4 bg-white collapsed py-5 py-md-8 ps-3 ps-md-8 pe-4 pe-md-9 fs-6 fs-md-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="false"
+                    aria-controls="collapseOne"
+                  >
+                    <span
+                      class="faq-number py-3 text-light bg-primary rounded-circle me-5"
+                      >Q1 </span
+                    >Roomie 屋伴 是什麼?
+                  </button>
+                </h4>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionFaq"
+                >
+                  <div class="accordion-body p-3 p-md-8 fs-7 fs-md-6">
+                    <p>
+                      Roomie
+                      屋伴是一個線上服務平台，旨在協助使用者找到合適的合租夥伴以及合適的住處或其他場域。使用者可以發布尋找合租夥伴的物件資訊，並與對該物件有興趣的使用者進行聯繫。
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item border-0">
+                <h4 class="accordion-header">
+                  <button
+                    class="accordion-button h4 bg-white collapsed py-5 py-md-8 ps-3 ps-md-8 pe-4 pe-md-9 fs-6 fs-md-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    <span
+                      class="faq-number py-3 text-light bg-primary rounded-circle me-5"
+                      >Q2 </span
+                    >如何在平台上尋找合租夥伴呢？
+                  </button>
+                </h4>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionFaq"
+                >
+                  <div class="accordion-body p-3 p-md-8 fs-7 fs-md-6">
+                    <p>
+                      登入您的帳戶後，前往「會員中心 >
+                      發文列表」點擊「＋」圖示，填寫物件相關資訊（地區、
+                      租金、房屋類型、設備等）以及聯絡人資訊即可發表文章，尋找您的合租夥伴。
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item border-0">
+                <h4 class="accordion-header">
+                  <button
+                    class="accordion-button h4 bg-white collapsed py-5 py-md-8 ps-3 ps-md-8 pe-4 pe-md-9 fs-6 fs-md-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    <span
+                      class="faq-number py-3 text-light bg-primary rounded-circle me-5"
+                      >Q3 </span
+                    >如何找到適合的合租物件呢？
+                  </button>
+                </h4>
+                <div
+                  id="collapseThree"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionFaq"
+                >
+                  <div class="accordion-body p-3 p-md-8 fs-7 fs-md-6">
+                    <p>
+                      可以透過篩選功能，選擇地區、租金預算、房屋類型等項目，篩選出符合您期待的物件。另外有心儀的物件時，您可以點擊收藏按鈕將多個物件添加到收藏列表中，以幫助您選擇出最理想的物件。
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item border-0">
+                <h4 class="accordion-header">
+                  <button
+                    class="accordion-button h4 bg-white collapsed py-5 py-md-8 ps-3 ps-md-8 pe-4 pe-md-9 fs-6 fs-md-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour"
+                    aria-expanded="false"
+                    aria-controls="collapseFour"
+                  >
+                    <span
+                      class="faq-number py-3 text-light bg-primary rounded-circle me-5"
+                      >Q4 </span
+                    >我不太清楚合租的流程以及行情，我可以怎麼做？
+                  </button>
+                </h4>
+                <div
+                  id="collapseFour"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionFaq"
+                >
+                  <div class="accordion-body p-3 p-md-8 fs-7 fs-md-6">
+                    <p>
+                      可以至「媒合成功」頁面觀看其他使用者的成功案例，藉此獲得更多資訊。也可以使用篩選功能篩選出附近的成功案例，以了解合租行情。
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item border-0">
+                <h4 class="accordion-header">
+                  <button
+                    class="accordion-button h4 bg-white collapsed py-5 py-md-8 ps-3 ps-md-8 pe-4 pe-md-9 fs-6 fs-md-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive"
+                    aria-expanded="false"
+                    aria-controls="collapseFive"
+                  >
+                    <span
+                      class="faq-number py-3 text-light bg-primary rounded-circle me-5"
+                      >Q5 </span
+                    >我有在某篇文章內留言，但沒有收藏導致我找不到該篇發文，我可以怎麼做？
+                  </button>
+                </h4>
+                <div
+                  id="collapseFive"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionFaq"
+                >
+                  <div class="accordion-body p-3 p-md-8 fs-7 fs-md-6">
+                    <p>
+                      可以至「會員中心 >
+                      留言列表」頁面，查看您所有的留言/回覆，點擊文章標題即可前往該物件
+                      頁面。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="faq-img col-sm-8 col-md-7 col-lg-6 position-absolute end-0"
+          >
+            <h2 class="mb-7 text-light d-sm-none text-center">FAQ</h2>
+            <img src="/assets/images/building.png" alt="building" />
           </div>
         </div>
       </div>

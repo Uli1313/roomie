@@ -1,1 +1,21 @@
-
+.faq {
+  min-height: 1068px;
+  padding-top: 478px;
+  &-img {
+    top: 159px;
+  }
+  &-number {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @include media-breakpoint-up(sm) {
+    min-height: 1120px;
+    &-img {
+      top: 243px;
+    }
+  }
+  @include media-breakpoint-up(md) {
+    min-height: 1068px;
+    padding-top: 243px;
+  }
+}
