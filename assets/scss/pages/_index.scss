@@ -1,3 +1,25 @@
+.news {
+  top: -334px;
+  &-item {
+    border-bottom: 2px solid transparent;
+    border-image: url("/assets/images/mobile/dashed-mobile.png") 2 round;
+  }
+  &-btn {
+    width: 146px;
+  }
+  @include media-breakpoint-up(md) {
+    top: -249px;
+    &-icon {
+      font-size: 32px;
+    }
+    &-item {
+      border-image: url("/assets/images/dashed.png") 2 round;
+    }
+    &-btn {
+      width: auto;
+    }
+  }
+}
 .faq {
   min-height: 1068px;
   padding-top: 478px;
@@ -17,5 +39,84 @@
   @include media-breakpoint-up(md) {
     min-height: 1068px;
     padding-top: 243px;
+  }
+}
+
+// deco
+.deco-cloud {
+  &::before {
+    @include media-breakpoint-up(lg) {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      background: no-repeat center/cover url("/assets/images/cloud.png");
+      width: 191px;
+      height: 62px;
+      bottom: 136px;
+      left: 0;
+    }
+    @include media-breakpoint-up(xxl) {
+      left: 5%;
+    }
+  }
+  &::after {
+    @include media-breakpoint-up(lg) {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      background: no-repeat center/cover url("/assets/images/cloud-lg.png");
+      width: 242px;
+      height: 78px;
+      bottom: 68px;
+      right: 0;
+    }
+    @include media-breakpoint-up(xxl) {
+      right: 7%;
+    }
+  }
+}
+.deco-news {
+  &::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    background: no-repeat center/contain
+      url("/assets/images/mobile/decoBlack-3-mobile.png");
+    width: 80px;
+    height: 80px;
+    top: 120px;
+    right: 40px;
+    @include media-breakpoint-up(md) {
+      top: 158px;
+      right: 12px;
+    }
+    @include media-breakpoint-up(xxl) {
+      background: no-repeat center/contain url("/assets/images/decoBlack-3.png");
+      top: 55px;
+      right: 16px;
+      width: 160px;
+      height: 160px;
+    }
+    @media (min-width: 1700px) {
+      right: 12%;
+    }
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    background: no-repeat center/contain
+      url("/assets/images/mobile/decoBlack-2-mobile.png");
+    width: 148px;
+    height: 39px;
+    top: -364px;
+    left: 32%;
+    z-index: 2;
+    @include media-breakpoint-up(md) {
+      background: no-repeat center/contain url("/assets/images/decoBlack-2.png");
+      width: 250px;
+      height: 65px;
+      top: -270px;
+    }
   }
 }

@@ -17,14 +17,98 @@
     />
     <title>index</title>
   </head>
-  <body>
+  <body class="u-btn">
     <%- include('./layout/header'); -%>
-    <!-- FAQ -->
-    <div class="bg-primary">
+    <!-- rent -->
+    <div class="deco-cloud position-relative">
+      <div
+        class="container-xxl"
+        style="padding-bottom: 350px; height: 600px"
+      ></div>
+    </div>
+
+    <div class="deco-news bg-primary position-relative">
+      <!-- news -->
+      <div
+        class="news container-xxl position-absolute start-50 translate-middle-x z-1"
+      >
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <div
+              class="d-flex flex-column flex-md-row bg-white rounded-10 pt-7 pb-4 py-md-13 px-4 px-md-8"
+            >
+              <div class="me-md-8">
+                <h2
+                  class="fs-3 fs-md-2 text-primary text-center text-md-start mb-7 mb-md-6 pt-md-9"
+                >
+                  最新公告
+                </h2>
+                <a
+                  href="##"
+                  class="btn btn-outline-light-300 d-none d-md-inline-block"
+                  >查看更多
+                  <span class="material-icons ms-5"> chevron_right </span></a
+                >
+              </div>
+              <ul class="flex-grow-1 mb-6 mb-md-0">
+                <li
+                  class="news-item d-flex align-items-center position-relative link-dark fw-bold py-4 py-md-6"
+                >
+                  <div class="d-flex flex-column flex-md-row flex-grow-1">
+                    <p class="me-5 text-light-400 fs-7 fs-md-6 mb-2 mb-md-0">
+                      2023-10-14
+                    </p>
+                    <p class="fs-md-5">租屋注意這三件事!避免落入詐騙陷阱</p>
+                  </div>
+                  <span class="news-icon material-icons p-2">
+                    chevron_right
+                  </span>
+                  <a href="##" class="stretched-link"></a>
+                </li>
+                <li
+                  class="news-item d-flex align-items-center position-relative link-dark fw-bold py-4 py-md-6"
+                >
+                  <div class="d-flex flex-column flex-md-row flex-grow-1">
+                    <p class="me-5 text-light-400 fs-7 fs-md-6 mb-2 mb-md-0">
+                      2023-10-14
+                    </p>
+                    <p class="fs-md-5">租屋注意這三件事!避免落入詐騙陷阱</p>
+                  </div>
+                  <span class="news-icon material-icons p-2">
+                    chevron_right
+                  </span>
+                  <a href="##" class="stretched-link"></a>
+                </li>
+                <li
+                  class="news-item d-flex align-items-center position-relative link-dark fw-bold py-4 py-md-6"
+                >
+                  <div class="d-flex flex-column flex-md-row flex-grow-1">
+                    <p class="me-5 text-light-400 fs-7 fs-md-6 mb-2 mb-md-0">
+                      2023-10-14
+                    </p>
+                    <p class="fs-md-5">租屋注意這三件事!避免落入詐騙陷阱</p>
+                  </div>
+                  <span class="news-icon material-icons p-2">
+                    chevron_right
+                  </span>
+                  <a href="##" class="stretched-link"></a>
+                </li>
+              </ul>
+              <a
+                href="##"
+                class="news-btn btn btn-outline-light-300 d-md-none mx-auto"
+                >查看更多
+                <span class="material-icons ms-5"> chevron_right </span></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FAQ -->
       <div class="faq container-xxl position-relative pb-4">
         <div class="row">
           <div class="col-md-9 col-lg-7 z-1">
-            <h2 class="mb-10 text-light d-none d-sm-block">FAQ</h2>
+            <h2 class="mb-10 text-white d-none d-sm-block">FAQ</h2>
             <div
               class="accordion rounded-6 rounded-md-10 overflow-hidden"
               id="accordionFaq"
@@ -40,7 +124,7 @@
                     aria-controls="collapseOne"
                   >
                     <span
-                      class="faq-number py-3 text-light bg-primary rounded-circle me-5"
+                      class="faq-number py-3 text-white bg-primary rounded-circle me-5"
                       >Q1 </span
                     >Roomie 屋伴 是什麼?
                   </button>
@@ -69,7 +153,7 @@
                     aria-controls="collapseTwo"
                   >
                     <span
-                      class="faq-number py-3 text-light bg-primary rounded-circle me-5"
+                      class="faq-number py-3 text-white bg-primary rounded-circle me-5"
                       >Q2 </span
                     >如何在平台上尋找合租夥伴呢？
                   </button>
@@ -99,7 +183,7 @@
                     aria-controls="collapseThree"
                   >
                     <span
-                      class="faq-number py-3 text-light bg-primary rounded-circle me-5"
+                      class="faq-number py-3 text-white bg-primary rounded-circle me-5"
                       >Q3 </span
                     >如何找到適合的合租物件呢？
                   </button>
@@ -127,7 +211,7 @@
                     aria-controls="collapseFour"
                   >
                     <span
-                      class="faq-number py-3 text-light bg-primary rounded-circle me-5"
+                      class="faq-number py-3 text-white bg-primary rounded-circle me-5"
                       >Q4 </span
                     >我不太清楚合租的流程以及行情，我可以怎麼做？
                   </button>
@@ -155,7 +239,7 @@
                     aria-controls="collapseFive"
                   >
                     <span
-                      class="faq-number py-3 text-light bg-primary rounded-circle me-5"
+                      class="faq-number py-3 text-white bg-primary rounded-circle me-5"
                       >Q5 </span
                     >我有在某篇文章內留言，但沒有收藏導致我找不到該篇發文，我可以怎麼做？
                   </button>
@@ -179,7 +263,7 @@
           <div
             class="faq-img col-sm-8 col-md-7 col-lg-6 position-absolute end-0"
           >
-            <h2 class="mb-7 text-light d-sm-none text-center">FAQ</h2>
+            <h2 class="mb-7 text-white d-sm-none text-center">FAQ</h2>
             <img src="/assets/images/building.png" alt="building" />
           </div>
         </div>
