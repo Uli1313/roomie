@@ -447,6 +447,8 @@ $spacers: (
   18: $spacer * 4.5,
   19: $spacer * 4.75,
   20: $spacer * 5,
+  25: $spacer * 6.25,
+  40: $spacer * 10,
 ) !default;
 // scss-docs-end spacer-variables-maps
 
@@ -576,7 +578,7 @@ $border-radius: 0.375rem !default;
 $border-radius-sm: 0.25rem !default;
 $border-radius-lg: 0.5rem !default;
 $border-radius-xl: 1rem !default;
-$border-radius-xxl: 2rem !default;
+$border-radius-xxl: 20px; // custom 2rem !default;
 $border-radius-pill: 50rem !default;
 // scss-docs-end border-radius-variables
 // fusv-disable

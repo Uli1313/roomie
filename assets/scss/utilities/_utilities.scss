@@ -834,6 +834,7 @@ $utilities: map-merge(
           pill: var(--#{$prefix}border-radius-pill),
           // custom
           6: 24px,
+          8: 32px,
           10: 40px,
         ),
       ),
