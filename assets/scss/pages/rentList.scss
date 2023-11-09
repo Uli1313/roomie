@@ -30,11 +30,11 @@ button{
     transition: .3s;
     &:focus{
         outline: none;
-        box-shadow: 0 0 0 2px #FE8541;
+        box-shadow: 0 0 0 2px $primary;
     }
 }
 .btn-primary{
-    background-color: #337757!important;
+    background-color: $secondary!important;
     color:#fff!important;
     border: none!important;
     &:hover{
@@ -44,7 +44,16 @@ button{
         background-color: #285E45!important; 
     }
 }
+.cursor{
+    cursor: pointer;
+}
 
+//下到 ? px 觸發
+@media screen and (max-width: 1200px){ 
+    .searchInput{
+        width: 250px; 
+    }
+}
 // 手機
 @media screen and (max-width: 576px) {
     .searchInput{
@@ -53,12 +62,13 @@ button{
     }
     .btn-size{
         width: 88px;
-        height: 40px;
+        height: 40px!important;
         padding: 0;
     }
-  }
-// 邊框設定
-@media screen and (min-width: 768px) {
+}
+
+//上到 ? px 觸發
+@media screen and (min-width: 768px) { 
     .border-bottom-sm-1{
         border-bottom: 1px solid #dee2e6!important;
     } 
@@ -67,5 +77,23 @@ button{
     }
     .border-start-sm-0{
         border-left: 0!important;
+    }
+    .rounded-md-start{
+        border-top-left-radius: 0.375rem!important;
+        border-bottom-left-radius: 0.375rem!important;
+        border-top-right-radius: 0px!important;
+        border-bottom-right-radius: 0px!important;
+    }
+    .rounded-md-end{
+        border-top-right-radius: 0.375rem!important ;
+        border-bottom-right-radius: 0.375rem!important ;
+        border-top-left-radius: 0px!important;
+        border-bottom-left-radius: 0px!important;
+    }
+}
+
+@media screen and (min-width: 996px){
+    .rounded-lg-pill{
+        border-radius:  50rem!important ;
     }
 }

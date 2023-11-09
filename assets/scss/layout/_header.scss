@@ -1,4 +1,17 @@
-.header {
-  background: #69f0ae;
-  font-size: 64px;
+.logo {
+  max-width: 160px;
+  @include media-breakpoint-up(md) {
+    max-width: 200px;
+  }
+  @include media-breakpoint-up(lg) {
+    max-width: 256px;
+  }
+}
+.notification {
+  &-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
 }
