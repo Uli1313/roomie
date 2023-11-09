@@ -32,6 +32,7 @@
 @import "./component/navbar";
 @import "./component/dropdown";
 @import "./component/offcanvas";
+@import "./component/form";
 
 // custom utilities
 @import "./utilities/hover";
@@ -42,4 +43,4 @@
 
 // pages
 @import "./pages/index.scss";
-@import "./pages/contact";
+@import "./pages/contact.scss";

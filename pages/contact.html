@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>contact</title>
   </head>
   <body>
@@ -11,9 +22,9 @@
     <main class="py-25">
       <div class="container">
         <div class="row">
-          <div class="col-8">
+          <div class="col-md-8 col-12">
             <h2 class="mb-10">聯絡我們</h2>
-            <p class="fs-4 mb-15">
+            <p class="fs-4 mb-md-15 mb-10">
               您的寶貴意見對我們的改進至關重要，這將有助於我們提供更好的服務和體驗。我們會仔細閱讀每一份意見，並致力於解決問題，以確保您有最好的體驗。
             </p>
           </div>
@@ -34,7 +45,7 @@
                   required
                 />
                 <label for="floatingName">您的大名</label>
-                <div class="invalid-feedback">請輸入名稱</div>
+                <div class="invalid-feedback">請輸入您的姓名</div>
               </div>
               <div class="form-floating mb-5">
                 <input
@@ -45,7 +56,7 @@
                   required
                 />
                 <label for="floatingEmail">電子郵件</label>
-                <div class="invalid-feedback">請輸入電子郵件</div>
+                <div class="invalid-feedback">請輸入您的電子郵件</div>
               </div>
               <div class="form-floating mb-5">
                 <textarea
@@ -56,7 +67,7 @@
                   required
                 ></textarea>
                 <label for="floatingTextarea form-required">您的意見</label>
-                <div class="invalid-feedback">請輸入您的寶貴意見</div>
+                <div class="invalid-feedback">請輸入您的意見</div>
               </div>
               <button
                 type="submit"
@@ -69,10 +80,9 @@
           </div>
         </div>
       </div>
-
-      <div class="bg-primary"></div>
     </main>
     <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>
+    <script type="module" src="../assets/js/contact.js"></script>
   </body>
 </html>
