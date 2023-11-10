@@ -28,3 +28,23 @@ button{
         background-color: #285E45!important; 
     }
 }
+
+.hover-custom{
+    &:hover {
+        background: $primary-200;
+        color: $secondary !important;
+      }
+}
+
+//下到 ? px 觸發
+@media screen and (max-width: 768px){ 
+    .fs-md-2{
+        font-size: 36px;
+    }
+}
+
+@media screen and (max-width: 576px){ 
+    .fs-sm-3{
+        font-size: 24px;
+    }
+}
