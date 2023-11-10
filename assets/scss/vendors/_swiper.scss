@@ -1,3 +1,11 @@
+.intro {
+  .swiper-slide {
+    width: 256px;
+    @include media-breakpoint-up(md) {
+      width: 342px;
+    }
+  }
+}
 .latest-rent {
   .swiper {
     width: 90%;

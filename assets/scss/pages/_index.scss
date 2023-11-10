@@ -1,3 +1,85 @@
+.intro {
+  bottom: -20px;
+  &-h {
+    height: 520px;
+  }
+  &-typingwrite {
+    top: 80px;
+    left: 12px;
+  }
+  @include media-breakpoint-up(sm) {
+    &-typingwrite {
+      top: 80px;
+    }
+  }
+  @include media-breakpoint-up(md) {
+    bottom: -60px;
+    &-h {
+      height: 604px;
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    &-typingwrite {
+      left: 34%;
+    }
+  }
+  @include media-breakpoint-up(xl) {
+    &-typingwrite {
+      left: 37%;
+    }
+  }
+  @include media-breakpoint-up(xxl) {
+    &-typingwrite {
+      left: 40%;
+    }
+  }
+}
+
+/* 手寫字樣式 */
+.typewriter {
+  overflow: hidden;
+  padding-bottom: 6px;
+  border-bottom: 10px solid $primary;
+  white-space: nowrap;
+}
+.typingtwo {
+  animation: typing 0.6s steps(2, end);
+}
+.typingthree {
+  animation: typing 0.6s steps(3, end);
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.reverse-card {
+  height: 300px;
+  transition: all 0.3s;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.7s;
+  &-front,
+  &-back {
+    backface-visibility: hidden;
+  }
+  &-back {
+    transform: rotateY(180deg);
+    background: url("/assets/images/card-back.png");
+  }
+  @include media-breakpoint-up(md) {
+    height: 386px;
+  }
+}
+.swiper-slide:hover > .reverse-card {
+  transform: rotateY(180deg);
+}
 .latest-rent {
   padding-bottom: 414px;
   &-img {
@@ -58,15 +140,169 @@
 }
 
 // deco
+.deco-sparkle {
+  @include media-breakpoint-up(sm) {
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      display: inline-block;
+    }
+    &::before {
+      background: no-repeat center/contain url("/assets/images/sparkle.png");
+      width: 90px;
+      height: 90px;
+      top: 25%;
+      left: 5%;
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    &::before {
+      width: 121px;
+      height: 121px;
+      top: 15%;
+    }
+    &::after {
+      background: no-repeat center/contain url("/assets/images/sparkle-lg.png");
+      width: 80px;
+      height: 80px;
+      top: 5%;
+      right: 14%;
+    }
+  }
+  @include media-breakpoint-up(xxl) {
+    &::before {
+      background: no-repeat center/contain url("/assets/images/sparkle.png");
+      width: 121px;
+      height: 121px;
+      top: 17%;
+      left: 14%;
+    }
+    &::after {
+      background: no-repeat center/contain url("/assets/images/sparkle-lg.png");
+      width: 150px;
+      height: 150px;
+      top: 17%;
+      right: 14%;
+    }
+  }
+}
+.deco-line-white {
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+  }
+  &::before {
+    display: none;
+    background: no-repeat center/contain url("/assets/images/decoWhite-1.png");
+    width: 61px;
+    height: 47px;
+    top: 11%;
+    @include media-breakpoint-up(lg) {
+      display: inline-block;
+      left: 25%;
+    }
+    @include media-breakpoint-up(xxl) {
+      left: 36%;
+    }
+  }
+  &::after {
+    background: no-repeat center/contain
+      url("/assets/images/mobile/decoWhite-mobile.png");
+    width: 81px;
+    height: 47px;
+    top: 10%;
+    right: 0;
+    @include media-breakpoint-up(sm) {
+      width: 100px;
+      height: 66px;
+      right: 6%;
+    }
+    @include media-breakpoint-up(md) {
+      background: no-repeat center/contain url("/assets/images/decoWhite-2.png");
+      width: 130px;
+      height: 96px;
+      top: 5%;
+    }
+    @include media-breakpoint-up(lg) {
+      width: 160px;
+      height: 126px;
+      top: 20%;
+      right: 1%;
+    }
+    @include media-breakpoint-up(xxl) {
+      top: 33%;
+    }
+    @media (min-width: 1700px) {
+      width: 220px;
+      height: 130px;
+      top: 40%;
+      right: 12%;
+    }
+  }
+}
+.deco-house {
+  &::before,
+  &::after {
+    display: none;
+    content: "";
+    position: absolute;
+    background: no-repeat center/contain url("/assets/images/house.png");
+    width: 375px;
+    height: 311px;
+    bottom: 0;
+    z-index: -1;
+  }
+  @include media-breakpoint-up(md) {
+    &::before,
+    &::after {
+      display: inline-block;
+    }
+    &::before {
+      left: 0;
+    }
+    &::after {
+      right: 0;
+    }
+  }
+  @include media-breakpoint-up(xxl) {
+    &::before {
+      left: 2%;
+    }
+    &::after {
+      right: 2%;
+    }
+  }
+}
 .deco-line-black {
   content: "";
   position: absolute;
   display: inline-block;
-  background: no-repeat center/contain url("/assets/images/decoBlack-1.png");
-  width: 186px;
-  height: 200px;
-  top: -4%;
+  background: no-repeat center/contain
+    url("/assets/images/mobile/decoBlack-1-mobile.png");
+  width: 62px;
+  height: 66px;
+  top: 8%;
   left: 10%;
+  @include media-breakpoint-up(md) {
+    width: 90px;
+    height: 94px;
+    top: 12%;
+  }
+  @include media-breakpoint-up(lg) {
+    background: no-repeat center/contain url("/assets/images/decoBlack-1.png");
+    top: 10%;
+    left: 10%;
+    width: 126px;
+    height: 130px;
+  }
+  @media (min-width: 1700px) {
+    top: -4%;
+    width: 186px;
+    height: 200px;
+  }
 }
 .deco-cloud {
   &::before {
@@ -101,10 +337,13 @@
   }
 }
 .deco-news {
+  &::before,
   &::after {
     content: "";
     position: absolute;
     display: inline-block;
+  }
+  &::after {
     background: no-repeat center/contain
       url("/assets/images/mobile/decoBlack-3-mobile.png");
     width: 80px;
@@ -127,9 +366,6 @@
     }
   }
   &::before {
-    content: "";
-    position: absolute;
-    display: inline-block;
     background: no-repeat center/contain
       url("/assets/images/mobile/decoBlack-2-mobile.png");
     width: 148px;

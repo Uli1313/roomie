@@ -19,179 +19,288 @@
   </head>
   <body class="u-btn">
     <%- include('./layout/header'); -%>
-    <!-- intro -->
-    <div class="bg-secondary" style="height: 604px">
-      <div class="container-xxl">
-        <div class="row"></div>
-      </div>
-    </div>
-    <!-- latest rent -->
-    <div class="latest-rent deco-cloud position-relative pt-25 pt-md-40">
-      <div class="deco-line-black"></div>
-      <div class="overflow-hidden">
-        <div class="container-xxl">
-          <h2 class="fs-3 fs-md-2 text-primary text-center mb-7 mb-md-10">
-            最新物件
+    <div class="overflow-hidden">
+      <!-- intro -->
+      <div class="deco-house intro-h bg-secondary position-relative z-1">
+        <div class="deco-line-white"></div>
+        <div class="deco-sparkle"></div>
+        <div
+          class="intro-typingwrite position-absolute d-flex justify-content-center text-white mb-8 mb-md-10"
+        >
+          <h2 class="fs-3 fs-md-2">想找人一起合租</h2>
+          <h2 class="d-inline-block fs-3 fs-md-2">
+            <div id="typewrite-animated">
+              <span id="typewrite-text" class="d-inline-block"></span>
+            </div>
           </h2>
-          <div class="swiper latest-rent-swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
-                  <img
-                    class="latest-rent-img"
-                    src="/assets/images/room-1.png"
-                    alt=""
-                  />
-                  <div class="p-4 px-md-5 py-md-6">
-                    <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                    <div
-                      class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                    >
-                      <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                        永和區｜雅房｜6坪2F/7F
-                      </p>
-                      <p class="fw-medium fs-7 fs-md-6 text-primary order-md-0">
-                        <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                        >元/月
-                      </p>
+        </div>
+        <div
+          class="intro container-xxl position-absolute start-50 translate-middle-x"
+        >
+          <div
+            class="text-white mb-4 mb-md-8 text-end text-lg-center col-11 col-sm-8 col-lg-12 ms-auto fs-md-4 lh-sm"
+          >
+            <p class="mb-2 mb-md-4">受夠了高昂的租金嗎?</p>
+            <p>
+              我們的合租平台能幫助你找到經濟實惠的共享住宅，與合租夥伴共擔租金，輕鬆省錢！
+            </p>
+          </div>
+          <!-- cards -->
+          <div class="row justify-content-center">
+            <div class="col-md-11 col-lg-10">
+              <div class="swiper intro-swiper overflow-visible">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide position-relative">
+                    <div class="reverse-card rounded-10">
+                      <div
+                        class="reverse-card-front bg-white position-absolute w-100 h-100 rounded-10 p-12"
+                      >
+                        <img
+                          class="mb-5"
+                          src="/assets/images/information.png"
+                          alt="租屋資訊"
+                        />
+                        <h3 class="fs-4 fs-md-3 text-center">租屋資訊</h3>
+                      </div>
+                      <div
+                        class="reverse-card-back position-absolute w-100 h-100 rounded-10 px-10 pt-20 pt-md-25 fs-6 fs-md-4 fw-bold text-white"
+                      >
+                        <p>
+                          透過篩選功能，選擇地區、租金預算、房屋類型等項目，篩選出符合您期待的物件
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide position-relative">
+                    <div class="reverse-card rounded-10">
+                      <div
+                        class="reverse-card-front bg-white position-absolute w-100 h-100 rounded-10 p-12"
+                      >
+                        <img
+                          class="mb-5"
+                          src="/assets/images/partner.png"
+                          alt="合租夥伴"
+                        />
+                        <h3 class="fs-4 fs-md-3 text-center">合租夥伴</h3>
+                      </div>
+                      <div
+                        class="reverse-card-back position-absolute w-100 h-100 rounded-10 px-10 pt-20 pt-md-25 fs-6 fs-md-4 fw-bold text-white"
+                      >
+                        <p>
+                          通過興趣、生活方式和需求的詳細匹配，幫助你找到與你志同道合的室友。不再煩惱與不合拍的室友相處，享受和諧的合租生活
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide position-relative">
+                    <div class="reverse-card rounded-10">
+                      <div
+                        class="reverse-card-front bg-white position-absolute w-100 h-100 rounded-10 p-12"
+                      >
+                        <img
+                          class="mb-5"
+                          src="/assets/images/price.png"
+                          alt="行情"
+                        />
+                        <h3 class="fs-4 fs-md-3 text-center">行情</h3>
+                      </div>
+                      <div
+                        class="reverse-card-back position-absolute w-100 h-100 rounded-10 px-10 pt-20 pt-md-25 fs-6 fs-md-4 fw-bold text-white"
+                      >
+                        <p>
+                          至「媒合成功」頁面觀看其他使用者的成功案例，藉此獲得更多資訊，了解附近的行情
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="swiper-slide">
-                <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
-                  <img
-                    class="latest-rent-img"
-                    src="/assets/images/room-2.png"
-                    alt=""
-                  />
-                  <div class="p-4 px-md-5 py-md-6">
-                    <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                    <div
-                      class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                    >
-                      <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                        永和區｜雅房｜6坪2F/7F
-                      </p>
-                      <p class="fw-medium fs-7 fs-md-6 text-primary order-md-0">
-                        <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                        >元/月
-                      </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- latest rent -->
+      <div class="latest-rent deco-cloud position-relative pt-25 pt-md-40">
+        <div class="deco-line-black z-1"></div>
+        <div class="overflow-hidden">
+          <div class="container-xxl">
+            <h2 class="fs-3 fs-md-2 text-primary text-center mb-7 mb-md-10">
+              最新物件
+            </h2>
+            <div class="swiper latest-rent-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-1.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
-                  <img
-                    class="latest-rent-img"
-                    src="/assets/images/room-3.png"
-                    alt=""
-                  />
-                  <div class="p-4 px-md-5 py-md-6">
-                    <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                    <div
-                      class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                    >
-                      <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                        永和區｜雅房｜6坪2F/7F
-                      </p>
-                      <p class="fw-medium fs-7 fs-md-6 text-primary order-md-0">
-                        <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                        >元/月
-                      </p>
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-2.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
-                  <img
-                    class="latest-rent-img"
-                    src="/assets/images/room-4.png"
-                    alt=""
-                  />
-                  <div class="p-4 px-md-5 py-md-6">
-                    <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                    <div
-                      class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                    >
-                      <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                        永和區｜雅房｜6坪2F/7F
-                      </p>
-                      <p class="fw-medium fs-7 fs-md-6 text-primary order-md-0">
-                        <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                        >元/月
-                      </p>
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-3.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
-                  <img
-                    class="latest-rent-img"
-                    src="/assets/images/room-5.png"
-                    alt=""
-                  />
-                  <div class="p-4 px-md-5 py-md-6">
-                    <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                    <div
-                      class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                    >
-                      <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                        永和區｜雅房｜6坪2F/7F
-                      </p>
-                      <p class="fw-medium fs-7 fs-md-6 text-primary order-md-0">
-                        <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                        >元/月
-                      </p>
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-4.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
-                  <img
-                    class="latest-rent-img"
-                    src="/assets/images/room-6.png"
-                    alt=""
-                  />
-                  <div class="p-4 px-md-5 py-md-6">
-                    <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                    <div
-                      class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                    >
-                      <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                        永和區｜雅房｜6坪2F/7F
-                      </p>
-                      <p class="fw-medium fs-7 fs-md-6 text-primary order-md-0">
-                        <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                        >元/月
-                      </p>
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-5.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
-                  <img
-                    class="latest-rent-img"
-                    src="/assets/images/room-1.png"
-                    alt=""
-                  />
-                  <div class="p-4 px-md-5 py-md-6">
-                    <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                    <div
-                      class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                    >
-                      <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                        永和區｜雅房｜6坪2F/7F
-                      </p>
-                      <p class="fw-medium fs-7 fs-md-6 text-primary order-md-0">
-                        <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                        >元/月
-                      </p>
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-6.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 overflow-hidden bg-white">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-1.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
