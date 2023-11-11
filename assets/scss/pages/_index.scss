@@ -1,36 +1,18 @@
 .intro {
   bottom: -20px;
   &-h {
-    height: 520px;
+    height: 500px;
   }
   &-typingwrite {
-    top: 80px;
-    left: 12px;
-  }
-  @include media-breakpoint-up(sm) {
-    &-typingwrite {
-      top: 80px;
-    }
+    width: 250px;
   }
   @include media-breakpoint-up(md) {
     bottom: -60px;
     &-h {
       height: 604px;
     }
-  }
-  @include media-breakpoint-up(lg) {
     &-typingwrite {
-      left: 34%;
-    }
-  }
-  @include media-breakpoint-up(xl) {
-    &-typingwrite {
-      left: 37%;
-    }
-  }
-  @include media-breakpoint-up(xxl) {
-    &-typingwrite {
-      left: 40%;
+      width: 375px;
     }
   }
 }
@@ -150,9 +132,9 @@
     }
     &::before {
       background: no-repeat center/contain url("/assets/images/sparkle.png");
-      width: 90px;
-      height: 90px;
-      top: 25%;
+      width: 80px;
+      height: 80px;
+      top: 15%;
       left: 5%;
     }
   }
@@ -205,6 +187,9 @@
       left: 25%;
     }
     @include media-breakpoint-up(xxl) {
+      left: 30%;
+    }
+    @media (min-width: 1700px) {
       left: 36%;
     }
   }
