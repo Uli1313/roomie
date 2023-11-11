@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <title>Login</title>
+  </head>
+  <body>
+    <%- include('./layout/header',{page: "news"}); -%>
+    <div class="container">
+      <div class="row py-10">
+        <!-- 圖片 -->
+        <div class="col-6">
+          <img src="../assets/images/membership-cover.png" alt="" />
+        </div>
+        <!-- 登入介面 -->
+        <div class="col-6">
+          <!-- 登入或註冊 -->
+          <div class="py-5 text-end">
+            <button type="button" class="btn btn-primary py-2 me-2">
+              Sign Up
+            </button>
+            <button type="button" class="btn btn-primary py-2">Login</button>
+          </div>
+
+          <div>
+            <h3 class="py-12 text-center">
+              May you find the home of your heart's dreams.
+            </h3>
+            <div class="text-center">
+              <button type="button" class="btn btn-primary">google</button>
+            </div>
+
+            <hr />
+            <!-- Email & Password -->
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+              />
+              <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Password"
+              />
+              <label for="floatingPassword">Password</label>
+            </div>
+            <!-- 記住和忘記密碼 -->
+            <div class="d-flex justify-content-between">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckChecked"
+                />
+                <label class="form-check-label" for="flexCheckChecked">
+                  記住密碼
+                </label>
+              </div>
+              <a href="">忘記密碼</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%-include('./layout/footer'); -%>
+
+    <script type="module" src="../main.js"></script>
+  </body>
+</html>
