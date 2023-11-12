@@ -1,0 +1,43 @@
+.nav-link {
+  padding: 20px 24px;
+  border-bottom: 1px solid $light-300;
+  &:hover {
+    background: $light-100;
+  }
+  @include media-breakpoint-up(md) {
+    border-bottom: 0;
+    border-radius: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    &:hover {
+      background: $light-200;
+      color: $secondary;
+    }
+  }
+}
+.navbar-collapse {
+  margin-left: -12px;
+  margin-right: -12px;
+  position: absolute;
+  top: 74px;
+  background: $white;
+  width: 100%;
+  @include media-breakpoint-up(md) {
+    margin-left: 0;
+    margin-right: 0;
+    position: static;
+    width: auto;
+    font-weight: 700;
+  }
+}
+.navbar {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  position: relative;
+}
+.accountMenu {
+  margin-left: 0;
+  margin-right: 0;
+  position: absolute;
+  left: 0;
+}

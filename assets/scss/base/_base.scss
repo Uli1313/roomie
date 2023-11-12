@@ -1,0 +1,33 @@
+body {
+  text-align: justify;
+}
+a {
+  display: inline-block;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+ol,
+ul,
+dl {
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style-type: none;
+}
+textarea {
+  resize: none;
+}
+.material-icons,
+.material-icons-outlined {
+  vertical-align: bottom;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  letter-spacing: 0.04em;
+}

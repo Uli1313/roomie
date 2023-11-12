@@ -4,16 +4,556 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>index</title>
   </head>
-  <body>
+  <body class="u-btn">
     <%- include('./layout/header'); -%>
+    <div class="overflow-hidden">
+      <!-- intro -->
+      <div
+        class="deco-house intro-h bg-secondary position-relative z-1 pt-20 pt-md-25"
+      >
+        <div class="deco-line-white"></div>
+        <div class="deco-sparkle"></div>
+        <div class="intro-typingwrite d-flex mx-auto text-white mb-8 mb-md-10">
+          <h2 class="fs-3 fs-md-2">想找人一起合租</h2>
+          <h2 class="d-inline-block fs-3 fs-md-2">
+            <div id="typewrite-animated">
+              <span id="typewrite-text" class="d-inline-block"></span>
+            </div>
+          </h2>
+        </div>
+        <div
+          class="intro container-xxl position-absolute start-50 translate-middle-x"
+        >
+          <div class="text-white mb-4 mb-md-8 text-center fs-md-4 lh-sm">
+            <p class="mb-2 mb-md-4">受夠了高昂的租金嗎?</p>
+            <p>
+              我們的合租平台能幫助你找到經濟實惠的共享住宅，與合租夥伴共擔租金，輕鬆省錢！
+            </p>
+          </div>
+          <!-- cards -->
+          <div class="row justify-content-center">
+            <div class="col-md-11 col-lg-10">
+              <div class="swiper intro-swiper overflow-visible">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide position-relative">
+                    <div class="reverse-card rounded-10 shadow-sm">
+                      <div
+                        class="reverse-card-front bg-white position-absolute w-100 h-100 rounded-10 p-12"
+                      >
+                        <img
+                          class="mb-5"
+                          src="/assets/images/information.png"
+                          alt="租屋資訊"
+                        />
+                        <h3 class="fs-4 fs-md-3 text-center">租屋資訊</h3>
+                      </div>
+                      <div
+                        class="reverse-card-back position-absolute w-100 h-100 rounded-10 px-10 pt-20 pt-md-25 fs-6 fs-md-4 fw-bold text-white"
+                      >
+                        <p>
+                          透過篩選功能，選擇地區、租金預算、房屋類型等項目，篩選出符合您期待的物件
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide position-relative">
+                    <div class="reverse-card rounded-10 shadow-sm">
+                      <div
+                        class="reverse-card-front bg-white position-absolute w-100 h-100 rounded-10 p-12"
+                      >
+                        <img
+                          class="mb-5"
+                          src="/assets/images/partner.png"
+                          alt="合租夥伴"
+                        />
+                        <h3 class="fs-4 fs-md-3 text-center">合租夥伴</h3>
+                      </div>
+                      <div
+                        class="reverse-card-back position-absolute w-100 h-100 rounded-10 px-10 pt-20 pt-md-25 fs-6 fs-md-4 fw-bold text-white"
+                      >
+                        <p>
+                          通過興趣、生活方式和需求的詳細匹配，幫助你找到與你志同道合的室友。不再煩惱與不合拍的室友相處，享受和諧的合租生活
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide position-relative">
+                    <div class="reverse-card rounded-10 shadow-sm">
+                      <div
+                        class="reverse-card-front bg-white position-absolute w-100 h-100 rounded-10 p-12"
+                      >
+                        <img
+                          class="mb-5"
+                          src="/assets/images/price.png"
+                          alt="行情"
+                        />
+                        <h3 class="fs-4 fs-md-3 text-center">行情</h3>
+                      </div>
+                      <div
+                        class="reverse-card-back position-absolute w-100 h-100 rounded-10 px-10 pt-20 pt-md-25 fs-6 fs-md-4 fw-bold text-white"
+                      >
+                        <p>
+                          至「媒合成功」頁面觀看其他使用者的成功案例，藉此獲得更多資訊，了解附近的行情
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- latest rent -->
+      <div class="latest-rent deco-cloud position-relative pt-25 pt-md-40">
+        <div class="deco-line-black z-1"></div>
+        <div class="">
+          <div class="container-xxl">
+            <h2 class="fs-3 fs-md-2 text-primary text-center mb-7 mb-md-10">
+              最新物件
+            </h2>
+            <div class="swiper latest-rent-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-1.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-2.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-3.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-4.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-5.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-6.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
+                    <img
+                      class="latest-rent-img"
+                      src="/assets/images/room-1.png"
+                      alt=""
+                    />
+                    <div class="p-4 px-md-5 py-md-6">
+                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
+                      <div
+                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+                      >
+                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+                          永和區｜雅房｜6坪2F/7F
+                        </p>
+                        <p
+                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+                        >
+                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
+                          >元/月
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <h1 class="index-title">我是首頁</h1>
-    <img src="../assets/images/cat.jpg" style="width: 300px;" alt="cat">
-
+    <div class="deco-news bg-primary position-relative">
+      <!-- news -->
+      <div
+        class="news container-xxl position-absolute start-50 translate-middle-x z-1"
+      >
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <div
+              class="d-flex flex-column flex-md-row bg-white rounded-10 pt-7 pb-4 py-md-13 px-4 px-md-8 shadow-sm"
+            >
+              <div class="me-md-8">
+                <h2
+                  class="fs-3 fs-md-2 text-primary text-center text-md-start mb-7 mb-md-6 pt-md-9"
+                >
+                  最新公告
+                </h2>
+                <a
+                  href="##"
+                  class="btn btn-outline-light-300 d-none d-md-inline-block"
+                  >查看更多
+                  <span class="material-icons ms-5"> chevron_right </span></a
+                >
+              </div>
+              <ul class="flex-grow-1 mb-6 mb-md-0">
+                <li
+                  class="news-item d-flex align-items-center position-relative link-dark fw-bold py-4 py-md-6"
+                >
+                  <div class="d-flex flex-column flex-md-row flex-grow-1">
+                    <p class="me-5 text-light-400 fs-7 fs-md-6 mb-2 mb-md-0">
+                      2023-10-14
+                    </p>
+                    <p class="fs-md-5">租屋注意這三件事!避免落入詐騙陷阱</p>
+                  </div>
+                  <span class="news-icon material-icons p-2">
+                    chevron_right
+                  </span>
+                  <a href="##" class="stretched-link"></a>
+                </li>
+                <li
+                  class="news-item d-flex align-items-center position-relative link-dark fw-bold py-4 py-md-6"
+                >
+                  <div class="d-flex flex-column flex-md-row flex-grow-1">
+                    <p class="me-5 text-light-400 fs-7 fs-md-6 mb-2 mb-md-0">
+                      2023-10-14
+                    </p>
+                    <p class="fs-md-5">租屋注意這三件事!避免落入詐騙陷阱</p>
+                  </div>
+                  <span class="news-icon material-icons p-2">
+                    chevron_right
+                  </span>
+                  <a href="##" class="stretched-link"></a>
+                </li>
+                <li
+                  class="news-item d-flex align-items-center position-relative link-dark fw-bold py-4 py-md-6"
+                >
+                  <div class="d-flex flex-column flex-md-row flex-grow-1">
+                    <p class="me-5 text-light-400 fs-7 fs-md-6 mb-2 mb-md-0">
+                      2023-10-14
+                    </p>
+                    <p class="fs-md-5">租屋注意這三件事!避免落入詐騙陷阱</p>
+                  </div>
+                  <span class="news-icon material-icons p-2">
+                    chevron_right
+                  </span>
+                  <a href="##" class="stretched-link"></a>
+                </li>
+              </ul>
+              <a
+                href="##"
+                class="news-btn btn btn-outline-light-300 d-md-none mx-auto"
+                >查看更多
+                <span class="material-icons ms-5"> chevron_right </span></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FAQ -->
+      <div class="faq container-xxl position-relative pb-4">
+        <div class="row">
+          <div class="col-md-9 col-lg-7 z-1">
+            <h2 class="mb-10 text-white d-none d-sm-block">FAQ</h2>
+            <div
+              class="accordion rounded-6 rounded-md-10 overflow-hidden shadow-sm"
+              id="accordionFaq"
+            >
+              <div class="accordion-item border-0">
+                <h4 class="accordion-header">
+                  <button
+                    class="accordion-button h4 bg-white collapsed py-5 py-md-8 ps-3 ps-md-8 pe-4 pe-md-9 fs-6 fs-md-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="false"
+                    aria-controls="collapseOne"
+                  >
+                    <span
+                      class="faq-number py-3 text-white bg-primary rounded-circle me-5"
+                      >Q1 </span
+                    >Roomie 屋伴 是什麼?
+                  </button>
+                </h4>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionFaq"
+                >
+                  <div class="accordion-body p-3 p-md-8 fs-7 fs-md-6">
+                    <p>
+                      Roomie
+                      屋伴是一個線上服務平台，旨在協助使用者找到合適的合租夥伴以及合適的住處或其他場域。使用者可以發布尋找合租夥伴的物件資訊，並與對該物件有興趣的使用者進行聯繫。
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item border-0">
+                <h4 class="accordion-header">
+                  <button
+                    class="accordion-button h4 bg-white collapsed py-5 py-md-8 ps-3 ps-md-8 pe-4 pe-md-9 fs-6 fs-md-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    <span
+                      class="faq-number py-3 text-white bg-primary rounded-circle me-5"
+                      >Q2 </span
+                    >如何在平台上尋找合租夥伴呢？
+                  </button>
+                </h4>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionFaq"
+                >
+                  <div class="accordion-body p-3 p-md-8 fs-7 fs-md-6">
+                    <p>
+                      登入您的帳戶後，前往「會員中心 >
+                      發文列表」點擊「＋」圖示，填寫物件相關資訊（地區、
+                      租金、房屋類型、設備等）以及聯絡人資訊即可發表文章，尋找您的合租夥伴。
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item border-0">
+                <h4 class="accordion-header">
+                  <button
+                    class="accordion-button h4 bg-white collapsed py-5 py-md-8 ps-3 ps-md-8 pe-4 pe-md-9 fs-6 fs-md-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    <span
+                      class="faq-number py-3 text-white bg-primary rounded-circle me-5"
+                      >Q3 </span
+                    >如何找到適合的合租物件呢？
+                  </button>
+                </h4>
+                <div
+                  id="collapseThree"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionFaq"
+                >
+                  <div class="accordion-body p-3 p-md-8 fs-7 fs-md-6">
+                    <p>
+                      可以透過篩選功能，選擇地區、租金預算、房屋類型等項目，篩選出符合您期待的物件。另外有心儀的物件時，您可以點擊收藏按鈕將多個物件添加到收藏列表中，以幫助您選擇出最理想的物件。
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item border-0">
+                <h4 class="accordion-header">
+                  <button
+                    class="accordion-button h4 bg-white collapsed py-5 py-md-8 ps-3 ps-md-8 pe-4 pe-md-9 fs-6 fs-md-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour"
+                    aria-expanded="false"
+                    aria-controls="collapseFour"
+                  >
+                    <span
+                      class="faq-number py-3 text-white bg-primary rounded-circle me-5"
+                      >Q4 </span
+                    >我不太清楚合租的流程以及行情，我可以怎麼做？
+                  </button>
+                </h4>
+                <div
+                  id="collapseFour"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionFaq"
+                >
+                  <div class="accordion-body p-3 p-md-8 fs-7 fs-md-6">
+                    <p>
+                      可以至「媒合成功」頁面觀看其他使用者的成功案例，藉此獲得更多資訊。也可以使用篩選功能篩選出附近的成功案例，以了解合租行情。
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item border-0">
+                <h4 class="accordion-header">
+                  <button
+                    class="accordion-button h4 bg-white collapsed py-5 py-md-8 ps-3 ps-md-8 pe-4 pe-md-9 fs-6 fs-md-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive"
+                    aria-expanded="false"
+                    aria-controls="collapseFive"
+                  >
+                    <span
+                      class="faq-number py-3 text-white bg-primary rounded-circle me-5"
+                      >Q5 </span
+                    >我有在某篇文章內留言，但沒有收藏導致我找不到該篇發文，我可以怎麼做？
+                  </button>
+                </h4>
+                <div
+                  id="collapseFive"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionFaq"
+                >
+                  <div class="accordion-body p-3 p-md-8 fs-7 fs-md-6">
+                    <p>
+                      可以至「會員中心 >
+                      留言列表」頁面，查看您所有的留言/回覆，點擊文章標題即可前往該物件
+                      頁面。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="faq-img col-sm-8 col-md-7 col-lg-6 position-absolute end-0"
+          >
+            <h2 class="mb-7 text-white d-sm-none text-center">FAQ</h2>
+            <img src="/assets/images/building.png" alt="building" />
+          </div>
+        </div>
+      </div>
+    </div>
     <%- include('./layout/footer'); -%>
 
     <script type="module" src="../main.js"></script>
+    <script type="module" src="/assets/js/index.js"></script>
   </body>
 </html>

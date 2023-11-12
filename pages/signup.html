@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <%- include('./layout/header',{page: "news"}); -%>
+    <div class="container">
+      <div class="row py-10">
+        <!-- 圖片 -->
+        <div class="col-lg-6 img-lg">
+          <img src="../assets/images/membership-cover.png" alt="" />
+        </div>
+        <!-- 登入介面 -->
+        <div class="col-lg-6">
+          <!-- 登入或註冊 -->
+          <div class="py-5 text-end">
+            <button type="button" class="btn btn-primary py-2 me-2" disabled>
+              Sign Up
+            </button>
+            <a href="login.html">
+              <button type="button" class="btn btn-primary py-2">Login</button>
+            </a>
+          </div>
+
+          <div>
+            <h3 class="py-12 text-center title-fz">
+              May you find the home of your heart's dreams.
+            </h3>
+            <div class="py-8 text-center">
+              <button type="button" class="btn btn-primary googleBtn">
+                Google account
+              </button>
+            </div>
+
+            <hr />
+
+            <div class="py-8">
+              <!-- Email & Password -->
+              <div class="form-floating mb-3">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="name@example.com"
+                />
+                <label for="floatingInput">Email address</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
+                />
+                <label for="floatingPassword">Password</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
+                />
+                <label for="floatingPassword">Confirm Password</label>
+              </div>
+              <!-- 記住和忘記密碼 -->
+              <div class="py-8">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                  />
+                  <label
+                    class="form-check-label lawDescription"
+                    for="flexCheckChecked"
+                  >
+                    我已仔細閱讀並明瞭 <a href="">「服務條款」</a>、<a href=""
+                      >「免責聲明」</a
+                    >、<a href="">「隱私權聲明」</a
+                    >等所載內容及其意義,茲同意該等條款規定,並願遵守網站現今、嗣後規範的各種規則
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%-include('./layout/footer'); -%>
+
+    <script type="module" src="../main.js"></script>
+  </body>
+</html>

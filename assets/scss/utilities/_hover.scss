@@ -1,0 +1,11 @@
+.hover-primary {
+  &:hover {
+    background: $light-200;
+    color: $secondary !important;
+  }
+}
+.hover-light {
+  &:hover {
+    background: $light-100 !important;
+  }
+}
