@@ -4,16 +4,479 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+      rel="stylesheet"
+    />
     <title>about</title>
-    <script type="module" crossorigin src="/roomie/assets/main-2d761428.js"></script>
-    <link rel="stylesheet" href="/roomie/assets/main-4cfea7bd.css">
+    <script type="module" crossorigin src="/roomie/assets/main-245199e5.js"></script>
+    <link rel="stylesheet" href="/roomie/assets/main-10421b94.css">
   </head>
   <body>
-    <h1 class="header">我是 header</h1>
-<a href="index.html">index</a>
-<a href="about.html">about</a>
-<a href="contact.html">contact</a>    <h1>我是about</h1>
-    <footer class="footer">我是 footer</footer>
+    <nav class="navbar navbar-expand-md bg-white border-bottom">
+  <div class="container-xxl">
+    <a class="navbar-brand flex-grow-1 order-0" href="index.html">
+      <picture>
+        <source srcset="/roomie/assets/logo-a9bfd98d.png " media="(min-width:768px)" />
+        <img
+          src="/roomie/assets/logo-mobile-5c8b7082.png"
+          alt="roomie 屋伴"
+          class="logo"
+        />
+      </picture>
+    </a>
+    <div class="d-flex order-1 order-md-2">
+      <ul class="d-flex ms-5 gap-0 gap-md-5">
+        <!-- mobile notification icon -->
+        <li>
+          <a
+            class="p-3 link-dark hover-primary border-0 rounded-3 d-md-none"
+            data-bs-toggle="offcanvas"
+            href="#offcanvasExample"
+            role="button"
+            aria-controls="offcanvasExample"
+            ><span class="material-icons"> notifications_active </span></a
+          >
+        </li>
+        <!-- desktop notification dropdown -->
+        <li class="navbar-notification nav-item dropdown d-none d-md-block">
+          <a
+            class="nav-link dropdown-toggle p-3 link-dark hover-primary border-0 rounded-3"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <span class="material-icons"> notifications_active </span>
+          </a>
+          <ul class="dropdown-menu" style="width: 526px">
+            <div
+              class="card bg-white rounded-0 hover-light border-0 border-bottom"
+            >
+              <div class="d-flex g-0 align-items-center ps-5">
+                <img
+                  src="/roomie/assets/room-1-bf8a56b6.png"
+                  class="img-fluid notification-img"
+                  alt="..."
+                />
+                <div class="card-body pt-3 pe-5 pb-3 ps-4">
+                  <p class="card-text fs-6 mb-4">
+                    您收藏的<span class="fw-bold"
+                      >「極簡黑白共生宅民生東路電梯大樓」</span
+                    >文章有新的回覆。
+                  </p>
+                  <p class="fs-7">16小時前</p>
+                </div>
+              </div>
+              <a href="#" class="stretched-link"></a>
+            </div>
+            <div
+              class="card bg-white rounded-0 hover-light border-0 border-bottom"
+            >
+              <div class="d-flex g-0 align-items-center ps-5">
+                <img
+                  src="/roomie/assets/room-1-bf8a56b6.png"
+                  class="img-fluid notification-img"
+                  alt="..."
+                />
+                <div class="card-body pt-3 pe-5 pb-3 ps-4">
+                  <p class="card-text fs-6 mb-4">
+                    您收藏的<span class="fw-bold"
+                      >「極簡黑白共生宅民生東路電梯大樓」</span
+                    >文章有新的回覆。
+                  </p>
+                  <p class="fs-7">16小時前</p>
+                </div>
+              </div>
+              <a href="#" class="stretched-link"></a>
+            </div>
+            <div
+              class="card bg-white rounded-0 hover-light border-0 border-bottom"
+            >
+              <div class="d-flex g-0 align-items-center ps-5">
+                <img
+                  src="data:image/png;base64,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"
+                  class="img-fluid notification-img"
+                  alt="..."
+                />
+                <div class="card-body pt-3 pe-5 pb-3 ps-4">
+                  <p class="card-text fs-6 mb-4">
+                    提醒您，違規達三次(含)將停權帳號，發表文章時請務必遵守規範。
+                  </p>
+                  <p class="fs-7">16小時前</p>
+                </div>
+              </div>
+              <a href="#" class="stretched-link"></a>
+            </div>
+            <div
+              class="card bg-white rounded-0 hover-light border-0 border-bottom"
+            >
+              <div class="d-flex g-0 align-items-center ps-5">
+                <img
+                  src="data:image/png;base64,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"
+                  class="img-fluid notification-img"
+                  alt="..."
+                />
+                <div class="card-body pt-3 pe-5 pb-3 ps-4">
+                  <p class="card-text fs-6 mb-4">
+                    提醒您，違規達三次(含)將停權帳號，發表文章時請務必遵守規範。
+                  </p>
+                  <p class="fs-7">16小時前</p>
+                </div>
+              </div>
+              <a href="#" class="stretched-link"></a>
+            </div>
+            <div
+              class="card bg-white rounded-0 hover-light border-0 border-bottom"
+            >
+              <div class="d-flex g-0 align-items-center ps-5">
+                <img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACgCAYAAACLz2ctAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAkSSURBVHgB7d2/V9RYFAfw+wIMA+w5spV2QiFKJVRayVBppW6jne5WluI/4K9/YLG1Yi1tPNppA1qpjdiIQrFjp9XiOfJj+DHZdwNB5keSmzCZl+R9P+e4wEzG2eLrTd59l4yihDaWliquUhOOUlOKaIKUGtYPDxPYYJVct+oS8Z+PVK8vDIyPL1ACKs7B7ocPw1uDg7d12GYIYYPDdCB1Lhbqu7sPdBir0peJAsjB2x4auqfTPkMA0eakQYwM4PrnzzM9jnOPUPEgDl0R6/U6h3Au7LDQAG4tL/+NqgdHoQM2WxobuxPyfCs+5daGhp7pJysEcETKdRf71ten1eTkavNzTrsXbA8OziN80CncLdFriGftnmsJoHfa1S8ggA7Sl3IVzlbz4w0B1L29P3HNB2nhbK1/+tSQr4NrQB2+Ecdx5nUvZ4QA0rNaWlsb9a8HDyqgDt99hA+6wOsp+z94FdCrfj09/xJAl+gq+DtXQa8CetUPoIs2Bwe9a0H/FDxFAF3kKHWbvyqeatGn33kC6DK9Xzzt6PNvhQAM2Bvn41k+AAP09V/F0efikwRggHKcs46L3h+YM+yQ62LOD0wZdgjAIAQQjEIAwSgEEIxCAMEoBBCMQgDBKAQQjEIAwSgEEIxCAMEoBBCMQgDBKAQQjEIAwSgEEIxCAMEoBBCMQgDBKAQQjEIAj2Dr40fa+fqVIDkE8Ahqr1/TxvPnBMkhgAnV3r6l+uqq92dTBxGSQQAT4NBtvX9/8PPWu3fkbm4SxIcAJsAVj0Po4/DVUAUTQQBj4uBt68VHs5qugliQxIcAxrT+9Gngc6iC8SGAMXDbZffbt8Dnd6pV2v7yhUAOAYxBUuE2X77EgiQGBFCotrDQsPAIwsfw9SDIIIACXq/vzRvx8dyWkYQVEECRuI1mPgXzqRiiIYAReNHRru0ShRcjaMtEQwAjhLVdoqAtEw0BDMFtl6Ncy3FbBguScAhgAG8124EKxn8H2jLBEMAAkpVs6exZ6j0Z/ikX3j4xqmAgBLANaS+vf2qKBq5ciTyu1jS8AL8ggG1I2i6lc+fIGR72/vRfuBB5/MaLFwStEMAmvPCIars4x45Rvw6gr//8eVL9/aGv4QUJ2jKtEMAmkoUHn3q58vlUuew9FgXj+60QwEP8MfswXP1KE62f78hVMGpBgvH9VgjgvuYx+yCD168HPiepghjfb4QA7tsUrFS57dJz4kTg870jI9SnjwmD8f1GCCAFj9kfxosMSYUr62OiFiQY3/8FASTZfm9JX+MdXngE4WNKh1bIQVAF91gfwKgxe8YLj7Kg+vl4QcKvCYPx/T3WB1DadomD2zKSHRKM71seQMmYfe/p023bLlF4QSJpy9i+T2xtAKVj9gMXL1JSZcFrbR/ftzaAov1e3VKRLDyCcMsmakFi+/i+lQGUjNl7+70xr/3akbRlbB7f7yULSdouzfu9vh8PH4a+7tjduw0/+/vEm69ehb6OF0O9N26QbayrgJIx+6D93qS4LdNz/HjoMbaO71sVQOmYffnSJeo0yYLExvF9qwIoHbPv062XTpO0ZWwc37cmgHHG7NPCzenIfWLLxvetCeBmgkHTTpPuE9s0vm9FAKVj9uUUq59Puk9sS1vGigCmsd+bFMb3GxU+gJIxe2/HooNtlyj8Xhjf31PoAIrH7K9do27D+P6eQgdQOmaf5sIjCLdlJPvERR9cLWwAJWP2ndrvTQrj+wUOoGjMfv/uBqbwgsT28f1CBlA6Zs8tEdPKlYrV4/uFDGCW2i4SNo/vFy6AkjF7Xnh0s+0Sxebx/UIFUDpmn6Xq55NUwSKO7xcqgFnY701Kcpu3Io7vFyaA0jH7UsStM0yS3OataOP7hQngUcbss0K6T1yktkwhfiekm2P2zb/z0WlcBXciqpw/vt8v6CFmXe4roHTMfujmTcoLaRUsQlsm9wGUjtln+dTbTHybtwK0ZXIdQElvTHpbtawR7RMXYHw/19eAorsbCG+rFgevuPn3fPkrVyKuWAOXL3f0ffzx/VpEX5PH94dy/PvEua2ApsbsueKsPXniLQT8azD+/ufjx5H7z3HZML6f2wCa2u/lUfl2F/9ekzji7gdxSW/zlufx/VwGUDJmn/S2alHCqk2nKyCT7hPndXw/dwGUjtkf5bZqYcIWBmm1RaS3ectjWyZ3ATQ9Zh92l/weXa3Ses+iju/nKoBZGLPnatSuCvJjg3olnNr7FnR8P1cBzMJ+L1ej327dop796zIOBX/POy1pvm9R94lz0weUjtl3Y9CUg/abga09bsvwGWD3+/fAY/zx/TRusJSG3FRAyb/sgatXqegkC5I8je/nIoDSMfuodkURFG18P/MBzPOYfVokt3nLy/i+qi0vu5Rh67rLH7Xyhfb4OjDs0z2zINMVUDJmD8HyML6f6QBK2i4QLuttmcwGUDJmD9Gyfvf9TAZQOmYPMlke389kAG3//LROy/L4fuYCiE+QTEdWx/czF0AbbktrShbvvp/5PiAUm/WfmA5mIYBgFAIIRiGAYBQCCEYhgGAUAghGIYBgFAIIRiGAYBQCCEYhgGAUAghGIYBgFAIIRiGAYBQCCEYhgGAUAghGIYBgFAIIRiGAYBQCCEYhgGCUQ0rhJixgyqrj1us/CMCMKp+CFwnAAF38vjp1x1kgAANcpRYdtbODCghm6OKn+GttZeU/ct30PmcKoFW1f2xs1GvD1Ov1RwTQXQv8Hy+A5VJplgC6qL67+4C/egFUo6Or+lyMKgjdMjcwPl7lbw52Qvr6+u6jKQ1dUPWrHzsIIFdBl+gBAaSorjPmVz/WsBdcPnVqFqdiSItuPD8aGBubO/yYanfg1vLyvK6GFQLoEB20xdLY2GTz422nYfT14B8KW3TQIbqYve5bW5tu95wKe6GuhLP6xbcJICE+7ZbPnJkJej50HlCXzBl90fiX/rZKAHHojooO352w8LHIgVS+aNTL5mm9VfcPAQhw1Sv9/Dmqwxe5waEoho2lpRHHcbhfOKV/HCEAH/eQOXjr67NqclLcT44VwMM2VlYq+g0r+i+YUEqN6P+BkxhosMTe6ZUHmRfrexMtiwOnTi1QAv8DqUxAaEIu7EUAAAAASUVORK5CYII="
+                  class="img-fluid notification-img"
+                  alt="..."
+                />
+                <div class="card-body pt-3 pe-5 pb-3 ps-4">
+                  <p class="card-text fs-6 mb-4">
+                    您發表的<span class="fw-bold"
+                      >「台中市區找人合租工作室」</span
+                    >文章，因違反規範「 第 4 條
+                    禁止包含廣告、商業宣傳之內容。」，管理者已將您的文章移除。
+                  </p>
+                  <p class="fs-7">16小時前</p>
+                </div>
+              </div>
+              <a href="#" class="stretched-link"></a>
+            </div>
+            <a
+              class="fs-7 fw-bold text-center text-secondary bg-white py-3 hover-light d-block"
+              href="#"
+              >查看全部</a
+            >
+          </ul>
+        </li>
+        <!-- mobile account -->
+        <li
+          class="collapsed d-md-none"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#accountMenu"
+          aria-controls="accountMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <a class="p-3 link-dark hover-primary border-0 rounded-3" href="#"
+            ><span class="material-icons-outlined"> account_circle </span></a
+          >
+        </li>
+        <!-- desktop account dropdown -->
+        <li class="navbar-account nav-item dropdown d-none d-md-block">
+          <a
+            class="nav-link dropdown-toggle p-3 link-dark hover-primary border-0 rounded-3"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <span class="material-icons-outlined"> account_circle </span>
+          </a>
+          <ul class="dropdown-menu" style="width: 220px">
+
+
+            <li><a class="dropdown-item" href="user.html">會員專區</a></li>
+            <li>
+              <a class="dropdown-item" href="user_posts.html">發文列表</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="user_favorites.html">收藏列表</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="user_messages.html">留言列表</a>
+            </li>
+            <li>
+              <a class="dropdown-item border-0" href="login.html">登出</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <button
+        class="navbar-toggler order-3 border-0 hover-primary"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#burgurMenu"
+        aria-controls="burgurMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="material-icons-outlined"> menu </span>
+      </button>
+    </div>
+    <div
+      class="collapse navbar-collapse flex-grow-0 order-2 order-md-1"
+      id="burgurMenu"
+    >
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">最新消息</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="rentList.html">合租清單</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">媒合成功</a>
+        </li>
+        <li
+          class="nav-item d-md-none"
+          data-bs-toggle="collapse"
+          data-bs-target="#burgurMenu"
+          aria-controls="burgurMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <a class="nav-link border-0 text-center" href="#"
+            ><span class="material-icons-outlined"> close </span></a
+          >
+        </li>
+      </ul>
+    </div>
+    <!-- mobile accountMenu -->
+    <div class="d-md-none">
+      <div
+        class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1"
+        id="accountMenu"
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item">
+
+            <a class="nav-link" href="user.html">會員專區</a>
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="user_posts.html">發文列表</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">收藏列表</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="user_messages.html">留言列表</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">登出</a>
+          </li>
+          <li
+            class="nav-item"
+            data-bs-toggle="collapse"
+            data-bs-target="#accountMenu"
+            aria-controls="accountMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <a class="nav-link border-0 text-center" href="#"
+              ><span class="material-icons-outlined"> close </span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- mobile notification -->
+<div
+  class="notification offcanvas offcanvas-start d-md-none"
+  tabindex="-1"
+  id="offcanvasExample"
+  aria-labelledby="offcanvasExampleLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">通知列表</h5>
+    <span
+      class="material-icons text-white p-3"
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    >
+      close
+    </span>
+  </div>
+  <div class="offcanvas-body">
+    <div class="card bg-white rounded-0 hover-light border-0 border-bottom">
+      <div class="d-flex g-0 align-items-center ps-5">
+        <img
+          src="/roomie/assets/room-1-bf8a56b6.png"
+          class="img-fluid notification-img"
+          alt="..."
+        />
+        <div class="card-body pt-3 pe-5 pb-3 ps-4">
+          <p class="card-text fs-7 mb-4">
+            您收藏的<span class="fw-bold"
+              >「極簡黑白共生宅民生東路電梯大樓」</span
+            >文章有新的回覆。
+          </p>
+          <p class="fs-8">16小時前</p>
+        </div>
+      </div>
+      <a href="#" class="stretched-link"></a>
+    </div>
+    <div class="card bg-white rounded-0 hover-light border-0 border-bottom">
+      <div class="d-flex g-0 align-items-center ps-5">
+        <img
+          src="/roomie/assets/room-1-bf8a56b6.png"
+          class="img-fluid notification-img"
+          alt="..."
+        />
+        <div class="card-body pt-3 pe-5 pb-3 ps-4">
+          <p class="card-text fs-7 mb-4">
+            您收藏的<span class="fw-bold"
+              >「極簡黑白共生宅民生東路電梯大樓」</span
+            >文章有新的回覆。
+          </p>
+          <p class="fs-8">16小時前</p>
+        </div>
+      </div>
+      <a href="#" class="stretched-link"></a>
+    </div>
+    <div class="card bg-white rounded-0 hover-light border-0 border-bottom">
+      <div class="d-flex g-0 align-items-center ps-5">
+        <img
+          src="/roomie/assets/room-1-bf8a56b6.png"
+          class="img-fluid notification-img"
+          alt="..."
+        />
+        <div class="card-body pt-3 pe-5 pb-3 ps-4">
+          <p class="card-text fs-7 mb-4">
+            您收藏的<span class="fw-bold"
+              >「極簡黑白共生宅民生東路電梯大樓」</span
+            >文章有新的回覆。
+          </p>
+          <p class="fs-8">16小時前</p>
+        </div>
+      </div>
+      <a href="#" class="stretched-link"></a>
+    </div>
+    <div class="card bg-white rounded-0 hover-light border-0 border-bottom">
+      <div class="d-flex g-0 align-items-center ps-5">
+        <img
+          src="data:image/png;base64,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"
+          class="img-fluid notification-img"
+          alt="..."
+        />
+        <div class="card-body pt-3 pe-5 pb-3 ps-4">
+          <p class="card-text fs-7 mb-4">
+            提醒您，違規達三次(含)將停權帳號，發表文章時請務必遵守規範。
+          </p>
+          <p class="fs-8">16小時前</p>
+        </div>
+      </div>
+      <a href="#" class="stretched-link"></a>
+    </div>
+    <div class="card bg-white rounded-0 hover-light border-0 border-bottom">
+      <div class="d-flex g-0 align-items-center ps-5">
+        <img
+          src="data:image/png;base64,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"
+          class="img-fluid notification-img"
+          alt="..."
+        />
+        <div class="card-body pt-3 pe-5 pb-3 ps-4">
+          <p class="card-text fs-7 mb-4">
+            提醒您，違規達三次(含)將停權帳號，發表文章時請務必遵守規範。
+          </p>
+          <p class="fs-8">16小時前</p>
+        </div>
+      </div>
+      <a href="#" class="stretched-link"></a>
+    </div>
+    <div class="card bg-white rounded-0 hover-light border-0 border-bottom">
+      <div class="d-flex g-0 align-items-center ps-5">
+        <img
+          src="data:image/png;base64,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"
+          class="img-fluid notification-img"
+          alt="..."
+        />
+        <div class="card-body pt-3 pe-5 pb-3 ps-4">
+          <p class="card-text fs-7 mb-4">
+            您發表的<span class="fw-bold">「台中市區找人合租工作室」</span
+            >文章，因違反規範「 第 4 條
+            禁止包含廣告、商業宣傳之內容。」，管理者已將您的文章移除。
+          </p>
+          <p class="fs-8">16小時前</p>
+        </div>
+      </div>
+      <a href="#" class="stretched-link"></a>
+    </div>
+  </div>
+  <a
+    class="fs-7 fw-bold text-center text-secondary bg-white py-3 border-top hover-light"
+    href="#"
+    >查看全部</a
+  >
+</div>
+    <h1>我是about</h1>
+    <footer class="bg-secondary py-10 py-md-16">
+  <div class="container-xxl">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="d-flex justify-content-center justify-content-md-start">
+          <img
+            src="data:image/png;base64,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"
+            alt="roomie 屋伴"
+            class="mb-1 mb-md-2"
+          />
+        </div>
+        <div
+          class="d-flex flex-column flex-md-row justify-content-between align-items-center pb-4 pb-md-7 mb-4 mb-md-7 border-bottom border-2"
+        >
+          <ul class="text-center text-md-start mb-3 mb-md-0">
+            <li>
+              <a href="contact.html" class="link-light mb-1 mb-md-2"
+                >聯絡我們</a
+              >
+            </li>
+            <li>
+              <a href="mailto:Roomie@gmail.com" class="link-light"
+                ><span class="material-icons fs-4 me-2 align-bottom">
+                  mail_outline </span
+                >Roomie@gmail.com</a
+              >
+            </li>
+          </ul>
+          <ul class="d-flex gap-4">
+            <li>
+              <a href="##" class="link-light"
+                ><i class="fa-brands fa-facebook fs-3 p-3"></i
+              ></a>
+            </li>
+            <li>
+              <a href="##" class="link-light"
+                ><i class="fa-brands fa-instagram fs-3 p-3"></i
+              ></a>
+            </li>
+            <li>
+              <a href="##" class="link-light"
+                ><i class="fa-brands fa-line fs-3 p-3"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="d-flex flex-column flex-md-row justify-content-between text-center text-md-start"
+        >
+          <p class="fs-7 text-white mb-2 mb-md-0">
+            © 2023 Roomie all rights reserved.
+          </p>
+          <p class="fs-7 text-white">僅學習作品用無商業用途</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<a
+  href="#"
+  class="back-to-top material-icons position-fixed bg-light fs-2 link-primary p-2 rounded-circle border-primary z-3 shadow"
+>
+  arrow_upward
+</a>
+
     
   </body>
 </html>

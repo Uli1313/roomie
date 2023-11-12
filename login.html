@@ -8,16 +8,8 @@
       href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <title>contact</title>
-    <script type="module" crossorigin src="/roomie/assets/contact-3bcf4726.js"></script>
-    <link rel="modulepreload" crossorigin href="/roomie/assets/main-245199e5.js">
+    <title>Login</title>
+    <script type="module" crossorigin src="/roomie/assets/main-245199e5.js"></script>
     <link rel="stylesheet" href="/roomie/assets/main-10421b94.css">
   </head>
   <body>
@@ -419,68 +411,78 @@
     >查看全部</a
   >
 </div>
-    <main class="bg-linear-gradient py-25">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-12">
-            <h2 class="mb-10">聯絡我們</h2>
-            <p class="fs-4 mb-md-15 mb-10">
-              您的寶貴意見對我們的改進至關重要，這將有助於我們提供更好的服務和體驗。我們會仔細閱讀每一份意見，並致力於解決問題，以確保您有最好的體驗。
-            </p>
-          </div>
+    <div class="container">
+      <div class="row py-10">
+        <!-- 圖片 -->
+        <div class="col-lg-6 img-lg">
+          <img src="/roomie/assets/membership-cover-61db3d66.png" alt="" />
         </div>
+        <!-- 登入介面 -->
+        <div class="col-lg-6">
+          <!-- 登入或註冊 -->
+          <div class="py-5 text-end">
+            <a href="signup.html">
+              <button type="button" class="btn btn-primary py-2 me-2">
+                Sign Up
+              </button>
+            </a>
+            <button type="button" class="btn btn-primary py-2" disabled>
+              Login
+            </button>
+          </div>
 
-        <div class="row justify-content-end">
-          <div class="col-md-6 col-12">
-            <form
-              class="needs-validation bg-white py-10 px-10 rounded-5 shadow-sm"
-              novalidate
-            >
-              <div class="form-floating mb-5">
-                <input
-                  type="text"
-                  class="form-control rounded-4"
-                  id="floatingName"
-                  placeholder="請輸入名稱"
-                  required
-                />
-                <label for="floatingName">您的大名</label>
-                <div class="invalid-feedback">請輸入您的姓名</div>
-              </div>
-              <div class="form-floating mb-5">
+          <div>
+            <h3 class="py-12 text-center title-fz">
+              May you find the home of your heart's dreams.
+            </h3>
+            <div class="py-8 text-center">
+              <button type="button" class="btn btn-primary googleBtn">
+                Google account
+              </button>
+            </div>
+
+            <hr />
+
+            <div class="py-8">
+              <!-- Email & Password -->
+              <div class="form-floating mb-3">
                 <input
                   type="email"
-                  class="form-control rounded-4"
-                  id="floatingEmail"
-                  placeholder="example@example.com"
-                  required
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="name@example.com"
                 />
-                <label for="floatingEmail">電子郵件</label>
-                <div class="invalid-feedback">請輸入您的電子郵件</div>
+                <label for="floatingInput">Email address</label>
               </div>
-              <div class="form-floating mb-5">
-                <textarea
-                  class="form-control rounded-4"
-                  id="floatingTextarea"
-                  placeholder="請輸入您的寶貴意見"
-                  style="height: 100px"
-                  required
-                ></textarea>
-                <label for="floatingTextarea form-required">您的意見</label>
-                <div class="invalid-feedback">請輸入您的意見</div>
+              <div class="form-floating">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
+                />
+                <label for="floatingPassword">Password</label>
               </div>
-              <button
-                type="submit"
-                class="btn btn-secondary rounded-4 w-100"
-                id="sendBtn"
-              >
-                送出
-              </button>
-            </form>
+              <!-- 記住和忘記密碼 -->
+              <div class="d-flex justify-content-between py-8">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                  />
+                  <label class="form-check-label" for="flexCheckChecked">
+                    記住密碼
+                  </label>
+                </div>
+                <a href="">忘記密碼</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
     <footer class="bg-secondary py-10 py-md-16">
   <div class="container-xxl">
     <div class="row justify-content-center">
@@ -545,7 +547,7 @@
 >
   arrow_upward
 </a>
-    
+
     
   </body>
 </html>

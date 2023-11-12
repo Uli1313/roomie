@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
-      rel="stylesheet"
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合租列表</title>
+    <link 
+        rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" 
     />
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+        href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+        rel="stylesheet"
     />
-    <title>contact</title>
-    <script type="module" crossorigin src="/roomie/assets/contact-3bcf4726.js"></script>
-    <link rel="modulepreload" crossorigin href="/roomie/assets/main-245199e5.js">
-    <link rel="stylesheet" href="/roomie/assets/main-10421b94.css">
-  </head>
-  <body>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+  <script type="module" crossorigin src="/roomie/assets/main-245199e5.js"></script>
+  <link rel="stylesheet" href="/roomie/assets/main-10421b94.css">
+</head>
+<body class="bg-primary">
     <nav class="navbar navbar-expand-md bg-white border-bottom">
   <div class="container-xxl">
     <a class="navbar-brand flex-grow-1 order-0" href="index.html">
@@ -419,68 +422,595 @@
     >查看全部</a
   >
 </div>
-    <main class="bg-linear-gradient py-25">
-      <div class="container">
+    <div class="container bg-primary position-relative">
         <div class="row">
-          <div class="col-md-8 col-12">
-            <h2 class="mb-10">聯絡我們</h2>
-            <p class="fs-4 mb-md-15 mb-10">
-              您的寶貴意見對我們的改進至關重要，這將有助於我們提供更好的服務和體驗。我們會仔細閱讀每一份意見，並致力於解決問題，以確保您有最好的體驗。
-            </p>
-          </div>
+            <div class="col">
+                <p class="my-3 text-white fw-bold">條件搜尋</p>
+            </div>
+        </div>
+<!-- 縣市 下拉選單 -->
+        <div class="row p-2 d-flex align-items-center justify-content-evenly bg-primary-100 rounded-3 rounded-lg-pill">
+            <div class="col-xxl-1 col-xl-1 col-lg-1 p-2 p-lg-0">
+                <div class="dropdown">
+                    <button 
+                        class="btn btn-light btn-sm border dropdown-toggle text-dark text-start"  
+                        type="button" 
+                        id="dropdownMenuClickableInside" 
+                        data-bs-toggle="dropdown" 
+                        data-bs-auto-close="outside"  
+                        aria-expanded="false">
+                        縣市
+                    </button>
+                    <ul class="dropdown-menu bg-light p-3" aria-labelledby="dropdownMenuClickableInside" style="width: 475px;">
+                      <li class="pb-2 d-flex justify-content-start gap-3">
+                        <p class="fw-bold">北部</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">台北</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2">新北</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                            <label class="form-check-label" for="inlineCheckbox3">基隆</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                            <label class="form-check-label" for="inlineCheckbox4">桃園</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                            <label class="form-check-label" for="inlineCheckbox5">竹市</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                            <label class="form-check-label" for="inlineCheckbox6">竹縣</label>
+                        </div>
+                      </li>
+                      <li class="pb-2 d-flex justify-content-start gap-3">
+                        <p class="fw-bold">中部</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7">
+                            <label class="form-check-label" for="inlineCheckbox7">台中</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="option8">
+                            <label class="form-check-label" for="inlineCheckbox8">彰化</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="option9">
+                            <label class="form-check-label" for="inlineCheckbox9">苗栗</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox10" value="option10">
+                            <label class="form-check-label" for="inlineCheckbox10">南投</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox11" value="option11">
+                            <label class="form-check-label" for="inlineCheckbox11">雲林</label>
+                        </div>
+                      </li>
+                      <li class="pb-2 d-flex justify-content-start gap-3">
+                        <p class="fw-bold">南部</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox12" value="option12">
+                            <label class="form-check-label" for="inlineCheckbox12">高雄</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox13" value="option13">
+                            <label class="form-check-label" for="inlineCheckbox13">台南</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox14" value="option14">
+                            <label class="form-check-label" for="inlineCheckbox14">嘉市</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox15" value="option15">
+                            <label class="form-check-label" for="inlineCheckbox15">嘉縣</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox16" value="option66">
+                            <label class="form-check-label" for="inlineCheckbox11">屏東</label>
+                        </div>
+                      </li>
+                      <li class="pb-2 d-flex justify-content-start gap-3">
+                        <p class="fw-bold">東部</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox17" value="option17">
+                            <label class="form-check-label" for="inlineCheckbox17">宜蘭</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox18" value="option18">
+                            <label class="form-check-label" for="inlineCheckbox18">花蓮</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox19" value="option19">
+                            <label class="form-check-label" for="inlineCheckbox19">台東</label>
+                        </div>
+                      </li>
+                      <li class="pb-2 d-flex justify-content-start gap-3">
+                        <p class="fw-bold">外島</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox20" value="option20">
+                            <label class="form-check-label" for="inlineCheckbox20">澎湖</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox21" value="option21">
+                            <label class="form-check-label" for="inlineCheckbox21">金門</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox22" value="option22">
+                            <label class="form-check-label" for="inlineCheckbox22">馬祖</label>
+                        </div>
+                      </li>
+                    </ul>
+                </div> 
+            </div>
+<!-- 行政區 下拉選單 -->
+            <div class="col-xxl-1 col-xl-1 col-lg-1 p-2 p-lg-0">
+                <div class="dropdown">
+                    <button 
+                        class="btn btn-light btn-sm border dropdown-toggle text-dark text-start"  
+                        type="button" 
+                        id="dropdownMenuClickableInside" 
+                        data-bs-toggle="dropdown" 
+                        data-bs-auto-close="outside"  
+                        aria-expanded="false">
+                        行政區
+                    </button>
+                    <ul class="dropdown-menu bg-light" aria-labelledby="dropdownMenuClickableInside">
+                      <li class="px-4 pb-2">
+                        <p class="pb-2 fw-bold">台北</p>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="taipei1" value="taipeiOption1">
+                            <label class="form-check-label" for="taipei1">中正區</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="taipei2" value="taipeiOption2">
+                            <label class="form-check-label" for="taipei2">大同區</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="taipei3" value="taipeiOption3">
+                            <label class="form-check-label" for="taipei3">中山區</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="taipei4" value="taipeiOption4">
+                            <label class="form-check-label" for="taipei4">松山區</label>
+                        </div>
+                      </li>
+                      <li class="px-4 pb-2">
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="taipei5" value="taipeiOption5">
+                            <label class="form-check-label" for="taipei5">大安區</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="taipei6" value="taipeiOption6">
+                            <label class="form-check-label" for="taipei6">萬華區</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="taipei7" value="taipeiOption7">
+                            <label class="form-check-label" for="taipei7">信義區</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="taipei8" value="taipeiOption8">
+                            <label class="form-check-label" for="taipei8">士林區</label>
+                        </div>
+                      </li>
+                      <li class="px-4 pb-2">
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="taipei9" value="taipeiOption9">
+                            <label class="form-check-label" for="taipei9">北投區</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="taipei10" value="taipeiOption10">
+                            <label class="form-check-label" for="taipei10">內湖區</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="taipei11" value="taipeiOption11">
+                            <label class="form-check-label" for="taipei11">南港區</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="taipei12" value="taipeiOption12">
+                            <label class="form-check-label" for="taipei12">文山區</label>
+                        </div>
+                      </li>
+                    </ul>
+                </div> 
+            </div>
+<!-- 租金 下拉選單 -->
+            <div class="col-xxl-1 col-xl-1 col-lg-1 p-2 p-lg-0">
+                <div class="dropdown">
+                    <button 
+                        class="btn btn-light btn-sm border dropdown-toggle text-dark text-start"  
+                        type="button" 
+                        id="dropdownMenuClickableInside" 
+                        data-bs-toggle="dropdown" 
+                        data-bs-auto-close="outside"  
+                        aria-expanded="false">
+                        租金
+                    </button>
+                    <ul class="dropdown-menu bg-light" aria-labelledby="dropdownMenuClickableInside" style="width: 200px;">
+                      <li class="px-4 pb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                              不限
+                            </label>
+                        </div>
+                      </li>
+                      <li class="px-4 pb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                              5,000 - 10,000 元
+                            </label>
+                        </div>
+                      </li>
+                      <li class="px-4 pb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                            <label class="form-check-label" for="flexRadioDefault3">
+                              10,000 - 20,000 元
+                            </label>
+                        </div>
+                      </li>
+                      <li class="px-4 pb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                            <label class="form-check-label" for="flexRadioDefault4">
+                              20,000 - 30,000 元
+                            </label>
+                        </div>
+                      </li>
+                      <li class="px-4 pb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5">
+                            <label class="form-check-label" for="flexRadioDefault5">
+                              30,000 元以上
+                            </label>
+                        </div>
+                      </li>
+                    </ul>
+                </div> 
+            </div>
+<!-- 房屋類型 下拉選單 -->
+            <div class="col-xxl-1 col-xl-1 col-lg-1 p-2 p-lg-0">
+                <div class="dropdown">
+                    <button 
+                        class="btn btn-light btn-sm border dropdown-toggle text-dark text-start"  
+                        type="button" 
+                        id="dropdownMenuClickableInside" 
+                        data-bs-toggle="dropdown" 
+                        data-bs-auto-close="outside"  
+                        aria-expanded="false">
+                        房屋類型
+                    </button>
+                    <ul class="dropdown-menu bg-light" aria-labelledby="dropdownMenuClickableInside">
+                      <li class="px-4 pb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="housetype1" value="housetype1">
+                            <label class="form-check-label" for="housetype1">
+                              整層住家
+                            </label>
+                        </div>
+                      </li>
+                      <li class="px-4 pb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="housetype2" value="housetype2">
+                            <label class="form-check-label" for="housetype2">
+                              獨立套房
+                            </label>
+                        </div>
+                      </li>
+                      <li class="px-4 pb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="housetype3" value="housetype3">
+                            <label class="form-check-label" for="housetype3">
+                              分租套房
+                            </label>
+                        </div>
+                      </li>
+                      <li class="px-4 pb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="housetype4" value="housetype4">
+                            <label class="form-check-label" for="housetype4">
+                              雅房
+                            </label>
+                        </div>
+                      </li>
+                      <li class="px-4 pb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="housetype5" value="housetype5">
+                            <label class="form-check-label" for="housetype5">
+                              其他
+                            </label>
+                        </div>
+                      </li>
+                    </ul>
+                </div> 
+            </div>
+<!-- 其他特色 下拉選單 -->
+            <div class="col-xxl-1 col-xl-1 col-lg-1 p-2 p-lg-0">
+                <div class="dropdown">
+                    <button 
+                        class="btn btn-light btn-sm border dropdown-toggle text-dark text-start"  
+                        type="button" 
+                        id="dropdownMenuClickableInside" 
+                        data-bs-toggle="dropdown" 
+                        data-bs-auto-close="outside"  
+                        aria-expanded="false">
+                        其他特色
+                    </button>
+                    <ul class="p-3 dropdown-menu bg-light" aria-labelledby="dropdownMenuClickableInside" style="width: 450px;">
+                      <li class="pb-2 d-flex justify-content-start gap-3">
+                        <p class="fw-bold">鄰近</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="closeTo1" value="closeToOption1">
+                            <label class="form-check-label" for="closeTo1">學校</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="closeTo2" value="closeToOption2">
+                            <label class="form-check-label" for="closeTo2">商圈</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="closeTo3" value="closeToOption3">
+                            <label class="form-check-label" for="closeTo3">捷運站</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="closeTo4" value="closeToOption4">
+                            <label class="form-check-label" for="closeTo10">醫療機構</label>
+                        </div>
+                      </li>
+                      <li class="pb-2 d-flex flex-wrap justify-content-start gap-3">
+                        <p class="fw-bold">設備</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="device1" value="deviceOption1">
+                            <label class="form-check-label" for="device1">網路</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="device2" value="deviceOption2">
+                            <label class="form-check-label" for="device2">冰箱</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="device3" value="deviceOption3">
+                            <label class="form-check-label" for="device3">電視</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="device4" value="deviceOption4">
+                            <label class="form-check-label" for="device4">冷氣</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="device5" value="deviceOption5">
+                            <label class="form-check-label" for="device5">洗衣機</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="furniture1" value="furnitureOption1">
+                            <label class="form-check-label" for="furniture1">床</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="furniture2" value="furnitureOption2">
+                            <label class="form-check-label" for="furniture2">衣櫃</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="furniture3" value="furnitureOption3">
+                            <label class="form-check-label" for="furniture3">桌子</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="furniture4" value="furnitureOption4">
+                            <label class="form-check-label" for="furniture4">椅子</label>
+                        </div>
+                      </li>
+                      <li class="pb-2 d-flex justify-content-start gap-3">
+                        <p class="fw-bold">身分</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="identity1" value="identityOption1">
+                            <label class="form-check-label" for="identity1">學生</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="identity2" value="identityOption2">
+                            <label class="form-check-label" for="identity2">家庭</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="identity3" value="identityOption3">
+                            <label class="form-check-label" for="identity3">上班族</label>
+                        </div>
+                      </li>
+                      <li class="pb-2 d-flex justify-content-start gap-3">
+                        <p class="fw-bold">性別</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sex1" value="sexOption1">
+                            <label class="form-check-label" for="sex1">皆可</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sex2" value="sexOption2">
+                            <label class="form-check-label" for="sex2">男性</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sex3" value="sexOption3">
+                            <label class="form-check-label" for="sex3">女性</label>
+                        </div>
+                      </li>
+                      <li class="pb-2 d-flex justify-content-start gap-3">
+                        <p class="fw-bold">其他</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="other1" value="otherOption1">
+                            <label class="form-check-label" for="other1">可開伙</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="other2" value="otherOption2">
+                            <label class="form-check-label" for="other2">可養寵物</label>
+                        </div>
+                      </li>
+                    </ul>
+                </div> 
+            </div>
+<!-- 清空按鈕 -->
+            <div class="col-xxl-1 col-xl-1 col-lg-1 py-2 p-lg-0 d-flex justify-content-end justify-content-lg-center cursor">
+                <span class="m-0">清空</span>
+                <button type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+<!-- 搜尋按鈕 -->  
+            <div class="col col-xxl-5 col-xl-5 col-lg-5 pb-2 d-flex justify-content-center justify-content-lg-end pb-lg-0">
+                <div class="position-relative d-flex align-items-center gap-2">
+                    <input type="search" class="border rounded-pill searchInput" placeholder="搜尋"> 
+                    <span class="material-symbols-outlined searchBtn" style="transform:translateY(-50%);">search</span>
+                    <button type="submit" class="btn btn-primary btn-size">確定</button>
+                </div>
+            </div>
+        </div>
+<!-- 麵包屑 --> 
+        <div class="row my-3">
+            <div class="col">
+                <span><a href="#" class="text-white">首頁</a></span>
+                <span class="material-symbols-outlined text-white px-2" style="font-size: 16px;transform: translateY(15%);">
+                    arrow_forward_ios
+                </span>
+                <span><a href="#" class="text-white fw-bold">合租列表</a></span>
+            </div>
+        </div>
+<!-- 分隔線 -->
+        <div class="row" style="border: 2px dashed rgba(255, 255, 255, 1);"></div>
+<!-- 時間 租金 -->
+        <div class="row py-2 d-flex justify-content-end">
+            <div class="col cursor d-flex justify-content-end align-items-center">
+                <span>時間</span><span class="material-symbols-outlined fw-bold" style="font-size: 22px;">arrow_upward</span>
+                <span class="ps-3">租金</span><span class="material-symbols-outlined fw-bold" style="font-size: 22px;">arrow_upward</span>
+            </div>
+        </div>
+<!-- 文章 -->
+        <div class="row p-1 mb-4 rounded hover-primary">
+            <div class="col-12 col-md-3 p-0 rounded-top rounded-md-start">
+                <img 
+                    src="/roomie/assets/room-1-bf8a56b6.png" 
+                    style="width:auto;height:100%;object-fit: cover;object-position: center;" 
+                    alt="house photo"
+                    class="rounded-top rounded-md-start">
+            </div>
+            <div class="col-12 col-md-9 py-3 px-5 border border-start-sm-0 bg-white rounded-bottom rounded-md-end">
+                <ul>
+                    <li class="w-100 d-flex justify-content-between align-items-center py-2">
+                        <a href="singleRentArticle.html" class="h3 link-dark">新竹市科學園區套房找室友</a> 
+                        <button class="p-3 link-dark hover-primary border-0 rounded-3"><span class="material-symbols-outlined">heart_plus</span></button></li>
+                    <li class="pb-3">1房1廳1衛 | 15坪7F/21F </li>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-2" style="transform: translateY(25%);">location_on</span>新竹市東區-埔頂路一段</li>
+                    <li class="pb-3"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">person</span>
+                        <span class="me-3 px-1 bg-primary-200">女性</span><span class="me-3 px-1 bg-primary-200">可開伙</span><span class="me-3 px-1 bg-primary-200">不可養寵物</span></li>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">map</span>
+                        <span class="me-3 px-1 bg-primary-200">近新竹公車站</span><span class="me-3 px-1 bg-primary-200">近新竹火車站</span><span class="me-3 px-1 bg-primary-200">近新竹高鐵站</span></li>
+                    <li class="pb-2 h2 text-secondary text-end">20,000元/月</li>
+                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined" style="transform: translateY(25%);">visibility</span><span class="ps-2">456</span></div></li>
+                </ul>
+            </div>
+        </div>   
+        <div class="row p-1 mb-4 rounded hover-primary">
+            <div class="col-12 col-md-3 p-0 rounded-top rounded-md-start">
+                <img 
+                    src="/roomie/assets/room-2-938a5fac.png" 
+                    style="width:auto;height:100%;object-fit: cover;object-position: center;" 
+                    alt="house photo"
+                    class="rounded-top rounded-md-start">
+            </div>
+            <div class="col-12 col-md-9 py-3 px-5 border border-start-sm-0 bg-white rounded-bottom rounded-md-end">
+                <ul>
+                    <li class="w-100 d-flex justify-content-between align-items-center py-2">
+                        <a href="singleRentArticle.html" class="h3 link-dark">新竹市科學園區套房找室友</a>
+                        <button class="p-3 link-dark hover-primary border-0 rounded-3"><span class="material-symbols-outlined">heart_plus</span></button></li>
+                    <li class="pb-3">1房1廳1衛 | 15坪7F/21F </li>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-2" style="transform: translateY(25%);">location_on</span>新竹市東區-埔頂路一段</li>
+                    <li class="pb-3"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">person</span>
+                        <span class="me-3 px-1 bg-primary-200">女性</span><span class="me-3 px-1 bg-primary-200">可開伙</span><span class="me-3 px-1 bg-primary-200">不可養寵物</span></li>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">map</span>
+                        <span class="me-3 px-1 bg-primary-200">近新竹公車站</span><span class="me-3 px-1 bg-primary-200">近新竹火車站</span><span class="me-3 px-1 bg-primary-200">近新竹高鐵站</span></li>
+                    <li class="pb-2 h2 text-secondary text-end">20,000元/月</li>
+                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined" style="transform: translateY(25%);">visibility</span><span class="ps-2">456</span></div></li>
+                </ul>
+            </div>
+        </div>   
+        <div class="row p-1 mb-4 rounded hover-primary">
+            <div class="col-12 col-md-3 p-0 rounded-top rounded-md-start">
+                <img 
+                    src="/roomie/assets/room-3-11395c06.png" 
+                    style="width:auto;height:100%;object-fit: cover;object-position: center;" 
+                    alt="house photo"
+                    class="rounded-top rounded-md-start">
+            </div>
+            <div class="col-12 col-md-9 py-3 px-5 border border-start-sm-0 bg-white rounded-bottom rounded-md-end">
+                <ul>
+                    <li class="w-100 d-flex justify-content-between align-items-center py-2">
+                        <a href="singleRentArticle.html" class="h3 link-dark">新竹市科學園區套房找室友</a>
+                        <button class="p-3 link-dark hover-primary border-0 rounded-3"><span class="material-symbols-outlined">heart_plus</span></button></li>
+                    <li class="pb-3">1房1廳1衛 | 15坪7F/21F </li>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-2" style="transform: translateY(25%);">location_on</span>新竹市東區-埔頂路一段</li>
+                    <li class="pb-3"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">person</span>
+                        <span class="me-3 px-1 bg-primary-200">女性</span><span class="me-3 px-1 bg-primary-200">可開伙</span><span class="me-3 px-1 bg-primary-200">不可養寵物</span></li>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">map</span>
+                        <span class="me-3 px-1 bg-primary-200">近新竹公車站</span><span class="me-3 px-1 bg-primary-200">近新竹火車站</span><span class="me-3 px-1 bg-primary-200">近新竹高鐵站</span></li>
+                    <li class="pb-2 h2 text-secondary text-end">20,000元/月</li>
+                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined" style="transform: translateY(25%);">visibility</span><span class="ps-2">456</span></div></li>
+                </ul>
+            </div>
+        </div>   
+        <div class="row p-1 mb-4 rounded hover-primary">
+            <div class="col-12 col-md-3 p-0 rounded-top rounded-md-start">
+                <img 
+                    src="/roomie/assets/room-4-27776781.png" 
+                    style="width:auto;height:100%;object-fit: cover;object-position: center;" 
+                    alt="house photo"
+                    class="rounded-top rounded-md-start">
+            </div>
+            <div class="col-12 col-md-9 py-3 px-5 border border-start-sm-0 bg-white rounded-bottom rounded-md-end">
+                <ul>
+                    <li class="w-100 d-flex justify-content-between align-items-center py-2">
+                        <a href="singleRentArticle.html" class="h3 link-dark">新竹市科學園區套房找室友</a>
+                        <button class="p-3 link-dark hover-primary border-0 rounded-3"><span class="material-symbols-outlined">heart_plus</span></button></li>
+                    <li class="pb-3">1房1廳1衛 | 15坪7F/21F </li>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-2" style="transform: translateY(25%);">location_on</span>新竹市東區-埔頂路一段</li>
+                    <li class="pb-3"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">person</span>
+                        <span class="me-3 px-1 bg-primary-200">女性</span><span class="me-3 px-1 bg-primary-200">可開伙</span><span class="me-3 px-1 bg-primary-200">不可養寵物</span></li>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">map</span>
+                        <span class="me-3 px-1 bg-primary-200">近新竹公車站</span><span class="me-3 px-1 bg-primary-200">近新竹火車站</span><span class="me-3 px-1 bg-primary-200">近新竹高鐵站</span></li>
+                    <li class="pb-2 h2 text-secondary text-end">20,000元/月</li>
+                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined" style="transform: translateY(25%);">visibility</span><span class="ps-2">456</span></div></li>
+                </ul>
+            </div>
+        </div>   
+        <div class="row p-1 mb-4 rounded hover-primary">
+            <div class="col-12 col-md-3 p-0 rounded-top rounded-md-start">
+                <img 
+                    src="/roomie/assets/room-5-658dc77f.png" 
+                    style="width:auto;height:100%;object-fit: cover;object-position: center;" 
+                    alt="house photo"
+                    class="rounded-top rounded-md-start">
+            </div>
+            <div class="col-12 col-md-9 py-3 px-5 border border-start-sm-0 bg-white rounded-bottom rounded-md-end">
+                <ul>
+                    <li class="w-100 d-flex justify-content-between align-items-center py-2">
+                        <a href="singleRentArticle.html" class="h3 link-dark">新竹市科學園區套房找室友</a>
+                        <button class="p-3 link-dark hover-primary border-0 rounded-3"><span class="material-symbols-outlined">heart_plus</span></button></li>
+                    <li class="pb-3">1房1廳1衛 | 15坪7F/21F </li>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-2" style="transform: translateY(25%);">location_on</span>新竹市東區-埔頂路一段</li>
+                    <li class="pb-3"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">person</span>
+                        <span class="me-3 px-1 bg-primary-200">女性</span><span class="me-3 px-1 bg-primary-200">可開伙</span><span class="me-3 px-1 bg-primary-200">不可養寵物</span></li>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">map</span>
+                        <span class="me-3 px-1 bg-primary-200">近新竹公車站</span><span class="me-3 px-1 bg-primary-200">近新竹火車站</span><span class="me-3 px-1 bg-primary-200">近新竹高鐵站</span></li>
+                    <li class="pb-2 h2 text-secondary text-end">20,000元/月</li>
+                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined" style="transform: translateY(25%);">visibility</span><span class="ps-2">456</span></div></li>
+                </ul>
+            </div>
+        </div> 
+<!-- 分頁符號 -->
+        <div class="row">
+            <div class="col">
+                
+            </div>
         </div>
 
-        <div class="row justify-content-end">
-          <div class="col-md-6 col-12">
-            <form
-              class="needs-validation bg-white py-10 px-10 rounded-5 shadow-sm"
-              novalidate
-            >
-              <div class="form-floating mb-5">
-                <input
-                  type="text"
-                  class="form-control rounded-4"
-                  id="floatingName"
-                  placeholder="請輸入名稱"
-                  required
-                />
-                <label for="floatingName">您的大名</label>
-                <div class="invalid-feedback">請輸入您的姓名</div>
-              </div>
-              <div class="form-floating mb-5">
-                <input
-                  type="email"
-                  class="form-control rounded-4"
-                  id="floatingEmail"
-                  placeholder="example@example.com"
-                  required
-                />
-                <label for="floatingEmail">電子郵件</label>
-                <div class="invalid-feedback">請輸入您的電子郵件</div>
-              </div>
-              <div class="form-floating mb-5">
-                <textarea
-                  class="form-control rounded-4"
-                  id="floatingTextarea"
-                  placeholder="請輸入您的寶貴意見"
-                  style="height: 100px"
-                  required
-                ></textarea>
-                <label for="floatingTextarea form-required">您的意見</label>
-                <div class="invalid-feedback">請輸入您的意見</div>
-              </div>
-              <button
-                type="submit"
-                class="btn btn-secondary rounded-4 w-100"
-                id="sendBtn"
-              >
-                送出
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </main>
+
+    </div>
+
     <footer class="bg-secondary py-10 py-md-16">
   <div class="container-xxl">
     <div class="row justify-content-center">
@@ -546,6 +1076,5 @@
   arrow_upward
 </a>
     
-    
-  </body>
+</body>
 </html>

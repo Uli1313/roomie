@@ -15,9 +15,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>contact</title>
-    <script type="module" crossorigin src="/roomie/assets/contact-3bcf4726.js"></script>
-    <link rel="modulepreload" crossorigin href="/roomie/assets/main-245199e5.js">
+    <title>發文列表</title>
+    <script type="module" crossorigin src="/roomie/assets/main-245199e5.js"></script>
     <link rel="stylesheet" href="/roomie/assets/main-10421b94.css">
   </head>
   <body>
@@ -419,67 +418,44 @@
     >查看全部</a
   >
 </div>
-    <main class="bg-linear-gradient py-25">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-12">
-            <h2 class="mb-10">聯絡我們</h2>
-            <p class="fs-4 mb-md-15 mb-10">
-              您的寶貴意見對我們的改進至關重要，這將有助於我們提供更好的服務和體驗。我們會仔細閱讀每一份意見，並致力於解決問題，以確保您有最好的體驗。
-            </p>
-          </div>
-        </div>
-
-        <div class="row justify-content-end">
-          <div class="col-md-6 col-12">
-            <form
-              class="needs-validation bg-white py-10 px-10 rounded-5 shadow-sm"
-              novalidate
-            >
-              <div class="form-floating mb-5">
-                <input
-                  type="text"
-                  class="form-control rounded-4"
-                  id="floatingName"
-                  placeholder="請輸入名稱"
-                  required
-                />
-                <label for="floatingName">您的大名</label>
-                <div class="invalid-feedback">請輸入您的姓名</div>
-              </div>
-              <div class="form-floating mb-5">
-                <input
-                  type="email"
-                  class="form-control rounded-4"
-                  id="floatingEmail"
-                  placeholder="example@example.com"
-                  required
-                />
-                <label for="floatingEmail">電子郵件</label>
-                <div class="invalid-feedback">請輸入您的電子郵件</div>
-              </div>
-              <div class="form-floating mb-5">
-                <textarea
-                  class="form-control rounded-4"
-                  id="floatingTextarea"
-                  placeholder="請輸入您的寶貴意見"
-                  style="height: 100px"
-                  required
-                ></textarea>
-                <label for="floatingTextarea form-required">您的意見</label>
-                <div class="invalid-feedback">請輸入您的意見</div>
-              </div>
-              <button
-                type="submit"
-                class="btn btn-secondary rounded-4 w-100"
-                id="sendBtn"
-              >
-                送出
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+    <main class="d-flex">
+      <nav class="bg-white shadow-sm py-10 min-vh-100">
+  <ul class="navbar-nav flex-column">
+    <li class="nav-item">
+      <a
+        class="nav-link text-nowrap fw-bold fs-6 hover-light rounded-0 py-3 px-15 border-transparent "
+        href="user.html"
+      >
+        <span class="material-icons me-2"> person </span>會員專區
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link text-nowrap fw-bold fs-6 hover-light rounded-0 py-3 px-15 border-transparent text-primary border-start border-4 border-primary"
+        href="user_posts.html"
+      >
+        <span class="material-icons me-2">description</span>發文列表
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link text-nowrap fw-bold fs-6 hover-light rounded-0 py-3 px-15 border-transparent "
+        href="user_favorites.html"
+      >
+        <span class="material-icons me-2"> bookmark </span>收藏列表
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link text-nowrap fw-bold fs-6 hover-light rounded-0 py-3 px-15 border-transparent "
+        href="user_messages.html"
+      >
+        <span class="material-icons me-2"> forum </span>留言列表
+      </a>
+    </li>
+  </ul>
+</nav>
+      <div class="container"></div>
     </main>
     <footer class="bg-secondary py-10 py-md-16">
   <div class="container-xxl">
@@ -545,7 +521,7 @@
 >
   arrow_upward
 </a>
-    
+
     
   </body>
 </html>
