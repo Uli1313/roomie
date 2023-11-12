@@ -1,0 +1,27 @@
+.intro {
+  .swiper-slide {
+    width: 256px;
+    @include media-breakpoint-up(md) {
+      width: 342px;
+    }
+  }
+}
+.latest-rent {
+  .swiper {
+    width: 90%;
+    overflow: visible;
+    @include media-breakpoint-up(md) {
+      width: 100%;
+    }
+    @include media-breakpoint-up(xxl) {
+      overflow-x: hidden;
+      overflow-y: visible;
+    }
+  }
+  .swiper-slide {
+    filter: blur(1px);
+  }
+  .swiper-slide-active {
+    filter: blur(0);
+  }
+}

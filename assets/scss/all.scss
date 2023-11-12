@@ -18,7 +18,10 @@
 
 @import "./utilities/utilities";
 @import "../node_modules/bootstrap/scss/bootstrap";
-
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
 // ------- bootstrap end -------
 
 // base
@@ -29,15 +32,25 @@
 @import "./component/navbar";
 @import "./component/dropdown";
 @import "./component/offcanvas";
+@import "./component/accordion";
+@import "./component/button";
+@import "./component/form";
 
 // custom utilities
 @import "./utilities/hover";
 
+// vendors
+@import "./vendors/swiper";
+
 // layout
 @import "./layout/header.scss";
 @import "./layout/footer.scss";
+@import "./layout/sidebar";
 
 // pages
 @import "./pages/index.scss";
+@import "./pages/contact";
+@import "./pages/user";
 @import "./pages/login.scss";
 @import "./pages/signup.scss";
+

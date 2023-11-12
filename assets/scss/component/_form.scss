@@ -1,0 +1,11 @@
+/* 通過驗證樣式 */
+.was-validated .form-control:valid,
+.was-validated .form-control:valid:focus {
+  border-color: $success;
+  box-shadow: $success;
+}
+/* 未通過驗證樣式 */
+.was-validated .form-control:invalid,
+.was-validated .form-control:invalid:focus {
+  background-color: #fff;
+}
