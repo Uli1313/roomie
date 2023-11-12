@@ -1,0 +1,17 @@
+// 電腦版
+.googleBtn {
+  width: 100%;
+  background-color: #dd4b39;
+  letter-spacing: 2px;
+}
+.title-fz {
+  font-size: 1.4rem;
+}
+@media screen and (max-width: 772px) {
+  .img-lg {
+    display: none;
+  }
+  .title-fz {
+    font-size: 1.3rem;
+  }
+}

@@ -8,7 +8,7 @@
       href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
       rel="stylesheet"
     />
-    <title>Login</title>
+    <title>Sign Up</title>
   </head>
   <body>
     <%- include('./layout/header',{page: "news"}); -%>
@@ -22,14 +22,12 @@
         <div class="col-lg-6">
           <!-- 登入或註冊 -->
           <div class="py-5 text-end">
-            <a href="signup.html">
-              <button type="button" class="btn btn-primary py-2 me-2">
-                Sign Up
-              </button>
-            </a>
-            <button type="button" class="btn btn-primary py-2" disabled>
-              Login
+            <button type="button" class="btn btn-primary py-2 me-2" disabled>
+              Sign Up
             </button>
+            <a href="login.html">
+              <button type="button" class="btn btn-primary py-2">Login</button>
+            </a>
           </div>
 
           <div>
@@ -55,7 +53,7 @@
                 />
                 <label for="floatingInput">Email address</label>
               </div>
-              <div class="form-floating">
+              <div class="form-floating mb-3">
                 <input
                   type="password"
                   class="form-control"
@@ -64,8 +62,17 @@
                 />
                 <label for="floatingPassword">Password</label>
               </div>
+              <div class="form-floating">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
+                />
+                <label for="floatingPassword">Confirm Password</label>
+              </div>
               <!-- 記住和忘記密碼 -->
-              <div class="d-flex justify-content-between py-8">
+              <div class="py-8">
                 <div class="form-check">
                   <input
                     class="form-check-input"
@@ -73,11 +80,16 @@
                     value=""
                     id="flexCheckChecked"
                   />
-                  <label class="form-check-label" for="flexCheckChecked">
-                    記住密碼
+                  <label
+                    class="form-check-label lawDescription"
+                    for="flexCheckChecked"
+                  >
+                    我已仔細閱讀並明瞭 <a href="">「服務條款」</a>、<a href=""
+                      >「免責聲明」</a
+                    >、<a href="">「隱私權聲明」</a
+                    >等所載內容及其意義,茲同意該等條款規定,並願遵守網站現今、嗣後規範的各種規則
                   </label>
                 </div>
-                <a href="">忘記密碼</a>
               </div>
             </div>
           </div>
