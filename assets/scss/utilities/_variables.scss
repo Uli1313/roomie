@@ -1229,7 +1229,7 @@ $nav-link-padding-x: 1rem !default;
 $nav-link-font-size: null !default;
 $nav-link-font-weight: 500; // custom null !default;
 $nav-link-color: var(--#{$prefix}link-color) !default;
-$nav-link-hover-color: var(--#{$prefix}link-hover-color) !default;
+$nav-link-hover-color: $light-100 !default; // custom var(--#{$prefix}link-hover-color) !default;
 $nav-link-transition: color 0.15s ease-in-out,
   background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !default;
 $nav-link-disabled-color: var(--#{$prefix}secondary-color) !default;

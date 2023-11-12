@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>會員專區</title>
+  </head>
+  <body>
+    <%- include('./layout/header'); -%>
+    <main class="d-flex">
+      <%- include('./layout/sidebar',{page:"user"}); -%>
+      <div class="container">
+        <h2 class="fs-3 mt-12 mb-6">會員中心</h2>
+        <div>
+          <ul class="row">
+            <li class="col-3">
+              <div class="bg-white rounded-4 d-flex align-items-center p-5">
+                <div class="border rounded-circle">
+                  <span class="material-icons card-icon">person</span>
+                </div>
+                <div class="ps-2">
+                  <p class="fs-7 fw-bold">userID</p>
+                  <p class="fs-7">example@gmail.com</p>
+                </div>
+              </div>
+            </li>
+            <li class="col-3">
+              <div class="bg-white rounded-4 d-flex align-items-center p-5">
+                <div class="border rounded-circle">
+                  <span class="material-icons card-icon-s">description</span>
+                </div>
+                <div class="w-100 d-flex justify-content-center">
+                  <p class="fs-2 fw-bold">0</p>
+                </div>
+              </div>
+            </li>
+            <li class="col-3">
+              <div class="bg-white rounded-4 d-flex align-items-center p-5">
+                <div class="border rounded-circle">
+                  <span class="material-icons card-icon-s">bookmark</span>
+                </div>
+                <div class="w-100 d-flex justify-content-center">
+                  <p class="fs-2 fw-bold">0</p>
+                </div>
+              </div>
+            </li>
+            <li class="col-3">
+              <div class="bg-white rounded-4 d-flex align-items-center p-5">
+                <div class="border rounded-circle">
+                  <span class="material-icons card-icon-s">forum</span>
+                </div>
+                <div class="w-100 d-flex justify-content-center">
+                  <p class="fs-2 fw-bold">0</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <%- include('./layout/footer'); -%>
+
+    <script type="module" src="../main.js"></script>
+  </body>
+</html>
