@@ -1,0 +1,36 @@
+<nav class="bg-white shadow-sm py-10 min-vh-100">
+  <ul class="navbar-nav flex-column">
+    <li class="nav-item">
+      <a
+        class="nav-link text-nowrap fw-bold fs-6 hover-light rounded-0 py-3 px-15 border-transparent <%= page === 'user' ? 'text-primary border-start border-4 border-primary' : '' %>"
+        href="user.html"
+      >
+        <span class="material-icons me-2"> person </span>會員專區
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link text-nowrap fw-bold fs-6 hover-light rounded-0 py-3 px-15 border-transparent <%= page === 'user_posts' ? 'text-primary border-start border-4 border-primary' : '' %>"
+        href="user_posts.html"
+      >
+        <span class="material-icons me-2">description</span>發文列表
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link text-nowrap fw-bold fs-6 hover-light rounded-0 py-3 px-15 border-transparent <%= page === 'user_favorites' ? 'text-primary border-start border-4 border-primary' : '' %>"
+        href="user_favorites.html"
+      >
+        <span class="material-icons me-2"> bookmark </span>收藏列表
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link text-nowrap fw-bold fs-6 hover-light rounded-0 py-3 px-15 border-transparent <%= page === 'user_messages' ? 'text-primary border-start border-4 border-primary' : '' %>"
+        href="user_messages.html"
+      >
+        <span class="material-icons me-2"> forum </span>留言列表
+      </a>
+    </li>
+  </ul>
+</nav>
