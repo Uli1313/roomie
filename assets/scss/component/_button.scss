@@ -1,0 +1,18 @@
+.u-btn {
+  .btn-outline-light-300 {
+    font-weight: bold;
+    color: $dark;
+    background: $white;
+    padding: 12px 20px;
+    font-size: 14px;
+    &:hover {
+      background: $light-100;
+    }
+    &:active {
+      background: #d3d3d3;
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 16px;
+    }
+  }
+}

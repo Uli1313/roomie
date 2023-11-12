@@ -1,0 +1,50 @@
+.cursor{
+    cursor: pointer;
+}
+.imgCursor{
+    cursor: pointer;
+    transition: .3s;
+    &:hover{
+        transform: scale(1.1);
+    }
+}
+button{
+    border: none;
+    background: none;
+    color: #575656;
+}
+.btn-size{
+    width: 112px;
+    height: 56px;
+}
+.btn-primary{
+    background-color: #337757!important;
+    color:#fff!important;
+    border: none!important;
+    &:hover{
+        background-color: #54C490!important;
+    }
+    &:active{
+        background-color: #285E45!important; 
+    }
+}
+
+.hover-custom{
+    &:hover {
+        background: $primary-200;
+        color: $secondary !important;
+      }
+}
+
+//下到 ? px 觸發
+@media screen and (max-width: 768px){ 
+    .fs-md-2{
+        font-size: 36px;
+    }
+}
+
+@media screen and (max-width: 576px){ 
+    .fs-sm-3{
+        font-size: 24px;
+    }
+}
