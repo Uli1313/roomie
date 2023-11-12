@@ -1,0 +1,16 @@
+.faq {
+  .accordion {
+    &-button {
+      border-bottom: 2px solid rgba($light-300, 0.4);
+      &::after {
+        background-image: url("/assets/images/icon/add.png");
+        background-size: cover;
+        width: 48px;
+        height: 48px;
+      }
+      &:not(.collapsed)::after {
+        background-image: url("/assets/images/icon/remove.png");
+      }
+    }
+  }
+}
