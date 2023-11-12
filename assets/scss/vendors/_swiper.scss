@@ -14,11 +14,12 @@
       width: 100%;
     }
     @include media-breakpoint-up(xxl) {
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: visible;
     }
   }
   .swiper-slide {
-    filter: blur(2px);
+    filter: blur(1px);
   }
   .swiper-slide-active {
     filter: blur(0);

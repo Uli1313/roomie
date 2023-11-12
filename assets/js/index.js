@@ -15,7 +15,10 @@ const swiperLatestRent = new Swiper(".latest-rent-swiper", {
   slidesPerView: 1,
   spaceBetween: 12,
   grabCursor: true,
-  //   loop: true,
+  autoplay: {
+    delay: 3000,
+  },
+  loop: true,
   centeredSlides: true,
   effect: "coverflow",
   coverflowEffect: {
