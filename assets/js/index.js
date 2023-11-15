@@ -16,7 +16,7 @@ const swiperLatestRent = new Swiper(".latest-rent-swiper", {
   spaceBetween: 12,
   grabCursor: true,
   autoplay: {
-    delay: 3000,
+    delay: 1500,
   },
   loop: true,
   centeredSlides: true,
@@ -65,3 +65,11 @@ setInterval(function () {
   }
   typewriteText.textContent = arr[count % 2];
 }, 1500);
+
+// // 選取 .swiper-slide-prev 之前的 第一個 .swiper-slide
+// const swiperSlidePrev = document.querySelector(".swiper-slide-prev");
+// const swiperSlidePrevPrev = swiperSlidePrev.previousElementSibling;
+// if (swiperSlidePrevPrev)
+//   swiperSlidePrevPrev.classList.add("swiper-slide-prev-prev");
+
+// console.log(swiperSlidePrev);

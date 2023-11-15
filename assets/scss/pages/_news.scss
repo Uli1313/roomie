@@ -1,0 +1,19 @@
+.page-news {
+  .breadcrumb-item + .breadcrumb-item::before {
+    color: $white;
+  }
+  &-bg {
+    padding-bottom: 400px;
+  }
+  &-title {
+    &::before {
+      content: "";
+      position: absolute;
+      background: no-repeat center/contain url("/assets/images/decoWhite-1.png");
+      width: 61px;
+      height: 47px;
+      top: -12px;
+      left: -68px;
+    }
+  }
+}
