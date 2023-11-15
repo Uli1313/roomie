@@ -3,7 +3,7 @@
     color: $white;
   }
   &-bg {
-    padding-bottom: 400px;
+    padding-bottom: 240px;
   }
   &-title {
     &::before {
@@ -14,6 +14,24 @@
       height: 47px;
       top: -12px;
       left: -68px;
+    }
+  }
+  &-list {
+    height: 600px;
+    & .news {
+      top: -220px;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    &-bg {
+      padding-bottom: 400px;
+    }
+    &-list {
+      height: 600px;
+      & .news {
+        top: -380px;
+      }
     }
   }
 }
