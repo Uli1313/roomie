@@ -1,0 +1,15 @@
+.link-none {
+  color: transparent;
+  &:hover {
+    color: transparent;
+  }
+  &:focus {
+    color: transparent;
+  }
+}
+.more-btn {
+  color: $dark;
+  &:hover {
+    color: $primary;
+  }
+}

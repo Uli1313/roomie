@@ -1,0 +1,15 @@
+.fav-btn {
+  color: $dark;
+  &:hover {
+    color: $primary;
+  }
+}
+.filter-btn {
+  color: $dark;
+  &:hover {
+    color: $success;
+  }
+  &:active {
+    color: $primary;
+  }
+}
