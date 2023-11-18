@@ -18,7 +18,10 @@
 
 @import "./utilities/utilities";
 @import "../node_modules/bootstrap/scss/bootstrap";
-
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
 // ------- bootstrap end -------
 
 // base
@@ -32,6 +35,7 @@
 @import "./component/accordion";
 @import "./component/button";
 @import "./component/scrollbar";
+@import "./component/form";
 
 // custom utilities
 @import "./utilities/hover";
@@ -42,7 +46,14 @@
 // layout
 @import "./layout/header.scss";
 @import "./layout/footer.scss";
+@import "./layout/sidebar";
 
 // pages
 @import "./pages/index.scss";
 @import "./pages/news";
+@import "./pages/contact";
+@import "./pages/user";
+@import "./pages/login.scss";
+@import "./pages/signup.scss";
+@import "./pages/rentList.scss";
+@import "./pages/singleRentArticle.scss";

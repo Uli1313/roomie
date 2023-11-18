@@ -664,10 +664,10 @@ $line-height-sm: 1.2; // custom 1.25 !default;
 $line-height-lg: 2 !default;
 
 $h1-font-size: $font-size-base * 2.5 !default;
-$h2-font-size: $font-size-base * 2.25; // custom 2 !default;
-$h3-font-size: $font-size-base * 1.5; // custom 1.75 !default;
-$h4-font-size: $font-size-base * 1.25; // custom 1.5 !default;
-$h5-font-size: $font-size-base * 1.125; // custom 1.25 !default;
+$h2-font-size: $font-size-base * 2.25; // custom 2.25; // custom 2 !default;
+$h3-font-size: $font-size-base * 1.5; // custom 1.5; // custom 1.75 !default;
+$h4-font-size: $font-size-base * 1.25; // custom 1.25; // custom 1.5 !default;
+$h5-font-size: $font-size-base * 1.125; // custom 1.125; // custom 1.25 !default;
 $h6-font-size: $font-size-base !default;
 // scss-docs-end font-variables
 
@@ -1232,7 +1232,7 @@ $nav-link-padding-x: 1rem !default;
 $nav-link-font-size: null !default;
 $nav-link-font-weight: 500; // custom null !default;
 $nav-link-color: var(--#{$prefix}link-color) !default;
-$nav-link-hover-color: var(--#{$prefix}link-hover-color) !default;
+$nav-link-hover-color: $light-100 !default; // custom var(--#{$prefix}link-hover-color) !default;
 $nav-link-transition: color 0.15s ease-in-out,
   background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !default;
 $nav-link-disabled-color: var(--#{$prefix}secondary-color) !default;
