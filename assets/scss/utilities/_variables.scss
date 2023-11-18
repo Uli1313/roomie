@@ -469,7 +469,7 @@ $position-values: (
 // Settings for the `<body>` element.
 
 $body-text-align: null !default;
-$body-color: $dark; // custom $gray-900 !default;
+$body-color: $dark !default; // custom $gray-900 !default;
 $body-bg: $light-200; // custom $white !default;
 
 $body-secondary-color: rgba($body-color, 0.75) !default;
@@ -856,7 +856,7 @@ $input-btn-border-width: var(--#{$prefix}border-width) !default;
 // For each of Bootstrap's buttons, define text, background, and border color.
 
 // scss-docs-start btn-variables
-$btn-color: var(--#{$prefix}body-color) !default;
+$btn-color: $white !default; // custom var(--#{$prefix}body-color) !default;
 $btn-padding-y: 16px; // custom $input-btn-padding-y !default;
 $btn-padding-x: 36px; // custom $input-btn-padding-x !default;
 $btn-font-family: $input-btn-font-family !default;
@@ -1230,7 +1230,7 @@ $nav-link-padding-y: 0.5rem !default;
 $nav-link-padding-x: 1rem !default;
 $nav-link-font-size: null !default;
 $nav-link-font-weight: 500; // custom null !default;
-$nav-link-color: var(--#{$prefix}link-color) !default;
+$nav-link-color: $dark; // custom var(--#{$prefix}link-color) !default;
 $nav-link-hover-color: $light-100 !default; // custom var(--#{$prefix}link-hover-color) !default;
 $nav-link-transition: color 0.15s ease-in-out,
   background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !default;
@@ -1238,11 +1238,11 @@ $nav-link-disabled-color: var(--#{$prefix}secondary-color) !default;
 $nav-link-focus-box-shadow: $focus-ring-box-shadow !default;
 
 $nav-tabs-border-color: var(--#{$prefix}border-color) !default;
-$nav-tabs-border-width: var(--#{$prefix}border-width) !default;
+$nav-tabs-border-width: none; // custom var(--#{$prefix}border-width) !default;
 $nav-tabs-border-radius: var(--#{$prefix}border-radius) !default;
 $nav-tabs-link-hover-border-color: var(--#{$prefix}secondary-bg)
   var(--#{$prefix}secondary-bg) $nav-tabs-border-color !default;
-$nav-tabs-link-active-color: var(--#{$prefix}emphasis-color) !default;
+$nav-tabs-link-active-color: $primary; // custom var(--#{$prefix}emphasis-color) !default;
 $nav-tabs-link-active-bg: var(--#{$prefix}body-bg) !default;
 $nav-tabs-link-active-border-color: var(--#{$prefix}border-color)
   var(--#{$prefix}border-color) $nav-tabs-link-active-bg !default;
