@@ -24,4 +24,35 @@
   .swiper-slide-active {
     filter: blur(0);
   }
+  // 關於下方的各種 transform
+  // css selector 無法選取到 前一個元素，
+  // 所以在每張 slide 都加上想要呈現在 swiper-slide-prev 的前一張的 slide 樣式。
+  // 接著在 前一張、當前張、下一張、下一張的下一張 都一樣用 !important 覆蓋過去
+  // *swiper 是動態修改元素的 style ，所以需用 !important 覆蓋
+  // *視窗大小小於一定值會跑掉，所以設定斷點
+  @include media-breakpoint-up(lg) {
+    .swiper-slide {
+      transform: translate3d(81.5%, 0px, -219.819px) rotateX(0deg) rotateY(0deg) !important;
+    }
+    .swiper-slide-prev {
+      transform: translate3d(0px, 0px, -109.786px) rotateX(0deg) rotateY(0deg)
+        scale(1) !important;
+    }
+    .swiper-slide-next {
+      transform: translate3d(0px, 0px, -109.786px) rotateX(0deg) rotateY(0deg)
+        scale(1) !important;
+    }
+    .swiper-slide-next + .swiper-slide {
+      transform: translate3d(-81.5%, 0px, -219.819px) rotateX(0deg)
+        rotateY(0deg) scale(1) !important;
+    }
+    .swiper-slide-active {
+      transform: translate3d(0px, 0px, -0.0822368px) rotateX(0deg) rotateY(0deg)
+        scale(1) !important;
+    }
+  }
+  // .swiper-slide-prev-prev {
+  //   transform: translate3d(330px, 0px, -219.819px) rotateX(0deg) rotateY(0deg)
+  //     scale(1) !important;
+  // }
 }

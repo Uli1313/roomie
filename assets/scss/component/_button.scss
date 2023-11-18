@@ -15,4 +15,24 @@
       font-size: 16px;
     }
   }
+  .btn-secondary {
+    padding: 19.5px 29px;
+    line-height: 1.2;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    border-width: 0;
+    @include media-breakpoint-up(md) {
+      padding: 17px 37.5px;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+    }
+    &:hover {
+      background: #54c490;
+    }
+    &:active {
+      background: #285e45;
+    }
+  }
 }

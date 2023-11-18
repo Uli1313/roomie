@@ -139,7 +139,7 @@
             >
           </ul>
         </li>
-        <!-- mobile account -->
+        <!-- mobile account icon -->
         <li
           class="collapsed d-md-none"
           type="button"
@@ -153,7 +153,7 @@
             ><span class="material-icons-outlined"> account_circle </span></a
           >
         </li>
-        <!-- desktop account dropdown -->
+        <!-- desktop accountMenu icon & dropdown-->
         <li class="navbar-account nav-item dropdown d-none d-md-block">
           <a
             class="nav-link dropdown-toggle p-3 link-dark hover-primary border-0 rounded-3"
@@ -164,10 +164,25 @@
           >
             <span class="material-icons-outlined"> account_circle </span>
           </a>
+          <!-- desktop accountMenu dropdown -->
           <ul class="dropdown-menu" style="width: 220px">
-
-
-            <li><a class="dropdown-item" href="user.html">會員專區</a></li>
+            <!-- desktop accountMenu dropdown 未登入 -->
+            <li>
+              <a class="dropdown-item rounded-top d-none" href="login.html"
+                >登入</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item border-0 rounded-bottom d-none"
+                href="signup.html"
+                >註冊</a
+              >
+            </li>
+            <!-- desktop accountMenu dropdown 已登入 -->
+            <li>
+              <a class="dropdown-item rounded-top" href="user.html">會員專區</a>
+            </li>
             <li>
               <a class="dropdown-item" href="user_posts.html">發文列表</a>
             </li>
@@ -178,7 +193,9 @@
               <a class="dropdown-item" href="user_messages.html">留言列表</a>
             </li>
             <li>
-              <a class="dropdown-item border-0" href="login.html">登出</a>
+              <a class="dropdown-item border-0 rounded-bottom" href="login.html"
+                >登出</a
+              >
             </li>
           </ul>
         </li>
@@ -195,13 +212,14 @@
         <span class="material-icons-outlined"> menu </span>
       </button>
     </div>
+    <!-- desktop & mobile menu -->
     <div
-      class="collapse navbar-collapse flex-grow-0 order-2 order-md-1"
+      class="collapse navbar-collapse flex-grow-0 order-2 order-md-1 z-3 border-bottom border-bottom-md-0"
       id="burgurMenu"
     >
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="about.html">最新消息</a>
+          <a class="nav-link" href="news.html">最新消息</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="rentList.html">合租清單</a>
@@ -223,17 +241,15 @@
         </li>
       </ul>
     </div>
-    <!-- mobile accountMenu -->
+    <!-- mobile accountMenu 已登入 -->
     <div class="d-md-none">
       <div
-        class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1"
+        class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1 z-3 border-bottom"
         id="accountMenu"
       >
         <ul class="navbar-nav">
           <li class="nav-item">
-
             <a class="nav-link" href="user.html">會員專區</a>
-
           </li>
           <li class="nav-item">
             <a class="nav-link" href="user_posts.html">發文列表</a>
@@ -246,6 +262,34 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="login.html">登出</a>
+          </li>
+          <li
+            class="nav-item"
+            data-bs-toggle="collapse"
+            data-bs-target="#accountMenu"
+            aria-controls="accountMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <a class="nav-link border-0 text-center" href="#"
+              ><span class="material-icons-outlined"> close </span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- mobile accountMenu 未登入 -->
+    <div class="d-none">
+      <div
+        class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1 z-3 border-bottom"
+        id="accountMenu"
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">登入</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="signup.html">註冊</a>
           </li>
           <li
             class="nav-item"
