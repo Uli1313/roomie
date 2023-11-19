@@ -41,10 +41,18 @@ button{
     .fs-md-2{
         font-size: 36px;
     }
+
+    .fs-md-4{
+        font-size: 20px;
+    }
 }
 
 @media screen and (max-width: 576px){ 
     .fs-sm-3{
         font-size: 24px;
+    }
+    
+    .fs-sm-6{
+        font-size: 16px!important;
     }
 }
