@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>發表文章</title>
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+      $(function () {
+        $("#datepicker").datepicker();
+      });
+    </script>
+  </head>
+  <body>
+    <%- include('./layout/header'); -%>
+    <main class="d-flex">
+      <%- include('./layout/sidebar',{page:"user_posts"}); -%>
+      <div class="container px-6 py-7">
+        <h2 class="fs-3">新增貼文</h2>
+        <p class="text-end"><span class="starText">*</span>號為必填</p>
+        <form>
+          <div class="p-8 gray-border">
+            <!-- 合租地址 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4"><span class="starText">*</span>合租地址:</h5>
+              <!-- 縣市 -->
+              <div class="me-3 addRegion-input">
+                <select id="cityRegion" name="縣市">
+                  <option value="縣市">縣市</option>
+                  <!-- areaData放入 -->
+                </select>
+              </div>
+              <!-- 行政區 -->
+              <div class="me-3 addRegion-input">
+                <select id="districtRegion" name="行政區">
+                  <option value="行政區">行政區</option>
+                  <!-- areaData放入 -->
+                </select>
+              </div>
+              <!-- 路、街-->
+              <div class="me-3 addRegion-input">
+                <select id="pathRegion" name="路或街">
+                  <option value="路或街">路、街</option>
+                  <!-- areaData放入 -->
+                </select>
+              </div>
+              <!-- 巷 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="inputWidth"
+                  type="text"
+                  id="laneRegion"
+                  placeholder="請填寫巷"
+                  name="巷"
+                />
+              </div>
+              <!-- 弄 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="inputWidth"
+                  type="text"
+                  id="alleyRegion"
+                  placeholder="請填寫弄"
+                  name="弄"
+                />
+              </div>
+              <!-- 號 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="inputWidth"
+                  type="text"
+                  id="numberRegion"
+                  placeholder="請填寫號"
+                  name="號"
+                />
+              </div>
+
+              <div class="alert-message">
+                <p id="addRegion-message" data-message="地區">
+                  <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                </p>
+              </div>
+            </div>
+            <!-- 合租樓層 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4"><span class="starText">*</span>合租樓層:</h5>
+              <!-- 樓 -->
+              <div class="me-3 addfloor-input">
+                <input
+                  class="inputWidth"
+                  type="text"
+                  id="floors"
+                  placeholder="請填寫樓層"
+                  name="弄"
+                />
+              </div>
+              <div class="alert-message">
+                <p id="addfloor-message" data-message="樓層">
+                  <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                </p>
+              </div>
+            </div>
+            <!-- 房屋類型 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4"><span class="starText">*</span>房屋類型:</h5>
+              <!-- 整層住家 -->
+              <div class="me-3 addType-input">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="housingType"
+                  id="wholeHome"
+                />
+                <label class="form-check-label" for="wholeHome">
+                  整層住家
+                </label>
+              </div>
+              <!-- 獨立套房 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="housingType"
+                  id="separateHome"
+                />
+                <label class="form-check-label" for="separateHome">
+                  獨立套房
+                </label>
+              </div>
+              <!-- 分租套房 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="housingType"
+                  id="familyHome"
+                />
+                <label class="form-check-label" for="familyHome">
+                  分租套房
+                </label>
+              </div>
+              <!-- 雅房 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="housingType"
+                  id="roomHome"
+                />
+                <label class="form-check-label" for="roomHome"> 雅房 </label>
+              </div>
+
+              <div class="alert-message">
+                <p id="addType-message" data-message="房型">
+                  <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                </p>
+              </div>
+            </div>
+            <!-- 貼文標題 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4"><span class="starText">*</span>貼文標題:</h5>
+              <!-- 貼文標題 -->
+              <div class="me-3 addTitle-input">
+                <input
+                  type="text"
+                  id="articleTitle"
+                  placeholder="請填寫貼文標題"
+                  name="貼文標題"
+                />
+              </div>
+              <div class="alert-message">
+                <p id="addTitle-message" data-message="貼文標題">
+                  <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                </p>
+              </div>
+            </div>
+            <!-- 房屋坪數 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4"><span class="starText">*</span>房屋坪數:</h5>
+              <!-- 房屋坪數 -->
+              <div class="me-3 addSize-input">
+                <input
+                  class="inputWidth"
+                  type="text"
+                  id="sizeofHouse"
+                  placeholder="請填寫坪數"
+                  name="房屋坪數"
+                />
+              </div>
+              <div class="alert-message">
+                <p id="addSize-message" data-message="房屋坪數">
+                  <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                </p>
+              </div>
+            </div>
+            <!-- 格局 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4"><span class="starText">*</span>房屋格局:</h5>
+              <!-- 格局 -->
+              <div class="me-3 addLayout-input">
+                <input
+                  type="text"
+                  id="layoutofHouse"
+                  placeholder="請填寫格局"
+                  name="格局"
+                />
+              </div>
+              <div class="alert-message">
+                <p id="addLayout-message" data-message="格局">
+                  <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                </p>
+              </div>
+            </div>
+            <!-- 設備 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4"><span class="starText">*</span>設備:</h5>
+              <!-- 床 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="bed"
+                />
+                <label class="form-check-label" for="bed"> 床 </label>
+              </div>
+              <!-- 衣櫃 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="closet"
+                />
+                <label class="form-check-label" for="closet"> 衣櫃 </label>
+              </div>
+              <!-- 沙發 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="sofa"
+                />
+                <label class="form-check-label" for="sofa"> 沙發 </label>
+              </div>
+              <!-- 桌子 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="table"
+                />
+                <label class="form-check-label" for="table"> 桌子 </label>
+              </div>
+              <!-- 椅子 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="chair"
+                />
+                <label class="form-check-label" for="chair"> 椅子 </label>
+              </div>
+              <!-- 網路 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="internet"
+                />
+                <label class="form-check-label" for="internet"> 網路 </label>
+              </div>
+              <!-- 冰箱 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="refrigerator"
+                />
+                <label class="form-check-label" for="refrigerator">
+                  冰箱
+                </label>
+              </div>
+              <!-- 電視 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="television"
+                />
+                <label class="form-check-label" for="television"> 電視 </label>
+              </div>
+              <!-- 冷氣 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="airConditioner"
+                />
+                <label class="form-check-label" for="airConditioner">
+                  冷氣
+                </label>
+              </div>
+              <!-- 洗衣機 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="washingMachine"
+                />
+                <label class="form-check-label" for="washingMachine">
+                  洗衣機
+                </label>
+              </div>
+              <!-- 天然瓦斯 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="naturalGas"
+                />
+                <label class="form-check-label" for="naturalGas">
+                  天然瓦斯
+                </label>
+              </div>
+              <!-- 熱水器 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="waterHeater"
+                />
+                <label class="form-check-label" for="waterHeater">
+                  熱水器
+                </label>
+              </div>
+              <!-- 電梯 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="elevator"
+                />
+                <label class="form-check-label" for="elevator"> 電梯 </label>
+              </div>
+              <!-- 機車車位 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="motorcycleSpace"
+                />
+                <label class="form-check-label" for="motorcycleSpace">
+                  機車車位
+                </label>
+              </div>
+              <!-- 汽車車位 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="carSpace"
+                />
+                <label class="form-check-label" for="carSpace">
+                  汽車車位
+                </label>
+              </div>
+              <!-- 無 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  value=""
+                  id="nothing"
+                />
+                <label class="form-check-label" for="nothing"> 無 </label>
+              </div>
+              <div class="alert-message">
+                <p id="ticketRegion-message" data-message="景點地區">
+                  <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                </p>
+              </div>
+            </div>
+            <!-- 租金 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4"><span class="starText">*</span>租金:</h5>
+              <!-- 租金 -->
+              <div class="me-3 addPrice-input">
+                <input
+                  class="inputWidth"
+                  type="text"
+                  id="price"
+                  placeholder="請填寫租金"
+                  name="租金"
+                />
+                <span>元/月</span>
+              </div>
+              <div class="me-3 addRegion-input">
+                <select id="deposit " name="押金">
+                  <option value="押金">押金</option>
+                  <option value="一個月">一個月</option>
+                  <option value="兩個月">兩個月</option>
+                </select>
+              </div>
+              <div class="alert-message">
+                <p id="addPrice-message" data-message="租金">
+                  <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                </p>
+              </div>
+            </div>
+            <!-- 租金包含 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4">租金包含:</h5>
+              <!-- 水費 -->
+              <div class="me-3 priceContent-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="waterBill"
+                />
+                <label class="form-check-label" for="waterBill"> 水費 </label>
+              </div>
+              <!-- 電費 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="electricityBill"
+                />
+                <label class="form-check-label" for="closet"> 電費 </label>
+              </div>
+              <!-- 網路費 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="internetBill"
+                />
+                <label class="form-check-label" for="internetBill">
+                  網路費
+                </label>
+              </div>
+              <!-- 瓦斯費 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="gasBill"
+                />
+                <label class="form-check-label" for="gasBill"> 瓦斯費 </label>
+              </div>
+              <!-- 管理費 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="managementBill"
+                />
+                <label class="form-check-label" for="managementBill">
+                  管理費
+                </label>
+              </div>
+
+              <div class="alert-message">
+                <p id="ticketRegion-message" data-message="景點地區">
+                  <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                </p>
+              </div>
+            </div>
+            <!-- 管理費 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4">管理費:</h5>
+              <!-- 租金 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  type="text"
+                  id="price"
+                  placeholder="請填寫管理費"
+                  name="管理費"
+                />
+                <span>元/月</span>
+              </div>
+              <div class="alert-message">
+                <p id="ticketRegion-message" data-message="景點地區">
+                  <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                </p>
+              </div>
+            </div>
+            <!-- 最短租期 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4"><span class="starText">*</span>最短租期:</h5>
+              <div class="me-3 addRegion-input">
+                <select id="minPeriod" name="最短租期">
+                  <option value="最短租期">最短租期</option>
+                  <option value="三個月">三個月</option>
+                  <option value="半年">半年</option>
+                  <option value="一年">一年</option>
+                  <option value="兩年">兩年</option>
+                  <option value="其他">其他</option>
+                </select>
+              </div>
+              <div class="alert-message">
+                <p id="ticketRegion-message" data-message="景點地區">
+                  <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                </p>
+              </div>
+            </div>
+            <!-- 需求人數 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4"><span class="starText">*</span>需求人數:</h5>
+              <!-- 需求人數 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  type="text"
+                  id="needPeople"
+                  placeholder="請填寫需求人數"
+                  name="需求人數"
+                />
+                <span>人</span>
+              </div>
+              <div class="alert-message">
+                <p id="ticketRegion-message" data-message="景點地區">
+                  <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                </p>
+              </div>
+            </div>
+            <!-- 室友身分 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4">室友身分:</h5>
+              <!-- 學生 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="studientStatus"
+                />
+                <label class="form-check-label" for="studientStatus">
+                  學生
+                </label>
+              </div>
+              <!-- 家庭 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="familyStatus"
+                />
+                <label class="form-check-label" for="familyStatus">
+                  家庭
+                </label>
+              </div>
+              <!-- 上班族 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="workStatus"
+                />
+                <label class="form-check-label" for="workStatus">
+                  上班族
+                </label>
+              </div>
+
+              <div class="alert-message">
+                <p id="ticketRegion-message" data-message="景點地區">
+                  <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                </p>
+              </div>
+            </div>
+            <!-- 室友性別 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4">室友性別:</h5>
+              <!-- 男性 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sexStatus"
+                  id="male"
+                />
+                <label class="form-check-label" for="male"> 男性 </label>
+              </div>
+              <!-- 女性 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sexStatus"
+                  id="female"
+                />
+                <label class="form-check-label" for="female"> 女性 </label>
+              </div>
+              <!-- 皆可 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sexStatus"
+                  id="sexAllAcceptable"
+                />
+                <label class="form-check-label" for="sexAllAcceptable">
+                  皆可
+                </label>
+              </div>
+            </div>
+            <!-- 寵物 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4"><span class="starText">*</span>寵物:</h5>
+              <!-- 可以 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="petsStatus"
+                  id="yesForPets"
+                />
+                <label class="form-check-label" for="yesForPets"> 可以 </label>
+              </div>
+              <!-- 不行 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="petsStatus"
+                  id="noForPets"
+                />
+                <label class="form-check-label" for="noForPets"> 不行 </label>
+              </div>
+            </div>
+            <!-- 開伙 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4"><span class="starText">*</span>開伙:</h5>
+              <!-- 可以 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="cookStatus"
+                  id="yesForCook"
+                />
+                <label class="form-check-label" for="yesForCook"> 可以 </label>
+              </div>
+              <!-- 不行 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="cookStatus"
+                  id="noForCook"
+                />
+                <label class="form-check-label" for="noForCook"> 不行 </label>
+              </div>
+            </div>
+            <!-- 室友年齡 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4">室友年齡:</h5>
+              <!-- 室友年齡 -->
+              <div class="me-3 addRegion-input">
+                <input type="text" id="minAge" name="室友年齡" />
+                <span>~</span>
+                <input type="text" id="maxAge" name="室友年齡" />
+                <span>歲</span>
+              </div>
+            </div>
+            <!-- 可遷入日期 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4"><span class="starText">*</span>可遷入日期:</h5>
+              <span><input type="text" id="datepicker" /></span>
+            </div>
+            <!-- 生活機能 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4">生活機能:</h5>
+              <!-- 近公園 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="nearPark"
+                />
+                <label class="form-check-label" for="nearPark"> 近公園 </label>
+              </div>
+              <!-- 近學校 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="nearSchool"
+                />
+                <label class="form-check-label" for="nearSchool">
+                  近學校
+                </label>
+              </div>
+              <!-- 近夜市 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="nearNightMarket"
+                />
+                <label class="form-check-label" for="nearNightMarket">
+                  近夜市
+                </label>
+              </div>
+              <!-- 近百貨公司 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="nearDepartmentStore"
+                />
+                <label class="form-check-label" for="nearDepartmentStore">
+                  近百貨公司
+                </label>
+              </div>
+              <!-- 近醫院 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="nearHospital"
+                />
+                <label class="form-check-label" for="nearHospital">
+                  近醫院
+                </label>
+              </div>
+              <!-- 近便利商店 -->
+              <div class="me-3 addRegion-input">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="nearConvenienceStore"
+                />
+                <label class="form-check-label" for="nearConvenienceStore">
+                  近便利商店
+                </label>
+              </div>
+            </div>
+            <!-- 附近交通 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4">附近交通:</h5>
+              <!-- 公車站 -->
+              <div class="me-3 addRegion-input">
+                <input type="text" id="busStation" name="公車站" />
+                <span>公車站</span>
+              </div>
+              <!-- 捷運站 -->
+              <div class="me-3 addRegion-input">
+                <input type="text" id="mrtStation" name="捷運站" />
+                <span>公車站</span>
+              </div>
+              <!-- 火車站 -->
+              <div class="me-3 addRegion-input">
+                <input type="text" id="trainStation" name="火車站" />
+                <span>火車站</span>
+              </div>
+              <!-- 高鐵站 -->
+              <div class="me-3 addRegion-input">
+                <input type="text" id="hightSpeedStation" name="高鐵站" />
+                <span>高鐵站</span>
+              </div>
+            </div>
+            <!-- 其他事項 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4">其他事項:</h5>
+              <!-- 其他事項 -->
+              <div class="me-3 add-somethingElse">
+                <input type="text" id="somethingElse" name="其他事項" />
+                <p>字數 <span id="wordLength">0</span>/2000 字</p>
+              </div>
+            </div>
+            <!-- 照片上傳 -->
+            <div class="d-flex mb-2 form-group">
+              <h5 class="me-4">照片上傳:</h5>
+              <!-- 照片上傳 -->
+              <div class="me-3 add-somethingElse">
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    data-target="file-uploader"
+                    id="file-uploader"
+                  />
+                  <label class="custom-file-label" for="customFile"
+                    >Choose file</label
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- 聯絡資料 -->
+            <div class="mb-2 form-group">
+              <h5 class="me-4 mb-2">聯絡資料:</h5>
+              <!-- 聯絡人 -->
+              <div class="d-flex mb-2">
+                <h5 class="me-4"><span class="starText">*</span>聯絡人:</h5>
+                <span>
+                  <input
+                    type="text"
+                    id="contactName"
+                    placeholder="請填寫姓氏"
+                    name="姓氏"
+                    required
+                  />
+
+                  <!-- 男性 -->
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="sexStatus"
+                    id="male"
+                  />
+                  <label class="form-check-label" for="male"> 男性 </label>
+                  <!-- 女性 -->
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="sexStatus"
+                    id="female"
+                  />
+                  <label class="form-check-label" for="female"> 女性 </label>
+                </span>
+              </div>
+              <!-- 連絡電話 -->
+              <div class="d-flex mb-2">
+                <h5 class="me-4"><span class="starText">*</span>連絡電話:</h5>
+                <span>
+                  <input
+                    type="tel"
+                    id="contactPhoneNumber"
+                    placeholder="請填寫電話"
+                    name="電話"
+                    required
+                  />
+                </span>
+              </div>
+              <!-- 信箱 -->
+              <div class="d-flex mb-2">
+                <h5 class="me-4"><span class="starText">*</span>信箱:</h5>
+                <span>
+                  <input
+                    type="email"
+                    id="contactEmail"
+                    placeholder="請填寫信箱"
+                    name="信箱"
+                    required
+                  />
+                </span>
+              </div>
+              <!-- Line -->
+              <div class="d-flex mb-2">
+                <h5 class="me-4">Line:</h5>
+                <span>
+                  <input
+                    type="text"
+                    id="contactLine"
+                    placeholder="請填寫Line"
+                    name="Line"
+                  />
+                </span>
+              </div>
+            </div>
+            <!-- 詢問是否刊登媒合成功頁面 -->
+            <div class="pt-8 text-center">
+              <h4 class="me-4">
+                <span class="starText">*</span
+                >媒合成功是否轉移刊登在媒合成功頁面 ?
+              </h4>
+              <div>
+                <!-- 同意 -->
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="agreeforSuccess"
+                  id="yesforSuccess"
+                />
+                <label class="form-check-label" for="yesforSuccess">
+                  同意
+                </label>
+                <!-- 不同意 -->
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="agreeforSuccess"
+                  id="noforSuccess"
+                />
+                <label class="form-check-label" for="yesforSuccess">
+                  不同意
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- 草稿/發表 -->
+        <div class="py-5 text-center">
+          <a href="user.html">
+            <button type="button" class="btn btn-primary py-2 me-2">
+              儲存為草稿
+            </button>
+          </a>
+          <a href="user.html">
+            <button type="button" class="btn btn-primary py-2 me-2">
+              下一步
+            </button>
+          </a>
+        </div>
+      </div>
+    </main>
+    <%- include('./layout/footer'); -%>
+
+    <script type="module" src="../main.js"></script>
+  </body>
+</html>

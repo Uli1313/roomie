@@ -1,3 +1,56 @@
+option:hover {
+  background-color: #c79292; /* 更改 hover 時的背景色 */
+}
+.banner {
+  &-map {
+    left: -80px;
+  }
+  &-county {
+    fill: #337757;
+    stroke: rgb(255, 255, 255);
+    stroke-width: 1.5px;
+    cursor: pointer;
+    &:hover {
+      fill: #57a47b;
+    }
+    &-icon,
+    &-label {
+      // 可以直接點擊到地圖，不受圖層上方的標示影響
+      pointer-events: none;
+    }
+  }
+  &-search {
+    @include media-breakpoint-up(md) {
+      background: $light-200;
+    }
+  }
+  &-rent {
+    height: 519px;
+    &-img {
+      width: 64px;
+      height: 64px;
+    }
+    &-item {
+      &:hover {
+        background: #faedd7;
+      }
+    }
+  }
+  @include media-breakpoint-up(md) {
+    &-rent {
+      &-img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+  @include media-breakpoint-up(xl) {
+    &-map {
+      left: 0px;
+    }
+  }
+}
+
 .intro {
   bottom: -20px;
   &-h {

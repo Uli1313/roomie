@@ -22,6 +22,7 @@
 @import "../node_modules/bootstrap/scss/images";
 @import "../node_modules/bootstrap/scss/containers";
 @import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/tooltip";
 // ------- bootstrap end -------
 
 // base
@@ -34,6 +35,7 @@
 @import "./component/offcanvas";
 @import "./component/accordion";
 @import "./component/button";
+@import "./component/scrollbar";
 @import "./component/form";
 
 // custom utilities
@@ -49,8 +51,16 @@
 
 // pages
 @import "./pages/index.scss";
+@import "./pages/news";
 @import "./pages/contact";
 @import "./pages/user";
+@import "./pages/user_posts";
+@import "./pages/user_favorites";
+@import "./pages/user_messages";
 @import "./pages/login.scss";
 @import "./pages/signup.scss";
-
+@import "./pages/rentList.scss";
+@import "./pages/_rentArticle.scss";
+@import "./pages/matchList.scss";
+@import "./pages/user_posts.scss";
+@import "./pages/user_addPost.scss";

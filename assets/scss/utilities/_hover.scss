@@ -4,6 +4,13 @@
     color: $secondary !important;
   }
 }
+.hover-primary-2 {
+  &:hover {
+    background: $primary!important;
+    color: $secondary !important;
+    box-shadow: 0 0 2px 1px #c0c0c0;
+  }
+}
 .hover-light {
   &:hover {
     background: $light-100 !important;

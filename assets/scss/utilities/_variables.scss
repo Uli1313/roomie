@@ -469,7 +469,7 @@ $position-values: (
 // Settings for the `<body>` element.
 
 $body-text-align: null !default;
-$body-color: $dark; // custom $gray-900 !default;
+$body-color: $dark !default; // custom $gray-900 !default;
 $body-bg: $light-200; // custom $white !default;
 
 $body-secondary-color: rgba($body-color, 0.75) !default;
@@ -770,7 +770,7 @@ $table-cell-padding-x-sm: 0.25rem !default;
 $table-cell-vertical-align: top !default;
 
 $table-color: var(--#{$prefix}emphasis-color) !default;
-$table-bg: var(--#{$prefix}body-bg) !default;
+$table-bg: $white; // custom var(--#{$prefix}body-bg) !default;
 $table-accent-bg: transparent !default;
 
 $table-th-font-weight: null !default;
@@ -856,7 +856,7 @@ $input-btn-border-width: var(--#{$prefix}border-width) !default;
 // For each of Bootstrap's buttons, define text, background, and border color.
 
 // scss-docs-start btn-variables
-$btn-color: var(--#{$prefix}body-color) !default;
+$btn-color: $white !default; // custom var(--#{$prefix}body-color) !default;
 $btn-padding-y: 16px; // custom $input-btn-padding-y !default;
 $btn-padding-x: 36px; // custom $input-btn-padding-x !default;
 $btn-font-family: $input-btn-font-family !default;
@@ -1091,8 +1091,9 @@ $form-select-box-shadow: var(--#{$prefix}box-shadow-inset) !default;
 
 $form-select-focus-border-color: $input-focus-border-color !default;
 $form-select-focus-width: $input-focus-width !default;
-$form-select-focus-box-shadow: 0 0 0 $form-select-focus-width
-  $input-btn-focus-color !default;
+$form-select-focus-box-shadow: 0;
+//  0 0 0 $form-select-focus-width
+//   $input-btn-focus-color !default;
 
 $form-select-padding-y-sm: $input-padding-y-sm !default;
 $form-select-padding-x-sm: $input-padding-x-sm !default;
@@ -1230,7 +1231,7 @@ $nav-link-padding-y: 0.5rem !default;
 $nav-link-padding-x: 1rem !default;
 $nav-link-font-size: null !default;
 $nav-link-font-weight: 500; // custom null !default;
-$nav-link-color: var(--#{$prefix}link-color) !default;
+$nav-link-color: $dark; // custom var(--#{$prefix}link-color) !default;
 $nav-link-hover-color: $light-100 !default; // custom var(--#{$prefix}link-hover-color) !default;
 $nav-link-transition: color 0.15s ease-in-out,
   background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !default;
@@ -1238,11 +1239,11 @@ $nav-link-disabled-color: var(--#{$prefix}secondary-color) !default;
 $nav-link-focus-box-shadow: $focus-ring-box-shadow !default;
 
 $nav-tabs-border-color: var(--#{$prefix}border-color) !default;
-$nav-tabs-border-width: var(--#{$prefix}border-width) !default;
+$nav-tabs-border-width: none; // custom var(--#{$prefix}border-width) !default;
 $nav-tabs-border-radius: var(--#{$prefix}border-radius) !default;
 $nav-tabs-link-hover-border-color: var(--#{$prefix}secondary-bg)
   var(--#{$prefix}secondary-bg) $nav-tabs-border-color !default;
-$nav-tabs-link-active-color: var(--#{$prefix}emphasis-color) !default;
+$nav-tabs-link-active-color: $primary; // custom var(--#{$prefix}emphasis-color) !default;
 $nav-tabs-link-active-bg: var(--#{$prefix}body-bg) !default;
 $nav-tabs-link-active-border-color: var(--#{$prefix}border-color)
   var(--#{$prefix}border-color) $nav-tabs-link-active-bg !default;
@@ -1383,21 +1384,21 @@ $pagination-padding-x-lg: 1.5rem !default;
 $pagination-font-size: $font-size-base !default;
 
 $pagination-color: var(--#{$prefix}link-color) !default;
-$pagination-bg: var(--#{$prefix}body-bg) !default;
+$pagination-bg: transparent; // custom var(--#{$prefix}body-bg) !default;
 $pagination-border-radius: var(--#{$prefix}border-radius) !default;
-$pagination-border-width: var(--#{$prefix}border-width) !default;
+$pagination-border-width: 0; // custom var(--#{$prefix}border-width) !default;
 $pagination-margin-start: calc(
   #{$pagination-border-width} * -1
 ) !default; // stylelint-disable-line function-disallowed-list
 $pagination-border-color: var(--#{$prefix}border-color) !default;
 
-$pagination-focus-color: var(--#{$prefix}link-hover-color) !default;
-$pagination-focus-bg: var(--#{$prefix}secondary-bg) !default;
-$pagination-focus-box-shadow: $focus-ring-box-shadow !default;
+$pagination-focus-color: $secondary; // custom var(--#{$prefix}link-hover-color) !default;
+$pagination-focus-bg: $light-200; // custom var(--#{$prefix}secondary-bg) !default;
+$pagination-focus-box-shadow: none; // custom $focus-ring-box-shadow !default;
 $pagination-focus-outline: 0 !default;
 
-$pagination-hover-color: var(--#{$prefix}link-hover-color) !default;
-$pagination-hover-bg: var(--#{$prefix}tertiary-bg) !default;
+$pagination-hover-color: $secondary; // custom var(--#{$prefix}link-hover-color) !default;
+$pagination-hover-bg: $light-200; // custom var(--#{$prefix}tertiary-bg) !default;
 $pagination-hover-border-color: var(
   --#{$prefix}border-color
 ) !default; // Todo in v6: remove this?
@@ -1497,7 +1498,7 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
 $tooltip-font-size: $font-size-sm !default;
 $tooltip-max-width: 200px !default;
 $tooltip-color: var(--#{$prefix}body-bg) !default;
-$tooltip-bg: var(--#{$prefix}emphasis-color) !default;
+$tooltip-bg: $primary; // custom var(--#{$prefix}emphasis-color) !default;
 $tooltip-border-radius: var(--#{$prefix}border-radius) !default;
 $tooltip-opacity: 0.9 !default;
 $tooltip-padding-y: $spacer * 0.25 !default;
