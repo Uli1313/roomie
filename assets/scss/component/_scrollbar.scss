@@ -1,0 +1,24 @@
+.scrollbar-po {
+  // 滾動條寬度
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  // 軌道
+  &::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background: $primary;
+    // 縮小整體長度
+    margin-bottom: 24px;
+  }
+  // 滑塊
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: $secondary;
+    &:hover {
+      background: #54c490;
+    }
+    &:active {
+      background: #285e45;
+    }
+  }
+}
