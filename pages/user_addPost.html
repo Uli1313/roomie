@@ -15,7 +15,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>發文列表</title>
+    <title>發表文章</title>
     <link
       rel="stylesheet"
       href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
@@ -34,7 +34,7 @@
     <main class="d-flex">
       <%- include('./layout/sidebar',{page:"user_posts"}); -%>
       <div class="container px-6 py-7">
-        <h1>新增貼文</h1>
+        <h2 class="fs-3">新增貼文</h2>
         <p class="text-end"><span class="starText">*</span>號為必填</p>
         <form>
           <div class="p-8 gray-border">
@@ -423,8 +423,9 @@
             <div class="d-flex mb-2 form-group">
               <h5 class="me-4"><span class="starText">*</span>租金:</h5>
               <!-- 租金 -->
-              <div class="me-3 addRegion-input">
+              <div class="me-3 addPrice-input">
                 <input
+                  class="inputWidth"
                   type="text"
                   id="price"
                   placeholder="請填寫租金"
@@ -440,7 +441,7 @@
                 </select>
               </div>
               <div class="alert-message">
-                <p id="ticketRegion-message" data-message="景點地區">
+                <p id="addPrice-message" data-message="租金">
                   <!-- <i class="fas fa-exclamation-circle"></i>
                             <span>必填!</span> -->
                 </p>
@@ -450,7 +451,7 @@
             <div class="d-flex mb-2 form-group">
               <h5 class="me-4">租金包含:</h5>
               <!-- 水費 -->
-              <div class="me-3 addRegion-input">
+              <div class="me-3 priceContent-input">
                 <input
                   class="form-check-input"
                   type="checkbox"
