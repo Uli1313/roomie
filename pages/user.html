@@ -21,52 +21,323 @@
     <%- include('./layout/header'); -%>
     <main class="d-flex">
       <%- include('./layout/sidebar',{page:"user"}); -%>
-      <div class="container">
-        <h2 class="fs-3 mt-12 mb-6">會員中心</h2>
-        <div>
-          <ul class="row">
-            <li class="col-3">
-              <div class="bg-white rounded-4 d-flex align-items-center p-5">
-                <div class="border rounded-circle">
-                  <span class="material-icons card-icon">person</span>
+      <div class="w-100 d-flex flex-column">
+        <div class="container mb-5">
+          <h2 class="fs-3 mt-12 mb-6">會員中心</h2>
+          <div>
+            <ul class="row g-md-4">
+              <li class="d-none d-md-block col-md-6 col-xl-3">
+                <div class="bg-white rounded-4 d-flex align-items-center p-5">
+                  <div class="border rounded-circle">
+                    <span class="material-icons card-icon">person</span>
+                  </div>
+                  <div class="ps-2">
+                    <p class="fs-7 fw-bold">userID</p>
+                    <p class="fs-7">example@gmail.com</p>
+                  </div>
                 </div>
-                <div class="ps-2">
-                  <p class="fs-7 fw-bold">userID</p>
-                  <p class="fs-7">example@gmail.com</p>
-                </div>
-              </div>
+              </li>
+              <li class="d-none d-md-block col-md-6 col-xl-3">
+                <a
+                  class="card-link bg-white rounded-4 d-flex align-items-center p-5"
+                  href="user_posts.html"
+                >
+                  <div class="border rounded-circle">
+                    <span class="material-icons card-icon-s">description</span>
+                  </div>
+                  <div class="w-100 d-flex justify-content-center">
+                    <p class="fs-2 fw-bold">0</p>
+                  </div>
+                </a>
+              </li>
+              <li class="d-none d-md-block col-md-6 col-xl-3">
+                <a
+                  class="card-link bg-white rounded-4 d-flex align-items-center p-5"
+                  href="user_favorites.html"
+                >
+                  <div class="border rounded-circle">
+                    <span class="material-icons card-icon-s">bookmark</span>
+                  </div>
+                  <div class="w-100 d-flex justify-content-center">
+                    <p class="fs-2 fw-bold">0</p>
+                  </div>
+                </a>
+              </li>
+              <li class="d-none d-md-block col-md-6 col-xl-3">
+                <a
+                  class="card-link bg-white rounded-4 d-flex align-items-center p-5"
+                  href="user_messages.html"
+                >
+                  <div class="border rounded-circle">
+                    <span class="material-icons card-icon-s">forum</span>
+                  </div>
+                  <div class="w-100 d-flex justify-content-center">
+                    <p class="fs-2 fw-bold">0</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="container mb-15">
+          <ul class="nav nav-tabs mb-3" id="info" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="aboutTab"
+                data-bs-toggle="tab"
+                data-bs-target="#about"
+                type="button"
+                role="tab"
+                aria-controls="about"
+                aria-selected="true"
+              >
+                基本資料
+              </button>
             </li>
-            <li class="col-3">
-              <div class="bg-white rounded-4 d-flex align-items-center p-5">
-                <div class="border rounded-circle">
-                  <span class="material-icons card-icon-s">description</span>
-                </div>
-                <div class="w-100 d-flex justify-content-center">
-                  <p class="fs-2 fw-bold">0</p>
-                </div>
-              </div>
-            </li>
-            <li class="col-3">
-              <div class="bg-white rounded-4 d-flex align-items-center p-5">
-                <div class="border rounded-circle">
-                  <span class="material-icons card-icon-s">bookmark</span>
-                </div>
-                <div class="w-100 d-flex justify-content-center">
-                  <p class="fs-2 fw-bold">0</p>
-                </div>
-              </div>
-            </li>
-            <li class="col-3">
-              <div class="bg-white rounded-4 d-flex align-items-center p-5">
-                <div class="border rounded-circle">
-                  <span class="material-icons card-icon-s">forum</span>
-                </div>
-                <div class="w-100 d-flex justify-content-center">
-                  <p class="fs-2 fw-bold">0</p>
-                </div>
-              </div>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="changePwdTab"
+                data-bs-toggle="tab"
+                data-bs-target="#changePwd"
+                type="button"
+                role="tab"
+                aria-controls="changePwd"
+                aria-selected="false"
+              >
+                修改密碼
+              </button>
             </li>
           </ul>
+          <div class="tab-content bg-white rounded-4 p-10" id="infoContent">
+            <div
+              class="fw-bold tab-pane fade show active"
+              id="about"
+              role="tabpanel"
+              aria-labelledby="aboutTab"
+            >
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-9">
+                    <form class="needs-validation container" novalidate>
+                      <!-- info -->
+                      <div class="mb-10">
+                        <span class="fs-5">基本資料</span>
+                        <div class="row mt-5">
+                          <div class="col-6">
+                            <div class="mb-3">
+                              <label for="registerEmail">註冊信箱</label>
+                              <input
+                                class="form-control rounded-5 mt-3"
+                                type="text"
+                                value="example@gmail.com"
+                                id="registerEmail"
+                                readonly
+                              />
+                            </div>
+                            <div>
+                              <label for="nickName">顯示暱稱</label>
+                              <input
+                                class="form-control rounded-5 mt-3"
+                                type="text"
+                                value=""
+                                id="nickName"
+                              />
+                              <div class="invalid-feedback">請輸入您的暱稱</div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="mb-3">
+                              <label for="name">真實姓名</label>
+                              <input
+                                class="form-control rounded-5 mt-3"
+                                type="text"
+                                value=""
+                                id="name"
+                              />
+                              <div class="invalid-feedback">請輸入您的姓名</div>
+                            </div>
+                            <div>
+                              <span class="fs-7">生理性別</span>
+                              <div class="d-flex mt-5">
+                                <div class="form-check me-5">
+                                  <input
+                                    class="form-check-input me-2"
+                                    type="radio"
+                                    name="flexRadioDefault"
+                                    id="genderMale"
+                                  />
+                                  <label
+                                    class="form-check-label"
+                                    for="genderMale"
+                                    >男性
+                                  </label>
+                                </div>
+                                <div>
+                                  <input
+                                    class="form-check-input me-2"
+                                    type="radio"
+                                    name="flexRadioDefault"
+                                    id="genderFemal"
+                                  />
+                                  <label
+                                    class="form-check-label"
+                                    for="genderFemal"
+                                    >女性
+                                  </label>
+                                </div>
+                                <div class="invalid-feedback">
+                                  請選擇您的性別
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- contact -->
+                      <div>
+                        <span class="fs-5">聯絡方式</span>
+                        <div class="row mt-5">
+                          <div class="col-6">
+                            <div class="mb-3">
+                              <label for="phone">聯絡電話</label>
+                              <input
+                                class="form-control rounded-5 mt-3"
+                                type="text"
+                                value=""
+                                id="phone"
+                                readonly
+                              />
+                              <div class="invalid-feedback">
+                                請輸入正確的手機號碼格式
+                              </div>
+                            </div>
+                            <div>
+                              <label for="facebook">FACEBOOK</label>
+                              <input
+                                class="form-control rounded-5 mt-3"
+                                type="text"
+                                value=""
+                                id="facebook"
+                              />
+                              <div class="invalid-feedback">
+                                請輸入您的 FACEBOOK
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="mb-3">
+                              <label for="line">LINE ID</label>
+                              <input
+                                class="form-control rounded-5 mt-3"
+                                type="text"
+                                value=""
+                                id="line"
+                              />
+                              <div class="invalid-feedback">
+                                請輸入您的 LINE ID
+                              </div>
+                            </div>
+                            <div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- about -->
+                  <div class="col-md-3 mt-12">
+                    <img
+                      src="/assets/images/user_default.png"
+                      alt="user photo"
+                    />
+                    <div class="d-flex justify-content-between my-5">
+                      <button class="btn btn-primary text-white">上傳</button>
+                      <button class="btn btn-primary text-white">移除</button>
+                    </div>
+                    <form>
+                      <div class="mb-3">
+                        <label for="textarea" class="form-label">關於我</label>
+                        <textarea
+                          class="form-control rounded-4"
+                          id="textarea"
+                          rows="3"
+                        ></textarea>
+                      </div>
+                      <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary text-white mt-20">
+                          編輯
+                        </button>
+                      </div>
+                      <div class="d-flex justify-content-end d-none">
+                        <button class="btn btn-primary text-white mt-20">
+                          保存
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="fw-bold tab-pane fade"
+              id="changePwd"
+              role="tabpanel"
+              aria-labelledby="changePwdTab"
+            >
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <form class="needs-validation px-2" novalidate>
+                      <div class="mb10">
+                        <span class="fs-5">重設密碼</span>
+                        <div class="mt-5 mb-3">
+                          <label for="nowPwd">當前密碼</label>
+                          <input
+                            class="form-control rounded-5 mt-3"
+                            type="password"
+                            value=""
+                            id="nowPwd"
+                          />
+                          <div class="invalid-feedback">欄位不得為空</div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="newPwd">設定新密碼</label>
+                          <input
+                            class="form-control rounded-5 mt-3"
+                            type="password"
+                            value=""
+                            id="newPwd"
+                          />
+                          <div class="invalid-feedback">欄位不得為空</div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="confirmPwd">確認新密碼</label>
+                          <input
+                            class="form-control rounded-5 mt-3"
+                            type="password"
+                            value=""
+                            id="confirmPwd"
+                          />
+                          <div class="invalid-feedback">欄位不得為空</div>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary text-white mt-20">
+                          編輯
+                        </button>
+                        <div class="d-flex justify-content-end d-none">
+                          <button class="btn btn-primary text-white mt-20">
+                            保存
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>

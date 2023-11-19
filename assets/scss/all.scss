@@ -22,6 +22,7 @@
 @import "../node_modules/bootstrap/scss/images";
 @import "../node_modules/bootstrap/scss/containers";
 @import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/tooltip";
 // ------- bootstrap end -------
 
 // base
@@ -53,6 +54,9 @@
 @import "./pages/news";
 @import "./pages/contact";
 @import "./pages/user";
+@import "./pages/user_posts";
+@import "./pages/user_favorites";
+@import "./pages/user_messages";
 @import "./pages/login.scss";
 @import "./pages/signup.scss";
 @import "./pages/rentList.scss";
