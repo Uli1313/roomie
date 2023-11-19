@@ -16,9 +16,9 @@
       referrerpolicy="no-referrer"
     />
     <title>index</title>
-    <script type="module" crossorigin src="/roomie/assets/index-76f75609.js"></script>
-    <link rel="modulepreload" crossorigin href="/roomie/assets/main-245199e5.js">
-    <link rel="stylesheet" href="/roomie/assets/main-10421b94.css">
+    <script type="module" crossorigin src="/roomie/assets/index-d10a7c7a.js"></script>
+    <link rel="modulepreload" crossorigin href="/roomie/assets/main-de4656de.js">
+    <link rel="stylesheet" href="/roomie/assets/main-b15e683b.css">
     <link rel="stylesheet" href="/roomie/assets/index-b7bf2630.css">
   </head>
   <body class="u-btn">
@@ -163,7 +163,7 @@
             >
           </ul>
         </li>
-        <!-- mobile account -->
+        <!-- mobile account icon -->
         <li
           class="collapsed d-md-none"
           type="button"
@@ -177,7 +177,7 @@
             ><span class="material-icons-outlined"> account_circle </span></a
           >
         </li>
-        <!-- desktop account dropdown -->
+        <!-- desktop accountMenu icon & dropdown-->
         <li class="navbar-account nav-item dropdown d-none d-md-block">
           <a
             class="nav-link dropdown-toggle p-3 link-dark hover-primary border-0 rounded-3"
@@ -188,10 +188,25 @@
           >
             <span class="material-icons-outlined"> account_circle </span>
           </a>
+          <!-- desktop accountMenu dropdown -->
           <ul class="dropdown-menu" style="width: 220px">
-
-
-            <li><a class="dropdown-item" href="user.html">會員專區</a></li>
+            <!-- desktop accountMenu dropdown 未登入 -->
+            <li>
+              <a class="dropdown-item rounded-top d-none" href="login.html"
+                >登入</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item border-0 rounded-bottom d-none"
+                href="signup.html"
+                >註冊</a
+              >
+            </li>
+            <!-- desktop accountMenu dropdown 已登入 -->
+            <li>
+              <a class="dropdown-item rounded-top" href="user.html">會員專區</a>
+            </li>
             <li>
               <a class="dropdown-item" href="user_posts.html">發文列表</a>
             </li>
@@ -202,7 +217,9 @@
               <a class="dropdown-item" href="user_messages.html">留言列表</a>
             </li>
             <li>
-              <a class="dropdown-item border-0" href="login.html">登出</a>
+              <a class="dropdown-item border-0 rounded-bottom" href="login.html"
+                >登出</a
+              >
             </li>
           </ul>
         </li>
@@ -219,19 +236,20 @@
         <span class="material-icons-outlined"> menu </span>
       </button>
     </div>
+    <!-- desktop & mobile menu -->
     <div
-      class="collapse navbar-collapse flex-grow-0 order-2 order-md-1"
+      class="collapse navbar-collapse flex-grow-0 order-2 order-md-1 z-3 border-bottom border-bottom-md-0"
       id="burgurMenu"
     >
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="about.html">最新消息</a>
+          <a class="nav-link" href="news.html">最新消息</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="rentList.html">合租清單</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">媒合成功</a>
+          <a class="nav-link" href="matchList.html">媒合成功</a>
         </li>
         <li
           class="nav-item d-md-none"
@@ -247,17 +265,15 @@
         </li>
       </ul>
     </div>
-    <!-- mobile accountMenu -->
+    <!-- mobile accountMenu 已登入 -->
     <div class="d-md-none">
       <div
-        class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1"
+        class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1 z-3 border-bottom"
         id="accountMenu"
       >
         <ul class="navbar-nav">
           <li class="nav-item">
-
             <a class="nav-link" href="user.html">會員專區</a>
-
           </li>
           <li class="nav-item">
             <a class="nav-link" href="user_posts.html">發文列表</a>
@@ -270,6 +286,34 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="login.html">登出</a>
+          </li>
+          <li
+            class="nav-item"
+            data-bs-toggle="collapse"
+            data-bs-target="#accountMenu"
+            aria-controls="accountMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <a class="nav-link border-0 text-center" href="#"
+              ><span class="material-icons-outlined"> close </span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- mobile accountMenu 未登入 -->
+    <div class="d-none">
+      <div
+        class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1 z-3 border-bottom"
+        id="accountMenu"
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">登入</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="signup.html">註冊</a>
           </li>
           <li
             class="nav-item"
@@ -420,6 +464,262 @@
     >查看全部</a
   >
 </div>
+    <div class="bg-primary">
+      <div class="container-xxl py-5 py-md-10">
+        <div class="row">
+          <div class="col-lg-7 d-none d-lg-block">
+            <div class="bg-light-200 rounded-10">
+              <svg
+                width="746"
+                height="692"
+                class="position-relative banner-map"
+              ></svg>
+              <span
+                class="material-icons banner-county-icon position-absolute text-primary d-none"
+              >
+                location_on
+              </span>
+              <span
+                class="banner-county-label position-absolute bg-primary text-white rounded-pill py-1 px-5 d-none"
+              ></span>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <!-- select -->
+            <div
+              class="bg-light-200 rounded-pill p-2 mb-3 position-relative d-lg-none"
+            >
+              <select
+                class="test form-select bg-white p-2 ps-10"
+                aria-label="Default select"
+              >
+                <option disabled selected hidden>選擇地區</option>
+                <option value="Taipei">台北市</option>
+                <option value="NewTaipei">新北市</option>
+                <option value="Taoyuan">桃園市</option>
+                <option value="Taichung">台中市</option>
+                <option value="Tainan">台南市</option>
+                <option value="Kaohsiung">高雄市</option>
+                <option value="Keelung">基隆市</option>
+                <option value="Hsinchu">新竹市</option>
+                <option value="HsinchuCounty">新竹縣</option>
+                <option value="Miaoli">苗栗縣</option>
+                <option value="Changhua">彰化縣</option>
+                <option value="Nantou">南投縣</option>
+                <option value="Yunlin">雲林縣</option>
+                <option value="Chiayi">嘉義市</option>
+                <option value="ChiayiCounty">嘉義縣</option>
+                <option value="Pingtung">屏東縣</option>
+                <option value="Taitung">台東縣</option>
+                <option value="Hualien">花蓮縣</option>
+                <option value="Penghu">澎湖縣</option>
+                <option value="Kinmen">金門縣</option>
+                <option value="Lienchiang">連江縣</option>
+              </select>
+              <span
+                class="material-icons-outlined position-absolute top-0 pt-4 ps-2"
+              >
+                location_on
+              </span>
+            </div>
+            <!-- search bar -->
+            <div class="banner-search p-md-6 mb-3 rounded-pill rounded-md-10">
+              <form
+                class="d-flex align-items-center justify-content-end"
+                role="search"
+              >
+                <div
+                  class="bg-light-200 p-2 p-md-0 rounded-pill position-relative me-2 w-100"
+                >
+                  <input
+                    class="form-control ps-11 py-2 py-md-4 bg-white"
+                    type="search"
+                    placeholder="搜尋"
+                    aria-label="Search"
+                  />
+                  <span
+                    class="material-icons position-absolute top-0 ps-3 pt-4"
+                  >
+                    search
+                  </span>
+                </div>
+                <button class="btn btn-secondary text-nowrap" type="submit">
+                  確定
+                </button>
+              </form>
+            </div>
+            <!-- popular rent -->
+            <div
+              class="bg-light-200 pt-2 pt-md-3 pe-2 rounded-5 rounded-md-10 overflow-hidden"
+            >
+              <div class="py-2 py-md-3 px-3 px-md-4">
+                <!-- 未選擇縣市 -->
+                <p class="fs-7">
+                  為您推薦<span class="mx-2 fw-bold text-primary">近期</span
+                  >熱門房屋物件
+                </p>
+                <!-- 已選擇縣市 -->
+                <div class="d-flex align-items-end d-none">
+                  <span class="material-icons text-primary"> location_on </span>
+                  <h6 class="text-primary fs-4 me-2">桃園市</h6>
+                  <p class="fs-7">
+                    熱門房屋物件<span class="mx-2 fw-bold text-primary">12</span
+                    >件
+                  </p>
+                </div>
+              </div>
+              <!-- popular rent list -->
+              <div class="banner-rent overflow-auto scrollbar-po">
+                <div
+                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
+                >
+                  <img
+                    class="banner-rent-img object-fit-cover rounded-3"
+                    src="/roomie/assets/room-1-bf8a56b6.png"
+                    alt=""
+                  />
+                  <div class="d-flex flex-column justify-content-between">
+                    <p class="lh-sm fs-md-5">
+                      永和雅房轉租出租 - 近捷運永安市場站
+                    </p>
+                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
+                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
+                    </p>
+                  </div>
+                  <a href="##" class="stretched-link"></a>
+                </div>
+                <div
+                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
+                >
+                  <img
+                    class="banner-rent-img object-fit-cover rounded-3"
+                    src="/roomie/assets/room-1-bf8a56b6.png"
+                    alt=""
+                  />
+                  <div class="d-flex flex-column justify-content-between">
+                    <p class="lh-sm fs-md-5">
+                      永和雅房轉租出租 - 近捷運永安市場站
+                    </p>
+                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
+                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
+                    </p>
+                  </div>
+                  <a href="##" class="stretched-link"></a>
+                </div>
+                <div
+                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
+                >
+                  <img
+                    class="banner-rent-img object-fit-cover rounded-3"
+                    src="/roomie/assets/room-1-bf8a56b6.png"
+                    alt=""
+                  />
+                  <div class="d-flex flex-column justify-content-between">
+                    <p class="lh-sm fs-md-5">
+                      永和雅房轉租出租 - 近捷運永安市場站
+                    </p>
+                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
+                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
+                    </p>
+                  </div>
+                  <a href="##" class="stretched-link"></a>
+                </div>
+                <div
+                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
+                >
+                  <img
+                    class="banner-rent-img object-fit-cover rounded-3"
+                    src="/roomie/assets/room-1-bf8a56b6.png"
+                    alt=""
+                  />
+                  <div class="d-flex flex-column justify-content-between">
+                    <p class="lh-sm fs-md-5">
+                      永和雅房轉租出租 - 近捷運永安市場站
+                    </p>
+                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
+                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
+                    </p>
+                  </div>
+                  <a href="##" class="stretched-link"></a>
+                </div>
+                <div
+                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
+                >
+                  <img
+                    class="banner-rent-img object-fit-cover rounded-3"
+                    src="/roomie/assets/room-1-bf8a56b6.png"
+                    alt=""
+                  />
+                  <div class="d-flex flex-column justify-content-between">
+                    <p class="lh-sm fs-md-5">
+                      永和雅房轉租出租 - 近捷運永安市場站
+                    </p>
+                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
+                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
+                    </p>
+                  </div>
+                  <a href="##" class="stretched-link"></a>
+                </div>
+                <div
+                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
+                >
+                  <img
+                    class="banner-rent-img object-fit-cover rounded-3"
+                    src="/roomie/assets/room-1-bf8a56b6.png"
+                    alt=""
+                  />
+                  <div class="d-flex flex-column justify-content-between">
+                    <p class="lh-sm fs-md-5">
+                      永和雅房轉租出租 - 近捷運永安市場站
+                    </p>
+                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
+                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
+                    </p>
+                  </div>
+                  <a href="##" class="stretched-link"></a>
+                </div>
+                <div
+                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
+                >
+                  <img
+                    class="banner-rent-img object-fit-cover rounded-3"
+                    src="/roomie/assets/room-1-bf8a56b6.png"
+                    alt=""
+                  />
+                  <div class="d-flex flex-column justify-content-between">
+                    <p class="lh-sm fs-md-5">
+                      永和雅房轉租出租 - 近捷運永安市場站
+                    </p>
+                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
+                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
+                    </p>
+                  </div>
+                  <a href="##" class="stretched-link"></a>
+                </div>
+                <div
+                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
+                >
+                  <img
+                    class="banner-rent-img object-fit-cover rounded-3"
+                    src="/roomie/assets/room-1-bf8a56b6.png"
+                    alt=""
+                  />
+                  <div class="d-flex flex-column justify-content-between">
+                    <p class="lh-sm fs-md-5">
+                      永和雅房轉租出租 - 近捷運永安市場站
+                    </p>
+                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
+                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
+                    </p>
+                  </div>
+                  <a href="##" class="stretched-link"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="overflow-hidden">
       <!-- intro -->
       <div
@@ -727,7 +1027,7 @@
                   最新公告
                 </h2>
                 <a
-                  href="##"
+                  href="news.html"
                   class="btn btn-outline-light-300 d-none d-md-inline-block"
                   >查看更多
                   <span class="material-icons ms-5"> chevron_right </span></a
@@ -746,7 +1046,7 @@
                   <span class="news-icon material-icons p-2">
                     chevron_right
                   </span>
-                  <a href="##" class="stretched-link"></a>
+                  <a href="news_single.html" class="stretched-link"></a>
                 </li>
                 <li
                   class="news-item d-flex align-items-center position-relative link-dark fw-bold py-4 py-md-6"
@@ -778,7 +1078,7 @@
                 </li>
               </ul>
               <a
-                href="##"
+                href="news.html"
                 class="news-btn btn btn-outline-light-300 d-md-none mx-auto"
                 >查看更多
                 <span class="material-icons ms-5"> chevron_right </span></a
@@ -1016,7 +1316,7 @@
 >
   arrow_upward
 </a>
-
+    <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.js"></script>
     
     
   </body>

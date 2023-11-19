@@ -21,10 +21,10 @@
         referrerpolicy="no-referrer"
     />
     <title>單一合租文章</title>
-  <script type="module" crossorigin src="/roomie/assets/main-245199e5.js"></script>
-  <link rel="stylesheet" href="/roomie/assets/main-10421b94.css">
+  <script type="module" crossorigin src="/roomie/assets/main-de4656de.js"></script>
+  <link rel="stylesheet" href="/roomie/assets/main-b15e683b.css">
 </head>
-<body class="">
+<body>
 <nav class="navbar navbar-expand-md bg-white border-bottom">
   <div class="container-xxl">
     <a class="navbar-brand flex-grow-1 order-0" href="index.html">
@@ -166,7 +166,7 @@
             >
           </ul>
         </li>
-        <!-- mobile account -->
+        <!-- mobile account icon -->
         <li
           class="collapsed d-md-none"
           type="button"
@@ -180,7 +180,7 @@
             ><span class="material-icons-outlined"> account_circle </span></a
           >
         </li>
-        <!-- desktop account dropdown -->
+        <!-- desktop accountMenu icon & dropdown-->
         <li class="navbar-account nav-item dropdown d-none d-md-block">
           <a
             class="nav-link dropdown-toggle p-3 link-dark hover-primary border-0 rounded-3"
@@ -191,10 +191,25 @@
           >
             <span class="material-icons-outlined"> account_circle </span>
           </a>
+          <!-- desktop accountMenu dropdown -->
           <ul class="dropdown-menu" style="width: 220px">
-
-
-            <li><a class="dropdown-item" href="user.html">會員專區</a></li>
+            <!-- desktop accountMenu dropdown 未登入 -->
+            <li>
+              <a class="dropdown-item rounded-top d-none" href="login.html"
+                >登入</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item border-0 rounded-bottom d-none"
+                href="signup.html"
+                >註冊</a
+              >
+            </li>
+            <!-- desktop accountMenu dropdown 已登入 -->
+            <li>
+              <a class="dropdown-item rounded-top" href="user.html">會員專區</a>
+            </li>
             <li>
               <a class="dropdown-item" href="user_posts.html">發文列表</a>
             </li>
@@ -205,7 +220,9 @@
               <a class="dropdown-item" href="user_messages.html">留言列表</a>
             </li>
             <li>
-              <a class="dropdown-item border-0" href="login.html">登出</a>
+              <a class="dropdown-item border-0 rounded-bottom" href="login.html"
+                >登出</a
+              >
             </li>
           </ul>
         </li>
@@ -222,19 +239,20 @@
         <span class="material-icons-outlined"> menu </span>
       </button>
     </div>
+    <!-- desktop & mobile menu -->
     <div
-      class="collapse navbar-collapse flex-grow-0 order-2 order-md-1"
+      class="collapse navbar-collapse flex-grow-0 order-2 order-md-1 z-3 border-bottom border-bottom-md-0"
       id="burgurMenu"
     >
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="about.html">最新消息</a>
+          <a class="nav-link" href="news.html">最新消息</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="rentList.html">合租清單</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">媒合成功</a>
+          <a class="nav-link" href="matchList.html">媒合成功</a>
         </li>
         <li
           class="nav-item d-md-none"
@@ -250,17 +268,15 @@
         </li>
       </ul>
     </div>
-    <!-- mobile accountMenu -->
+    <!-- mobile accountMenu 已登入 -->
     <div class="d-md-none">
       <div
-        class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1"
+        class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1 z-3 border-bottom"
         id="accountMenu"
       >
         <ul class="navbar-nav">
           <li class="nav-item">
-
             <a class="nav-link" href="user.html">會員專區</a>
-
           </li>
           <li class="nav-item">
             <a class="nav-link" href="user_posts.html">發文列表</a>
@@ -273,6 +289,34 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="login.html">登出</a>
+          </li>
+          <li
+            class="nav-item"
+            data-bs-toggle="collapse"
+            data-bs-target="#accountMenu"
+            aria-controls="accountMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <a class="nav-link border-0 text-center" href="#"
+              ><span class="material-icons-outlined"> close </span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- mobile accountMenu 未登入 -->
+    <div class="d-none">
+      <div
+        class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1 z-3 border-bottom"
+        id="accountMenu"
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">登入</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="signup.html">註冊</a>
           </li>
           <li
             class="nav-item"
@@ -443,7 +487,7 @@
             <span class="material-symbols-outlined" style="font-size: 16px;transform: translateY(15%);">
                 arrow_forward_ios
             </span>
-            <span><a href="singleRentArticle.html" class="link-dark fw-bold">新竹市科學園區套房找室友</a></span>
+            <span><a href="rentArticle.html" class="link-dark fw-bold">新竹市科學園區套房找室友</a></span>
         </div>
     </div>
 <!-- 標題 -->
@@ -459,23 +503,23 @@
 <!-- 圖片 -->
         <div class="row mb-5">
             <div class="col-12 col-sm-6 pe-0 rounded">
-                <div class="overflow-hidden rounded me-3 me-sm-0">
+                <div class="overflow-hidden rounded border me-3 me-sm-0">
                     <img src="https://img2.591.com.tw/house/2022/08/28/166168120161836604.jpg!750x588.water2.jpg" class="img-fluid imgCursor rounded" alt="house photo">
                 </div>    
             </div>
             <div class="d-none d-sm-flex col-sm-3 flex-column pe-0 gap-2 rounded">
-                <div class="overflow-hidden rounded">
+                <div class="overflow-hidden rounded border">
                     <img src="https://img1.591.com.tw/house/2013/08/14/137641000228266307.jpg!750x588.water2.jpg" class="img-fluid imgCursor rounded" alt="house photo">
                 </div>
-                <div class="overflow-hidden rounded"> 
+                <div class="overflow-hidden rounded border"> 
                     <img src="https://img1.591.com.tw/house/2022/10/22/166640479092984401.jpg!750x588.water2.jpg" class="img-fluid imgCursor rounded" alt="house photo">
                 </div>   
             </div>
             <div class="d-none d-sm-flex col-sm-3 flex-column pe-0 gap-2 rounded">
-                <div class="overflow-hidden rounded">
+                <div class="overflow-hidden rounded border">
                     <img src="https://img2.591.com.tw/house/2013/08/14/137641000474814101.jpg!750x588.water2.jpg" class="img-fluid imgCursor rounded" alt="house photo">
                 </div>
-                <div class="overflow-hidden rounded">
+                <div class="overflow-hidden rounded border">
                     <img src="https://img2.591.com.tw/house/2023/11/05/169916655238571900.jpg!750x588.water2.jpg" class="img-fluid imgCursor rounded" alt="house photo">
                 </div>
             </div>
@@ -527,9 +571,9 @@
         <!-- 分隔線 -->
         <div class="row" style="border: 1px dashed rgb(50, 118, 86);"></div>
         <div class="row my-5 d-flex align-items-start">
-            <div class="col-4 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">air</span>有冷氣</div>
-            <div class="col-4 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">single_bed</span>有床</div>
-            <div class="col-4 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">table_bar</span>有桌子</div>
+            <div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">air</span>有冷氣</div>
+            <div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">single_bed</span>有床</div>
+            <div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">table_bar</span>有桌子</div>
         </div>
         <div class="row" style="height: 24px;"></div>
 <!-- 適合室友 -->
@@ -541,12 +585,12 @@
         <!-- 分隔線 -->
         <div class="row" style="border: 1px dashed rgb(50, 118, 86);"></div>
         <div class="row my-5 d-flex align-items-start">
-            <div class="col-4 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">check</span>學生</div>
-            <div class="col-4 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">check</span>性別不拘</div>
-            <div class="col-4 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">check</span>年齡不拘</div>
-            <div class="col-4 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">check</span>職業不拘</div>
-            <div class="col-4 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">check</span>不可寵物</div>
-            <div class="col-4 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">check</span>可開伙</div>
+            <div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">check</span>學生</div>
+            <div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">check</span>性別不拘</div>
+            <div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">check</span>年齡不拘</div>
+            <div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">check</span>職業不拘</div>
+            <div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">check</span>不可寵物</div>
+            <div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal"><span class="material-symbols-outlined me-2" style="font-size: 26px;transform: translateY(22%);">check</span>可開伙</div>
         </div>
         <div class="row" style="height: 24px;"></div>
 <!-- 其他事項 -->
