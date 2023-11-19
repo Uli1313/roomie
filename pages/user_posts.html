@@ -37,7 +37,7 @@
         <h1>新增貼文</h1>
         <p class="text-end"><span class="starText">*</span>號為必填</p>
         <form>
-          <div class="p-5">
+          <div class="p-8 gray-border">
             <!-- 合租地址 -->
             <div class="d-flex mb-2 form-group">
               <h5 class="me-4"><span class="starText">*</span>合租地址:</h5>
@@ -65,6 +65,7 @@
               <!-- 巷 -->
               <div class="me-3 addRegion-input">
                 <input
+                  class="inputWidth"
                   type="text"
                   id="laneRegion"
                   placeholder="請填寫巷"
@@ -74,6 +75,7 @@
               <!-- 弄 -->
               <div class="me-3 addRegion-input">
                 <input
+                  class="inputWidth"
                   type="text"
                   id="alleyRegion"
                   placeholder="請填寫弄"
@@ -83,6 +85,7 @@
               <!-- 號 -->
               <div class="me-3 addRegion-input">
                 <input
+                  class="inputWidth"
                   type="text"
                   id="numberRegion"
                   placeholder="請填寫號"
@@ -91,7 +94,7 @@
               </div>
 
               <div class="alert-message">
-                <p id="ticketRegion-message" data-message="景點地區">
+                <p id="addRegion-message" data-message="地區">
                   <!-- <i class="fas fa-exclamation-circle"></i>
                             <span>必填!</span> -->
                 </p>
@@ -101,16 +104,17 @@
             <div class="d-flex mb-2 form-group">
               <h5 class="me-4"><span class="starText">*</span>合租樓層:</h5>
               <!-- 樓 -->
-              <div class="me-3 addRegion-input">
+              <div class="me-3 addfloor-input">
                 <input
+                  class="inputWidth"
                   type="text"
                   id="floors"
-                  placeholder="請填寫樓層數"
+                  placeholder="請填寫樓層"
                   name="弄"
                 />
               </div>
               <div class="alert-message">
-                <p id="ticketRegion-message" data-message="景點地區">
+                <p id="addfloor-message" data-message="樓層">
                   <!-- <i class="fas fa-exclamation-circle"></i>
                             <span>必填!</span> -->
                 </p>
@@ -120,7 +124,7 @@
             <div class="d-flex mb-2 form-group">
               <h5 class="me-4"><span class="starText">*</span>房屋類型:</h5>
               <!-- 整層住家 -->
-              <div class="me-3 addRegion-input">
+              <div class="me-3 addType-input">
                 <input
                   class="form-check-input"
                   type="radio"
@@ -167,7 +171,7 @@
               </div>
 
               <div class="alert-message">
-                <p id="ticketRegion-message" data-message="景點地區">
+                <p id="addType-message" data-message="房型">
                   <!-- <i class="fas fa-exclamation-circle"></i>
                             <span>必填!</span> -->
                 </p>
@@ -177,7 +181,7 @@
             <div class="d-flex mb-2 form-group">
               <h5 class="me-4"><span class="starText">*</span>貼文標題:</h5>
               <!-- 貼文標題 -->
-              <div class="me-3 addRegion-input">
+              <div class="me-3 addTitle-input">
                 <input
                   type="text"
                   id="articleTitle"
@@ -186,7 +190,7 @@
                 />
               </div>
               <div class="alert-message">
-                <p id="ticketRegion-message" data-message="景點地區">
+                <p id="addTitle-message" data-message="貼文標題">
                   <!-- <i class="fas fa-exclamation-circle"></i>
                             <span>必填!</span> -->
                 </p>
@@ -196,16 +200,17 @@
             <div class="d-flex mb-2 form-group">
               <h5 class="me-4"><span class="starText">*</span>房屋坪數:</h5>
               <!-- 房屋坪數 -->
-              <div class="me-3 addRegion-input">
+              <div class="me-3 addSize-input">
                 <input
+                  class="inputWidth"
                   type="text"
                   id="sizeofHouse"
-                  placeholder="請填寫房屋坪數"
+                  placeholder="請填寫坪數"
                   name="房屋坪數"
                 />
               </div>
               <div class="alert-message">
-                <p id="ticketRegion-message" data-message="景點地區">
+                <p id="addSize-message" data-message="房屋坪數">
                   <!-- <i class="fas fa-exclamation-circle"></i>
                             <span>必填!</span> -->
                 </p>
@@ -213,9 +218,9 @@
             </div>
             <!-- 格局 -->
             <div class="d-flex mb-2 form-group">
-              <h5 class="me-4"><span class="starText">*</span>格局:</h5>
+              <h5 class="me-4"><span class="starText">*</span>房屋格局:</h5>
               <!-- 格局 -->
-              <div class="me-3 addRegion-input">
+              <div class="me-3 addLayout-input">
                 <input
                   type="text"
                   id="layoutofHouse"
@@ -224,7 +229,7 @@
                 />
               </div>
               <div class="alert-message">
-                <p id="ticketRegion-message" data-message="景點地區">
+                <p id="addLayout-message" data-message="格局">
                   <!-- <i class="fas fa-exclamation-circle"></i>
                             <span>必填!</span> -->
                 </p>
@@ -908,7 +913,7 @@
               </div>
             </div>
             <!-- 詢問是否刊登媒合成功頁面 -->
-            <div class="text-center">
+            <div class="pt-8 text-center">
               <h4 class="me-4">
                 <span class="starText">*</span
                 >媒合成功是否轉移刊登在媒合成功頁面 ?
