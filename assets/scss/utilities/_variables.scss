@@ -770,7 +770,7 @@ $table-cell-padding-x-sm: 0.25rem !default;
 $table-cell-vertical-align: top !default;
 
 $table-color: var(--#{$prefix}emphasis-color) !default;
-$table-bg: var(--#{$prefix}body-bg) !default;
+$table-bg: $white; // custom var(--#{$prefix}body-bg) !default;
 $table-accent-bg: transparent !default;
 
 $table-th-font-weight: null !default;
