@@ -34,6 +34,7 @@
 @import "./component/offcanvas";
 @import "./component/accordion";
 @import "./component/button";
+@import "./component/scrollbar";
 @import "./component/form";
 
 // custom utilities
@@ -49,6 +50,7 @@
 
 // pages
 @import "./pages/index.scss";
+@import "./pages/news";
 @import "./pages/contact";
 @import "./pages/user";
 @import "./pages/login.scss";
