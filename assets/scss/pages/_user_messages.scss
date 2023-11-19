@@ -1,0 +1,20 @@
+.offcanvas-custom {
+  background: #fff;
+  color: $dark;
+}
+.account-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+// 文字編輯器
+#editor—wrapper {
+  border: 1px solid $light-300;
+  z-index: 100;
+}
+#toolbar-container {
+  border-bottom: 1px solid $light-300;
+}
+#editor-container {
+  min-height: 10rem;
+}

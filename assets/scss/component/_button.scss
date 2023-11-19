@@ -36,3 +36,13 @@
     }
   }
 }
+.filter-btn {
+  color: $dark;
+  &:hover {
+    cursor: pointer;
+    color: $success;
+  }
+  &:active {
+    color: $primary;
+  }
+}
