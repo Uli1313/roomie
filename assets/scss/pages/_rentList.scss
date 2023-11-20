@@ -49,6 +49,14 @@ button{
     cursor: pointer;
 }
 
+.transform-y-25{
+    transform: translateY(25%);
+}
+
+.transform-y-20{
+    transform: translateY(20%);
+}
+
 //下到 ? px 觸發
 @media screen and (max-width: 1200px){ 
     .searchInput{

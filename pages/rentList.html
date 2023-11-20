@@ -456,9 +456,9 @@
 <!-- 搜尋按鈕 -->  
             <div class="col col-xxl-5 col-xl-5 col-lg-5 pb-2 d-flex justify-content-center justify-content-lg-end pb-lg-0">
                 <div class="position-relative d-flex align-items-center gap-2">
-                    <input type="search" class="border rounded-pill searchInput" placeholder="搜尋"> 
+                    <input id="search" type="search" class="border rounded-pill searchInput" placeholder="搜尋"> 
                     <span class="material-symbols-outlined searchBtn" style="transform:translateY(-50%);">search</span>
-                    <button type="submit" class="btn btn-primary btn-size">確定</button>
+                    <button id="submit" type="submit" class="btn btn-primary btn-size">確定</button>
                 </div>
             </div>
         </div>
@@ -476,13 +476,26 @@
         <div class="row" style="border: 2px dashed #575656;"></div>
 <!-- 時間 租金 -->
         <div class="row pt-4 d-flex justify-content-end">
-            <div class="col cursor d-flex justify-content-end align-items-center">
-                <span>時間</span><span class="material-symbols-outlined fw-bold" style="font-size: 22px;">arrow_upward</span>
-                <span class="ps-3">租金</span><span class="material-symbols-outlined fw-bold" style="font-size: 22px;">arrow_upward</span>
+            <div class="col d-flex justify-content-end align-items-center">
+                <div id="filterDate" class="link-dark cursor">
+                    <span>時間</span>
+                    <span class="material-symbols-outlined fw-bold transform-y-20" style="font-size: 22px;">arrow_upward</span></div>
+                <div id="filterPrice" class="link-dark cursor">
+                    <span class="ps-3">租金</span>
+                    <span class="material-symbols-outlined fw-bold transform-y-20" style="font-size: 22px;">arrow_upward</span></div>
             </div>
         </div>
+    </div>
 <!-- 文章 -->
-        <div class="row p-1 my-4 rounded hover-primary-2">
+    <div class="container bg-light-200 position-relative" id="list">
+        <!-- <div class="row p-1 my-4 rounded">
+            <div class="col bg-white rounded p-7 d-flex flex-column justify-content-center align-items-center">
+                <p>¯\_(ツ)_/¯</p>
+                <p class="p-2 h5">對不起，沒有找到適合您的物件！</p>
+                <p>建議您：重新輸入"關鍵字"搜尋試試看唷～</p>
+            </div>
+        </div> -->
+        <!-- <div class="row p-1 my-4 rounded hover-primary-2">
             <div class="col-12 col-md-3 p-0 rounded-top rounded-md-start">
                 <img 
                     src="../assets/images/room-1.png" 
@@ -496,13 +509,13 @@
                         <a href="rentArticle.html" class="h3 link-dark">新竹市科學園區套房找室友</a> 
                         <button class="p-3 link-dark hover-primary border-0 rounded-3"><span class="material-symbols-outlined">heart_plus</span></button></li>
                     <li class="pb-3">1房1廳1衛 | 15坪7F/21F </li>
-                    <li class="pb-2"><span class="material-symbols-outlined pe-2" style="transform: translateY(25%);">location_on</span>新竹市東區-埔頂路一段</li>
-                    <li class="pb-3"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">person</span>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-2 transform-y-25">location_on</span>新竹市東區-埔頂路一段</li>
+                    <li class="pb-3"><span class="material-symbols-outlined pe-1 transform-y-25">person</span>
                         <span class="me-3 px-1 bg-primary-200">女性</span><span class="me-3 px-1 bg-primary-200">可開伙</span><span class="me-3 px-1 bg-primary-200">不可養寵物</span></li>
-                    <li class="pb-2"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">map</span>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-1 transform-y-25">map</span>
                         <span class="me-3 px-1 bg-primary-200">近新竹公車站</span><span class="me-3 px-1 bg-primary-200">近新竹火車站</span><span class="me-3 px-1 bg-primary-200">近新竹高鐵站</span></li>
                     <li class="pb-2 h2 text-secondary text-end">20,000元/月</li>
-                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined" style="transform: translateY(25%);">visibility</span><span class="ps-2">456</span></div></li>
+                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined transform-y-25">visibility</span><span class="ps-2">456</span></div></li>
                 </ul>
             </div>
         </div>   
@@ -520,13 +533,13 @@
                         <a href="rentArticle.html" class="h3 link-dark">新竹市科學園區套房找室友</a>
                         <button class="p-3 link-dark hover-primary border-0 rounded-3"><span class="material-symbols-outlined">heart_plus</span></button></li>
                     <li class="pb-3">1房1廳1衛 | 15坪7F/21F </li>
-                    <li class="pb-2"><span class="material-symbols-outlined pe-2" style="transform: translateY(25%);">location_on</span>新竹市東區-埔頂路一段</li>
-                    <li class="pb-3"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">person</span>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-2 transform-y-25">location_on</span>新竹市東區-埔頂路一段</li>
+                    <li class="pb-3"><span class="material-symbols-outlined pe-1 transform-y-25">person</span>
                         <span class="me-3 px-1 bg-primary-200">女性</span><span class="me-3 px-1 bg-primary-200">可開伙</span><span class="me-3 px-1 bg-primary-200">不可養寵物</span></li>
-                    <li class="pb-2"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">map</span>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-1 transform-y-25">map</span>
                         <span class="me-3 px-1 bg-primary-200">近新竹公車站</span><span class="me-3 px-1 bg-primary-200">近新竹火車站</span><span class="me-3 px-1 bg-primary-200">近新竹高鐵站</span></li>
                     <li class="pb-2 h2 text-secondary text-end">20,000元/月</li>
-                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined" style="transform: translateY(25%);">visibility</span><span class="ps-2">456</span></div></li>
+                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined transform-y-25">visibility</span><span class="ps-2">456</span></div></li>
                 </ul>
             </div>
         </div>   
@@ -544,13 +557,13 @@
                         <a href="rentArticle.html" class="h3 link-dark">新竹市科學園區套房找室友</a>
                         <button class="p-3 link-dark hover-primary border-0 rounded-3"><span class="material-symbols-outlined">heart_plus</span></button></li>
                     <li class="pb-3">1房1廳1衛 | 15坪7F/21F </li>
-                    <li class="pb-2"><span class="material-symbols-outlined pe-2" style="transform: translateY(25%);">location_on</span>新竹市東區-埔頂路一段</li>
-                    <li class="pb-3"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">person</span>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-2 transform-y-25">location_on</span>新竹市東區-埔頂路一段</li>
+                    <li class="pb-3"><span class="material-symbols-outlined pe-1 transform-y-25">person</span>
                         <span class="me-3 px-1 bg-primary-200">女性</span><span class="me-3 px-1 bg-primary-200">可開伙</span><span class="me-3 px-1 bg-primary-200">不可養寵物</span></li>
-                    <li class="pb-2"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">map</span>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-1 transform-y-25">map</span>
                         <span class="me-3 px-1 bg-primary-200">近新竹公車站</span><span class="me-3 px-1 bg-primary-200">近新竹火車站</span><span class="me-3 px-1 bg-primary-200">近新竹高鐵站</span></li>
                     <li class="pb-2 h2 text-secondary text-end">20,000元/月</li>
-                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined" style="transform: translateY(25%);">visibility</span><span class="ps-2">456</span></div></li>
+                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined transform-y-25">visibility</span><span class="ps-2">456</span></div></li>
                 </ul>
             </div>
         </div>   
@@ -568,13 +581,13 @@
                         <a href="rentArticle.html" class="h3 link-dark">新竹市科學園區套房找室友</a>
                         <button class="p-3 link-dark hover-primary border-0 rounded-3"><span class="material-symbols-outlined">heart_plus</span></button></li>
                     <li class="pb-3">1房1廳1衛 | 15坪7F/21F </li>
-                    <li class="pb-2"><span class="material-symbols-outlined pe-2" style="transform: translateY(25%);">location_on</span>新竹市東區-埔頂路一段</li>
-                    <li class="pb-3"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">person</span>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-2 transform-y-25">location_on</span>新竹市東區-埔頂路一段</li>
+                    <li class="pb-3"><span class="material-symbols-outlined pe-1 transform-y-25">person</span>
                         <span class="me-3 px-1 bg-primary-200">女性</span><span class="me-3 px-1 bg-primary-200">可開伙</span><span class="me-3 px-1 bg-primary-200">不可養寵物</span></li>
-                    <li class="pb-2"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">map</span>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-1 transform-y-25">map</span>
                         <span class="me-3 px-1 bg-primary-200">近新竹公車站</span><span class="me-3 px-1 bg-primary-200">近新竹火車站</span><span class="me-3 px-1 bg-primary-200">近新竹高鐵站</span></li>
                     <li class="pb-2 h2 text-secondary text-end">20,000元/月</li>
-                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined" style="transform: translateY(25%);">visibility</span><span class="ps-2">456</span></div></li>
+                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined transform-y-25">visibility</span><span class="ps-2">456</span></div></li>
                 </ul>
             </div>
         </div>   
@@ -592,17 +605,19 @@
                         <a href="rentArticle.html" class="h3 link-dark">新竹市科學園區套房找室友</a>
                         <button class="p-3 link-dark hover-primary border-0 rounded-3"><span class="material-symbols-outlined">heart_plus</span></button></li>
                     <li class="pb-3">1房1廳1衛 | 15坪7F/21F </li>
-                    <li class="pb-2"><span class="material-symbols-outlined pe-2" style="transform: translateY(25%);">location_on</span>新竹市東區-埔頂路一段</li>
-                    <li class="pb-3"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">person</span>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-2 transform-y-25">location_on</span>新竹市東區-埔頂路一段</li>
+                    <li class="pb-3"><span class="material-symbols-outlined pe-1 transform-y-25">person</span>
                         <span class="me-3 px-1 bg-primary-200">女性</span><span class="me-3 px-1 bg-primary-200">可開伙</span><span class="me-3 px-1 bg-primary-200">不可養寵物</span></li>
-                    <li class="pb-2"><span class="material-symbols-outlined pe-1" style="transform: translateY(25%);">map</span>
+                    <li class="pb-2"><span class="material-symbols-outlined pe-1 transform-y-25">map</span>
                         <span class="me-3 px-1 bg-primary-200">近新竹公車站</span><span class="me-3 px-1 bg-primary-200">近新竹火車站</span><span class="me-3 px-1 bg-primary-200">近新竹高鐵站</span></li>
                     <li class="pb-2 h2 text-secondary text-end">20,000元/月</li>
-                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined" style="transform: translateY(25%);">visibility</span><span class="ps-2">456</span></div></li>
+                    <li class="d-flex justify-content-between">更新日期:2023/09/28 22:08 <div><span class="material-symbols-outlined transform-y-25">visibility</span><span class="ps-2">456</span></div></li>
                 </ul>
             </div>
-        </div> 
+        </div>  -->
+    </div>
 <!-- 分頁符號 -->
+    <div class="container bg-light-200 position-relative">
         <div class="row mb-5">
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center fw-bold">
@@ -630,11 +645,13 @@
                 </ul>
             </nav>
         </div>  
-
-
     </div>
 
+    
+
     <%- include('./layout/footer'); -%>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script type="module" src="../main.js"></script>
+    <script type="module" src="/assets/js/rentList.js"></script>
 </body>
 </html>
