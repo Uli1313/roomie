@@ -4,6 +4,8 @@ axios.get('http://localhost:3000/rents?_sort=view&_order=desc')
 .then(function(res){
     // console.log(res.data);
     let api = res.data ;
+
+    
     renderList(api);  
     sortDate(api);
     sortPrice(api);
@@ -145,3 +147,86 @@ submit.addEventListener('click',function(e){
 });
 
 
+// 進頁面及渲染 (依點閱率)
+axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf26515281710e1792df/raw/a1e1fc17d04b47c564bbd9dba0d59a6a325ec7c1/taiwan_districts.json')
+.then(function(res){
+    // console.log(res.data[0].name); 台北市
+    // console.log(res.data[0].districts[0].name); 中正區
+    let api = res.data ;
+
+    // 處理資料 => {name: '臺北市', districts: Array(12)}   Array(12):[['中正區', '大同區', '中山區'...]
+    let data = api.map(function(item) {
+        return {
+            name: item.name,
+            districts: item.districts.map(function(district) {
+                return district.name;
+            })
+        };
+    });
+
+    // 處理資料，因為多了海南島跟釣魚台，把這兩個縣除去掉
+    let newData = data.filter(item => item.name !== '釣魚臺' && item.name !== '南海島');
+    
+    // 自訂排序函式，根據我的排序方式排列物件
+    function customSort(a, b) {
+        const order = [
+        '臺北市', '新北市', '基隆市', '桃園市', '新竹市', '新竹縣', '臺中市', '彰化縣', '苗栗縣', '南投縣',
+        '雲林縣', '高雄市', '臺南市', '嘉義市', '嘉義縣', '屏東縣', '宜蘭縣', '花蓮縣', '臺東縣', '澎湖縣',
+        '金門縣', '連江縣'
+        ];
+    
+        return order.indexOf(a.name) - order.indexOf(b.name);
+    }
+    
+    // 使用自訂的排序函式來排序陣列
+    newData.sort(customSort);
+
+    
+    let countyCity = document.querySelectorAll('.countyCity'); // 全部的縣市
+    let btnTitle = document.querySelector('.btnTitle'); // 下拉選單按鈕的文字(縣市)
+    let districtList = document.querySelector('.districtList'); // 下拉選單的清單(行政區)
+    
+    // 用foreach去跑每一個縣市，當點擊任一縣市，就會跑出對應的行政區
+    countyCity.forEach(function(radio) {
+
+        // 點擊事件
+        radio.addEventListener('change', function(e) {
+            if (e.target.checked) {
+
+                // 根據不同的 radio 索引去選擇
+                // countyCity是NodeList，似陣列但非陣列，不能用indexOf，所以要先轉成真正的陣列
+                let dataIndex = Array.from(countyCity).indexOf(radio); 
+                let selectedData = newData[dataIndex];
+
+                let strBtnTitle = `${selectedData.name}`;
+                let strTitle = `<p class="px-4 py-2 fw-bold">${selectedData.name}</p>`;
+                let strContent = '';
+
+                selectedData.districts.forEach(function(district, i) {
+                    if (i === 0) {
+                        strContent += `<li class="px-4 pb-2">
+                                            ${strTitle}
+                                            <div class="form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="district${i}" value="districtOption${i}">
+                                                <label class="form-check-label" for="district${i}">${district}</label>
+                                            </div>
+                                        </li>`;
+                    } else {
+                        strContent += `<li class="px-4 pb-2">
+                                            <div class="form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="district${i}" value="districtOption${i}">
+                                                <label class="form-check-label" for="district${i}">${district}</label>
+                                            </div>
+                                        </li>`;
+                    }
+                });
+
+                btnTitle.textContent = strBtnTitle;
+                districtList.innerHTML = strContent;
+            } else {
+                // 如果 checkbox 被取消勾選，可以執行其他動作
+            }
+        });
+    });
+
+});
