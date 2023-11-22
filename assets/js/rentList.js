@@ -4,8 +4,6 @@ axios.get('http://localhost:3000/rents?_sort=view&_order=desc')
 .then(function(res){
     // console.log(res.data);
     let api = res.data ;
-
-    
     renderList(api);  
     sortDate(api);
     sortPrice(api);
@@ -147,7 +145,7 @@ submit.addEventListener('click',function(e){
 });
 
 
-// 進頁面及渲染 (依點閱率)
+// 縣市、行政區複選篩選
 axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf26515281710e1792df/raw/a1e1fc17d04b47c564bbd9dba0d59a6a325ec7c1/taiwan_districts.json')
 .then(function(res){
     // console.log(res.data[0].name); 台北市
@@ -181,52 +179,131 @@ axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf2651528171
     // 使用自訂的排序函式來排序陣列
     newData.sort(customSort);
 
-    
+
     let countyCity = document.querySelectorAll('.countyCity'); // 全部的縣市
     let btnTitle = document.querySelector('.btnTitle'); // 下拉選單按鈕的文字(縣市)
+    let dropdownTitle = document.querySelector('.dropdownTitle') // 下拉選單的標題 (縣市)
     let districtList = document.querySelector('.districtList'); // 下拉選單的清單(行政區)
+    
     
     // 用foreach去跑每一個縣市，當點擊任一縣市，就會跑出對應的行政區
     countyCity.forEach(function(radio) {
-
+        
         // 點擊事件
         radio.addEventListener('change', function(e) {
+            
             if (e.target.checked) {
+
+                // 點擊縣市之後移除行政區的 disable
+                document.querySelector('#disabled-events').classList.remove('disabled-events');  
 
                 // 根據不同的 radio 索引去選擇
                 // countyCity是NodeList，似陣列但非陣列，不能用indexOf，所以要先轉成真正的陣列
                 let dataIndex = Array.from(countyCity).indexOf(radio); 
                 let selectedData = newData[dataIndex];
-
+                
                 let strBtnTitle = `${selectedData.name}`;
-                let strTitle = `<p class="px-4 py-2 fw-bold">${selectedData.name}</p>`;
+                let strTitle = `${selectedData.name}`;
                 let strContent = '';
 
                 selectedData.districts.forEach(function(district, i) {
-                    if (i === 0) {
-                        strContent += `<li class="px-4 pb-2">
-                                            ${strTitle}
-                                            <div class="form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="district${i}" value="districtOption${i}">
-                                                <label class="form-check-label" for="district${i}">${district}</label>
+                        strContent += ` 
+                                        <li class="pb-2">
+                                            <div class="form-check-inline cursor">
+                                                <input class="form-check-input cursor district-checkbox" type="checkbox" id="district${i}" value="districtOption${i}">
+                                                <label class="form-check-label cursor districtLabelText" for="district${i}">${district}</label>
                                             </div>
-                                        </li>`;
+                                        </li>
+                                        `;
+                });
+                btnTitle.textContent = strBtnTitle;
+                dropdownTitle.textContent = strTitle ;
+                districtList.innerHTML = strContent;
+
+                // 縣市的畫面渲染
+                axios.get(`http://localhost:3000/rents?address_like=${selectedData.name}`)
+                .then(function(res) {
+                    let api = res.data;
+
+                    // 如果縣市資料長度大於0就渲染畫面
+                    if(api.length > 0) {
+                    renderList(api);
+                    sortDate(api);
+                    sortPrice(api);
+
+                    // 如果縣市資料長度沒有大於0就出現沒東西的畫面
                     } else {
-                        strContent += `<li class="px-4 pb-2">
-                                            <div class="form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="district${i}" value="districtOption${i}">
-                                                <label class="form-check-label" for="district${i}">${district}</label>
-                                            </div>
-                                        </li>`;
+                        renderListNoFound() ;
+                        console.log('123');
                     }
                 });
 
-                btnTitle.textContent = strBtnTitle;
-                districtList.innerHTML = strContent;
-            } else {
-                // 如果 checkbox 被取消勾選，可以執行其他動作
-            }
+                // 行政區的畫面渲染
+                let districtCheckboxes = document.querySelectorAll('.district-checkbox');
+                
+                // 監聽所有checkbox有沒有被打勾
+                districtCheckboxes.forEach(function(checkbox) {
+                    checkbox.addEventListener('change', function(e) {
+
+                        // 存放被選到的checkbox的行政區字串用的陣列
+                        let selectedDistricts = [];
+
+                        // 如果checkbox被打勾，字串就丟到上面的陣列裡
+                        districtCheckboxes.forEach(function(checkbox) {
+                            if (checkbox.checked) {
+                                let labelStr = checkbox.nextElementSibling.textContent;
+                                selectedDistricts.push(labelStr);
+                            }
+                        });
+
+                        // 如果陣列長度大於0就顯示畫面，這邊只會判斷第一次渲染行鎮區畫面有無東西
+                        if (selectedDistricts.length > 0) {
+                            let apiRequests = selectedDistricts.map(function(v) {
+                                return axios.get(`http://localhost:3000/rents?address_like=${v}`)
+                                    .then(function(res) {
+                                        return res.data;
+                                    });
+                            });
+
+                            // 確保所有資料都組建完成，這邊是為了可以複選資料，所以會先把資料組起來最後再做渲染
+                            Promise.all(apiRequests)
+                                .then(function(results) {
+                                    let mergedData = results.flat(); // 將所有結果整合成一個陣列
+
+                                    // 過濾資料，只保留縣市是 "selectedData.name" 的資料，前面點擊縣市的資料
+                                    let filteredData = mergedData.filter(function(item) {
+                                        return item.address.includes(selectedData.name);
+                                    });
+
+                                    // 如果資料陣列大於0就渲染到畫面
+                                    if (filteredData.length > 0){
+                                        renderList(filteredData);
+                                        sortDate(filteredData);
+                                        sortPrice(filteredData);
+
+                                    // 如果 filteredData 沒有篩選到資料就出現沒東西的畫面
+                                    } else {
+                                        renderListNoFound() ;
+                                        console.log('123'); 
+                                    }
+                                });
+
+                        // 如果陣列長度小於0就出現沒東西的畫面，這邊只會判斷第一次渲染行鎮區畫面有無東西
+                        } else {
+                            renderList(api);
+                            sortDate(api);
+                            sortPrice(api);
+                        }
+                    });
+                });
+                
+  
+            } 
         });
     });
-
 });
+
+
+
+
+  

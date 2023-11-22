@@ -49,6 +49,11 @@ button{
     cursor: pointer;
 }
 
+.disabled-events {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 .transform-y-25{
     transform: translateY(25%);
 }
