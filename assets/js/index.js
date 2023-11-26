@@ -1,6 +1,10 @@
 import "swiper/css/bundle";
 import Swiper from "swiper/bundle";
 import * as d3 from "d3";
+import axios from "axios";
+
+// const url = "http://localhost:3000";
+const url = "https://roomie-nnwq.onrender.com";
 
 // 首頁地圖
 let bannerMap = d3.select(".banner-map");
@@ -32,7 +36,7 @@ function currentCounty() {
   const countyLabel = document.querySelector(".banner-county-label");
   county.forEach((e) => {
     e.addEventListener("click", (e) => {
-      console.log(e);
+      // console.dir(e);
       // 定位基準在 body
       icon.style.left = `${e.pageX - 12}px`;
       icon.style.top = `${e.pageY - 24}px`;
@@ -112,10 +116,41 @@ setInterval(function () {
   typewriteText.textContent = arr[count % 2];
 }, 1500);
 
-// // 選取 .swiper-slide-prev 之前的 第一個 .swiper-slide
-// const swiperSlidePrev = document.querySelector(".swiper-slide-prev");
-// const swiperSlidePrevPrev = swiperSlidePrev.previousElementSibling;
-// if (swiperSlidePrevPrev)
-//   swiperSlidePrevPrev.classList.add("swiper-slide-prev-prev");
+// 撈取最新物件
 
-// console.log(swiperSlidePrev);
+// 撈取最新公告
+let newsData;
+axios
+  .get(`${url}/news?_sort=date&_order=desc`)
+  .then((res) => {
+    newsData = res.data;
+    renderNews();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+function renderNews() {
+  console.log(123);
+  const newsList = document.querySelector(".news-list");
+  const latestNews = newsData.slice(0, 3);
+  let str = "";
+  latestNews.forEach((e) => {
+    str += `
+    <li
+    class="news-item d-flex align-items-center position-relative link-dark fw-bold py-4 py-md-6"
+  >
+    <div class="d-flex flex-column flex-md-row flex-grow-1">
+      <p class="me-5 text-light-400 fs-7 fs-md-6 mb-2 mb-md-0">
+        ${e.date}
+      </p>
+      <p class="fs-md-5">${e.title}</p>
+    </div>
+    <span class="news-icon material-icons p-2">
+      chevron_right
+    </span>
+    <a href="news_single.html?id=${e.id}" class="stretched-link"></a>
+  </li>`;
+  });
+  newsList.innerHTML = str;
+}

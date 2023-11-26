@@ -7,11 +7,16 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist"
+    "deploy": "vite build && gh-pages -d dist",
+    "json-server": "json-server --watch ./db.json -m ./node_modules/json-server-auth",
+    "start": "concurrently \"npm run json-server\" \"npm run dev\""
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
     "ejs": "^3.1.9",
+    "json-server": "^0.17.4",
+    "json-server-auth": "^2.1.0",
+    "rollup-plugin-copy": "^3.5.0",
     "vite": "^4.2.0",
     "vite-plugin-ejs": "^1.6.4"
   },
