@@ -1,3 +1,18 @@
 .lawDescription a {
   color: #4285f4;
 }
+.alert-message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: none;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin-top: 3px;
+  color: #b21c01;
+  font-size: 0.85rem;
+}
+.alert-message span {
+  margin-left: 5px;
+  font-weight: bold;
+}
