@@ -16,6 +16,7 @@
       referrerpolicy="no-referrer"
     />
     <title>發表文章</title>
+    <link rel="icon" type="image/png" href="/roomie/assets/favicon-8f1f900a.ico" />
     <link
       rel="stylesheet"
       href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
@@ -28,8 +29,8 @@
         $("#datepicker").datepicker();
       });
     </script>
-    <script type="module" crossorigin src="/roomie/assets/main-de4656de.js"></script>
-    <link rel="stylesheet" href="/roomie/assets/main-b15e683b.css">
+    <script type="module" crossorigin src="/roomie/assets/bootstrap.min-78670b47.js"></script>
+    <link rel="stylesheet" href="/roomie/assets/bootstrap-535f5e47.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-md bg-white border-bottom">
@@ -993,9 +994,10 @@
             <!-- 管理費 -->
             <div class="d-flex mb-2 form-group">
               <h5 class="me-4">管理費:</h5>
-              <!-- 租金 -->
+              <!-- 管理費 -->
               <div class="me-3 addRegion-input">
                 <input
+                  class="inputWidth"
                   type="text"
                   id="price"
                   placeholder="請填寫管理費"
@@ -1036,9 +1038,10 @@
               <!-- 需求人數 -->
               <div class="me-3 addRegion-input">
                 <input
+                  class="inputWidth"
                   type="text"
                   id="needPeople"
-                  placeholder="請填寫需求人數"
+                  placeholder="請填寫人數"
                   name="需求人數"
                 />
                 <span>人</span>
@@ -1183,16 +1186,28 @@
               <h5 class="me-4">室友年齡:</h5>
               <!-- 室友年齡 -->
               <div class="me-3 addRegion-input">
-                <input type="text" id="minAge" name="室友年齡" />
+                <input
+                  class="inputWidth"
+                  type="text"
+                  id="minAge"
+                  name="室友年齡"
+                />
                 <span>~</span>
-                <input type="text" id="maxAge" name="室友年齡" />
+                <input
+                  class="inputWidth"
+                  type="text"
+                  id="maxAge"
+                  name="室友年齡"
+                />
                 <span>歲</span>
               </div>
             </div>
             <!-- 可遷入日期 -->
             <div class="d-flex mb-2 form-group">
               <h5 class="me-4"><span class="starText">*</span>可遷入日期:</h5>
-              <span><input type="text" id="datepicker" /></span>
+              <span
+                ><input class="inputWidth" type="text" id="datepicker"
+              /></span>
             </div>
             <!-- 生活機能 -->
             <div class="d-flex mb-2 form-group">
@@ -1273,22 +1288,42 @@
               <h5 class="me-4">附近交通:</h5>
               <!-- 公車站 -->
               <div class="me-3 addRegion-input">
-                <input type="text" id="busStation" name="公車站" />
+                <input
+                  class="inputWidth"
+                  type="text"
+                  id="busStation"
+                  name="公車站"
+                />
                 <span>公車站</span>
               </div>
               <!-- 捷運站 -->
               <div class="me-3 addRegion-input">
-                <input type="text" id="mrtStation" name="捷運站" />
+                <input
+                  class="inputWidth"
+                  type="text"
+                  id="mrtStation"
+                  name="捷運站"
+                />
                 <span>公車站</span>
               </div>
               <!-- 火車站 -->
               <div class="me-3 addRegion-input">
-                <input type="text" id="trainStation" name="火車站" />
+                <input
+                  class="inputWidth"
+                  type="text"
+                  id="trainStation"
+                  name="火車站"
+                />
                 <span>火車站</span>
               </div>
               <!-- 高鐵站 -->
               <div class="me-3 addRegion-input">
-                <input type="text" id="hightSpeedStation" name="高鐵站" />
+                <input
+                  class="inputWidth"
+                  type="text"
+                  id="hightSpeedStation"
+                  name="高鐵站"
+                />
                 <span>高鐵站</span>
               </div>
             </div>
@@ -1297,7 +1332,7 @@
               <h5 class="me-4">其他事項:</h5>
               <!-- 其他事項 -->
               <div class="me-3 add-somethingElse">
-                <input type="text" id="somethingElse" name="其他事項" />
+                <textarea class="somethingWidth" id="somethingElse"></textarea>
                 <p>字數 <span id="wordLength">0</span>/2000 字</p>
               </div>
             </div>
@@ -1313,20 +1348,18 @@
                     data-target="file-uploader"
                     id="file-uploader"
                   />
-                  <label class="custom-file-label" for="customFile"
-                    >Choose file</label
-                  >
                 </div>
               </div>
             </div>
             <!-- 聯絡資料 -->
-            <div class="mb-2 form-group">
-              <h5 class="me-4 mb-2">聯絡資料:</h5>
+            <div class="mb-2 p-2 contactForm">
+              <h5 class="me-4 mb-4">聯絡資料:</h5>
               <!-- 聯絡人 -->
-              <div class="d-flex mb-2">
+              <div class="d-flex mb-4">
                 <h5 class="me-4"><span class="starText">*</span>聯絡人:</h5>
                 <span>
                   <input
+                    class="me-2 inputWidth"
                     type="text"
                     id="contactName"
                     placeholder="請填寫姓氏"
@@ -1353,10 +1386,11 @@
                 </span>
               </div>
               <!-- 連絡電話 -->
-              <div class="d-flex mb-2">
+              <div class="d-flex mb-4">
                 <h5 class="me-4"><span class="starText">*</span>連絡電話:</h5>
                 <span>
                   <input
+                    class="inputWidth"
                     type="tel"
                     id="contactPhoneNumber"
                     placeholder="請填寫電話"
@@ -1366,7 +1400,7 @@
                 </span>
               </div>
               <!-- 信箱 -->
-              <div class="d-flex mb-2">
+              <div class="d-flex mb-4">
                 <h5 class="me-4"><span class="starText">*</span>信箱:</h5>
                 <span>
                   <input
@@ -1379,7 +1413,7 @@
                 </span>
               </div>
               <!-- Line -->
-              <div class="d-flex mb-2">
+              <div class="d-flex">
                 <h5 class="me-4">Line:</h5>
                 <span>
                   <input

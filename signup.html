@@ -9,8 +9,10 @@
       rel="stylesheet"
     />
     <title>Sign Up</title>
-    <script type="module" crossorigin src="/roomie/assets/main-de4656de.js"></script>
-    <link rel="stylesheet" href="/roomie/assets/main-b15e683b.css">
+    <script type="module" crossorigin src="/roomie/assets/signup-6959a892.js"></script>
+    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-78670b47.js">
+    <link rel="modulepreload" crossorigin href="/roomie/assets/axios-28bc18a3.js">
+    <link rel="stylesheet" href="/roomie/assets/bootstrap-535f5e47.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-md bg-white border-bottom">
@@ -486,53 +488,83 @@
             <hr />
 
             <div class="py-8">
-              <!-- Email & Password -->
+              <!-- Email   -->
               <div class="form-floating mb-3">
                 <input
                   type="email"
                   class="form-control"
-                  id="floatingInput"
+                  id="inputEmail"
                   placeholder="name@example.com"
                 />
-                <label for="floatingInput">Email address</label>
+                <label for="inputEmail">Email address(Google or Yahoo)</label>
+                <div class="alert-message">
+                  <p id="emailMessage" data-message="註冊信箱">
+                    <span>必填!</span>
+                  </p>
+                </div>
               </div>
+              <!-- Password -->
               <div class="form-floating mb-3">
                 <input
                   type="password"
                   class="form-control"
-                  id="floatingPassword"
+                  id="inputPassword"
                   placeholder="Password"
                 />
-                <label for="floatingPassword">Password</label>
+                <label for="inputPassword">Password(6-12個英文數字組合)</label>
+                <div class="alert-message">
+                  <p id="passwordMessage" data-message="註冊密碼">
+                    <span>必填!</span>
+                  </p>
+                </div>
               </div>
+              <!-- Confirm Password -->
               <div class="form-floating">
                 <input
                   type="password"
                   class="form-control"
-                  id="floatingPassword"
+                  id="inputConfirmPassword"
                   placeholder="Password"
                 />
-                <label for="floatingPassword">Confirm Password</label>
+                <label for="inputConfirmPassword">Confirm Password</label>
+                <div class="alert-message">
+                  <p id="confirmPasswordMessage" data-message="註冊確認密碼">
+                    <span>必填!</span>
+                  </p>
+                </div>
               </div>
-              <!-- 記住和忘記密碼 -->
+              <!-- 規則 -->
               <div class="py-8">
                 <div class="form-check">
                   <input
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="flexCheckChecked"
+                    id="rulesChecked"
                   />
                   <label
                     class="form-check-label lawDescription"
-                    for="flexCheckChecked"
+                    for="rulesChecked"
                   >
                     我已仔細閱讀並明瞭 <a href="">「服務條款」</a>、<a href=""
                       >「免責聲明」</a
                     >、<a href="">「隱私權聲明」</a
                     >等所載內容及其意義,茲同意該等條款規定,並願遵守網站現今、嗣後規範的各種規則
                   </label>
+                  <div class="alert-message">
+                    <p id="rulesCheckedMessage" data-message="註冊規定">
+                      <span>必填!</span>
+                    </p>
+                  </div>
                 </div>
+              </div>
+              <!-- 確認註冊 -->
+              <div class="py-4 text-end">
+                <input
+                  type="button"
+                  class="p-2 btn-primary confirmEmail"
+                  value="確認送出"
+                />
               </div>
             </div>
           </div>
@@ -604,6 +636,7 @@
   arrow_upward
 </a>
 
+    
     
   </body>
 </html>

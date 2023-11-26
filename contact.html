@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 富文本編輯器 wangeditor -->
+    <link
+      href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css"
+      rel="stylesheet"
+    />
     <link
       href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
       rel="stylesheet"
@@ -16,9 +21,11 @@
       referrerpolicy="no-referrer"
     />
     <title>contact</title>
-    <script type="module" crossorigin src="/roomie/assets/contact-7ea1ff0c.js"></script>
-    <link rel="modulepreload" crossorigin href="/roomie/assets/main-de4656de.js">
-    <link rel="stylesheet" href="/roomie/assets/main-b15e683b.css">
+    <link rel="icon" type="image/png" href="/roomie/assets/favicon-8f1f900a.ico" />
+    <script type="module" crossorigin src="/roomie/assets/contact-cc8ab1cb.js"></script>
+    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-78670b47.js">
+    <link rel="modulepreload" crossorigin href="/roomie/assets/axios-28bc18a3.js">
+    <link rel="stylesheet" href="/roomie/assets/bootstrap-535f5e47.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-md bg-white border-bottom">
@@ -477,49 +484,58 @@
         <div class="row justify-content-end">
           <div class="col-md-6 col-12">
             <form
-              class="needs-validation bg-white py-10 px-10 rounded-5 shadow-sm"
+              action="#"
+              class="contact-form needs-validation bg-white py-10 px-10 rounded-5 shadow-sm"
               novalidate
             >
               <div class="form-floating mb-5">
                 <input
                   type="text"
                   class="form-control rounded-4"
-                  id="floatingName"
+                  id="contact-name"
                   placeholder="請輸入名稱"
                   required
                 />
-                <label for="floatingName">您的大名</label>
+                <label class="form-label" for="contact-name">您的大名</label>
                 <div class="invalid-feedback">請輸入您的姓名</div>
               </div>
               <div class="form-floating mb-5">
                 <input
                   type="email"
                   class="form-control rounded-4"
-                  id="floatingEmail"
+                  id="contact-email"
                   placeholder="example@example.com"
                   required
                 />
-                <label for="floatingEmail">電子郵件</label>
-                <div class="invalid-feedback">請輸入您的電子郵件</div>
+                <label class="form-label" for="contact-email">電子郵件</label>
+                <div class="invalid-feedback email-error">
+                  請輸入您的電子郵件
+                </div>
               </div>
-              <div class="form-floating mb-5">
-                <textarea
-                  class="form-control rounded-4"
-                  id="floatingTextarea"
-                  placeholder="請輸入您的寶貴意見"
-                  style="height: 100px"
-                  required
-                ></textarea>
-                <label for="floatingTextarea form-required">您的意見</label>
-                <div class="invalid-feedback">請輸入您的意見</div>
+
+              <div class="form-check form-check-inline mx-0 px-0 w-100 mb-5">
+                <label
+                  class="form-label fw-medium form-required"
+                  for="contact-message"
+                  >留言內容</label
+                >
+                <!-- <textarea type="text" class="form-control" id="contact-message" name="message" rows="6" required></textarea> -->
+                <div class="form-control rounded-4" id="form-content">
+                  <div id="editor-container" class="bg-body">
+                    <!-- 编辑器 -->
+                  </div>
+                </div>
+                <div class="invalid-feedback">內容不得為空</div>
               </div>
-              <button
-                type="submit"
-                class="btn btn-secondary rounded-4 w-100"
-                id="sendBtn"
-              >
-                送出
-              </button>
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-secondary rounded-4 w-100"
+                  id="sendBtn"
+                >
+                  送出
+                </button>
+              </div>
             </form>
           </div>
         </div>
