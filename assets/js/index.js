@@ -3,7 +3,8 @@ import Swiper from "swiper/bundle";
 import * as d3 from "d3";
 import axios from "axios";
 
-const url = "http://localhost:3000";
+// const url = "http://localhost:3000";
+const url = "https://roomie-nnwq.onrender.com";
 
 // 首頁地圖
 let bannerMap = d3.select(".banner-map");
