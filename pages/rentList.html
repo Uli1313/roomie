@@ -30,8 +30,8 @@
             </div>
         </div>
 <!-- 縣市 下拉選單 -->
-        <div class="row p-2 d-flex align-items-center justify-content-evenly bg-light-200 rounded-3 rounded-lg-pill">
-            <div class="col-xxl-1 col-xl-1 col-lg-1 p-2 p-lg-0">
+        <div class="row p-2 d-flex align-items-center justify-content-evenly bg-light-200 rounded-3 rounded-lg-pill" id="row">
+            <div class="col-xxl-1 col-xl-1 col-lg-1 p-2 p-lg-0" id="city">
                 <div class="dropdown">
                     <button 
                         class="btn btn-light btn-sm border dropdown-toggle text-dark text-start"  
@@ -46,103 +46,103 @@
                       <li class="pb-2 d-flex justify-content-start gap-3">
                         <p class="fw-bold">北部</p>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="taipei" value="option1">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="taipei" value="option1">
                             <label class="form-check-label cursor" for="taipei">臺北</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Xinbei" value="option2">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Xinbei" value="option2">
                             <label class="form-check-label cursor" for="Xinbei">新北</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Keelung" value="option3">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Keelung" value="option3">
                             <label class="form-check-label cursor" for="Keelung">基隆</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Taoyuan" value="option4">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Taoyuan" value="option4">
                             <label class="form-check-label cursor" for="Taoyuan">桃園</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="HsinchuShi" value="option5">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="HsinchuShi" value="option5">
                             <label class="form-check-label cursor" for="HsinchuShi">竹市</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="HsinchuXian" value="option6">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="HsinchuXian" value="option6">
                             <label class="form-check-label cursor" for="HsinchuXian">竹縣</label>
                         </div>
                       </li>
                       <li class="pb-2 d-flex justify-content-start gap-3">
                         <p class="fw-bold">中部</p>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Taichung" value="option7">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Taichung" value="option7">
                             <label class="form-check-label cursor" for="Taichung">臺中</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Changhua" value="option8">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Changhua" value="option8">
                             <label class="form-check-label cursor" for="Changhua">彰化</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Miaoli" value="option9">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Miaoli" value="option9">
                             <label class="form-check-label cursor" for="Miaoli">苗栗</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Nantou" value="option10">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Nantou" value="option10">
                             <label class="form-check-label cursor" for="Nantou">南投</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Yunlin" value="option11">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Yunlin" value="option11">
                             <label class="form-check-label cursor" for="Yunlin">雲林</label>
                         </div>
                       </li>
                       <li class="pb-2 d-flex justify-content-start gap-3">
                         <p class="fw-bold">南部</p>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Kaohsiung" value="option12">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Kaohsiung" value="option12">
                             <label class="form-check-label cursor" for="Kaohsiung">高雄</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Tainan" value="option13">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Tainan" value="option13">
                             <label class="form-check-label cursor" for="Tainan">臺南</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="ChiayiShi" value="option14">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="ChiayiShi" value="option14">
                             <label class="form-check-label cursor" for="ChiayiShi">嘉市</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="ChiayiXian" value="option15">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="ChiayiXian" value="option15">
                             <label class="form-check-label cursor" for="ChiayiXian">嘉縣</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Pingtung" value="option16">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Pingtung" value="option16">
                             <label class="form-check-label cursor" for="Pingtung">屏東</label>
                         </div>
                       </li>
                       <li class="pb-2 d-flex justify-content-start gap-3">
                         <p class="fw-bold">東部</p>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Yilan" value="option17">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Yilan" value="option17">
                             <label class="form-check-label cursor" for="Yilan">宜蘭</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Hualien" value="option18">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Hualien" value="option18">
                             <label class="form-check-label cursor" for="Hualien">花蓮</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Taitung" value="option19">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Taitung" value="option19">
                             <label class="form-check-label cursor" for="Taitung">臺東</label>
                         </div>
                       </li>
                       <li class="pb-2 d-flex justify-content-start gap-3">
                         <p class="fw-bold">外島</p>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Penghu" value="option20">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Penghu" value="option20">
                             <label class="form-check-label cursor" for="Penghu">澎湖</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Kinmen" value="option21">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Kinmen" value="option21">
                             <label class="form-check-label cursor" for="Kinmen">金門</label>
                         </div>
                         <div class="form-check cursor">
-                            <input class="form-check-input countyCity cursor" type="radio" name="inlineRadioOptions" id="Matsu" value="option22">
+                            <input class="form-check-input countyCity cursor cityRadio" type="radio" name="inlineRadioOptions" id="Matsu" value="option22">
                             <label class="form-check-label cursor" for="Matsu">連江</label>
                         </div>
                       </li>
@@ -185,7 +185,13 @@
                     <ul class="dropdown-menu bg-light" aria-labelledby="dropdownMenuClickableInside" style="width: 200px;">
                       <li class="px-4 pb-2">
                         <div class="form-check cursor">
-                            <input class="form-check-input cursor" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                            <input 
+                            class="form-check-input cursor priceRadio" 
+                            type="radio" 
+                            name="flexRadioDefault" 
+                            id="flexRadioDefault1" 
+                            data-price="_sort=price&_order=desc" 
+                            checked>
                             <label class="form-check-label cursor" for="flexRadioDefault1">
                               不限
                             </label>
@@ -193,7 +199,12 @@
                       </li>
                       <li class="px-4 pb-2">
                         <div class="form-check cursor">
-                            <input class="form-check-input cursor" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                            <input 
+                            class="form-check-input cursor priceRadio" 
+                            type="radio" 
+                            name="flexRadioDefault" 
+                            id="flexRadioDefault2" 
+                            data-price="price_gte=5000&price_lte=10000">
                             <label class="form-check-label cursor" for="flexRadioDefault2">
                               5,000 - 10,000 元
                             </label>
@@ -201,7 +212,12 @@
                       </li>
                       <li class="px-4 pb-2">
                         <div class="form-check cursor">
-                            <input class="form-check-input cursor" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                            <input 
+                            class="form-check-input cursor priceRadio" 
+                            type="radio" 
+                            name="flexRadioDefault" 
+                            id="flexRadioDefault3" 
+                            data-price="price_gte=10000&price_lte=20000">
                             <label class="form-check-label cursor" for="flexRadioDefault3">
                               10,000 - 20,000 元
                             </label>
@@ -209,7 +225,12 @@
                       </li>
                       <li class="px-4 pb-2">
                         <div class="form-check cursor">
-                            <input class="form-check-input cursor" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                            <input 
+                            class="form-check-input cursor priceRadio" 
+                            type="radio" 
+                            name="flexRadioDefault" 
+                            id="flexRadioDefault4" 
+                            data-price="price_gte=20000&price_lte=30000">
                             <label class="form-check-label cursor" for="flexRadioDefault4">
                               20,000 - 30,000 元
                             </label>
@@ -217,7 +238,12 @@
                       </li>
                       <li class="px-4 pb-2">
                         <div class="form-check cursor">
-                            <input class="form-check-input cursor" type="radio" name="flexRadioDefault" id="flexRadioDefault5">
+                            <input 
+                            class="form-check-input cursor priceRadio" 
+                            type="radio" 
+                            name="flexRadioDefault" 
+                            id="flexRadioDefault5" 
+                            data-price="price_gte=30000">
                             <label class="form-check-label cursor" for="flexRadioDefault5">
                               30,000 元以上
                             </label>
@@ -241,7 +267,7 @@
                     <ul class="dropdown-menu bg-light" aria-labelledby="dropdownMenuClickableInside">
                       <li class="px-4 pb-2">
                         <div class="form-check cursor">
-                            <input class="form-check-input cursor" type="checkbox" id="housetype1" value="housetype1">
+                            <input class="form-check-input cursor houseCheckbox" type="checkbox" id="housetype1" value="housetype1">
                             <label class="form-check-label cursor" for="housetype1">
                               整層住家
                             </label>
@@ -249,7 +275,7 @@
                       </li>
                       <li class="px-4 pb-2">
                         <div class="form-check cursor">
-                            <input class="form-check-input cursor" type="checkbox" id="housetype2" value="housetype2">
+                            <input class="form-check-input cursor houseCheckbox" type="checkbox" id="housetype2" value="housetype2">
                             <label class="form-check-label cursor" for="housetype2">
                               獨立套房
                             </label>
@@ -257,7 +283,7 @@
                       </li>
                       <li class="px-4 pb-2">
                         <div class="form-check cursor">
-                            <input class="form-check-input cursor" type="checkbox" id="housetype3" value="housetype3">
+                            <input class="form-check-input cursor houseCheckbox" type="checkbox" id="housetype3" value="housetype3">
                             <label class="form-check-label cursor" for="housetype3">
                               分租套房
                             </label>
@@ -265,7 +291,7 @@
                       </li>
                       <li class="px-4 pb-2">
                         <div class="form-check cursor">
-                            <input class="form-check-input cursor" type="checkbox" id="housetype4" value="housetype4">
+                            <input class="form-check-input cursor houseCheckbox" type="checkbox" id="housetype4" value="housetype4">
                             <label class="form-check-label cursor" for="housetype4">
                               雅房
                             </label>
@@ -273,7 +299,7 @@
                       </li>
                       <li class="px-4 pb-2">
                         <div class="form-check cursor">
-                            <input class="form-check-input cursor" type="checkbox" id="housetype5" value="housetype5">
+                            <input class="form-check-input cursor houseCheckbox" type="checkbox" id="housetype5" value="housetype5">
                             <label class="form-check-label cursor" for="housetype5">
                               其他
                             </label>
@@ -301,19 +327,19 @@
                         </div>
                         <div class="d-flex gap-2">
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="closeTo1" value="closeToOption1">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="closeTo1" value="closeToOption1">
                                 <label class="form-check-label cursor" for="closeTo1">學校</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="closeTo2" value="closeToOption2">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="closeTo2" value="closeToOption2">
                                 <label class="form-check-label cursor" for="closeTo2">商圈</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="closeTo3" value="closeToOption3">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="closeTo3" value="closeToOption3">
                                 <label class="form-check-label cursor" for="closeTo3">捷運站</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="closeTo4" value="closeToOption4">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="closeTo4" value="closeToOption4">
                                 <label class="form-check-label cursor" for="closeTo10">醫療機構</label>
                             </div>
                         </div>
@@ -324,40 +350,40 @@
                         </div>
                         <div class="d-flex gap-2 flex-wrap">
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="device1" value="deviceOption1">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="device1" value="deviceOption1">
                                 <label class="form-check-label cursor" for="device1">網路</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="device2" value="deviceOption2">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="device2" value="deviceOption2">
                                 <label class="form-check-label cursor" for="device2">冰箱</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="device3" value="deviceOption3">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="device3" value="deviceOption3">
                                 <label class="form-check-label cursor" for="device3">電視</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="device4" value="deviceOption4">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="device4" value="deviceOption4">
                                 <label class="form-check-label cursor" for="device4">冷氣</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="device5" value="deviceOption5">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="device5" value="deviceOption5">
                                 <label class="form-check-label cursor" for="device5">洗衣機</label>
                             </div>
 
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="furniture1" value="furnitureOption1">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="furniture1" value="furnitureOption1">
                                 <label class="form-check-label cursor" for="furniture1">椅子</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="furniture2" value="furnitureOption2">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="furniture2" value="furnitureOption2">
                                 <label class="form-check-label cursor" for="furniture2">桌子</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="furniture3" value="furnitureOption3">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="furniture3" value="furnitureOption3">
                                 <label class="form-check-label cursor" for="furniture3">衣櫃</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="furniture4" value="furnitureOption4">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="furniture4" value="furnitureOption4">
                                 <label class="form-check-label cursor" for="furniture4">床</label>
                             </div>
                         </div>
@@ -368,15 +394,15 @@
                         </div>
                         <div class="d-flex gap-2">
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="identity1" value="identityOption1">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="identity1" value="identityOption1">
                                 <label class="form-check-label cursor" for="identity1">學生</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="identity2" value="identityOption2">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="identity2" value="identityOption2">
                                 <label class="form-check-label cursor" for="identity2">家庭</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="identity3" value="identityOption3">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="identity3" value="identityOption3">
                                 <label class="form-check-label cursor" for="identity3">上班族</label>
                             </div>
                         </div>
@@ -387,15 +413,15 @@
                         </div>
                         <div class="d-flex gap-2">
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="sex1" value="sexOption1">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="sex1" value="sexOption1">
                                 <label class="form-check-label cursor" for="sex1">皆可</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="sex2" value="sexOption2">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="sex2" value="sexOption2">
                                 <label class="form-check-label cursor" for="sex2">男性</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="sex3" value="sexOption3">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="sex3" value="sexOption3">
                                 <label class="form-check-label cursor" for="sex3">女性</label>
                             </div>
                         </div>
@@ -406,11 +432,11 @@
                         </div>
                         <div class="d-flex gap-2">
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="other1" value="otherOption1">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="other1" value="otherOption1">
                                 <label class="form-check-label cursor" for="other1">可開伙</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor" type="checkbox" id="other2" value="otherOption2">
+                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="other2" value="otherOption2">
                                 <label class="form-check-label cursor" for="other2">可養寵物</label>
                             </div>
                         </div>
@@ -620,7 +646,6 @@
     
 
     <%- include('./layout/footer'); -%>
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script type="module" src="../main.js"></script>
     <script type="module" src="/assets/js/rentList.js"></script>
 </body>
