@@ -1392,8 +1392,8 @@ $pagination-margin-start: calc(
 ) !default; // stylelint-disable-line function-disallowed-list
 $pagination-border-color: var(--#{$prefix}border-color) !default;
 
-$pagination-focus-color: $secondary; // custom var(--#{$prefix}link-hover-color) !default;
-$pagination-focus-bg: $light-200; // custom var(--#{$prefix}secondary-bg) !default;
+$pagination-focus-color: $primary; // custom var(--#{$prefix}link-hover-color) !default;
+$pagination-focus-bg: none; // custom var(--#{$prefix}secondary-bg) !default;
 $pagination-focus-box-shadow: none; // custom $focus-ring-box-shadow !default;
 $pagination-focus-outline: 0 !default;
 
