@@ -5,9 +5,7 @@ axios.get('http://localhost:3000/rents?_sort=view&_order=desc')
 .then(function(res){
     // console.log(res.data);
     let api = res.data ;
-    renderList(api);  
-    sortDate(api);
-    sortPrice(api);
+    render(api);
 });
 
 
@@ -47,7 +45,7 @@ function renderList(api){
                             <li class="pb-3">${v.houseLayout} | ${v['square Footage']}坪${v.floor}F/${v.totalFloor}F </li>
                             <li class="pb-2">
                                 <span class="material-symbols-outlined pe-2 transform-y-25">location_on</span>
-                                ${v.address[0]}${v.address[1]}-${v.address[2]}</li>
+                                ${v.address} ${v.district[0]}-${v.district[1]}</li>
                             <li class="pb-3">
                                 <span class="material-symbols-outlined pe-1 transform-y-25">person</span>
                                 <span class="me-3 px-1 bg-primary-200">${v.gender}</span>
@@ -122,6 +120,14 @@ function sortPrice(api){
 }
 
 
+// 綜合渲染畫面 (畫面、租金、時間)
+function render(api){
+    renderList(api);  
+    sortDate(api);
+    sortPrice(api);
+}
+
+
 // 搜尋按鈕
 let search = document.querySelector('#search');
 let submit = document.querySelector('#submit');
@@ -147,9 +153,7 @@ submit.addEventListener('click',function(e){
 });
 
 
-
-
-// 縣市、行政區複選篩選
+// 縣市、行政區複選篩選(含渲染畫面)
 axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf26515281710e1792df/raw/a1e1fc17d04b47c564bbd9dba0d59a6a325ec7c1/taiwan_districts.json')
 .then(function(res){
     
@@ -184,14 +188,12 @@ axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf2651528171
     // 使用自訂的排序函式來排序陣列
     newData.sort(customSort);
 
-
-     
-
     // 處理點選縣市跑出行政區功能
     let countyCity = document.querySelectorAll('.countyCity'); // 全部的縣市
     let btnTitle = document.querySelector('.btnTitle'); // 下拉選單按鈕的文字(縣市)
     let dropdownTitle = document.querySelector('.dropdownTitle') // 下拉選單的標題 (縣市)
     let districtList = document.querySelector('.districtList'); // 下拉選單的清單(行政區)
+    let allCheckBox = document.querySelectorAll('.form-check-input');
     
     // 用foreach去跑每一個縣市，當點擊任一縣市，就會跑出對應的行政區
     countyCity.forEach(function(radio) {
@@ -199,7 +201,7 @@ axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf2651528171
         // 點擊事件
         radio.addEventListener('change', function(e) {
             
-            if (e.target.checked) {
+            
 
                 // 點擊縣市之後移除行政區的 disable
                 document.querySelector('#disabled-events').classList.remove('disabled-events');  
@@ -227,238 +229,136 @@ axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf2651528171
                 btnTitle.textContent = strBtnTitle;
                 dropdownTitle.textContent = strTitle ;
                 districtList.innerHTML = strContent;
-                
-                
-            }
+
+                allCheckBox = document.querySelectorAll('.form-check-input');
         });  
+
+        
     });
 
+
+// 組好篩選路徑渲染畫面
     let row = document.querySelector('#row');
-    let cityRadio = document.querySelectorAll('.cityRadio');
-    let districtCheckbox = document.querySelectorAll('.districtCheckbox');
-    let priceRadio = document.querySelectorAll('.priceRadio');
-    let houseCheckbox = document.querySelectorAll('.houseCheckbox');
-    let otherCheckbox = document.querySelectorAll('.otherCheckbox');
-    let nowCity = '' ;
-    let nowDistict = '' ;
-    let cityData = [] ;
-    let districtData = [] ;
-    
+    let urlStr = '';
+    let urlPrice = '';
 
     row.addEventListener('change',function(e){
 
-        if (e.target.checked){
+        const labelElement = document.querySelector(`label[for='${e.target.id}']`); 
+        const labelText = (labelElement.textContent).trim();
 
-            const labelElement = document.querySelector(`label[for='${e.target.id}']`); 
-            const labelText = (labelElement.textContent).trim();
-            
+        if (e.target.checked) {
 
             if (e.target.type === 'radio' && e.target.classList.contains('cityRadio')) {
-                axios.get(`http://localhost:3000/rents?q=${labelText}`)
-                .then(function(res){
-                    cityData = res.data ;
-                    nowCity = labelText ;
-                    console.log(cityData);
-
-
-
-
-                    
-                })
-            } else if (e.target.type === 'checkbox' && e.target.classList.contains('districtCheckbox') ) {
-                axios.get(`http://localhost:3000/rents?q=${labelText}`)
-                .then(function(res){
-                    let filterdata = res.data.filter( (v) => v.address[0] === e.target.value)
-                    districtData.push(filterdata);
-                    nowDistict = labelText ;
-                    console.log(districtData.flat());
-                    
-                    
-                })
+                urlStr = `address_like=${labelText}`;
+            
+            } else if (e.target.type === 'checkbox' && e.target.classList.contains('districtCheckbox')) {
+                urlStr += `&district_like=${labelText}`;
 
             } else if (e.target.type === 'radio' && e.target.classList.contains('priceRadio')) {
-                axios.get(`http://localhost:3000/rents?${e.target.dataset.price}`)
-                .then(function(res){
-    
-                    if (nowCity == ''){
-                        console.log(res.data);
-                    } else {
-                        let filterdata = res.data.filter( (v) => v.address[0] == nowCity && v.address[1] == nowDistict)
-                        console.log(filterdata);
-                    }
-                    
-
-
-
-
-                    
-                })
+                urlPrice = `&${e.target.dataset.price}`;
 
             } else if (e.target.type === 'checkbox' && e.target.classList.contains('houseCheckbox')) {
+                urlStr += `&type=${labelText}`;
+
+            } else if (e.target.type === 'checkbox' && e.target.classList.contains('lifeEquipmentCheckbox')) {
+                urlStr += `&lifeEquipment_like=${labelText}`;
+
+            } else if (e.target.type === 'checkbox' && e.target.classList.contains('equipmentCheckbox')) {
+                urlStr += `&equipment_like=${labelText}`;
+
+            } else if (e.target.type === 'checkbox' && e.target.classList.contains('identityCheckbox')) {
+                urlStr += `&identity_like=${labelText}`;
+
+            } else if (e.target.type === 'checkbox' && e.target.classList.contains('genderCheckbox')) {
+                urlStr += `&gender=${labelText}`;
+
+            } else if (e.target.type === 'checkbox' && e.target.classList.contains('canPetCookCheckbox')) {
+                
+                if (labelText == '可開伙') {
+                    urlStr += `&canCooking=${true}`;
+
+                } else {
+                    urlStr += `&canPet=${true}`;
+
+                }
+                
+                
             }
+
+            let url = urlStr + urlPrice ;
+            axios.get(`http://localhost:3000/rents?${url}`)
+            .then(function(res){
+                if (res.data.length > 0){
+                    render(res.data);
+                } else {
+                    renderListNoFound()
+                }
+            })
+
+        } else {
+
+            if (e.target.type === 'radio' && e.target.classList.contains('cityRadio')) {
+                urlStr = urlStr.replace(`address_like=${labelText}`,'');
             
+            } else if (e.target.type === 'checkbox' && e.target.classList.contains('districtCheckbox')) {
+                urlStr = urlStr.replace(`&district_like=${labelText}`,'');
+
+            } else if (e.target.type === 'radio' && e.target.classList.contains('priceRadio')) {
+                urlPrice = urlStr.replace(`&${e.target.dataset.price}`,'');
+
+            } else if (e.target.type === 'checkbox' && e.target.classList.contains('houseCheckbox')) {
+                urlStr = urlStr.replace(`&type=${labelText}`,'');
+
+            } else if (e.target.type === 'checkbox' && e.target.classList.contains('lifeEquipmentCheckbox')) {
+                urlStr = urlStr.replace(`&lifeEquipment_like=${labelText}`,'');
+
+            } else if (e.target.type === 'checkbox' && e.target.classList.contains('equipmentCheckbox')) {
+                urlStr = urlStr.replace(`&equipment_like=${labelText}`,'');
+
+            } else if (e.target.type === 'checkbox' && e.target.classList.contains('identityCheckbox')) {
+                urlStr = urlStr.replace(`&identity_like=${labelText}`,'');
+
+            } else if (e.target.type === 'checkbox' && e.target.classList.contains('genderCheckbox')) {
+                urlStr = urlStr.replace(`&gender=${labelText}`,'');
+
+            } else if (e.target.type === 'checkbox' && e.target.classList.contains('canPetCookCheckbox')) {
+                
+                if (labelText == '可開伙') {
+                    urlStr = urlStr.replace(`&canCooking=${true}`,'');
+
+                } else {
+                    urlStr = urlStr.replace(`&canPet=${true}`,'');
+
+                }
+                
+                
+            }
+
+            let url = urlStr + urlPrice ;
+            axios.get(`http://localhost:3000/rents?${url}`)
+            .then(function(res){
+                if (res.data.length > 0){
+                    render(res.data);
+                } else {
+                    renderListNoFound()
+                }
+            })
         }
-        
-        
     });
-    // // 處理行政區渲染畫面的地方函示
-    // let radioArr = [] ;
-    // let checkboxArr = [];
     
-
-
-    // // 選取所有 checkbox、radio
-    // let selectBox = document.querySelectorAll('.selectBox');
-    // let eventArr = Array.from(selectBox);
-    
-
-    // eventArr.forEach(item => {
-    //     item.addEventListener('change', function(e) {
-    //         const labelElement = document.querySelector(`label[for='${e.target.id}']`); 
-    //         const labelText = (labelElement.textContent).trim();
-            
-    //             if (e.target.checked) {
-                    
-    //                 if (item.type == 'radio') {
-    //                     if (labelText === '不限') {
-                            
-    //                             axios.get(`http://localhost:3000/rents?_sort=price&_order=desc`)
-    //                             .then(function(res){
-    //                                 radioArr = [] ;
-    //                                 radioArr.push(res.data);
-    //                                 console.log(radioArr);
-                                    
-                                    
-    //                             })
-                            
-    //                     } else if (labelText === '5,000 - 10,000 元') {
-                            
-    //                             axios.get(`http://localhost:3000/rents?price_gte=5000&price_lte=10000`)
-    //                             .then(function(res){
-    //                                 radioArr = [] ;
-    //                                 radioArr.push(res.data);
-    //                                 console.log(radioArr);
-    //                             })
-                            
-    //                     } else if (labelText === '10,000 - 20,000 元') {
-                            
-    //                             axios.get(`http://localhost:3000/rents?price_gte=10000&price_lte=20000`)
-    //                             .then(function(res){
-    //                                 radioArr = [] ;
-    //                                 radioArr.push(res.data);
-    //                                 console.log(radioArr);
-                                    
-    //                             })
-                            
-    //                     } else if (labelText === '20,000 - 30,000 元') {
-                            
-    //                             axios.get(`http://localhost:3000/rents?price_gte=20000&price_lte=30000`)
-    //                             .then(function(res){
-    //                                 radioArr = [] ;
-    //                                 radioArr.push(res.data);
-    //                                 console.log(radioArr);
-                                    
-    //                             })
-                            
-    //                     } else if (labelText === '30,000 元以上') {
-                            
-    //                             axios.get(`http://localhost:3000/rents?price_gte=30000`)
-    //                             .then(function(res){
-    //                                 radioArr = [] ;
-    //                                 radioArr.push(res.data);
-    //                                 console.log(radioArr);
-                                    
-    //                             })
-                            
-    //                     } else {
-    //                             axios.get(`http://localhost:3000/rents?q=${labelText}`)
-    //                             .then(function(res){
-    //                                 radioArr = [] ;
-    //                                 checkboxArr = [] ;
-    //                                 radioArr.push(res.data);
-    //                                 console.log(radioArr);
-
-    //                                 document.querySelector('.districtList').addEventListener('change', function(e) {
-            
-    //                                     const target = e.target;
-    //                                     if (target.classList.contains('selectBox')) {
-    //                                         const district = target.nextElementSibling.textContent.trim();
-
-    //                                         if (e.target.checked) {
-
-    //                                             if (target.type === 'checkbox') {
-                                
-    //                                                 if (district) {
-    //                                                     axios.get(`http://localhost:3000/rents?q=${district}`)
-    //                                                     .then(function(res){
-    //                                                         // checkboxArr.push(res.data);
-    //                                                         // let newArr = radioArr.concat(checkboxArr).flat();
-    //                                                         console.log(res.data);
-    //                                                         api = res.data;
-    //                                                         let filterData = api.filter(v => v.address[0].includes(labelText));
-    //                                                         console.log(filterData);
-
-    //                                                     })
-    //                                                 }
-                                                    
-    //                                             }
-    //                                         }
-                                            
-                                            
-    //                                     }
-    //                                 });
-
-
-                                    
-    //                             })
-
-                                
-                            
-                                
-                            
-    //                     }
-                        
-    //                 }
-
-    //                 if (item.type == 'checkbox') {
-    //                     if (labelText === '可養寵物') {
-                            
-    //                             axios.get(`http://localhost:3000/rents?canPet=true`)
-    //                             .then(function(res){
-    //                                 checkboxArr.push(res.data);
-    //                                 console.log(checkboxArr)
-                                    
-    //                             })
-                            
-
-    //                     } else if (labelText === '可開伙') {
-                            
-    //                             axios.get(`http://localhost:3000/rents?canCooking=true`)
-    //                             .then(function(res){
-    //                                 checkboxArr.push(res.data);
-    //                                 console.log(checkboxArr)
-                                    
-    //                             })
-                            
-                        
-    //                     } else {
-                            
-    //                             axios.get(`http://localhost:3000/rents?q=${labelText}`)
-    //                             .then(function(res){
-    //                                 checkboxArr.push(res.data);
-    //                                 console.log(checkboxArr)
-                                    
-    //                             })
-
-    //                     }
-                        
-    //                 }
-    //             } 
-    //     });
-    // });
-
-
 });
+
+
+// 清空按鈕
+let close = document.querySelector('#close');
+close.addEventListener('click',function(e){
+    location.reload();
+});
+
+
+
+
 
 
 
