@@ -1,7 +1,7 @@
 import axios from "axios";
 import { tree } from "d3";
 //API網址
-const webUrl = " https://roomie-nnwq.onrender.com/";
+const webUrl = " https://roomie-nnwq.onrender.com";
 // 宣告變數
 const confirmEmailBtn = document.querySelector(".confirmEmail");
 const inputEmail = document.querySelector("#inputEmail");
