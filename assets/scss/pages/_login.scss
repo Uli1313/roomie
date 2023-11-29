@@ -7,10 +7,12 @@
 .title-fz {
   font-size: 1.4rem;
 }
-@media screen and (max-width: 772px) {
+@media screen and (max-width: 991px) {
   .img-lg {
     display: none;
   }
+}
+@media screen and (max-width: 772px) {
   .title-fz {
     font-size: 1.3rem;
   }
