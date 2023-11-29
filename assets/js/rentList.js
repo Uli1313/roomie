@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const url = 'https://roomie-nnwq.onrender.com/';
+
 // 進頁面及渲染 (依點閱率)
-axios.get('http://localhost:3000/rents?_sort=view&_order=desc')
+axios.get(`${url}rents?_sort=view&_order=desc`)
 .then(function(res){
     // console.log(res.data);
     let api = res.data ;
@@ -16,7 +18,7 @@ function renderList(api){
     
     api.forEach(function(v){
 
-        // 處理判斷、陣列類型資料
+            // 處理寵物、開火判斷
         let petYN = v.canPet ? '可養寵物':'不可養寵物' ;
         let canCookingYN = v.canCooking ? '可開伙':'不可開伙';
 
@@ -38,11 +40,11 @@ function renderList(api){
                     <div class="col-12 col-md-9 py-3 px-5 border border-start-sm-0 bg-white rounded-bottom rounded-md-end">
                         <ul>
                             <li class="w-100 d-flex justify-content-between align-items-center py-2">
-                                <a href="rentArticle.html" class="h3 link-dark">${v.title}</a> 
+                                <a href="rentArticle.html?id=${v.id}" class="h3 link-dark">${v.title}</a> 
                                 <button class="p-3 link-dark hover-primary border-0 rounded-3">
                                     <span class="material-symbols-outlined">heart_plus</span>
                                 </button></li>
-                            <li class="pb-3">${v.houseLayout} | ${v['square Footage']}坪${v.floor}F/${v.totalFloor}F </li>
+                            <li class="pb-3">${v.houseLayout} | ${v['square Footage']}坪 | ${v.floor}F/${v.totalFloor}F </li>
                             <li class="pb-2">
                                 <span class="material-symbols-outlined pe-2 transform-y-25">location_on</span>
                                 ${v.address} ${v.district[0]}-${v.district[1]}</li>
@@ -54,7 +56,7 @@ function renderList(api){
                             <li class="pb-2">
                                 <span class="material-symbols-outlined pe-1 transform-y-25">map</span>
                                 ${trafficDiv}</li>
-                            <li class="pb-2 h2 text-secondary text-end">${v.price}元/月</li>
+                            <li class="pb-2 h2 text-secondary text-end">${(v.price).toLocaleString('zh-TW')}元/月</li>
                             <li class="d-flex justify-content-between">更新日期:${v.updateDate} 
                                 <div>
                                     <span class="material-symbols-outlined transform-y-25">visibility</span>
@@ -138,7 +140,7 @@ submit.addEventListener('click',function(e){
     let inputValue = search.value;
  
     // 關鍵字搜尋
-    axios.get(`http://localhost:3000/rents?q=${inputValue}`)
+    axios.get(`${url}rents?q=${inputValue}`)
     .then(function(res){
         let api = res.data ;
         if (api.length > 0) {
@@ -286,8 +288,8 @@ axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf2651528171
                 
             }
 
-            let url = urlStr + urlPrice ;
-            axios.get(`http://localhost:3000/rents?${url}`)
+            let resultUrl = urlStr + urlPrice ;
+            axios.get(`${url}rents?${resultUrl}`)
             .then(function(res){
                 if (res.data.length > 0){
                     render(res.data);
@@ -335,8 +337,8 @@ axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf2651528171
                 
             }
 
-            let url = urlStr + urlPrice ;
-            axios.get(`http://localhost:3000/rents?${url}`)
+            let resultUrl = urlStr + urlPrice ;
+            axios.get(`${url}rents?${resultUrl}`)
             .then(function(res){
                 if (res.data.length > 0){
                     render(res.data);

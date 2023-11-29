@@ -35,8 +35,17 @@ button{
         color: $secondary !important;
       }
 }
+// icon設定
+.icon-size{
+    font-size: 26px;
+    transform: translateY(22%);
+}
+// 分隔線
+.br{
+    border: 1px dashed rgb(50, 118, 86);
+}
 
-//下到 ? px 觸發
+// RWD下到 ? px 觸發
 @media screen and (max-width: 768px){ 
     .fs-md-2{
         font-size: 36px;
