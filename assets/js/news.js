@@ -1,6 +1,6 @@
 import axios from "axios";
 // const url = "http://localhost:3000";
-const url = "https://roomie-nnwq.onrender.com";
+const url = "https://roomie-lfta.onrender.com";
 
 let newsData;
 let currentPage = 1;
