@@ -19,8 +19,9 @@ const bannerMobileSearch = document.querySelector(".banner-mobile-search");
 let currentCountyName;
 // 當前顯示的物件資料
 let currentCountyData;
+// 最新物件
+const latestRentItem = document.querySelector(".latest-rent-item");
 
-console.log(123);
 // 繪製地圖變數
 let bannerMap = d3.select(".banner-map");
 const g = bannerMap.append("g");
@@ -51,7 +52,8 @@ function rentInit() {
     .get(`${url}/rents?_sort=view&_order=desc`)
     .then((res) => {
       rentsData = res.data;
-      renderRent(rentsData);
+      renderBannerRent(rentsData);
+      renderLatestRent(rentsData);
     })
     .catch((err) => {
       console.log(err);
@@ -59,7 +61,7 @@ function rentInit() {
 }
 
 // 渲染物件
-function renderRent(data) {
+function renderBannerRent(data) {
   currentCountyData = data.slice(0, 10);
 
   const countyUnselected = document.querySelector(".county-unselected");
@@ -131,7 +133,7 @@ function currentCountyRent() {
     )
     .then((res) => {
       const filterData = res.data;
-      renderRent(filterData);
+      renderBannerRent(filterData);
     })
     .catch((err) => {
       console.log(err);
@@ -201,12 +203,47 @@ bannerSearchForm.addEventListener("submit", (e) => {
     currentCountyRent();
     return;
   }
-  renderRent(filterData);
+  renderBannerRent(filterData);
 });
 
 rentInit();
 
 // 撈取最新物件
+function renderLatestRent(data) {
+  const showData = data.slice(0, 10);
+  console.log(showData);
+  latestRentItem.innerHTML = showData.reduce((a, c) => {
+    return (
+      a +
+      `  <div class="swiper-slide position-relative">
+    <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
+      <img
+        class="latest-rent-img"
+        src=${c.photo[0]}
+        alt=""
+      />
+      <div class="p-4 px-md-5 py-md-6">
+        <h4 class="fs-5 fs-md-4 mb-2">${c.title}</h4>
+        <div
+          class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
+        >
+          <p class="text-light-400 fs-8 fs-md-7 order-md-1">
+            ${c.district[0]}｜${c.type}｜${c["square Footage"]}坪${c.floor}F/${c.totalFloor}F
+          </p>
+          <p
+            class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
+          >
+            <span class="ms-1 fw-bold fs-4 fs-md-3">${c.price}</span
+            >元/月
+          </p>
+        </div>
+      </div>
+    </div>
+    <a href="rentArticle.html?id=${c.id}" class="stretched-link d-block"></a>
+  </div>`
+    );
+  }, "");
+}
 
 // 撈取最新公告
 axios
