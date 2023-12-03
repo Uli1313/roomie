@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>合租列表</title>
+    <title>合租清單</title>
+    <link rel="icon" type="image/png" href="/roomie/assets/favicon-8f1f900a.ico" />
     <link 
         rel="stylesheet" 
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" 
@@ -20,10 +21,10 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
     />
-  <script type="module" crossorigin src="/roomie/assets/rentList-5c274d5a.js"></script>
-  <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-78670b47.js">
+  <script type="module" crossorigin src="/roomie/assets/rentList-1c3e9ff4.js"></script>
+  <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-e773685c.js">
   <link rel="modulepreload" crossorigin href="/roomie/assets/axios-28bc18a3.js">
-  <link rel="stylesheet" href="/roomie/assets/bootstrap-535f5e47.css">
+  <link rel="stylesheet" href="/roomie/assets/bootstrap-9c7aaa2e.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-md bg-white border-bottom">
@@ -768,24 +769,32 @@
                     <ul class="p-3 dropdown-menu bg-light" aria-labelledby="dropdownMenuClickableInside" style="width: 450px;">
                       <li class="pb-2 d-flex justify-content-start gap-3">
                         <div>
-                            <p class="fw-bold">鄰近</p>
+                            <p class="fw-bold" style="white-space: nowrap;">鄰近</p>
                         </div>
-                        <div class="d-flex gap-2">
+                        <div class="d-flex gap-2 flex-wrap">
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="closeTo1" value="closeToOption1">
+                                <input class="form-check-input cursor lifeEquipmentCheckbox" type="checkbox" id="closeTo1" value="closeToOption1">
                                 <label class="form-check-label cursor" for="closeTo1">學校</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="closeTo2" value="closeToOption2">
+                                <input class="form-check-input cursor lifeEquipmentCheckbox" type="checkbox" id="closeTo2" value="closeToOption2">
                                 <label class="form-check-label cursor" for="closeTo2">商圈</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="closeTo3" value="closeToOption3">
-                                <label class="form-check-label cursor" for="closeTo3">捷運站</label>
+                                <input class="form-check-input cursor lifeEquipmentCheckbox" type="checkbox" id="closeTo3" value="closeToOption3">
+                                <label class="form-check-label cursor" for="closeTo3">公園</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="closeTo4" value="closeToOption4">
-                                <label class="form-check-label cursor" for="closeTo10">醫療機構</label>
+                                <input class="form-check-input cursor lifeEquipmentCheckbox" type="checkbox" id="closeTo4" value="closeToOption4">
+                                <label class="form-check-label cursor" for="closeTo4">夜市</label>
+                            </div>
+                            <div class="form-check cursor">
+                                <input class="form-check-input cursor lifeEquipmentCheckbox" type="checkbox" id="closeTo5" value="closeToOption5">
+                                <label class="form-check-label cursor" for="closeTo5">捷運站</label>
+                            </div>
+                            <div class="form-check cursor">
+                                <input class="form-check-input cursor lifeEquipmentCheckbox" type="checkbox" id="closeTo6" value="closeToOption6">
+                                <label class="form-check-label cursor" for="closeTo6">醫療機構</label>
                             </div>
                         </div>
                       </li>
@@ -795,41 +804,64 @@
                         </div>
                         <div class="d-flex gap-2 flex-wrap">
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="device1" value="deviceOption1">
-                                <label class="form-check-label cursor" for="device1">網路</label>
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device1" value="deviceOption1">
+                                <label class="form-check-label cursor" for="device1">床</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="device2" value="deviceOption2">
-                                <label class="form-check-label cursor" for="device2">冰箱</label>
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device2" value="deviceOption2">
+                                <label class="form-check-label cursor" for="device2">衣櫃</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="device3" value="deviceOption3">
-                                <label class="form-check-label cursor" for="device3">電視</label>
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device3" value="deviceOption3">
+                                <label class="form-check-label cursor" for="device3">沙發</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="device4" value="deviceOption4">
-                                <label class="form-check-label cursor" for="device4">冷氣</label>
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device4" value="deviceOption4">
+                                <label class="form-check-label cursor" for="device4">桌子</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="device5" value="deviceOption5">
-                                <label class="form-check-label cursor" for="device5">洗衣機</label>
-                            </div>
-
-                            <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="furniture1" value="furnitureOption1">
-                                <label class="form-check-label cursor" for="furniture1">椅子</label>
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device5" value="deviceOption5">
+                                <label class="form-check-label cursor" for="device5">椅子</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="furniture2" value="furnitureOption2">
-                                <label class="form-check-label cursor" for="furniture2">桌子</label>
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device6" value="deviceOption6">
+                                <label class="form-check-label cursor" for="device6">網路</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="furniture3" value="furnitureOption3">
-                                <label class="form-check-label cursor" for="furniture3">衣櫃</label>
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device7" value="deviceOption7">
+                                <label class="form-check-label cursor" for="device7">冰箱</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="furniture4" value="furnitureOption4">
-                                <label class="form-check-label cursor" for="furniture4">床</label>
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device8" value="deviceOption8">
+                                <label class="form-check-label cursor" for="device8">電視</label>
+                            </div>
+                            <div class="form-check cursor">
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device9" value="deviceOption9">
+                                <label class="form-check-label cursor" for="device9">冷氣</label>
+                            </div>
+                            <div class="form-check cursor">
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device10" value="deviceOption10">
+                                <label class="form-check-label cursor" for="device10">電梯</label>
+                            </div>
+                            <div class="form-check cursor">
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device11" value="deviceOption11">
+                                <label class="form-check-label cursor" for="device11">洗衣機</label>
+                            </div>
+                            <div class="form-check cursor">
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device12" value="deviceOption12">
+                                <label class="form-check-label cursor" for="device12">熱水器</label>
+                            </div>
+                            <div class="form-check cursor">
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device13" value="deviceOption13">
+                                <label class="form-check-label cursor" for="device13">天然瓦斯</label>
+                            </div>
+                            <div class="form-check cursor">
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device14" value="deviceOption14">
+                                <label class="form-check-label cursor" for="device14">機車車位</label>
+                            </div>
+                            <div class="form-check cursor">
+                                <input class="form-check-input cursor equipmentCheckbox" type="checkbox" id="device15" value="deviceOption15">
+                                <label class="form-check-label cursor" for="device15">汽車車位</label>
                             </div>
                         </div>
                       </li>
@@ -839,15 +871,15 @@
                         </div>
                         <div class="d-flex gap-2">
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="identity1" value="identityOption1">
+                                <input class="form-check-input cursor identityCheckbox" type="checkbox" id="identity1" value="identityOption1">
                                 <label class="form-check-label cursor" for="identity1">學生</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="identity2" value="identityOption2">
+                                <input class="form-check-input cursor identityCheckbox" type="checkbox" id="identity2" value="identityOption2">
                                 <label class="form-check-label cursor" for="identity2">家庭</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="identity3" value="identityOption3">
+                                <input class="form-check-input cursor identityCheckbox" type="checkbox" id="identity3" value="identityOption3">
                                 <label class="form-check-label cursor" for="identity3">上班族</label>
                             </div>
                         </div>
@@ -858,15 +890,15 @@
                         </div>
                         <div class="d-flex gap-2">
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="sex1" value="sexOption1">
+                                <input class="form-check-input cursor genderCheckbox" type="checkbox" id="sex1" value="sexOption1">
                                 <label class="form-check-label cursor" for="sex1">皆可</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="sex2" value="sexOption2">
+                                <input class="form-check-input cursor genderCheckbox" type="checkbox" id="sex2" value="sexOption2">
                                 <label class="form-check-label cursor" for="sex2">男性</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="sex3" value="sexOption3">
+                                <input class="form-check-input cursor genderCheckbox" type="checkbox" id="sex3" value="sexOption3">
                                 <label class="form-check-label cursor" for="sex3">女性</label>
                             </div>
                         </div>
@@ -877,11 +909,11 @@
                         </div>
                         <div class="d-flex gap-2">
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="other1" value="otherOption1">
+                                <input class="form-check-input cursor canPetCookCheckbox" type="checkbox" id="other1" value="otherOption1">
                                 <label class="form-check-label cursor" for="other1">可開伙</label>
                             </div>
                             <div class="form-check cursor">
-                                <input class="form-check-input cursor otherCheckbox" type="checkbox" id="other2" value="otherOption2">
+                                <input class="form-check-input cursor canPetCookCheckbox" type="checkbox" id="other2" value="otherOption2">
                                 <label class="form-check-label cursor" for="other2">可養寵物</label>
                             </div>
                         </div>
@@ -890,9 +922,9 @@
                 </div> 
             </div>
 <!-- 清空按鈕 -->
-            <div class="col-xxl-1 col-xl-1 col-lg-1 py-2 p-lg-0 d-flex justify-content-end justify-content-lg-center cursor">
-                <span class="m-0">清空</span>
-                <button type="button" class="btn-close" aria-label="Close"></button>
+            <div id="close" class="col-xxl-1 col-xl-1 col-lg-1 py-2 p-lg-0 d-flex justify-content-end justify-content-lg-center cursor">
+                <label for="btn-close" class="cursor">清空</label>
+                <button id="btn-close" type="button" class="btn-close" aria-label="Close"></button>
             </div>
 <!-- 搜尋按鈕 -->  
             <div class="col col-xxl-5 col-xl-5 col-lg-5 pb-2 d-flex justify-content-center justify-content-lg-end pb-lg-0">
@@ -906,11 +938,12 @@
 <!-- 麵包屑 --> 
         <div class="row my-3">
             <div class="col">
-                <span><a href="index.html" class="link-dark">首頁</a></span>
-                <span class="material-symbols-outlined link-dark px-2" style="font-size: 16px;transform: translateY(15%);">
-                    arrow_forward_ios
-                </span>
-                <span><a href="rentList.html" class="link-dark fw-bold">合租列表</a></span>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="index.html">首頁</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">合租清單</li>
+                    </ol>
+                </nav>
             </div>
         </div>
 <!-- 分隔線 -->
@@ -1062,27 +1095,6 @@
         <div class="row mb-5">
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center fw-bold">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                    <span class="material-icons align-bottom">
-                        chevron_left
-                    </span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                    <span class="material-icons"> navigate_next </span>
-                    </a>
-                </li>
                 </ul>
             </nav>
         </div>  
@@ -1154,7 +1166,7 @@
 >
   arrow_upward
 </a>
-    
-    
+
+
 </body>
 </html>

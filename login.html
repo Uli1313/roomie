@@ -9,8 +9,10 @@
       rel="stylesheet"
     />
     <title>Login</title>
-    <script type="module" crossorigin src="/roomie/assets/bootstrap.min-78670b47.js"></script>
-    <link rel="stylesheet" href="/roomie/assets/bootstrap-535f5e47.css">
+    <script type="module" crossorigin src="/roomie/assets/login-3e0d1a74.js"></script>
+    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-e773685c.js">
+    <link rel="modulepreload" crossorigin href="/roomie/assets/axios-28bc18a3.js">
+    <link rel="stylesheet" href="/roomie/assets/bootstrap-9c7aaa2e.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-md bg-white border-bottom">
@@ -474,7 +476,7 @@
               Login
             </button>
           </div>
-
+          <!-- 登入 -->
           <div>
             <h3 class="py-12 text-center title-fz">
               May you find the home of your heart's dreams.
@@ -488,24 +490,35 @@
             <hr />
 
             <div class="py-8">
-              <!-- Email & Password -->
+              <!-- Email -->
               <div class="form-floating mb-3">
                 <input
                   type="email"
                   class="form-control"
-                  id="floatingInput"
+                  id="inputEmail"
                   placeholder="name@example.com"
                 />
-                <label for="floatingInput">Email address</label>
+                <label for="inputEmail">Email address</label>
+                <div class="alert-message">
+                  <p id="emailMessage" data-message="註冊信箱">
+                    <span>必填!</span>
+                  </p>
+                </div>
               </div>
-              <div class="form-floating">
+              <!-- Password -->
+              <div class="form-floating mb-3">
                 <input
                   type="password"
                   class="form-control"
-                  id="floatingPassword"
+                  id="inputPassword"
                   placeholder="Password"
                 />
-                <label for="floatingPassword">Password</label>
+                <label for="inputPassword">Password(6-12個英文數字組合)</label>
+                <div class="alert-message">
+                  <p id="passwordMessage" data-message="註冊密碼">
+                    <span>必填!</span>
+                  </p>
+                </div>
               </div>
               <!-- 記住和忘記密碼 -->
               <div class="d-flex justify-content-between py-8">
@@ -521,6 +534,14 @@
                   </label>
                 </div>
                 <a href="forgetPassword.html">忘記密碼</a>
+              </div>
+              <!-- 確認登入 -->
+              <div class="py-4 text-end">
+                <input
+                  type="button"
+                  class="p-2 btn-primary confirmEmail"
+                  value="立即登入"
+                />
               </div>
             </div>
           </div>
@@ -592,6 +613,7 @@
   arrow_upward
 </a>
 
+    
     
   </body>
 </html>

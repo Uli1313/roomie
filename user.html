@@ -17,8 +17,11 @@
     />
     <title>會員專區</title>
     <link rel="icon" type="image/png" href="/roomie/assets/favicon-8f1f900a.ico" />
-    <script type="module" crossorigin src="/roomie/assets/bootstrap.min-78670b47.js"></script>
-    <link rel="stylesheet" href="/roomie/assets/bootstrap-535f5e47.css">
+    <script type="module" crossorigin src="/roomie/assets/user-8ece4f09.js"></script>
+    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-e773685c.js">
+    <link rel="modulepreload" crossorigin href="/roomie/assets/axios-28bc18a3.js">
+    <link rel="modulepreload" crossorigin href="/roomie/assets/sweetalert2.all-b34669d1.js">
+    <link rel="stylesheet" href="/roomie/assets/bootstrap-9c7aaa2e.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-md bg-white border-bottom">
@@ -511,8 +514,8 @@
                     <span class="material-icons card-icon">person</span>
                   </div>
                   <div class="ps-2">
-                    <p class="fs-7 fw-bold">userID</p>
-                    <p class="fs-7">example@gmail.com</p>
+                    <p class="fs-7 fw-bold" id="userNickName">userID</p>
+                    <p class="fs-7" id="userEmail">example@gmail.com</p>
                   </div>
                 </div>
               </li>
@@ -606,22 +609,23 @@
                         <div class="row mt-5">
                           <div class="col-12 col-md-6">
                             <div class="mb-3">
-                              <label for="registerEmail">註冊信箱</label>
+                              <label for="signupEmail">註冊信箱</label>
                               <input
-                                class="form-control rounded-5 mt-3"
+                                class="form-control editable-input rounded-5 mt-3"
                                 type="text"
                                 value="example@gmail.com"
-                                id="registerEmail"
+                                id="signupEmail"
                                 readonly
                               />
                             </div>
                             <div>
                               <label for="nickName">顯示暱稱</label>
                               <input
-                                class="form-control rounded-5 mt-3"
+                                class="form-control editable-input rounded-5 mt-3"
                                 type="text"
                                 value=""
                                 id="nickName"
+                                readonly
                               />
                               <div class="invalid-feedback">請輸入您的暱稱</div>
                             </div>
@@ -632,10 +636,11 @@
                                 >真實姓名</label
                               >
                               <input
-                                class="form-control rounded-5 mt-3"
+                                class="form-control editable-input rounded-5 mt-3"
                                 type="text"
                                 value=""
                                 id="name"
+                                readonly
                               />
                               <div class="invalid-feedback">請輸入您的姓名</div>
                             </div>
@@ -644,11 +649,12 @@
                               <div class="d-flex mt-5">
                                 <div class="form-check form-check-inline">
                                   <input
-                                    class="form-check-input"
+                                    class="form-check-input editable-input"
                                     type="radio"
                                     name="inlineRadioOptions"
                                     id="genderMale"
                                     value="option1"
+                                    disabled
                                   />
                                   <label
                                     class="form-check-label"
@@ -658,11 +664,12 @@
                                 </div>
                                 <div class="form-check form-check-inline">
                                   <input
-                                    class="form-check-input"
+                                    class="form-check-input editable-input"
                                     type="radio"
                                     name="inlineRadioOptions"
                                     id="genderFemal"
                                     value="option2"
+                                    disabled
                                   />
                                   <label
                                     class="form-check-label"
@@ -686,7 +693,7 @@
                             <div class="mb-3">
                               <label for="phone">聯絡電話</label>
                               <input
-                                class="form-control rounded-5 mt-3"
+                                class="form-control editable-input rounded-5 mt-3"
                                 type="text"
                                 value=""
                                 id="phone"
@@ -699,10 +706,11 @@
                             <div>
                               <label for="facebook">FACEBOOK</label>
                               <input
-                                class="form-control rounded-5 mt-3"
+                                class="form-control editable-input rounded-5 mt-3"
                                 type="text"
                                 value=""
                                 id="facebook"
+                                readonly
                               />
                               <div class="invalid-feedback">
                                 請輸入您的 FACEBOOK
@@ -715,10 +723,11 @@
                                 >LINE ID</label
                               >
                               <input
-                                class="form-control rounded-5 mt-3"
+                                class="form-control editable-input rounded-5 mt-3"
                                 type="text"
                                 value=""
                                 id="line"
+                                readonly
                               />
                               <div class="invalid-feedback">
                                 請輸入您的 LINE ID
@@ -751,11 +760,12 @@
                     </div>
                     <form>
                       <div class="mb-3">
-                        <label for="textarea" class="form-label">關於我</label>
+                        <label for="aboutMe" class="form-label">關於我</label>
                         <textarea
                           class="form-control rounded-4"
-                          id="textarea"
+                          id="aboutMe"
                           rows="3"
+                          readonly
                         ></textarea>
                       </div>
                     </form>
@@ -763,14 +773,14 @@
                 </div>
                 <div class="d-flex justify-content-end">
                   <button
-                    class="btn btn-sm btn-primary text-white py-2 px-5 rounded-pill mt-20"
+                    class="infoEdit-btn btn btn-sm btn-primary text-white py-2 px-5 rounded-pill mt-20"
                   >
                     編輯
                   </button>
                 </div>
-                <div class="d-flex justify-content-end d-none">
+                <div class="d-flex justify-content-end">
                   <button
-                    class="btn btn-sm btn-primary text-white py-2 px-5 rounded-pill mt-20"
+                    class="infoSave-btn btn btn-sm btn-primary text-white py-2 px-5 rounded-pill mt-20 d-none"
                   >
                     保存
                   </button>
@@ -786,53 +796,67 @@
               <div class="container">
                 <div class="row">
                   <div class="col">
-                    <form class="needs-validation px-2" novalidate>
-                      <div class="mb10">
-                        <span class="fs-5">重設密碼</span>
-                        <div class="mt-5 mb-3">
-                          <label for="nowPwd">當前密碼</label>
-                          <input
-                            class="form-control rounded-5 mt-3"
-                            type="password"
-                            value=""
-                            id="nowPwd"
-                          />
-                          <div class="invalid-feedback">欄位不得為空</div>
-                        </div>
-                        <div class="mb-3">
-                          <label for="newPwd">設定新密碼</label>
-                          <input
-                            class="form-control rounded-5 mt-3"
-                            type="password"
-                            value=""
-                            id="newPwd"
-                          />
-                          <div class="invalid-feedback">欄位不得為空</div>
-                        </div>
-                        <div class="mb-3">
-                          <label for="confirmPwd">確認新密碼</label>
-                          <input
-                            class="form-control rounded-5 mt-3"
-                            type="password"
-                            value=""
-                            id="confirmPwd"
-                          />
-                          <div class="invalid-feedback">欄位不得為空</div>
-                        </div>
+                    <form
+                      action="#"
+                      class="needs-validation px-2"
+                      id="changePwdForm"
+                      novalidate
+                    >
+                      <span class="fs-5"> 重設密碼</span>
+                      <div class="form-floating">
+                        <input
+                          class="form-control rounded-pill mt-5"
+                          id="nowPwd"
+                          type="password"
+                          placeholder="目前的密碼"
+                          autocomplete="off"
+                          required
+                        />
+                        <label class="form-required" for="nowPwd">
+                          目前的密碼
+                        </label>
+                        <div class="invalid-feedback">欄位不得為空</div>
+                      </div>
+                      <div class="form-floating">
+                        <input
+                          class="form-control rounded-pill mt-5"
+                          id="setNewPwd"
+                          type="password"
+                          placeholder="請輸入新密碼"
+                          autocomplete="off"
+                          name="setNewPwd"
+                          minlength="6"
+                          required
+                        />
+                        <label class="form-required" for="setNewPwd">
+                          請輸入新密碼
+                        </label>
+                        <div class="invalid-feedback">欄位不得為空</div>
+                      </div>
+                      <div class="form-floating">
+                        <input
+                          class="form-control rounded-pill mt-5"
+                          id="rePwd"
+                          type="password"
+                          placeholder="再次輸入新密碼"
+                          autocomplete="off"
+                          name="rePwd"
+                          minlength="6"
+                          required
+                        />
+                        <label class="form-required" for="rePwd">
+                          再次輸入新密碼
+                        </label>
+                        <div class="invalid-feedback">欄位不得為空</div>
                       </div>
                       <div class="d-flex justify-content-end">
                         <button
-                          class="btn btn-sm btn-primary text-white py-2 px-5 rounded-pill mt-20"
+                          type="submit"
+                          class="btn btn-sm btn-secondary rounded-pill px-5 py-2 mt-5"
+                          id="save-changePwd"
                         >
-                          編輯
+                          更改密碼
                         </button>
-                        <div class="d-flex justify-content-end d-none">
-                          <button
-                            class="btn btn-sm btn-primary text-white py-2 px-5 rounded-pill mt-20"
-                          >
-                            保存
-                          </button>
-                        </div>
                       </div>
                     </form>
                   </div>
@@ -907,7 +931,7 @@
 >
   arrow_upward
 </a>
-
+    
     
   </body>
 </html>

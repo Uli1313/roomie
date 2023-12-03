@@ -9,10 +9,11 @@
       rel="stylesheet"
     />
     <title>Sign Up</title>
-    <script type="module" crossorigin src="/roomie/assets/signup-6959a892.js"></script>
-    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-78670b47.js">
+    <script type="module" crossorigin src="/roomie/assets/signup-aaf5042d.js"></script>
+    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-e773685c.js">
     <link rel="modulepreload" crossorigin href="/roomie/assets/axios-28bc18a3.js">
-    <link rel="stylesheet" href="/roomie/assets/bootstrap-535f5e47.css">
+    <link rel="modulepreload" crossorigin href="/roomie/assets/transform-18031762.js">
+    <link rel="stylesheet" href="/roomie/assets/bootstrap-9c7aaa2e.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-md bg-white border-bottom">
@@ -463,7 +464,7 @@
         <div class="col-lg-6 img-lg">
           <img src="/roomie/assets/membership-cover-61db3d66.png" alt="" />
         </div>
-        <!-- 登入介面 -->
+        <!-- 註冊介面 -->
         <div class="col-lg-6">
           <!-- 登入或註冊 -->
           <div class="py-5 text-end">
@@ -563,8 +564,23 @@
                 <input
                   type="button"
                   class="p-2 btn-primary confirmEmail"
-                  value="確認送出"
+                  value="確認註冊"
                 />
+              </div>
+              <!-- 確認驗證碼 -->
+              <div class="py-4 securityCode-container">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputSecurityCode"
+                  placeholder="請輸入驗證碼(可以搜尋是否在垃圾郵件裡)"
+                />
+                <input
+                  type="button"
+                  class="btn-primary confirmSecurityCode"
+                  value="確認驗證碼"
+                />
+                <div class="ml-1 signup-success-message"></div>
               </div>
             </div>
           </div>
@@ -637,6 +653,7 @@
 </a>
 
     
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     
   </body>
 </html>
