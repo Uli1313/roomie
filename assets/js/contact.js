@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 
 // const baseUrl = 'http://localhost:3000';
-const baseUrl = 'https://roomie-nnwq.onrender.com';
+const baseUrl = 'https://roomie-lfta.onrender.com/';
 const apiPath = '/contacts';
 const apiUrl = `${baseUrl}${apiPath}`;
 const contactForm = document.querySelector('.contact-form');
