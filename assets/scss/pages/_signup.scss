@@ -16,3 +16,17 @@
   margin-left: 5px;
   font-weight: bold;
 }
+.securityCode-container {
+  display: none;
+
+  #inputSecurityCode {
+    width: 75%;
+  }
+  .signup-success-message {
+    width: 20%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: green;
+  }
+}

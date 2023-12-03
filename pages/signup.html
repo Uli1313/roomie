@@ -18,7 +18,7 @@
         <div class="col-lg-6 img-lg">
           <img src="../assets/images/membership-cover.png" alt="" />
         </div>
-        <!-- 登入介面 -->
+        <!-- 註冊介面 -->
         <div class="col-lg-6">
           <!-- 登入或註冊 -->
           <div class="py-5 text-end">
@@ -118,8 +118,23 @@
                 <input
                   type="button"
                   class="p-2 btn-primary confirmEmail"
-                  value="確認送出"
+                  value="確認註冊"
                 />
+              </div>
+              <!-- 確認驗證碼 -->
+              <div class="py-4 securityCode-container">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputSecurityCode"
+                  placeholder="請輸入驗證碼(可以搜尋是否在垃圾郵件裡)"
+                />
+                <input
+                  type="button"
+                  class="btn-primary confirmSecurityCode"
+                  value="確認驗證碼"
+                />
+                <div class="ml-1 signup-success-message"></div>
               </div>
             </div>
           </div>
@@ -129,6 +144,7 @@
     <%-include('./layout/footer'); -%>
 
     <script type="module" src="../main.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script type="module" src="/assets/js/signup.js"></script>
   </body>
 </html>
