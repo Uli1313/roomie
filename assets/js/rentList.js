@@ -1,13 +1,119 @@
 import axios from 'axios';
 
-const url = 'https://roomie-nnwq.onrender.com/';
+const url = 'https://roomie-lfta.onrender.com/';
+
+// 分頁
+let totalData ;
+let totalPages ;
+let limit = 4 ; 
+let currentPage = 1 ;
+let resultUrl = '';
+let pagination = document.querySelector(".pagination");
+
 
 // 進頁面及渲染 (依點閱率)
-axios.get(`${url}rents?_sort=view&_order=desc`)
-.then(function(res){
-    // console.log(res.data);
-    let api = res.data ;
-    render(api);
+function inRender(){
+    resultUrl = '_sort=view&_order=desc';
+    axios.get(`${url}rents?${resultUrl}`)
+    .then(function(res){
+        let api = res.data ;
+        // render(api);
+        getData(resultUrl,currentPage, limit);
+        paginationPN(api);
+    });
+}
+inRender();
+
+
+
+
+// 頁碼本身渲染(有幾頁)
+function paginationPN(api){
+    totalData = api.length;
+    totalPages = Math.ceil(totalData / limit);
+    let str = "";
+    // 組上一頁
+    str += `<li class="page-item">
+    <a class="page-link" href="#" aria-label="Previous">
+        <span class="material-icons align-bottom">
+        chevron_left
+        </span>
+    </a>
+    </li>`;
+    // 組中間頁數
+    for (let i = 1; i <= totalPages; i++) {
+        str += `<li class="page-item">
+        <a class="page-link" href="#">${i}</a>
+    </li>`;
+    }
+    // 組下一頁
+    str += `<li class="page-item">
+    <a class="page-link" href="#" aria-label="Next">
+        <span class="material-icons"> navigate_next </span>
+    </a>
+    </li>`;
+    pagination.innerHTML = str;
+
+    // 移除上、下一頁按鈕的 focus 效果
+    const pageLink = document.querySelectorAll(".page-link");
+    pageLink.forEach((e) => {
+        
+        if (e.textContent.trim() === "chevron_left" || e.textContent.trim() === "navigate_next") {
+            e.blur();
+        }
+    });
+    // 當前頁增加 active
+    pageLink[currentPage].classList.add("active");
+    
+}
+
+
+// 渲染當前頁面資料(第幾頁)
+function getData(resultUrl,currentPage, limit) {
+    axios.get(`${url}rents?${resultUrl}&_page=${currentPage}&_limit=${limit}`)
+      .then((res) => {
+        let api = res.data ;
+        render(api);
+      })
+}
+
+// 監聽分頁
+pagination.addEventListener("click", (e) => {
+    // 移除所有 active 樣式
+    const pageLink = document.querySelectorAll(".page-link");
+    pageLink.forEach((e) => {
+      e.classList.remove("active");
+    });
+    // 判斷點擊的位置
+    if (e.target.textContent.trim() === "chevron_left") {
+      // 上一頁按鈕
+      // 當前已是最前頁則在該頁加上 active ，不重新撈取資料
+      if (currentPage === 1) {
+        pageLink[currentPage].classList.add("active");
+        return;
+      }
+      if (currentPage > 1) {
+        currentPage--;
+        pageLink[currentPage].classList.add("active");
+        getData(resultUrl,currentPage, limit);
+      }
+    } else if (e.target.textContent.trim() === "navigate_next") {
+      // 下一頁按鈕
+      if (currentPage === totalPages) {
+        pageLink[currentPage].classList.add("active");
+        return;
+      }
+      if (currentPage < totalPages) {
+        currentPage++;
+        pageLink[currentPage].classList.add("active");
+        getData(resultUrl,currentPage, limit);
+      }
+    } else {
+      // 數字按鈕
+      currentPage = Number(e.target.textContent.trim());
+      pageLink[currentPage].classList.add("active");
+      getData(resultUrl,currentPage, limit);
+    }
 });
 
 
@@ -40,7 +146,7 @@ function renderList(api){
                     <div class="col-12 col-md-9 py-3 px-5 border border-start-sm-0 bg-white rounded-bottom rounded-md-end">
                         <ul>
                             <li class="w-100 d-flex justify-content-between align-items-center py-2">
-                                <a href="rentArticle.html?id=${v.id}" class="h3 link-dark">${v.title}</a> 
+                                <a href="rentArticle.html?id=${v.id}" class="h3 link-dark link-title">${v.title}</a> 
                                 <button class="p-3 link-dark hover-primary border-0 rounded-3">
                                     <span class="material-symbols-outlined">heart_plus</span>
                                 </button></li>
@@ -67,6 +173,47 @@ function renderList(api){
                 </div>`
     });
     list.innerHTML = div ;
+
+    // 處理點擊連結view數會+1
+    let linkTitles = document.querySelectorAll('.link-title');
+
+    linkTitles.forEach(linkTitle => {
+        linkTitle.addEventListener('click', function(e) {
+
+            // 先阻止直接進入連結
+            e.preventDefault();
+
+            // 取到點擊連結的id
+            const currentUrl = new URL(e.target.href);
+            const searchParams = new URLSearchParams(currentUrl.search);
+            const id = searchParams.get('id');
+
+            // 先get出資料取得他的原本view數
+            axios.get(`${url}rents/${id}`)
+            .then(function(res) {
+                const api = res.data; // 假設後端回傳的資料是一個 rent 物件
+
+                // 建立view數+1的物件
+                let newData = {
+                    'view': parseInt(api.view) + 1
+                }
+
+                // patch讓帶入view數+1的物件
+                axios.patch(`${url}rents/${id}`,newData)
+                .then(function(res) {
+                    // 處理完最後進入連結
+                    window.location.href = e.target.href;
+                })
+                .catch(function(err) {
+                    console.error(err);
+                });
+            })
+            .catch(function(err) {
+                console.error(err);
+            });
+        });
+    });
+
 };
 
 
@@ -74,11 +221,11 @@ function renderList(api){
 function renderListNoFound(){
     let list = document.querySelector('#list')
     let div = `
-                <div class="row p-1 my-4 rounded">
-                    <div class="col bg-white rounded p-7 d-flex flex-column justify-content-center align-items-center">
+                <div class="row rounded">
+                    <div class="col bg-white rounded m-5 p-5 d-flex flex-column justify-content-center align-items-center ">
                         <p>¯\_(ツ)_/¯</p>
                         <p class="p-2 h5">對不起，沒有找到適合您的物件！</p>
-                        <p>建議您：重新輸入"關鍵字"搜尋試試看唷～</p>
+                        <p>建議您：重新篩選或搜尋試試看唷～</p>
                     </div>
                 </div>`;
     list.innerHTML = div ;
@@ -125,8 +272,8 @@ function sortPrice(api){
 // 綜合渲染畫面 (畫面、租金、時間)
 function render(api){
     renderList(api);  
-    sortDate(api);
     sortPrice(api);
+    sortDate(api);
 }
 
 
@@ -138,15 +285,14 @@ let submit = document.querySelector('#submit');
 submit.addEventListener('click',function(e){
     // 取出輸入的值
     let inputValue = search.value;
- 
+    let resultUrl = `q=${inputValue}`;
     // 關鍵字搜尋
     axios.get(`${url}rents?q=${inputValue}`)
     .then(function(res){
         let api = res.data ;
         if (api.length > 0) {
-            renderList(api);
-            sortDate(api);
-            sortPrice(api);
+            getData(resultUrl,currentPage, limit);
+            paginationPN(api);
         } else {
             renderListNoFound();
         }       
@@ -288,11 +434,13 @@ axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf2651528171
                 
             }
 
-            let resultUrl = urlStr + urlPrice ;
+            resultUrl = urlStr + urlPrice ;
             axios.get(`${url}rents?${resultUrl}`)
             .then(function(res){
                 if (res.data.length > 0){
-                    render(res.data);
+                    let api = res.data;
+                    getData(resultUrl,currentPage, limit);
+                    paginationPN(api);
                 } else {
                     renderListNoFound()
                 }
@@ -337,11 +485,13 @@ axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf2651528171
                 
             }
 
-            let resultUrl = urlStr + urlPrice ;
+            resultUrl = urlStr + urlPrice ;
             axios.get(`${url}rents?${resultUrl}`)
             .then(function(res){
                 if (res.data.length > 0){
-                    render(res.data);
+                    let api = res.data;
+                    getData(resultUrl,currentPage, limit);
+                    paginationPN(api);
                 } else {
                     renderListNoFound()
                 }
@@ -357,6 +507,8 @@ let close = document.querySelector('#close');
 close.addEventListener('click',function(e){
     location.reload();
 });
+
+
 
 
 

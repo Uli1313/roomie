@@ -23,6 +23,25 @@
     />
 </head>
 <body>
+<!-- modal -->
+<div class="img-modal justify-content-center align-items-center d-none">
+    <ul>
+        <div class="d-flex justify-content-center align-items-center m-5">
+            <li class="position-relative">
+                <span class="material-symbols-outlined img-arrow-left cursor arrow">chevron_left</span>
+                <img 
+                class="img-fluid rounded img-main" 
+                src="" 
+                alt="租屋圖片"
+                data-id="">
+                <span class="material-symbols-outlined img-arrow-right cursor arrow">chevron_right</span>
+            </li>
+        </div>
+        <div class="d-flex justify-content-center align-items-center gap-5 img-group">
+            
+        </div>
+    </ul>
+</div>
 <%- include('./layout/header'); -%>
 <div class="container">
 <!-- 麵包屑 -->
@@ -30,9 +49,9 @@
         <div class="col">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">首頁</a></li>
-                  <li class="breadcrumb-item"><a href="#">合租列表</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">新竹市科學園區套房找室友</li>
+                  <li class="breadcrumb-item"><a href="index.html">首頁</a></li>
+                  <li class="breadcrumb-item"><a href="rentList.html">合租列表</a></li>
+                  <li class="breadcrumb-item active current-page" aria-current="page"></li>
                 </ol>
             </nav>
         </div>
@@ -41,10 +60,14 @@
     <div class="row" style="height: 50px;"></div>
     <div class="row mb-5 justify-content-between align-items-center">
         <div class="col">
-            <h1 class="article-title h1 fs-md-2 fs-sm-3"></h1>
+            <h1 class="article-title h1 fs-md-2 fs-sm-3">
+
+            </h1>
         </div>
         <div class="col-1 d-flex justify-content-end">
-            <button class="p-3 link-dark border-0 rounded-3 hover-custom d-flex align-items-center"><span class="material-symbols-outlined">heart_plus</span></button>
+            <button class="favorite p-3 link-dark border-0 rounded-3 hover-custom d-flex align-items-center">
+                <span class="material-symbols-outlined">heart_plus</span>
+            </button>
         </div>
     </div>
 <!-- 圖片 -->
@@ -54,7 +77,9 @@
 <!-- 價錢 -->
         <div class="row">
             <div class="col">
-                <p class="article-price h1 text-danger text-end">20,000元/月</p>
+                <p class="article-price h1 text-danger text-end">
+
+                </p>
             </div>
         </div>
 <!-- 詳細資料 -->
@@ -176,6 +201,8 @@
             </div>
         </div>
 </div>
+
+
 <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>
     <script type="module" src="/assets/js/rentArticle.js"></script>
