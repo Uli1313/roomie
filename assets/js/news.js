@@ -1,14 +1,38 @@
 import axios from "axios";
 // const url = "http://localhost:3000";
-const url = "https://roomie-nnwq.onrender.com";
+const url = "https://roomie-lfta.onrender.com";
 
 let newsData;
 let currentPage = 1;
 const limit = 2;
 const newsList = document.querySelector(".news-list");
 const pagination = document.querySelector(".pagination");
+const newsSearch = document.querySelector(".news-search");
 let totalNews;
 let pageCount;
+
+// 搜尋
+newsSearch.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const value = document.querySelector(".news-search-input").value.trim();
+  if (value === "") {
+    getTotalData();
+    getData(currentPage, limit);
+  } else {
+    axios
+      .get(`${url}/news?title_like=${value}`)
+      .then((res) => {
+        const filterData = res.data;
+        totalNews = res.data.length;
+        pageCount = Math.ceil(totalNews / limit);
+        createPagination(pageCount);
+        renderNews(filterData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+});
 
 // 取得資料長度計算要幾頁
 function getTotalData() {
@@ -56,7 +80,7 @@ function getData(page, limit) {
     .get(`${url}/news?_sort=date&_order=desc&_page=${page}&_limit=${limit}`)
     .then((res) => {
       newsData = res.data;
-      renderNews(page);
+      renderNews(newsData);
     })
     .catch((err) => {
       console.log(err);
@@ -66,7 +90,7 @@ function getData(page, limit) {
 // 渲染當前頁資料
 function renderNews(page) {
   let str = "";
-  newsData.forEach((e) => {
+  page.forEach((e) => {
     str += `
       <li
       class="news-item d-flex align-items-center position-relative link-dark fw-bold py-4 py-md-6"

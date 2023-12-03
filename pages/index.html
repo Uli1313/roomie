@@ -45,31 +45,31 @@
               class="bg-light-200 rounded-pill p-2 mb-3 position-relative d-lg-none"
             >
               <select
-                class="test form-select bg-white p-2 ps-10"
+                class="banner-mobile-search form-select bg-white p-2 ps-10"
                 aria-label="Default select"
               >
                 <option disabled selected hidden>選擇地區</option>
-                <option value="Taipei">台北市</option>
-                <option value="NewTaipei">新北市</option>
-                <option value="Taoyuan">桃園市</option>
-                <option value="Taichung">台中市</option>
-                <option value="Tainan">台南市</option>
-                <option value="Kaohsiung">高雄市</option>
-                <option value="Keelung">基隆市</option>
-                <option value="Hsinchu">新竹市</option>
-                <option value="HsinchuCounty">新竹縣</option>
-                <option value="Miaoli">苗栗縣</option>
-                <option value="Changhua">彰化縣</option>
-                <option value="Nantou">南投縣</option>
-                <option value="Yunlin">雲林縣</option>
-                <option value="Chiayi">嘉義市</option>
-                <option value="ChiayiCounty">嘉義縣</option>
-                <option value="Pingtung">屏東縣</option>
-                <option value="Taitung">台東縣</option>
-                <option value="Hualien">花蓮縣</option>
-                <option value="Penghu">澎湖縣</option>
-                <option value="Kinmen">金門縣</option>
-                <option value="Lienchiang">連江縣</option>
+                <option value="臺北市">臺北市</option>
+                <option value="新北市">新北市</option>
+                <option value="桃園市">桃園市</option>
+                <option value="臺中市">臺中市</option>
+                <option value="臺南市">臺南市</option>
+                <option value="高雄市">高雄市</option>
+                <option value="基隆市">基隆市</option>
+                <option value="新竹市">新竹市</option>
+                <option value="新竹縣">新竹縣</option>
+                <option value="苗栗縣">苗栗縣</option>
+                <option value="彰化縣">彰化縣</option>
+                <option value="南投縣">南投縣</option>
+                <option value="雲林縣">雲林縣</option>
+                <option value="嘉義市">嘉義市</option>
+                <option value="嘉義縣">嘉義縣</option>
+                <option value="屏東縣">屏東縣</option>
+                <option value="臺東縣">臺東縣</option>
+                <option value="花蓮縣">花蓮縣</option>
+                <option value="澎湖縣">澎湖縣</option>
+                <option value="金門縣">金門縣</option>
+                <option value="連江縣">連江縣</option>
               </select>
               <span
                 class="material-icons-outlined position-absolute top-0 pt-4 ps-2"
@@ -80,14 +80,14 @@
             <!-- search bar -->
             <div class="banner-search p-md-6 mb-3 rounded-pill rounded-md-10">
               <form
-                class="d-flex align-items-center justify-content-end"
+                class="banner-search-form d-flex align-items-center justify-content-end"
                 role="search"
               >
                 <div
                   class="bg-light-200 p-2 p-md-0 rounded-pill position-relative me-2 w-100"
                 >
                   <input
-                    class="form-control ps-11 py-2 py-md-4 bg-white"
+                    class="banner-search-input form-control ps-11 py-2 py-md-4 bg-white"
                     type="search"
                     placeholder="搜尋"
                     aria-label="Search"
@@ -109,167 +109,17 @@
             >
               <div class="py-2 py-md-3 px-3 px-md-4">
                 <!-- 未選擇縣市 -->
-                <p class="fs-7">
+                <p class="county-unselected fs-7">
                   為您推薦<span class="mx-2 fw-bold text-primary">近期</span
                   >熱門房屋物件
                 </p>
                 <!-- 已選擇縣市 -->
-                <div class="d-flex align-items-end d-none">
-                  <span class="material-icons text-primary"> location_on </span>
-                  <h6 class="text-primary fs-4 me-2">桃園市</h6>
-                  <p class="fs-7">
-                    熱門房屋物件<span class="mx-2 fw-bold text-primary">12</span
-                    >件
-                  </p>
-                </div>
+                <div
+                  class="county-selected d-flex align-items-end d-none"
+                ></div>
               </div>
               <!-- popular rent list -->
-              <div class="banner-rent overflow-auto scrollbar-po">
-                <div
-                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
-                >
-                  <img
-                    class="banner-rent-img object-fit-cover rounded-3"
-                    src="/assets/images/room-1.png"
-                    alt=""
-                  />
-                  <div class="d-flex flex-column justify-content-between">
-                    <p class="lh-sm fs-md-5">
-                      永和雅房轉租出租 - 近捷運永安市場站
-                    </p>
-                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
-                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
-                    </p>
-                  </div>
-                  <a href="##" class="stretched-link"></a>
-                </div>
-                <div
-                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
-                >
-                  <img
-                    class="banner-rent-img object-fit-cover rounded-3"
-                    src="/assets/images/room-1.png"
-                    alt=""
-                  />
-                  <div class="d-flex flex-column justify-content-between">
-                    <p class="lh-sm fs-md-5">
-                      永和雅房轉租出租 - 近捷運永安市場站
-                    </p>
-                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
-                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
-                    </p>
-                  </div>
-                  <a href="##" class="stretched-link"></a>
-                </div>
-                <div
-                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
-                >
-                  <img
-                    class="banner-rent-img object-fit-cover rounded-3"
-                    src="/assets/images/room-1.png"
-                    alt=""
-                  />
-                  <div class="d-flex flex-column justify-content-between">
-                    <p class="lh-sm fs-md-5">
-                      永和雅房轉租出租 - 近捷運永安市場站
-                    </p>
-                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
-                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
-                    </p>
-                  </div>
-                  <a href="##" class="stretched-link"></a>
-                </div>
-                <div
-                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
-                >
-                  <img
-                    class="banner-rent-img object-fit-cover rounded-3"
-                    src="/assets/images/room-1.png"
-                    alt=""
-                  />
-                  <div class="d-flex flex-column justify-content-between">
-                    <p class="lh-sm fs-md-5">
-                      永和雅房轉租出租 - 近捷運永安市場站
-                    </p>
-                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
-                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
-                    </p>
-                  </div>
-                  <a href="##" class="stretched-link"></a>
-                </div>
-                <div
-                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
-                >
-                  <img
-                    class="banner-rent-img object-fit-cover rounded-3"
-                    src="/assets/images/room-1.png"
-                    alt=""
-                  />
-                  <div class="d-flex flex-column justify-content-between">
-                    <p class="lh-sm fs-md-5">
-                      永和雅房轉租出租 - 近捷運永安市場站
-                    </p>
-                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
-                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
-                    </p>
-                  </div>
-                  <a href="##" class="stretched-link"></a>
-                </div>
-                <div
-                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
-                >
-                  <img
-                    class="banner-rent-img object-fit-cover rounded-3"
-                    src="/assets/images/room-1.png"
-                    alt=""
-                  />
-                  <div class="d-flex flex-column justify-content-between">
-                    <p class="lh-sm fs-md-5">
-                      永和雅房轉租出租 - 近捷運永安市場站
-                    </p>
-                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
-                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
-                    </p>
-                  </div>
-                  <a href="##" class="stretched-link"></a>
-                </div>
-                <div
-                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
-                >
-                  <img
-                    class="banner-rent-img object-fit-cover rounded-3"
-                    src="/assets/images/room-1.png"
-                    alt=""
-                  />
-                  <div class="d-flex flex-column justify-content-between">
-                    <p class="lh-sm fs-md-5">
-                      永和雅房轉租出租 - 近捷運永安市場站
-                    </p>
-                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
-                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
-                    </p>
-                  </div>
-                  <a href="##" class="stretched-link"></a>
-                </div>
-                <div
-                  class="banner-rent-item d-flex p-3 py-md-4 px-md-5 gap-2 gap-md-4 position-relative"
-                >
-                  <img
-                    class="banner-rent-img object-fit-cover rounded-3"
-                    src="/assets/images/room-1.png"
-                    alt=""
-                  />
-                  <div class="d-flex flex-column justify-content-between">
-                    <p class="lh-sm fs-md-5">
-                      永和雅房轉租出租 - 近捷運永安市場站
-                    </p>
-                    <p class="text-primary fw-bold lh-sm fs-7 fs-md-5">
-                      <span class="fs-4 fs-md-3 me-1">9,500</span>元/月
-                    </p>
-                  </div>
-                  <a href="##" class="stretched-link"></a>
-                </div>
-              </div>
+              <ul class="banner-rent overflow-auto scrollbar-po"></ul>
             </div>
           </div>
         </div>
@@ -382,8 +232,8 @@
               最新物件
             </h2>
             <div class="swiper latest-rent-swiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
+              <div class="swiper-wrapper latest-rent-item">
+                <!-- <div class="swiper-slide">
                   <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
                     <img
                       class="latest-rent-img"
@@ -557,7 +407,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
