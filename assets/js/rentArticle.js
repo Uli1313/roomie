@@ -31,16 +31,16 @@ axios.get(`${url}rents/${getUrlId}?_expand=user`)
 
     let favorite = document.querySelector('.favorite');
     
-    favorite.addEventListener('click',function(e){
-        let data = {
-            "rentId": getUrlId,
-            "userId": 1
-          };
-        axios.post(`${url}favorites`,data)
-        .then(function(res){
-            console.log(res);
-        });
-    });
+    // favorite.addEventListener('click',function(e){
+    //     let data = {
+    //         "rentId": getUrlId,
+    //         "userId": 1
+    //       };
+    //     axios.post(`${url}favorites`,data)
+    //     .then(function(res){
+    //         console.log(res);
+    //     });
+    // });
 });
 
 // GET留言資料

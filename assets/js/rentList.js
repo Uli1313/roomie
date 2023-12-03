@@ -20,6 +20,7 @@ function inRender(){
         // render(api);
         getData(resultUrl,currentPage, limit);
         paginationPN(api);
+        console.log(api);
     });
 }
 inRender();
@@ -74,6 +75,7 @@ function getData(resultUrl,currentPage, limit) {
       .then((res) => {
         let api = res.data ;
         render(api);
+        
       })
 }
 
