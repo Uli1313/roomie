@@ -2,121 +2,9 @@ import axios from 'axios';
 
 const url = 'https://roomie-lfta.onrender.com/';
 
-// 分頁
-let totalData ;
-let totalPages ;
-let limit = 4 ; 
-let currentPage = 1 ;
+// 紀錄資料
 let resultUrl = '';
-let pagination = document.querySelector(".pagination");
-
-
-// 進頁面及渲染 (依點閱率)
-function inRender(){
-    resultUrl = '_sort=view&_order=desc';
-    axios.get(`${url}rents?${resultUrl}`)
-    .then(function(res){
-        let api = res.data ;
-        // render(api);
-        getData(resultUrl,currentPage, limit);
-        paginationPN(api);
-        console.log(api);
-    });
-}
-inRender();
-
-
-
-
-// 頁碼本身渲染(有幾頁)
-function paginationPN(api){
-    totalData = api.length;
-    totalPages = Math.ceil(totalData / limit);
-    let str = "";
-    // 組上一頁
-    str += `<li class="page-item">
-    <a class="page-link" href="#" aria-label="Previous">
-        <span class="material-icons align-bottom">
-        chevron_left
-        </span>
-    </a>
-    </li>`;
-    // 組中間頁數
-    for (let i = 1; i <= totalPages; i++) {
-        str += `<li class="page-item">
-        <a class="page-link" href="#">${i}</a>
-    </li>`;
-    }
-    // 組下一頁
-    str += `<li class="page-item">
-    <a class="page-link" href="#" aria-label="Next">
-        <span class="material-icons"> navigate_next </span>
-    </a>
-    </li>`;
-    pagination.innerHTML = str;
-
-    // 移除上、下一頁按鈕的 focus 效果
-    const pageLink = document.querySelectorAll(".page-link");
-    pageLink.forEach((e) => {
-        
-        if (e.textContent.trim() === "chevron_left" || e.textContent.trim() === "navigate_next") {
-            e.blur();
-        }
-    });
-    // 當前頁增加 active
-    pageLink[currentPage].classList.add("active");
-    
-}
-
-
-// 渲染當前頁面資料(第幾頁)
-function getData(resultUrl,currentPage, limit) {
-    axios.get(`${url}rents?${resultUrl}&_page=${currentPage}&_limit=${limit}`)
-      .then((res) => {
-        let api = res.data ;
-        render(api);
-        
-      })
-}
-
-// 監聽分頁
-pagination.addEventListener("click", (e) => {
-    // 移除所有 active 樣式
-    const pageLink = document.querySelectorAll(".page-link");
-    pageLink.forEach((e) => {
-      e.classList.remove("active");
-    });
-    // 判斷點擊的位置
-    if (e.target.textContent.trim() === "chevron_left") {
-      // 上一頁按鈕
-      // 當前已是最前頁則在該頁加上 active ，不重新撈取資料
-      if (currentPage === 1) {
-        pageLink[currentPage].classList.add("active");
-        return;
-      }
-      if (currentPage > 1) {
-        currentPage--;
-        pageLink[currentPage].classList.add("active");
-        getData(resultUrl,currentPage, limit);
-      }
-    } else if (e.target.textContent.trim() === "navigate_next") {
-      // 下一頁按鈕
-      if (currentPage === totalPages) {
-        pageLink[currentPage].classList.add("active");
-        return;
-      }
-      if (currentPage < totalPages) {
-        currentPage++;
-        pageLink[currentPage].classList.add("active");
-        getData(resultUrl,currentPage, limit);
-      }
-    } else {
-      // 數字按鈕
-      currentPage = Number(e.target.textContent.trim());
-      pageLink[currentPage].classList.add("active");
-      getData(resultUrl,currentPage, limit);
-    }
-});
+let api = [];
 
 
 // 渲染合租文章列表
@@ -234,56 +122,219 @@ function renderListNoFound(){
 };
 
 
+// 進頁面及渲染 (依點閱率)
+function inRender(){
+    resultUrl = '_sort=view&_order=desc';
+    axios.get(`${url}rents?${resultUrl}`)
+    .then(function(res){
+        api = res.data ;
+        renderList(api);
+        paginationPN(api);
+    });
+}
+inRender();
+
+
 // 時間、租金排序 渲染合租文章列表
 let filterDate = document.querySelector('#filterDate');
 let filterPrice = document.querySelector('#filterPrice');
 
-    // 點擊事件 - 時間篩選
-function sortDate(api){
-    // 初始排序狀態
-    let sortOrder = 'desc' ;
+let dateUp = '&_sort=updateDate&_order=asc';
+let dateDown = '&_sort=updateDate&_order=desc' ;
+let priceUp = '&_sort=price&_order=asc';
+let priceDown = '&_sort=price&_order=desc' ;
+let origin = '_sort=view&_order=desc';
+
+// -時間
+function sortdate(){
+    
+    // 監聽時間按鈕
     filterDate.addEventListener('click',function(e){
-        if (sortOrder === 'desc') {
-            api.sort((a, b) => new Date(b.updateDate) - new Date(a.updateDate));
-            sortOrder = 'asc'; 
-        } else {
-            api.sort((a, b) => new Date(a.updateDate) - new Date(b.updateDate));
-            sortOrder = 'desc'; 
+        // 如果resultUrl有含dateUp，變成dateDown
+        if (resultUrl.includes(dateUp)) {
+            resultUrl = resultUrl.replace(dateUp,dateDown);
         }
-        renderList(api);
+        // 如果resultUrl有含dateDown，變成dateUp
+        else if (resultUrl.includes(dateDown)) {
+            resultUrl = resultUrl.replace(dateDown,dateUp);
+        }
+        // 如果resultUrl有含priceUp，變成dateUp
+        else if (resultUrl.includes(priceUp)) {
+            resultUrl = resultUrl.replace(priceUp,dateUp);
+        }
+        // 如果resultUrl有含priceDown，變成dateUp
+        else if (resultUrl.includes(priceDown)) {
+            resultUrl = resultUrl.replace(priceDown,dateUp);
+        }
+        // 如果resultUrl有含origin，變成dateUp
+        else if (resultUrl.includes(origin)) {
+            resultUrl = resultUrl.replace(origin,dateUp);
+        }
+        // 如果都沒有含，變成dateUp
+        else {
+            resultUrl += (resultUrl.includes('?') ? '&' : '?') + dateUp;
+        }
+        
+        // 組好result路徑後，GET資料渲染
+        axios.get(`${url}rents?${resultUrl}`)
+        .then(function(res){
+            api = res.data ;
+            getData(resultUrl,1, limit);
+            currentPage = 1 ;
+            paginationPN(api);
+        });
+
     });
 }
+sortdate();
 
-    // 點擊事件 - 租金篩選
-function sortPrice(api){
-    // 初始排序狀態
-    let sortOrder = 'desc' ;
+// -租金
+function sortPrice(){
+    
+    // 監聽租金按鈕
     filterPrice.addEventListener('click',function(e){
-        if (sortOrder === 'desc') {
-            api.sort((a, b) => new Date(b.price) - new Date(a.price));
-            sortOrder = 'asc'; 
-        } else {
-            api.sort((a, b) => new Date(a.price) - new Date(b.price));
-            sortOrder = 'desc'; 
+        // 如果resultUrl有含PriceUp，變成priceDown
+        if (resultUrl.includes(priceUp)) {
+            resultUrl = resultUrl.replace(priceUp,priceDown);
         }
-        renderList(api);
+        // 如果resultUrl有含dateDown，變成priceUp
+        else if (resultUrl.includes(priceDown)) {
+            resultUrl = resultUrl.replace(priceDown,priceUp);
+        }
+        // 如果resultUrl有含priceUp，變成priceUp
+        else if (resultUrl.includes(dateUp)) {
+            resultUrl = resultUrl.replace(dateUp,priceUp);
+        }
+        // 如果resultUrl有含priceDown，變成priceUp
+        else if (resultUrl.includes(dateDown)) {
+            resultUrl = resultUrl.replace(dateDown,priceUp);
+        }
+        // 如果resultUrl有含origin，變成priceUp
+        else if (resultUrl.includes(origin)) {
+            resultUrl = resultUrl.replace(origin,priceUp);
+        }
+        // 如果都沒有含，變成priceUp
+        else {
+            resultUrl += (resultUrl.includes('?') ? '&' : '?') + priceUp;
+        }
+        
+        // 組好result路徑後，GET資料渲染
+        axios.get(`${url}rents?${resultUrl}`)
+        .then(function(res){
+            api = res.data ;
+            getData(resultUrl,1, limit);
+            currentPage = 1 ;
+            paginationPN(api);
+        });
+
     });
 }
+sortPrice();
 
 
-// 綜合渲染畫面 (畫面、租金、時間)
-function render(api){
-    renderList(api);  
-    sortPrice(api);
-    sortDate(api);
+// 分頁
+let totalData ;
+let totalPages ;
+let limit = 4 ; 
+let currentPage = 1 ;
+let pagination = document.querySelector(".pagination");
+
+// -渲染當前頁面資料(第幾頁)
+function getData(resultUrl,currentPage, limit) {
+    axios.get(`${url}rents?${resultUrl}&_page=${currentPage}&_limit=${limit}`)
+      .then((res) => {
+        let data = res.data ;
+        renderList(data); 
+      })
 }
+
+// -頁碼本身渲染(有幾頁)
+function paginationPN(api){
+    totalData = api.length;
+    totalPages = Math.ceil(totalData / limit);
+    let str = "";
+    // 組上一頁
+    str += `<li class="page-item">
+    <a class="page-link" href="#" aria-label="Previous">
+        <span class="material-icons align-bottom">
+        chevron_left
+        </span>
+    </a>
+    </li>`;
+    // 組中間頁數
+    for (let i = 1; i <= totalPages; i++) {
+        str += `<li class="page-item">
+        <a class="page-link" href="#">${i}</a>
+    </li>`;
+    }
+    // 組下一頁
+    str += `<li class="page-item">
+    <a class="page-link" href="#" aria-label="Next">
+        <span class="material-icons"> navigate_next </span>
+    </a>
+    </li>`;
+    pagination.innerHTML = str;
+
+    // 移除上、下一頁按鈕的 focus 效果
+    const pageLink = document.querySelectorAll(".page-link");
+    pageLink.forEach((e) => {
+        
+        if (e.textContent.trim() === "chevron_left" || e.textContent.trim() === "navigate_next") {
+            e.blur();
+        }
+    });
+    // 當前頁增加 active
+    pageLink[currentPage].classList.add("active");
+    
+}
+
+// -監聽分頁
+pagination.addEventListener("click", (e) => {
+    // 移除所有 active 樣式
+    const pageLink = document.querySelectorAll(".page-link");
+    pageLink.forEach((e) => {
+        e.classList.remove("active");
+    });
+    // 判斷點擊的位置
+    if (e.target.textContent.trim() === "chevron_left") {
+        // 上一頁按鈕
+        // 當前已是最前頁則在該頁加上 active ，不重新撈取資料
+        if (currentPage === 1) {
+        pageLink[currentPage].classList.add("active");
+        e.preventDefault();
+        return;
+        }
+        if (currentPage > 1) {
+        currentPage--;
+        pageLink[currentPage].classList.add("active");
+        getData(resultUrl,currentPage, limit);
+        }
+    } else if (e.target.textContent.trim() === "navigate_next") {
+        // 下一頁按鈕
+        if (currentPage === totalPages) {
+        pageLink[currentPage].classList.add("active");
+        e.preventDefault();
+        return;
+        }
+        if (currentPage < totalPages) {
+        currentPage++;
+        pageLink[currentPage].classList.add("active");
+        getData(resultUrl,currentPage, limit);
+        }
+    } else {
+        // 數字按鈕
+        currentPage = Number(e.target.textContent.trim());
+        pageLink[currentPage].classList.add("active");
+        getData(resultUrl,currentPage, limit);
+    }
+});
 
 
 // 搜尋按鈕
 let search = document.querySelector('#search');
 let submit = document.querySelector('#submit');
 
-    // 點擊事件 - 關鍵字篩選
+    // -監聽搜尋
 submit.addEventListener('click',function(e){
     // 取出輸入的值
     let inputValue = search.value;
@@ -398,31 +449,31 @@ axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf2651528171
         const labelText = (labelElement.textContent).trim();
 
         if (e.target.checked) {
-
+            // 縣市
             if (e.target.type === 'radio' && e.target.classList.contains('cityRadio')) {
                 urlStr = `address_like=${labelText}`;
-            
+            // 行政區
             } else if (e.target.type === 'checkbox' && e.target.classList.contains('districtCheckbox')) {
                 urlStr += `&district_like=${labelText}`;
-
+            // 租金
             } else if (e.target.type === 'radio' && e.target.classList.contains('priceRadio')) {
-                urlPrice = `&${e.target.dataset.price}`;
-
+                urlPrice = `&${e.target.dataset.price}&_sort=price&_order=desc`;
+            // 房屋類型
             } else if (e.target.type === 'checkbox' && e.target.classList.contains('houseCheckbox')) {
                 urlStr += `&type=${labelText}`;
-
+            // 鄰近
             } else if (e.target.type === 'checkbox' && e.target.classList.contains('lifeEquipmentCheckbox')) {
                 urlStr += `&lifeEquipment_like=${labelText}`;
-
+            // 設備
             } else if (e.target.type === 'checkbox' && e.target.classList.contains('equipmentCheckbox')) {
                 urlStr += `&equipment_like=${labelText}`;
-
+            // 身分
             } else if (e.target.type === 'checkbox' && e.target.classList.contains('identityCheckbox')) {
                 urlStr += `&identity_like=${labelText}`;
-
+            // 性別
             } else if (e.target.type === 'checkbox' && e.target.classList.contains('genderCheckbox')) {
                 urlStr += `&gender=${labelText}`;
-
+            // 寵物、開火
             } else if (e.target.type === 'checkbox' && e.target.classList.contains('canPetCookCheckbox')) {
                 
                 if (labelText == '可開伙') {
@@ -432,19 +483,22 @@ axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf2651528171
                     urlStr += `&canPet=${true}`;
 
                 }
-                
-                
+                  
             }
 
             resultUrl = urlStr + urlPrice ;
             axios.get(`${url}rents?${resultUrl}`)
             .then(function(res){
                 if (res.data.length > 0){
-                    let api = res.data;
-                    getData(resultUrl,currentPage, limit);
+                    api = res.data;
+                    getData(resultUrl,1, limit);
+                    currentPage = 1 ;
                     paginationPN(api);
                 } else {
-                    renderListNoFound()
+                    api = res.data;
+                    renderListNoFound();
+                    currentPage = 1 ;
+                    paginationPN(api);
                 }
             })
 
@@ -483,24 +537,26 @@ axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf2651528171
                     urlStr = urlStr.replace(`&canPet=${true}`,'');
 
                 }
-                
-                
+                      
             }
 
             resultUrl = urlStr + urlPrice ;
             axios.get(`${url}rents?${resultUrl}`)
             .then(function(res){
                 if (res.data.length > 0){
-                    let api = res.data;
-                    getData(resultUrl,currentPage, limit);
+                    api = res.data;
+                    getData(resultUrl,1, limit);
+                    currentPage = 1 ;
                     paginationPN(api);
                 } else {
-                    renderListNoFound()
+                    api = res.data;
+                    renderListNoFound();
+                    currentPage = 1 ;
+                    paginationPN(api);
                 }
             })
         }
-    });
-    
+    }); 
 });
 
 
