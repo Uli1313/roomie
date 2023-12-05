@@ -37,8 +37,8 @@ function renderList(api){
                         <ul>
                             <li class="w-100 d-flex justify-content-between align-items-center py-2">
                                 <a href="rentArticle.html?id=${v.id}" class="h3 link-dark link-title">${v.title}</a> 
-                                <button class="p-3 link-dark hover-primary border-0 rounded-3">
-                                    <span class="material-symbols-outlined">heart_plus</span>
+                                <button class="p-3 link-dark hover-primary border-0 rounded-3 favorite">
+                                    <span class="material-symbols-outlined" data-id="${v.id}">heart_plus</span>
                                 </button></li>
                             <li class="pb-3">${v.houseLayout} | ${v['square Footage']}坪 | ${v.floor}F/${v.totalFloor}F </li>
                             <li class="pb-2">
@@ -63,47 +63,15 @@ function renderList(api){
                 </div>`
     });
     list.innerHTML = div ;
-
-    // 處理點擊連結view數會+1
-    let linkTitles = document.querySelectorAll('.link-title');
-
-    linkTitles.forEach(linkTitle => {
-        linkTitle.addEventListener('click', function(e) {
-
-            // 先阻止直接進入連結
-            e.preventDefault();
-
-            // 取到點擊連結的id
-            const currentUrl = new URL(e.target.href);
-            const searchParams = new URLSearchParams(currentUrl.search);
-            const id = searchParams.get('id');
-
-            // 先get出資料取得他的原本view數
-            axios.get(`${url}rents/${id}`)
-            .then(function(res) {
-                const api = res.data; // 假設後端回傳的資料是一個 rent 物件
-
-                // 建立view數+1的物件
-                let newData = {
-                    'view': parseInt(api.view) + 1
-                }
-
-                // patch讓帶入view數+1的物件
-                axios.patch(`${url}rents/${id}`,newData)
-                .then(function(res) {
-                    // 處理完最後進入連結
-                    window.location.href = e.target.href;
-                })
-                .catch(function(err) {
-                    console.error(err);
-                });
-            })
-            .catch(function(err) {
-                console.error(err);
-            });
-        });
+    viewNum();
+    
+    let favorite = document.querySelectorAll('.favorite');
+    console.log(favorite);
+    favorite.forEach((v) => {
+        v.addEventListener('click',function(e){
+            console.log(e.target.dataset.id);
+        })
     });
-
 };
 
 
@@ -130,6 +98,7 @@ function inRender(){
         api = res.data ;
         renderList(api);
         paginationPN(api);
+        console.log(api);
     });
 }
 inRender();
@@ -567,6 +536,48 @@ close.addEventListener('click',function(e){
 });
 
 
+// 點閱數
+function viewNum(){
+    
+    let linkTitles = document.querySelectorAll('.link-title');
+
+    linkTitles.forEach(linkTitle => {
+        linkTitle.addEventListener('click', function(e) {
+
+            // 先阻止直接進入連結
+            e.preventDefault();
+
+            // 取到點擊連結的id
+            const currentUrl = new URL(e.target.href);
+            const searchParams = new URLSearchParams(currentUrl.search);
+            const id = searchParams.get('id');
+
+            // 先get出資料取得他的原本view數
+            axios.get(`${url}rents/${id}`)
+            .then(function(res) {
+                const api = res.data; // 假設後端回傳的資料是一個 rent 物件
+
+                // 建立view數+1的物件
+                let newData = {
+                    'view': parseInt(api.view) + 1
+                }
+
+                // patch讓帶入view數+1的物件
+                axios.patch(`${url}rents/${id}`,newData)
+                .then(function(res) {
+                    // 處理完最後進入連結
+                    window.location.href = e.target.href;
+                })
+                .catch(function(err) {
+                    console.error(err);
+                });
+            })
+            .catch(function(err) {
+                console.error(err);
+            });
+        });
+    });
+}
 
 
 
