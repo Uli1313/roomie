@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //API網址
-const webUrl = "http://localhost:3000";
+const webUrl = "https://roomie-lfta.onrender.com";
 // 設定變數
 const confirmEmailBtn = document.querySelector(".confirmEmail");
 const inputEmail = document.querySelector("#inputEmail");
@@ -64,7 +64,7 @@ function gotoUserPage() {
   setTimeout(() => {
     // 在实际应用中，你可能需要根据token跳转到不同的页面
     // 例如：window.location.href = "/memberPage";
-    window.location.href = "http://localhost:5173/roomie/pages/user.html";
+    window.location.href = "https://uli1313.github.io/roomie/user.html";
   }, 1000);
 }
 confirmEmailBtn.addEventListener("click", async (e) => {
