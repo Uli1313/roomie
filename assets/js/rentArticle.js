@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const url = 'https://roomie-lfta.onrender.com/';
 let api = '';
@@ -22,25 +23,19 @@ let otherdetail = document.querySelector('.article-otherdetail');
 let contact = document.querySelector('.article-contact');
 let qas = document.querySelector('.article-qas');
 
+let storageUserId = parseInt(localStorage.getItem('userId')) ;
+let messageBtn = document.querySelector('.message-btn');
+let messageArea = document.querySelector('.message-area');
+let report = document.querySelector('.report');
+
 // GET畫面資料
 axios.get(`${url}rents/${getUrlId}?_expand=user`)
 .then(function(res){
     api = res.data ;
     renderRentArticle(api) ;
     modal(photo);
-
-    let favorite = document.querySelector('.favorite');
-    
-    // favorite.addEventListener('click',function(e){
-    //     let data = {
-    //         "rentId": getUrlId,
-    //         "userId": 1
-    //       };
-    //     axios.post(`${url}favorites`,data)
-    //     .then(function(res){
-    //         console.log(res);
-    //     });
-    // });
+    favorite();
+    comment();
 });
 
 // GET留言資料
@@ -212,7 +207,13 @@ function renderRentArticleCommet(api){
                         `;
         }
     }
-);
+    );
+    // 驗證是否登入改變placeholder文字
+    if (storageUserId) {
+        messageArea.setAttribute('placeholder','留言給發文者吧~');
+    } else {
+        messageArea.setAttribute('placeholder','登入即可傳送訊息!');
+    }
 }
 
 // 彈跳遮罩
@@ -312,7 +313,292 @@ function modal(photo){
     });
 }
 
+// 我的收藏
+function favorite(){
+    let favorite = document.querySelector('.favorite');
+    let heartIcon = document.querySelector('#heartIcon');
+    favorite.setAttribute('data-id',getUrlId);
+    heartIcon.setAttribute('data-id',getUrlId);
+    favorite.addEventListener('click',function(e){
+            let pageRentId = parseInt(e.target.dataset.id) ;
+            let storageUserId = parseInt(localStorage.getItem('userId')) ;
+            let data = {
+                "rentId": pageRentId,
+                "userId": storageUserId
+            }
+            // 判斷有無登入
+            if (storageUserId) {
+                // GET userId的favorite資料
+                axios.get(`${url}users/${storageUserId}/favorites`)
+                .then(function(res){
+                    // 如果userId已經有這則貼文
+                    const foundProduct = res.data.find(v => v.rentId === pageRentId);
+                    if (foundProduct) {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: '您已經有這則貼文',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                    // 如果userId沒有這則貼文
+                    if (foundProduct === undefined) {
+                        axios.post(`${url}favorites`,data)
+                        .then(function(res){
+                            Swal.fire({
+                                icon: 'success',
+                                title: '添加至您的收藏',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        });
+                    }    
+                });
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '請先登入帳號',
+                    showConfirmButton: false,
+                    timer: 1500
+                }); 
+            }
+        })
+}
 
+// 留言
+function comment(){
+    
+    messageBtn.addEventListener('click', (e) => {
+        const now = new Date();
+        const year = now.getFullYear(); // 年份
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // 月份 (月份從 0 開始，所以需要加 1)，補置2位數
+        const day = String(now.getDate()).padStart(2, '0'); // 日，補置2位數
+        // 驗證是否登入
+        if (storageUserId) {
+            // 驗證文字欄位是否有輸入文字
+            if (messageArea.value.length > 0) {
+                // if (api[api.length-1].user.contact.person[0] == '') {
+                //     Swal.fire({
+                //         icon: 'warning',
+                //         title: '請先至會員專區填寫您的稱呼',
+                //         showConfirmButton: false,
+                //         timer: 1500
+                //     });
+                //     return ;
+                // } else {
+                    let data = {
+                        "rentId": parseInt(getUrlId),
+                        "userId": storageUserId,
+                        "date": `${year}/${month}/${day}`,
+                        "content": messageArea.value
+                      }
+                    axios.post(`${url}qas`,data)
+                    .then(function(res){
+                        // 重新渲染留言
+                        axios.get(`${url}qas?rentId=${getUrlId}&_expand=user&_expand=rent&_sort=date&_order=asc`)
+                        .then(function(res){
+                            api = res.data ;
+                            qas.innerHTML = ''; // 清空原本的 qas.innerHTML 字串
+                            Swal.fire({
+                                icon: 'success',
+                                title: '已留言成功',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            // 清空文字欄位
+                            messageArea.value = '';
+                            renderRentArticleCommet(api);
+                            
+                        });
+                    });
+                // }
+                
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '文字欄位不能為空',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        } else {
+            Swal.fire({
+                icon: 'warning',
+                title: '請先登入帳號',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    });
+}
+
+// 檢舉
+report.addEventListener('click',(e) => {
+
+    // 判斷有無登入
+    if (storageUserId){
+        // 彈跳視窗
+        if (e.target.classList.contains('report') || e.target.classList.contains('warning')) {
+            const newSwal = Swal.fire({
+                html: ` <p class="my-3">此貼文違反了哪一項規範事項 ?</p>
+                        <div class="border rounded py-2 px-3">
+                            <div class="form-check text-start d-flex justify-content-start mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="report1" data-id="1">
+                                <div class="col-2 col-sm-1 ms-2 me-3" style="white-space: nowrap;">
+                                    第一條 : 
+                                </div>
+                                <div class="col-10 col-sm-11 ps-2">
+                                    <label class="form-check-label d-inline" for="report1">
+                                        禁止惡意洗板、重複張貼。
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-check text-start d-flex justify-content-start mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="report2" data-id="2">
+                                <div class="col-2 col-sm-1 ms-2 me-3" style="white-space: nowrap;">
+                                    第二條 : 
+                                </div>
+                                <div class="col-10 col-sm-11 ps-2">
+                                    <label class="form-check-label d-inline" for="report2">
+                                        禁止包含廣告、商業宣傳之內容。
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-check text-start d-flex justify-content-start mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="report3" data-id="3">
+                                <div class="col-2 col-sm-1 ms-2 me-3" style="white-space: nowrap;">
+                                    第三條 : 
+                                </div>
+                                <div class="col-10 col-sm-11 ps-2">
+                                    <label class="form-check-label d-inline" for="report3">
+                                        內容不得空泛或明顯無意義內容。
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-check text-start d-flex justify-content-start mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="report4" data-id="4">
+                                <div class="col-2 col-sm-1 ms-2 me-3" style="white-space: nowrap;">
+                                    第四條 : 
+                                </div>
+                                <div class="col-10 col-sm-11 ps-2">
+                                    <label class="form-check-label d-inline" for="report4">
+                                        禁止中傷、歧視、挑釁或謾罵他人。
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-check text-start d-flex justify-content-start mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="report5" data-id="5">
+                                <div class="col-2 col-sm-1 ms-2 me-3" style="white-space: nowrap;">
+                                    第五條 : 
+                                </div>
+                                <div class="col-10 col-sm-11 ps-2">
+                                    <label class="form-check-label d-inline" for="report5">
+                                        禁止包含色情、露點、性騷擾、暴力或血腥恐怖等讓人不舒服之內容。
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-check text-start d-flex justify-content-start mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="report6" data-id="6">
+                                <div class="col-2 col-sm-1 ms-2 me-3" style="white-space: nowrap;">
+                                    第六條 : 
+                                </div>
+                                <div class="col-10 col-sm-11 ps-2">
+                                    <label class="form-check-label d-inline" for="report6">
+                                        禁止在平台上分享他人的個人資訊,但不限於地址、電話號碼、電子郵件地址等。
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-check text-start d-flex justify-content-start mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="report7" data-id="7">
+                                <div class="col-2 col-sm-1 ms-2 me-3" style="white-space: nowrap;">
+                                    第七條 : 
+                                </div>
+                                <div class="col-10 col-sm-11 ps-2">
+                                    <label class="form-check-label d-inline" for="report7">
+                                        禁止在平台上引發政治、宗教或種族爭議的內容,並尊重其他用戶的信仰和立場。
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-check text-start d-flex justify-content-start mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="report8" data-id="8">
+                                <div class="col-2 col-sm-1 ms-2 me-3" style="white-space: nowrap;">
+                                    第八條 : 
+                                </div>
+                                <div class="col-10 col-sm-11 ps-2">
+                                    <label class="form-check-label d-inline" for="report8">
+                                        禁止在平台上分享未經授權的版權材料,包括圖片、影片、音樂等,請確保發布的內容符合版權法規。
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-check text-start d-flex justify-content-start mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="report9" data-id="9">
+                                <div class="col-2 col-sm-1 ms-2 me-3" style="white-space: nowrap;">
+                                    第九條 : 
+                                </div>
+                                <div class="col-10 col-sm-11 ps-2">
+                                    <label class="form-check-label d-inline" for="report9">
+                                        用戶應該確保自己的帳戶安全,不分享帳號密碼,並確保其帳戶內容符合平台規範。如果用戶的帳號被濫用,平台可能會採取相應的措施。
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-2 text-danger least-one d-none">*至少選擇一個欄位</p>
+                        <input class="btn btn-primary mt-3 report-btn" type="submit" value="送出">
+                        `,
+                showConfirmButton: false,
+            })
+
+            let formCheckInput = document.querySelectorAll('.form-check-input');
+            let leastOne = document.querySelector('.least-one')
+            let reportBtn = document.querySelector('.report-btn')
+            reportBtn.addEventListener('click',  e => {
+                // 檢查有沒有checkbox被點擊
+                let atLeastOneChecked = false;
+                formCheckInput.forEach( v => {
+                    if (v.checked) {
+                        atLeastOneChecked = true;
+                    }
+                })
+                // 都沒有被點擊跳出 *至少選擇一個欄位
+                if (!atLeastOneChecked) {
+                    leastOne.classList.remove('d-none');
+                } else {
+                    let arr = [] ;
+                    let data = {} ;
+                    // 有點擊審查點擊哪一個checkbox
+                    formCheckInput.forEach( v => {
+                        if (v.checked) {
+                            //找到對應label的文字
+                            let labelForCheckbox = document.querySelector(`label[for="${v.id}"]`);
+                            arr.push(`第${v.dataset.id}條:${labelForCheckbox.textContent.trim()}`);
+                            data = {
+                                "rentId": parseInt(getUrlId),
+                                "userId": storageUserId,
+                                "content": arr
+                            }
+                        }
+                    })
+                    axios.post(`${url}reports`,data)
+                    .then(function(res){
+                        Swal.fire({
+                            icon: 'success',
+                            title: '已收到您的檢舉',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    });
+                }
+            })
+        }
+    } else {
+        Swal.fire({
+            icon: 'warning',
+            title: '請先登入帳號',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+})
 
 
 

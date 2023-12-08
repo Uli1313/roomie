@@ -1,11 +1,11 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const url = 'https://roomie-lfta.onrender.com/';
 
 // 紀錄資料
 let resultUrl = '';
 let api = [];
-
 
 // 渲染合租文章列表
 function renderList(api){
@@ -37,7 +37,7 @@ function renderList(api){
                         <ul>
                             <li class="w-100 d-flex justify-content-between align-items-center py-2">
                                 <a href="rentArticle.html?id=${v.id}" class="h3 link-dark link-title">${v.title}</a> 
-                                <button class="p-3 link-dark hover-primary border-0 rounded-3 favorite">
+                                <button class="p-3 link-dark hover-primary border-0 rounded-3 favorite" data-id="${v.id}">
                                     <span class="material-symbols-outlined" data-id="${v.id}">heart_plus</span>
                                 </button></li>
                             <li class="pb-3">${v.houseLayout} | ${v['square Footage']}坪 | ${v.floor}F/${v.totalFloor}F </li>
@@ -64,14 +64,7 @@ function renderList(api){
     });
     list.innerHTML = div ;
     viewNum();
-    
-    let favorite = document.querySelectorAll('.favorite');
-    console.log(favorite);
-    favorite.forEach((v) => {
-        v.addEventListener('click',function(e){
-            console.log(e.target.dataset.id);
-        })
-    });
+    favorite(); 
 };
 
 
@@ -98,7 +91,6 @@ function inRender(){
         api = res.data ;
         renderList(api);
         paginationPN(api);
-        console.log(api);
     });
 }
 inRender();
@@ -141,16 +133,22 @@ function sortdate(){
         }
         // 如果都沒有含，變成dateUp
         else {
-            resultUrl += (resultUrl.includes('?') ? '&' : '?') + dateUp;
+            resultUrl +=  dateUp;
         }
         
         // 組好result路徑後，GET資料渲染
         axios.get(`${url}rents?${resultUrl}`)
         .then(function(res){
             api = res.data ;
-            getData(resultUrl,1, limit);
-            currentPage = 1 ;
-            paginationPN(api);
+            if (api.length > 0) {
+                getData(resultUrl,1, limit);
+                currentPage = 1 ;
+                paginationPN(api);
+            } else {
+                renderListNoFound();
+                currentPage = 1 ;
+                paginationPN(api);
+            }
         });
 
     });
@@ -184,16 +182,22 @@ function sortPrice(){
         }
         // 如果都沒有含，變成priceUp
         else {
-            resultUrl += (resultUrl.includes('?') ? '&' : '?') + priceUp;
+            resultUrl += priceUp;
         }
         
         // 組好result路徑後，GET資料渲染
         axios.get(`${url}rents?${resultUrl}`)
         .then(function(res){
             api = res.data ;
-            getData(resultUrl,1, limit);
-            currentPage = 1 ;
-            paginationPN(api);
+            if (api.length > 0) {
+                getData(resultUrl,1, limit);
+                currentPage = 1 ;
+                paginationPN(api);
+            } else {
+                renderListNoFound();
+                currentPage = 1 ;
+                paginationPN(api);
+            }
         });
 
     });
@@ -580,7 +584,56 @@ function viewNum(){
 }
 
 
-
+// 我的收藏
+function favorite(){
+    let favorite = document.querySelectorAll('.favorite');
+    favorite.forEach((v) => {
+        v.addEventListener('click',function(e){
+            let pageRentId = parseInt(e.target.dataset.id) ;
+            let storageUserId = parseInt(localStorage.getItem('userId')) ;
+            let data = {
+                "rentId": pageRentId,
+                "userId": storageUserId
+            }
+            // 判斷有無登入
+            if (storageUserId) {
+                // GET userId的favorite資料
+                axios.get(`${url}users/${storageUserId}/favorites`)
+                .then(function(res){
+                    // 如果userId已經有這則貼文
+                    const foundProduct = res.data.find(v => v.rentId === pageRentId);
+                    if (foundProduct) {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: '您已經有這則貼文',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                    // 如果userId沒有這則貼文
+                    if (foundProduct === undefined) {
+                        axios.post(`${url}favorites`,data)
+                        .then(function(res){
+                            Swal.fire({
+                                icon: 'success',
+                                title: '添加至您的收藏',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        });
+                    }    
+                });
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '請先登入帳號',
+                    showConfirmButton: false,
+                    timer: 1500
+                }); 
+            }
+        })
+    });
+}
 
 
 

@@ -75,7 +75,10 @@ button{
 .br{
     border: 1px dashed rgb(50, 118, 86);
 }
-
+// 檢舉sweetalert
+.swal2-popup{
+    width: 90%;
+}
 // RWD下到 ? px 觸發
 @media screen and (max-width: 768px){ 
     .fs-md-2{
@@ -94,5 +97,23 @@ button{
     
     .fs-sm-6{
         font-size: 16px!important;
+    }
+}
+// RWD上到 ? px 觸發
+@media screen and (min-width: 992px){
+    .swal2-popup{
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1400px){
+    .swal2-popup{
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1700px){
+    .swal2-popup{
+        width: 40%;
     }
 }

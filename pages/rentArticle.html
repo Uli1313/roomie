@@ -66,7 +66,7 @@
         </div>
         <div class="col-1 d-flex justify-content-end">
             <button class="favorite p-3 link-dark border-0 rounded-3 hover-custom d-flex align-items-center">
-                <span class="material-symbols-outlined">heart_plus</span>
+                <span class="material-symbols-outlined" id="heartIcon">heart_plus</span>
             </button>
         </div>
     </div>
@@ -187,17 +187,17 @@
         <div class="row my-5">
             <div class="col my-2 position-relative">
                 <div>
-                    <textarea class="form-control border rounded-0" id="exampleFormControlTextarea1" rows="8" placeholder="登入即可傳送訊息!"></textarea>
+                    <textarea class="message-area form-control border rounded-0" id="exampleFormControlTextarea1" rows="8" placeholder=""></textarea>
                 </div>
-                <div class="position-absolute cursor" style="bottom: -30px;right: 20px;">
-                    <span class="material-symbols-outlined pe-2" style="transform: translateY(20%);">warning</span>檢舉
+                <div class="position-absolute cursor report" style="bottom: -30px;right: 20px;">
+                    <span class="material-symbols-outlined pe-2 warning" style="transform: translateY(20%);">warning</span>檢舉
                 </div>
             </div>
             
         </div>
         <div class="row mb-5">
             <div class="col d-flex justify-content-center">
-                <button type="submit" class="btn btn-size btn-primary">留言</button>
+                <button type="submit" class="message-btn btn btn-size btn-primary">留言</button>
             </div>
         </div>
 </div>
