@@ -61,6 +61,10 @@ button{
     transform: translateY(20%);
 }
 
+#list{
+    min-height: calc(100vh - 696px);
+}
+
 //下到 ? px 觸發
 @media screen and (max-width: 1200px){ 
     .searchInput{
