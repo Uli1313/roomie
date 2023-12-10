@@ -28,7 +28,7 @@
     "glob": "^10.2.2",
     "sass": "^1.61.0",
     "sass-loader": "^13.2.2",
-    "sweetalert2": "^11.9.0",
+    "sweetalert2": "^11.10.1",
     "swiper": "^11.0.5",
     "vite-plugin-live-reload": "^3.0.2"
   }
