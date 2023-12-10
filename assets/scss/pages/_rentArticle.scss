@@ -63,7 +63,6 @@ button{
 .hover-custom{
     &:hover {
         background: $primary-200;
-        color: $secondary !important;
       }
 }
 // icon設定
@@ -73,7 +72,7 @@ button{
 }
 // 分隔線
 .br{
-    border: 1px dashed rgb(50, 118, 86);
+    border: 1px dashed $secondary;
 }
 // 檢舉sweetalert
 .swal2-popup{
@@ -81,6 +80,11 @@ button{
 }
 .text-justify{
     text-align: justify;
+}
+// 地圖
+#map{
+    height: 400px;
+    width: 80%;
 }
 // RWD下到 ? px 觸發
 @media screen and (max-width: 768px){ 

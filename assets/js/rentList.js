@@ -25,7 +25,7 @@ function renderList(api){
             trafficDiv += `<span class="me-3 px-1 bg-primary-200">近${i}</span>`;
         });
 
-        div += `<div class="row p-1 my-4 rounded hover-primary-2">
+        div += `<div class="row p-1 my-4 rounded hover-primary-2 ">
                     <div class="col-12 col-md-3 p-0 rounded-top rounded-md-start">
                         <img 
                             src="${v.photo[0]}" 
@@ -52,7 +52,7 @@ function renderList(api){
                             <li class="pb-2">
                                 <span class="material-symbols-outlined pe-1 transform-y-25">map</span>
                                 ${trafficDiv}</li>
-                            <li class="pb-2 h2 text-secondary text-end">${(v.price).toLocaleString('zh-TW')}元/月</li>
+                            <li class="pb-2 h2 text-danger text-end">${(v.price).toLocaleString('zh-TW')}元/月</li>
                             <li class="d-flex justify-content-between">更新日期:${v.updateDate} 
                                 <div>
                                     <span class="material-symbols-outlined transform-y-25">visibility</span>

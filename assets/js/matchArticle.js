@@ -2,6 +2,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const url = 'https://roomie-lfta.onrender.com/';
+const apiKey = 'AIzaSyCLDlkDTreTEDT3c1iOlQXrKQ1s4IIsUwg';  // API 金鑰
+
 let api = '';
 
 // 當前畫面的ID
@@ -33,10 +35,11 @@ let report = document.querySelector('.report');
 axios.get(`${url}rents/${getUrlId}?_expand=user`)
 .then(function(res){
     api = res.data ;
-    console.log(api);
+    document.title = `${api.title}`;
     renderRentArticle(api) ;
     modal(photo);
     favorite();
+    map();
 });
 
 // GET留言資料
@@ -78,23 +81,23 @@ function renderRentArticle(api){
     title.textContent = `${api.title}`;
     // 圖片
     photo.innerHTML = `<div class="col-12 col-sm-6 pe-0 rounded">
-                            <div class="overflow-hidden rounded border me-3 me-sm-0">
+                            <div class="overflow-hidden rounded border me-3 me-sm-0 shadow-sm">
                                 <img src="${api.photo[0]}" class="img-fluid imgCursor rounded img-open" data-open="0" alt="house photo">
                             </div>    
                         </div>
                         <div class="d-none d-sm-flex col-sm-3 flex-column pe-0 gap-2 rounded">
-                            <div class="overflow-hidden rounded border">
+                            <div class="overflow-hidden rounded border shadow-sm">
                                 <img src="${api.photo[1]}" class="img-fluid imgCursor rounded img-open" data-open="1" alt="house photo">
                             </div>
-                            <div class="overflow-hidden rounded border"> 
+                            <div class="overflow-hidden rounded border shadow-sm"> 
                                 <img src="${api.photo[2]}" class="img-fluid imgCursor rounded img-open" data-open="2" alt="house photo">
                             </div>   
                         </div>
                         <div class="d-none d-sm-flex col-sm-3 flex-column pe-0 gap-2 rounded">
-                            <div class="overflow-hidden rounded border">
+                            <div class="overflow-hidden rounded border shadow-sm">
                                 <img src="${api.photo[3]}" class="img-fluid imgCursor rounded img-open" data-open="3" alt="house photo">
                             </div>
-                            <div class="overflow-hidden rounded border">
+                            <div class="overflow-hidden rounded border shadow-sm">
                                 <img src="${api.photo[4]}" class="img-fluid imgCursor rounded img-open" data-open="4" alt="house photo">
                             </div>
                         </div>`;
@@ -146,7 +149,7 @@ function renderRentArticle(api){
         }
     );
     // 年齡
-    age.innerHTML = `<span class="h6 pe-2">適合年齡:</span>${api.minAge}&nbsp;~&nbsp;${api.maxAge}&nbsp;歲`;
+    age.innerHTML = `<span class="h6 pe-2 text-primary">適合年齡:</span>${api.minAge}&nbsp;~&nbsp;${api.maxAge}&nbsp;歲`;
     // 身分
     api['identity'].forEach((v) => {
         let icon =  '';
@@ -373,7 +376,6 @@ function favorite(){
         })
 }
 
-
 // 檢舉
 report.addEventListener('click',(e) => {
 
@@ -541,6 +543,58 @@ report.addEventListener('click',(e) => {
         });
     }
 })
+
+// 地圖
+function map(){
+
+    // 使用encode取得地址經緯度，url會得到json資料
+    let markerTitle = api.title;
+    let address = api.district[0] + api.district[1] ;
+    const chineseAddress = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
+    const encodedURI = encodeURI(chineseAddress); 
+
+    // GET地址經緯度資料渲染地圖
+    axios.get(`${encodedURI}`)
+    .then(function(res){
+
+        // 取到經緯度
+        let locationLat = res.data.results[0].geometry.location.lat;
+        let locationLng = res.data.results[0].geometry.location.lng;
+
+        // 建立目標經緯度的物件
+        let location = {
+            lat: locationLat, 
+            lng: locationLng 
+        }
+
+        // 定義初始化地圖的函式
+        function initMap() {
+            // 建立地圖
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: location, // 經緯度(剛剛創好的物件格式)
+                zoom: 16,         // 地圖縮放大小
+            });
+
+            // 建立一個標記 (紅色的)
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: markerTitle // 標記標題
+            });
+        }
+
+        // 動態建立並引入 Google Maps JavaScript API 的 script 標籤
+        var script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+        script.async = true;
+
+        // 將 'initMap' 函式附加到 'window' 物件
+        window.initMap = initMap;
+
+        // 將 'script' 元素附加到 'head' 標籤
+        document.head.appendChild(script);
+    })
+}
 
 
 
