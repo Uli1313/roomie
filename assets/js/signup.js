@@ -143,6 +143,14 @@ function securityCodeMessage(state) {
     confirmSecurityCodeBtn.nextElementSibling.style.color = "red";
   }
 }
+// 跳轉進入登入頁面
+function gotoLogInPage() {
+  setTimeout(() => {
+    // 在实际应用中，你可能需要根据token跳转到不同的页面
+    // 例如：window.location.href = "/memberPage";
+    window.location.href = "https://uli1313.github.io/roomie/login.html";
+  }, 1000);
+}
 //註冊到data
 function signUp(allTrueArr) {
   axios
@@ -163,6 +171,7 @@ function signUp(allTrueArr) {
     })
     .then((res) => {
       console.log(res.data);
+      gotoLogInPage();
     })
     .catch((err) => {
       console.log(err.response);
