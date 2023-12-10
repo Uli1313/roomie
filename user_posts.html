@@ -21,9 +21,11 @@
     />
     <title>發文列表</title>
     <link rel="icon" type="image/png" href="/roomie/assets/favicon-8f1f900a.ico" />
-    <script type="module" crossorigin src="/roomie/assets/user_posts-8f5707ae.js"></script>
-    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-e773685c.js">
-    <link rel="stylesheet" href="/roomie/assets/bootstrap-9c7aaa2e.css">
+    <script type="module" crossorigin src="/roomie/assets/user_posts-a985d847.js"></script>
+    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-340b141d.js">
+    <link rel="modulepreload" crossorigin href="/roomie/assets/axios-28bc18a3.js">
+    <link rel="modulepreload" crossorigin href="/roomie/assets/sweetalert2.all-ae5fa1cb.js">
+    <link rel="stylesheet" href="/roomie/assets/bootstrap-8c7a45f6.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-md bg-white border-bottom">
@@ -604,113 +606,7 @@
               role="tabpanel"
               aria-labelledby="publish-tab"
             >
-              <div class="container">
-                <div class="row p-1 rounded hover-primary-2">
-                  <div class="col-12 col-md-3 p-0 rounded-top rounded-md-start">
-                    <img
-                      src="/roomie/assets/room-1-bf8a56b6.png"
-                      style="
-                        width: auto;
-                        height: 100%;
-                        object-fit: cover;
-                        object-position: center;
-                      "
-                      alt="house photo"
-                      class="rounded-top rounded-md-start"
-                    />
-                  </div>
-                  <div
-                    class="col-12 col-md-9 py-3 px-5 border border-start-sm-0 bg-white rounded-bottom rounded-md-end"
-                  >
-                    <ul>
-                      <li
-                        class="w-100 d-flex justify-content-between align-items-center py-2"
-                      >
-                        <a href="rentArticle.html" class="h3 link-dark"
-                          >新竹市科學園區套房找室友</a
-                        >
-                        <div class="dropdown">
-                          <button
-                            class="btn dropdown-toggle p-3 link-none border-0 rounded-3 d-flex justify-content-center align-items-center"
-                            type="button"
-                            id="dropdownBtn"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <span class="material-symbols-outlined more-btn"
-                              >more_vert</span
-                            >
-                          </button>
-                          <ul
-                            class="dropdown-menu"
-                            aria-labelledby="dropdownBtn"
-                          >
-                            <li>
-                              <a class="dropdown-item" href="#">編輯貼文</a>
-                            </li>
-                            <li>
-                              <a class="dropdown-item" href="#">刪除貼文</a>
-                            </li>
-                            <li>
-                              <a class="dropdown-item" href="#">暫時下架</a>
-                            </li>
-                            <li>
-                              <a class="dropdown-item" href="#">媒合成功</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                      <li class="pb-3">1房1廳1衛 | 15坪7F/21F</li>
-                      <li class="pb-2">
-                        <span
-                          class="material-symbols-outlined pe-2"
-                          style="transform: translateY(25%)"
-                          >location_on</span
-                        >新竹市東區-埔頂路一段
-                      </li>
-                      <li class="pb-3">
-                        <span
-                          class="material-symbols-outlined pe-1"
-                          style="transform: translateY(25%)"
-                          >person</span
-                        >
-                        <span class="me-3 px-1 bg-primary-200">女性</span
-                        ><span class="me-3 px-1 bg-primary-200">可開伙</span
-                        ><span class="me-3 px-1 bg-primary-200"
-                          >不可養寵物</span
-                        >
-                      </li>
-                      <li class="pb-2">
-                        <span
-                          class="material-symbols-outlined pe-1"
-                          style="transform: translateY(25%)"
-                          >map</span
-                        >
-                        <span class="me-3 px-1 bg-primary-200"
-                          >近新竹公車站</span
-                        ><span class="me-3 px-1 bg-primary-200"
-                          >近新竹火車站</span
-                        ><span class="me-3 px-1 bg-primary-200"
-                          >近新竹高鐵站</span
-                        >
-                      </li>
-                      <li class="pb-2 h2 text-secondary text-end">
-                        20,000元/月
-                      </li>
-                      <li class="d-flex justify-content-between">
-                        更新日期:2023/09/28 22:08
-                        <div>
-                          <span
-                            class="material-symbols-outlined"
-                            style="transform: translateY(25%)"
-                            >visibility</span
-                          ><span class="ps-2">456</span>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+              <div class="container user-post-list" id="publishList"></div>
             </div>
             <div
               class="tab-pane fade"
@@ -718,9 +614,10 @@
               role="tabpanel"
               aria-labelledby="matched-tab"
             >
-              <div class="d-flex justify-content-center align-items-center">
+              <div class="container user-post-list" id="matchedList"></div>
+              <!-- <div class="d-flex justify-content-center align-items-center">
                 <p>尚無相關物件 ¯\_(ツ)_/¯</p>
-              </div>
+              </div> -->
             </div>
             <div
               class="tab-pane fade"
@@ -728,9 +625,10 @@
               role="tabpanel"
               aria-labelledby="removed-tab"
             >
-              <div class="d-flex justify-content-center align-items-center">
+              <div class="container user-post-list" id="removedList"></div>
+              <!-- <div class="d-flex justify-content-center align-items-center">
                 <p>尚無相關物件 ¯\_(ツ)_/¯</p>
-              </div>
+              </div> -->
             </div>
             <div
               class="tab-pane fade"
@@ -738,9 +636,10 @@
               role="tabpanel"
               aria-labelledby="draft-tab"
             >
-              <div class="d-flex justify-content-center align-items-center">
+              <div class="container user-post-list" id="draftList"></div>
+              <!-- <div class="d-flex justify-content-center align-items-center">
                 <p>尚無相關物件 ¯\_(ツ)_/¯</p>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
