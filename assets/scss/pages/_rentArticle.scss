@@ -1,63 +1,63 @@
 // 圖片遮罩、箭頭
-.img-modal{
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    background-color: rgb(0, 0, 0,0.7);
-    z-index: 10;
+.img-modal {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background-color: rgb(0, 0, 0, 0.7);
+  z-index: 10;
 }
-.img-wrap{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.img-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-.img-arrow-left{
-    position: absolute;
-    top: 50%;
-    left: -15%;
-    transform: translateY(-50%);
-    color: #fff;
-    font-size: 3.5rem;
+.img-arrow-left {
+  position: absolute;
+  top: 50%;
+  left: -15%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 3.5rem;
 }
-.img-arrow-right{
-    position: absolute;
-    top: 50%;
-    right: -15%;
-    transform: translateY(-50%);
-    color: #fff;
-    font-size: 3.5rem;
+.img-arrow-right {
+  position: absolute;
+  top: 50%;
+  right: -15%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 3.5rem;
 }
 
 .cursor{
     cursor: pointer;
 }
-.imgCursor{
-    cursor: pointer;
-    transition: .3s;
-    &:hover{
-        transform: scale(1.1);
-    }
+.imgCursor {
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
-button{
-    border: none;
-    background: none;
-    color: #575656;
+button {
+  border: none;
+  background: none;
+  color: #575656;
 }
-.btn-size{
-    width: 112px;
-    height: 56px;
+.btn-size {
+  width: 112px;
+  height: 56px;
 }
-.btn-primary{
-    background-color: #337757!important;
-    color:#fff!important;
-    border: none!important;
-    &:hover{
-        background-color: #54C490!important;
-    }
-    &:active{
-        background-color: #285E45!important; 
-    }
+.btn-primary {
+  background-color: #337757 !important;
+  color: #fff !important;
+  border: none !important;
+  &:hover {
+    background-color: #54c490 !important;
+  }
+  &:active {
+    background-color: #285e45 !important;
+  }
 }
 
 .hover-custom{
@@ -66,9 +66,9 @@ button{
       }
 }
 // icon設定
-.icon-size{
-    font-size: 26px;
-    transform: translateY(22%);
+.icon-size {
+  font-size: 26px;
+  transform: translateY(22%);
 }
 // 分隔線
 .br{
@@ -87,24 +87,24 @@ button{
     width: 80%;
 }
 // RWD下到 ? px 觸發
-@media screen and (max-width: 768px){ 
-    .fs-md-2{
-        font-size: 36px;
-    }
+@media screen and (max-width: 768px) {
+  .fs-md-2 {
+    font-size: 36px;
+  }
 
-    .fs-md-4{
-        font-size: 20px;
-    }
+  .fs-md-4 {
+    font-size: 20px;
+  }
 }
 
-@media screen and (max-width: 576px){ 
-    .fs-sm-3{
-        font-size: 24px;
-    }
-    
-    .fs-sm-6{
-        font-size: 16px!important;
-    }
+@media screen and (max-width: 576px) {
+  .fs-sm-3 {
+    font-size: 24px;
+  }
+
+  .fs-sm-6 {
+    font-size: 16px !important;
+  }
 }
 // RWD上到 ? px 觸發
 @media screen and (min-width: 992px){

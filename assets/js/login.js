@@ -64,7 +64,7 @@ function gotoUserPage() {
   setTimeout(() => {
     // 在实际应用中，你可能需要根据token跳转到不同的页面
     // 例如：window.location.href = "/memberPage";
-    window.location.href = "https://uli1313.github.io/roomie/user.html";
+    location.href = "user.html";
   }, 1000);
 }
 confirmEmailBtn.addEventListener("click", async (e) => {
