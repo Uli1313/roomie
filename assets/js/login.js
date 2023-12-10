@@ -2,6 +2,8 @@ import axios from "axios";
 
 //API網址
 const webUrl = "https://roomie-lfta.onrender.com";
+// const webUrl = "http://localhost:3000";
+
 // 設定變數
 const confirmEmailBtn = document.querySelector(".confirmEmail");
 const inputEmail = document.querySelector("#inputEmail");

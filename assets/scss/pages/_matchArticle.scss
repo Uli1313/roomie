@@ -1,0 +1,12 @@
+// 地圖
+#map{
+    height: 400px;
+    width: 80%;
+}
+// 文字欄位
+.commet-placeholder{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: $primary;
+}

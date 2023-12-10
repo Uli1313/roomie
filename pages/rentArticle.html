@@ -27,20 +27,15 @@
     <div class="img-modal justify-content-center align-items-center d-none">
       <ul>
         <div class="d-flex justify-content-center align-items-center m-5">
-          <li class="position-relative">
-            <span class="material-symbols-outlined img-arrow-left cursor arrow"
-              >chevron_left</span
-            >
-            <img
-              class="img-fluid rounded img-main"
-              src=""
-              alt="租屋圖片"
-              data-id=""
-            />
-            <span class="material-symbols-outlined img-arrow-right cursor arrow"
-              >chevron_right</span
-            >
-          </li>
+            <li class="position-relative text-center">
+                <span class="material-symbols-outlined img-arrow-left cursor arrow">chevron_left</span>
+                <img 
+                class="img-fluid rounded img-main col-10 col-xxl-12" 
+                src="" 
+                alt="租屋圖片"
+                data-id="">
+                <span class="material-symbols-outlined img-arrow-right cursor arrow">chevron_right</span>
+            </li>
         </div>
         <div
           class="d-flex justify-content-center align-items-center gap-5 img-group"
@@ -73,92 +68,95 @@
           <h1 class="article-title h1 fs-md-2 fs-sm-3"></h1>
         </div>
         <div class="col-1 d-flex justify-content-end">
-          <button
-            class="favorite p-3 link-dark border-0 rounded-3 hover-custom d-flex align-items-center"
-          >
-            <span class="material-symbols-outlined">heart_plus</span>
-          </button>
+            <button class="favorite p-3 link-dark border-0 rounded-3 hover-custom d-flex align-items-center">
+                <span class="material-symbols-outlined" id="heartIcon">heart_plus</span>
+            </button>
         </div>
-      </div>
-      <!-- 圖片 -->
-      <div class="row mb-5 article-photo"></div>
-      <!-- 價錢 -->
-      <div class="row">
-        <div class="col">
-          <p class="article-price h1 text-danger text-end"></p>
+    </div>
+<!-- 圖片 -->
+        <div class="row mb-5 article-photo">
+            
         </div>
-      </div>
-      <!-- 詳細資料 -->
-      <div class="row my-3">
-        <div class="col">
-          <p class="h3">詳細資料</p>
+<!-- 價錢 -->
+        <div class="row">
+            <div class="col">
+                <p class="article-price h1 text-danger text-end">
+
+                </p>
+            </div>
         </div>
-      </div>
-      <!-- 分隔線 -->
-      <div class="row br"></div>
-      <div class="row">
-        <div class="col my-4">
-          <ul class="article-detail d-flex flex-column gap-2"></ul>
+<!-- 詳細資料 -->
+        <div class="row my-3">
+            <div class="col">
+                <p class="h3">詳細資料</p>
+            </div>
         </div>
-        <div class="col my-5 text-end">
-          <img
-            src="https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2023/09/01/0/24681241.jpg&x=0&y=0&sw=0&sh=0&exp=3600&w=930"
-            class="img-fluid border rounded"
-            alt="map"
-            style="width: 400px; height: 300px; object-fit: cover"
-          />
+        <!-- 分隔線 -->
+        <div class="row br"></div>
+        <div class="row">
+            <div class="col my-4">
+                <ul class="article-detail d-flex flex-column gap-2">
+                    
+                </ul>
+            </div>
+            <div class="col my-5 d-flex justify-content-end">
+                <div id="map" class="rounded shadow-sm"></div>
+            </div>
         </div>
-      </div>
-      <!-- 設備 -->
-      <div class="row my-3">
-        <div class="col">
-          <p class="h3">設備</p>
+<!-- 設備 -->
+        <div class="row my-3">
+            <div class="col">
+                <p class="h3">設備</p>
+            </div>
         </div>
-      </div>
-      <!-- 分隔線 -->
-      <div class="row br"></div>
-      <p class="my-3">
-        <span class="h6 pe-2">租金包含:</span
-        ><span class="article-priceInclude"></span>
-      </p>
-      <div class="article-equipment row my-5 d-flex align-items-start"></div>
-      <div class="row" style="height: 24px"></div>
-      <!-- 適合室友 -->
-      <div class="row my-3">
-        <div class="col">
-          <p class="h3">適合室友</p>
+        <!-- 分隔線 -->
+        <div class="row br"></div>
+        <p class="my-3"><span class="h6 pe-2 text-primary">租金包含:</span><span class="article-priceInclude"></span></p>
+        <div class="article-equipment row my-5 d-flex align-items-start">
+            
         </div>
-      </div>
-      <!-- 分隔線 -->
-      <div class="row br"></div>
-      <p class="my-3 article-age"></p>
-      <div class="article-identity row my-5 d-flex align-items-start"></div>
-      <div class="row" style="height: 24px"></div>
-      <!-- 鄰近交通、生活機能 -->
-      <div class="row my-3">
-        <div class="col">
-          <p class="h3">鄰近交通、生活機能</p>
+        <div class="row" style="height: 24px;"></div>
+<!-- 適合室友 -->
+        <div class="row my-3">
+            <div class="col">
+                <p class="h3">適合室友</p>
+            </div>
         </div>
-      </div>
-      <!-- 分隔線 -->
-      <div class="row br"></div>
-      <div
-        class="article-trafficLifeEquipment row my-5 d-flex align-items-start"
-      ></div>
-      <div class="row" style="height: 24px"></div>
-      <!-- 其他事項 -->
-      <div class="row my-3">
-        <div class="col">
-          <p class="h3">其他事項</p>
+        <!-- 分隔線 -->
+        <div class="row br"></div>
+        <p class="my-3 article-age"></p>
+        <div class="article-identity row my-5 d-flex align-items-start">
+
         </div>
-      </div>
-      <!-- 分隔線 -->
-      <div class="row br"></div>
-      <div class="row my-5">
-        <div class="col-8">
-          <ul class="article-otherdetail"></ul>
+        <div class="row" style="height: 24px;"></div>
+<!-- 鄰近交通、生活機能 -->
+        <div class="row my-3">
+            <div class="col">
+                <p class="h3">鄰近交通、生活機能</p>
+            </div>
         </div>
-      </div>
+        <!-- 分隔線 -->
+        <div class="row br"></div>
+        <div class="article-trafficLifeEquipment row my-5 d-flex align-items-start">
+
+        </div>
+        <div class="row" style="height: 24px;"></div>
+<!-- 其他事項 -->
+        <div class="row my-3">
+            <div class="col">
+                <p class="h3">其他事項</p>
+            </div>
+        </div>
+        <!-- 分隔線 -->
+        <div class="row br"></div>
+        <div class="row my-5">
+            <div class="col-8">
+                <ul class="article-otherdetail">
+                    
+                </ul>
+            </div>
+        </div>
+      
       <div class="row" style="height: 24px"></div>
       <!-- 聯絡方式 -->
       <div class="row my-3">
@@ -173,44 +171,36 @@
           <ul class="article-contact"></ul>
         </div>
       </div>
-      <div class="row" style="height: 24px"></div>
-      <!-- 問與答 -->
-      <div class="row my-3">
-        <div class="col">
-          <p class="h3">問與答</p>
+        <div class="row" style="height: 24px;"></div>
+<!-- 問與答 -->  
+        <div class="row my-3">
+            <div class="col">
+                <p class="h3">問與答</p>
+            </div>
         </div>
-      </div>
-      <!-- 分隔線 -->
-      <div class="row mb-5" style="border: 1px dashed rgb(50, 118, 86)"></div>
-      <ul class="article-qas"></ul>
-      <div class="row my-5">
-        <div class="col my-2 position-relative">
-          <div>
-            <textarea
-              class="form-control border rounded-0"
-              id="exampleFormControlTextarea1"
-              rows="8"
-              placeholder="登入即可傳送訊息!"
-            ></textarea>
-          </div>
-          <div
-            class="position-absolute cursor"
-            style="bottom: -30px; right: 20px"
-          >
-            <span
-              class="material-symbols-outlined pe-2"
-              style="transform: translateY(20%)"
-              >warning</span
-            >檢舉
-          </div>
+        <!-- 分隔線 -->
+        <div class="row br"></div>
+        <ul class="article-qas">
+            
+        </ul> 
+        <div class="row my-5">
+            <div class="col my-2 position-relative">
+                <div>
+                    <textarea class="message-area form-control border rounded-0" id="exampleFormControlTextarea1" rows="8" placeholder=""></textarea>
+                </div>
+                <div class="position-absolute cursor report" style="bottom: -30px;right: 20px;">
+                    <span class="material-symbols-outlined pe-2 warning" style="transform: translateY(20%);">warning</span>檢舉
+                </div>
+            </div>
+            
         </div>
-      </div>
-      <div class="row mb-5">
-        <div class="col d-flex justify-content-center">
-          <button type="submit" class="btn btn-size btn-primary">留言</button>
+        <div class="row mb-5">
+            <div class="col d-flex justify-content-center">
+                <button type="submit" class="message-btn btn btn-size btn-primary">留言</button>
+            </div>
         </div>
-      </div>
     </div>
+
 
     <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>

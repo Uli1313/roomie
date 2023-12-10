@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Swal from 'sweetalert2';
 
 const url = 'https://roomie-lfta.onrender.com/';
 
@@ -11,60 +10,40 @@ let api = [];
 function renderList(api){
     let list = document.querySelector('#list')
     let div = '';
-    
     api.forEach(function(v){
+        
+        // 上傳日期
+        const dateString = `${v.updateDate}`;
+        const updateDate = new Date(dateString);
+        // 媒合日期
+        const dateString2 = `${v.soldDate}`;
+        const matchDate = new Date(dateString2);
+        // 今天日期
+        const todayDate = new Date();
+        // 時間
+        const costTime = updateDate.getTime() - matchDate.getTime();
+        const daysAwayTime = matchDate.getTime() - todayDate.getTime();
+        // 換算天數
+        const costDay = Math.abs(Math.trunc(costTime / (1000 * 3600 * 24)));
+        const daysAway = Math.abs(Math.trunc(daysAwayTime / (1000 * 3600 * 24)));
 
-            // 處理寵物、開火判斷
-        let petYN = v.canPet ? '可養寵物':'不可養寵物' ;
-        let canCookingYN = v.canCooking ? '可開伙':'不可開伙';
-
-            // 鄰近交通陣列
-        let trafficDiv = '';
-        let trafficArr = v.traffic ;
-        trafficArr.forEach(function(i){
-            trafficDiv += `<span class="me-3 px-1 bg-primary-200">近${i}</span>`;
-        });
-
-        div += `<div class="row p-1 my-4 rounded hover-primary-2 ">
-                    <div class="col-12 col-md-3 p-0 rounded-top rounded-md-start">
-                        <img 
-                            src="${v.photo[0]}" 
-                            style="width:auto;height:100%;object-fit: cover;object-position: center;" 
-                            alt="house photo"
-                            class="rounded-top rounded-md-start">
+        div += `<div class="col-12 my-3 p-1 hover-primary-2 rounded">
+                    <div class="col-12 p-3 bg-white d-flex flex-wrap justify-content-evenly align-items-center text-end text-lg-center border rounded">
+                        <div class="col-12 col-lg-4"><a href="matchArticle.html?id=${v.id}" class="link-dark fw-bold">${v.title}</a></div>
+                        <div class="col-12 col-lg pb-1 pb-lg-0"><span class="text-primary">${daysAway}日前&nbsp;</span>媒合成功</div>
+                        <div class="col-12 col-lg pb-1 pb-lg-0">${v['square Footage']}坪&nbsp;/&nbsp;${v.type}</div>
+                        <div class="col-12 col-lg fw-bold text-primary">${(v.price).toLocaleString('zh-TW')}元/月</div>
+                        <div class="col-12 col-lg">
+                            <span class="text-primary">花費${costDay}日&nbsp;</span>
+                            媒合成功
+                            <span class="material-symbols-outlined ps-1 text-danger" style="transform: translateY(24%);">verified</span>
+                        </div>
                     </div>
-                    <div class="col-12 col-md-9 py-3 px-5 border border-start-sm-0 bg-white rounded-bottom rounded-md-end">
-                        <ul>
-                            <li class="w-100 d-flex justify-content-between align-items-center py-2">
-                                <a href="rentArticle.html?id=${v.id}" class="h3 link-dark link-title">${v.title}</a> 
-                                <button class="p-3 link-dark hover-primary border-0 rounded-3 favorite" data-id="${v.id}">
-                                    <span class="material-symbols-outlined" data-id="${v.id}">heart_plus</span>
-                                </button></li>
-                            <li class="pb-3">${v.houseLayout} | ${v['square Footage']}坪 | ${v.floor}F/${v.totalFloor}F </li>
-                            <li class="pb-2">
-                                <span class="material-symbols-outlined pe-2 transform-y-25">location_on</span>
-                                ${v.address} ${v.district[0]}-${v.district[1]}</li>
-                            <li class="pb-3">
-                                <span class="material-symbols-outlined pe-1 transform-y-25">person</span>
-                                <span class="me-3 px-1 bg-primary-200">${v.gender}</span>
-                                <span class="me-3 px-1 bg-primary-200">${petYN}</span>
-                                <span class="me-3 px-1 bg-primary-200">${canCookingYN}</span></li>
-                            <li class="pb-2">
-                                <span class="material-symbols-outlined pe-1 transform-y-25">map</span>
-                                ${trafficDiv}</li>
-                            <li class="pb-2 h2 text-danger text-end">${(v.price).toLocaleString('zh-TW')}元/月</li>
-                            <li class="d-flex justify-content-between">更新日期:${v.updateDate} 
-                                <div>
-                                    <span class="material-symbols-outlined transform-y-25">visibility</span>
-                                    <span class="ps-2">${v.view}</span>
-                                </div></li>
-                        </ul>
-                    </div>
-                </div>`
+                </div>
+                `
     });
     list.innerHTML = div ;
-    viewNum();
-    favorite(); 
+    viewNum(); 
 };
 
 
@@ -85,7 +64,7 @@ function renderListNoFound(){
 
 // 進頁面及渲染 (依點閱率)
 function inRender(){
-    resultUrl = '_sort=view&_order=desc&status=刊登中';
+    resultUrl = '_sort=view&_order=desc&status=已媒合';
     axios.get(`${url}rents?${resultUrl}`)
     .then(function(res){
         api = res.data ;
@@ -100,8 +79,8 @@ inRender();
 let filterDate = document.querySelector('#filterDate');
 let filterPrice = document.querySelector('#filterPrice');
 
-let dateUp = '&_sort=updateDate&_order=asc';
-let dateDown = '&_sort=updateDate&_order=desc' ;
+let dateUp = '&_sort=soldDate&_order=asc';
+let dateDown = '&_sort=soldDate&_order=desc' ;
 let priceUp = '&_sort=price&_order=asc';
 let priceDown = '&_sort=price&_order=desc' ;
 let origin = '_sort=view&_order=desc';
@@ -315,7 +294,7 @@ let submit = document.querySelector('#submit');
 submit.addEventListener('click',function(e){
     // 取出輸入的值
     let inputValue = search.value;
-    let resultUrl = `q=${inputValue}&status=刊登中`;
+    let resultUrl = `q=${inputValue}&status=已媒合`;
     // 關鍵字搜尋
     axios.get(`${url}rents?${resultUrl}`)
     .then(function(res){
@@ -463,7 +442,7 @@ axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf2651528171
                   
             }
 
-            resultUrl = urlStr + urlPrice + '&status=刊登中' ;
+            resultUrl = urlStr + urlPrice + '&status=已媒合' ;
             axios.get(`${url}rents?${resultUrl}`)
             .then(function(res){
                 if (res.data.length > 0){
@@ -517,7 +496,7 @@ axios.get('https://gist.githubusercontent.com/abc873693/2804e64324eaaf2651528171
                       
             }
 
-            resultUrl = urlStr + urlPrice + '&status=刊登中' ;
+            resultUrl = urlStr + urlPrice + '&status=已媒合' ;
             axios.get(`${url}rents?${resultUrl}`)
             .then(function(res){
                 if (res.data.length > 0){
@@ -586,69 +565,3 @@ function viewNum(){
         });
     });
 }
-
-
-// 我的收藏
-function favorite(){
-    let favorite = document.querySelectorAll('.favorite');
-    favorite.forEach((v) => {
-        v.addEventListener('click',function(e){
-            let pageRentId = parseInt(e.target.dataset.id) ;
-            let storageUserId = parseInt(localStorage.getItem('userId')) ;
-            let data = {
-                "rentId": pageRentId,
-                "userId": storageUserId
-            }
-            // 判斷有無登入
-            if (storageUserId) {
-                // GET userId的favorite資料
-                axios.get(`${url}users/${storageUserId}/favorites`)
-                .then(function(res){
-                    // 如果userId已經有這則貼文
-                    const foundProduct = res.data.find(v => v.rentId === pageRentId);
-                    if (foundProduct) {
-                        Swal.fire({
-                            icon: 'warning',
-                            title: '您已經有這則貼文',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    }
-                    // 如果userId沒有這則貼文
-                    if (foundProduct === undefined) {
-                        axios.post(`${url}favorites`,data)
-                        .then(function(res){
-                            Swal.fire({
-                                icon: 'success',
-                                title: '添加至您的收藏',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                        });
-                    }    
-                });
-            } else {
-                Swal.fire({
-                    icon: 'warning',
-                    title: '請先登入帳號',
-                    showConfirmButton: false,
-                    timer: 1500
-                }); 
-            }
-        })
-    });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
