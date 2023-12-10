@@ -134,7 +134,7 @@ function gotoLogInPage() {
   setTimeout(() => {
     // 在实际应用中，你可能需要根据token跳转到不同的页面
     // 例如：window.location.href = "/memberPage";
-    window.location.href = "http://localhost:5173/roomie/pages/login.html";
+    window.location.href = "https://uli1313.github.io/roomie/login.html";
   }, 1000);
 }
 // email監聽
@@ -147,13 +147,13 @@ confirmEmailBtn.addEventListener("click", async (e) => {
 });
 // 驗證碼監聽
 securityCodeBtn.addEventListener("click", (e) => {
-  //   if (inputSecurityCode.value === securityCode) {
-  //     securityCodeMessage(true);
-  //     stepFinish(securityCodeBtn);
-  //     resetPasswordBtn.parentElement.parentElement.style.display = "block";
-  //   } else {
-  //     securityCodeMessage(false);
-  //   }
+  if (inputSecurityCode.value === securityCode) {
+    securityCodeMessage(true);
+    stepFinish(securityCodeBtn);
+    resetPasswordBtn.parentElement.parentElement.style.display = "block";
+  } else {
+    securityCodeMessage(false);
+  }
 });
 // 重設密碼與確認密碼監聽
 resetPasswordBtn.addEventListener("click", async (e) => {
