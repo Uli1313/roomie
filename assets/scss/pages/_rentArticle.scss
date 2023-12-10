@@ -28,12 +28,9 @@
   color: #fff;
   font-size: 3.5rem;
 }
-.page-active {
-  border: 1px solid $primary-100;
-  border-radius: 0.5rem;
-}
-.cursor {
-  cursor: pointer;
+
+.cursor{
+    cursor: pointer;
 }
 .imgCursor {
   cursor: pointer;
@@ -63,11 +60,10 @@ button {
   }
 }
 
-.hover-custom {
-  &:hover {
-    background: $primary-200;
-    color: $secondary !important;
-  }
+.hover-custom{
+    &:hover {
+        background: $primary-200;
+      }
 }
 // icon設定
 .icon-size {
@@ -75,10 +71,21 @@ button {
   transform: translateY(22%);
 }
 // 分隔線
-.br {
-  border: 1px dashed rgb(50, 118, 86);
+.br{
+    border: 1px dashed $secondary;
 }
-
+// 檢舉sweetalert
+.swal2-popup{
+    width: 90%;
+}
+.text-justify{
+    text-align: justify;
+}
+// 地圖
+#map{
+    height: 400px;
+    width: 80%;
+}
 // RWD下到 ? px 觸發
 @media screen and (max-width: 768px) {
   .fs-md-2 {
@@ -98,4 +105,22 @@ button {
   .fs-sm-6 {
     font-size: 16px !important;
   }
+}
+// RWD上到 ? px 觸發
+@media screen and (min-width: 992px){
+    .swal2-popup{
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1400px){
+    .swal2-popup{
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1700px){
+    .swal2-popup{
+        width: 30%;
+    }
 }

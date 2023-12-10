@@ -14,6 +14,7 @@ const getUrlId = getUrl.searchParams.get("id");
 let currentPage = document.querySelector('.current-page');
 let title = document.querySelector('.article-title');
 let photo = document.querySelector('.article-photo');
+let costHowDay = document.querySelector('.article-costday')
 let price = document.querySelector('.article-price');
 let detail = document.querySelector('.article-detail');
 let priceInclude = document.querySelector('.article-priceInclude');
@@ -38,7 +39,6 @@ axios.get(`${url}rents/${getUrlId}?_expand=user`)
     renderRentArticle(api) ;
     modal(photo);
     favorite();
-    comment();
     map();
 });
 
@@ -62,6 +62,17 @@ function renderRentArticle(api){
     let person = api.user.contact.person[0]+api.user.contact.person[1] ;
     let phone = api.user.contact.phone;
     let line = api.user.contact.line;
+
+    // 處理花費日期
+    const dateString = `${api.updateDate}`;
+    const updateDate = new Date(dateString);
+    // 媒合日期
+    const dateString2 = `${api.soldDate}`;
+    const matchDate = new Date(dateString2);
+    // 時間
+    const costTime = updateDate.getTime() - matchDate.getTime();
+    // 換算天數
+    const costDay = Math.abs(Math.trunc(costTime / (1000 * 3600 * 24)));
 
     // --所有畫面渲染--
     // 麵包屑
@@ -90,6 +101,8 @@ function renderRentArticle(api){
                                 <img src="${api.photo[4]}" class="img-fluid imgCursor rounded img-open" data-open="4" alt="house photo">
                             </div>
                         </div>`;
+    // 花費幾日媒合
+    costHowDay.textContent = `${costDay}日 媒合成功`;
     // 租金
     price.textContent = `${(api.price).toLocaleString('zh-TW')}元/月`;
     // 詳細資訊
@@ -212,12 +225,6 @@ function renderRentArticleCommet(api){
         }
     }
     );
-    // 驗證是否登入改變placeholder文字
-    if (storageUserId) {
-        messageArea.setAttribute('placeholder','留言給發文者吧~');
-    } else {
-        messageArea.setAttribute('placeholder','登入即可傳送訊息!');
-    }
 }
 
 // 彈跳遮罩
@@ -367,73 +374,6 @@ function favorite(){
                 }); 
             }
         })
-}
-
-// 留言
-function comment(){
-    
-    messageBtn.addEventListener('click', (e) => {
-        const now = new Date();
-        const year = now.getFullYear(); // 年份
-        const month = String(now.getMonth() + 1).padStart(2, '0'); // 月份 (月份從 0 開始，所以需要加 1)，補置2位數
-        const day = String(now.getDate()).padStart(2, '0'); // 日，補置2位數
-        // 驗證是否登入
-        if (storageUserId) {
-            // 驗證文字欄位是否有輸入文字
-            if (messageArea.value.length > 0) {
-                // if (api[api.length-1].user.contact.person[0] == '') {
-                //     Swal.fire({
-                //         icon: 'warning',
-                //         title: '請先至會員專區填寫您的稱呼',
-                //         showConfirmButton: false,
-                //         timer: 1500
-                //     });
-                //     return ;
-                // } else {
-                    let data = {
-                        "rentId": parseInt(getUrlId),
-                        "userId": storageUserId,
-                        "date": `${year}/${month}/${day}`,
-                        "content": messageArea.value
-                      }
-                    axios.post(`${url}qas`,data)
-                    .then(function(res){
-                        // 重新渲染留言
-                        axios.get(`${url}qas?rentId=${getUrlId}&_expand=user&_expand=rent&_sort=date&_order=asc`)
-                        .then(function(res){
-                            api = res.data ;
-                            qas.innerHTML = ''; // 清空原本的 qas.innerHTML 字串
-                            Swal.fire({
-                                icon: 'success',
-                                title: '已留言成功',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                            // 清空文字欄位
-                            messageArea.value = '';
-                            renderRentArticleCommet(api);
-                            
-                        });
-                    });
-                // }
-                
-            } else {
-                Swal.fire({
-                    icon: 'warning',
-                    title: '文字欄位不能為空',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
-        } else {
-            Swal.fire({
-                icon: 'warning',
-                title: '請先登入帳號',
-                showConfirmButton: false,
-                timer: 1500
-            });
-        }
-    });
 }
 
 // 檢舉
@@ -655,9 +595,6 @@ function map(){
         document.head.appendChild(script);
     })
 }
-
-
-
 
 
 

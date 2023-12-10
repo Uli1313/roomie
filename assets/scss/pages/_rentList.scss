@@ -27,7 +27,6 @@ button{
     width: 358px; 
     height: 56px;
     padding-left: 45px;
-    transition: .3s;
     &:focus{
         outline: none;
         box-shadow: 0 0 0 2px $primary;
@@ -60,6 +59,10 @@ button{
 
 .transform-y-20{
     transform: translateY(20%);
+}
+
+#list{
+    min-height: calc(100vh - 696px);
 }
 
 //下到 ? px 觸發
