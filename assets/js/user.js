@@ -17,6 +17,7 @@ const genderFemal = document.querySelector('#genderFemal');
 
 function init() {
     getUserInfo();
+    getdashboard();
 }
 init();
 
@@ -32,9 +33,23 @@ async function getUserInfo() {
         renderData();
     } catch (err) {
         console.log(err);
+        if (err.response.status === 401 || err.response.statusText === 'Unauthorized') {
+            // 登入過期要回到登入頁
+            const needBack = ['user.html', 'user_posts.html', 'user_favorites.html', 'user_messages.html']
+            if (needBack.some(pageName => location.pathname.match(pageName))) {
+                const swal = Swal.fire({
+                    icon: "warning",
+                    title: "請重新登入",
+                    scrollbarPadding: false,
+                    didClose: () => {
+                        clearUserInfo();
+                        location.href = 'login.html';
+                    }
+                });
+            }
+        }
     }
 }
-
 // 用最新的用戶資料更新 localStorage
 function updateLocalStorage() {
     localStorage.setItem('user', JSON.stringify(user));
@@ -132,6 +147,49 @@ infoSaveBtn.addEventListener('click', async (e) => {
     infoSaveBtn.classList.add('d-none');
 });
 
+// 取得發文/收藏/留言數量
+let rentsData = [];
+let favsData = [];
+let commentsData = [];
+function getdashboard() {
+    // 發文
+    axios.get(`${baseUrl}/rents?userId=${localUserId}`)
+        .then((res) => {
+            rentsData = res.data;
+            renderdashboard(rentsData, favsData, commentsData)
+        })
+        .catch((err) => {
+            console.log((err))
+        })
+    // 收藏
+    axios.get(`${baseUrl}/favorites?userId=${localUserId}`)
+        .then((res) => {
+            favsData = res.data;
+            renderdashboard(rentsData, favsData, commentsData)
+        })
+        .catch((err) => {
+            console.log((err))
+        })
+    // 留言
+    axios.get(`${baseUrl}/qas?userId=${localUserId}`)
+        .then((res) => {
+            commentsData = res.data;
+            renderdashboard(rentsData, favsData, commentsData)
+        })
+        .catch((err) => {
+            console.log((err))
+        })
+}
+getdashboard()
+// 渲染發文/收藏/留言數量
+const postsNum = document.querySelector('.postsNum');
+const favsNum = document.querySelector('.favsNum');
+const commentsNum = document.querySelector('.commentsNum');
+function renderdashboard(rentsData, favsData, commentsData) {
+    postsNum.textContent = rentsData.length;
+    favsNum.textContent = favsData.length;
+    commentsNum.textContent = commentsData.length;
+}
 
 // 變更密碼表單
 const changePwdForm = document.querySelector('#changePwdForm');
