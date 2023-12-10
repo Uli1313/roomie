@@ -1,8 +1,8 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-// consst baseUrl = "https://roomie-lfta.onrender.com";
-const baseUrl = "http://localhost:3000";
+const baseUrl = "https://roomie-lfta.onrender.com";
+// const baseUrl = "http://localhost:3000";
 const localUserId = localStorage.getItem("userId");
 const localUserToken = localStorage.getItem("token");
 const token = {
