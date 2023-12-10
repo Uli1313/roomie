@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-// const baseUrl = "https://roomie-lfta.onrender.com";
-const baseUrl = "http://localhost:3000";
+const baseUrl = "https://roomie-lfta.onrender.com";
+// const baseUrl = "http://localhost:3000";
 const localUserId = localStorage.getItem('userId');
 const localUserToken = localStorage.getItem('token');
 const token = {
@@ -85,7 +85,7 @@ const toggleEditState = (editable, readOnly, disabled) => {
     genderFemal.disabled = disabled;
     aboutMeTextarea.readOnly = readOnly;
 };
-
+// 修改用戶資訊
 const updateUser = async (data, useNewSwal = false) => {
     try {
         const res = await axios.patch(`${baseUrl}/users/${localUserId}`, data);
@@ -133,31 +133,88 @@ infoSaveBtn.addEventListener('click', async (e) => {
 });
 
 
-// 變更密碼
+// 變更密碼表單
 const changePwdForm = document.querySelector('#changePwdForm');
+
+changePwdForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkInputs();
+});
+// 修改密碼
 function patchPwd(password) {
     axios.patch(`${baseUrl}/600/users/${localUserId}`, {
         "password": password
     }, token)
         .then((res) => {
             changePwdForm.reset();
-            alert('成功')
+            const swal = Swal.fire({
+                icon: "success",
+                title: "變更密碼成功",
+                showConfirmButton: false,
+                timer: 1500,
+                didClose: () => {
+                    clearUserInfo();
+                    location.href = 'login.html';
+                }
+            });
+            changePwdForm.classList.remove('was-validated');
         })
         .catch((err) => {
-            console.log(err.response.data)
+            console.log(err)
         })
 }
-changePwdForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+function checkInputs() {
     const nowPwd = document.querySelector('#nowPwd');
     const setNewPwd = document.querySelector('#setNewPwd');
     const rePwd = document.querySelector('#rePwd');
+    const nowPwdValue = nowPwd.value.trim();
+    const setNewPwdValue = setNewPwd.value.trim();
+    const rePwdValue = rePwd.value.trim();
 
-    if (nowPwd.value.trim() === '' || setNewPwd.value.trim() === '' || rePwd.value.trim() === '') {
-        alert('欄位不得為空');
-    } else if (setNewPwd.value.trim() !== rePwd.value.trim()) {
-        alert('密碼不一致');
-    } else if (setNewPwd.value.trim() === rePwd.value.trim()) {
-        patchPwd(setNewPwd.value);
+    if (nowPwdValue === '') {
+        setErrorFor(nowPwd, '欄位不得為空');
+    } else {
+        setSuccessFor(nowPwd);
     }
-});
+    if (setNewPwdValue === '') {
+        setErrorFor(setNewPwd, '欄位不得為空');
+    } else if (isConsecutive(setNewPwdValue) || isWeakPassword(setNewPwdValue)) {
+        setErrorFor(setNewPwd, '密碼不安全');
+    } else {
+        setSuccessFor(setNewPwd);
+    }
+    if (rePwdValue === '') {
+        setErrorFor(rePwd, '欄位不得為空');
+    } else if (setNewPwdValue !== rePwdValue) {
+        setErrorFor(rePwd, '密碼不一致')
+    } else if (setNewPwdValue === rePwdValue) {
+        patchPwd(setNewPwdValue);
+        return;
+    }
+}
+function setErrorFor(input, message) {
+    const formFloating = input.parentElement;
+    const errTxt = formFloating.querySelector('.invalid-feedback');
+    errTxt.innerText = message;
+    formFloating.classList.add('was-validated');
+}
+function setSuccessFor(input) {
+    const formFloating = input.parentElement;
+    formFloating.classList.add('was-validated');
+}
+
+// 檢查密碼是否包含連續數字或字母的函數
+function isConsecutive(password) {
+    const consecutiveRegex = /123456|234567|345678|456789|567890|abcdefghijklmnopqrstuvwxyz|zyxwvutsrqponmlkjihgfedcba/i;
+    return consecutiveRegex.test(password);
+}
+
+// 檢查弱密碼（少於6個字符）
+function isWeakPassword(password) {
+    return password.length < 6;
+}
+
+function clearUserInfo() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+}
