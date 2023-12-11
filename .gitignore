@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# 忽略 ignore.js 檔案
+ignore.js
+

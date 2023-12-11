@@ -1,9 +1,8 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { apiKey } from '/assets/js/ignore.js'; 
 
 const url = 'https://roomie-lfta.onrender.com/';
-const apiKey = 'AIzaSyCLDlkDTreTEDT3c1iOlQXrKQ1s4IIsUwg';  // API 金鑰
-
 let api = '';
 
 // 當前畫面的ID
