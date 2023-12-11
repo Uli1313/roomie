@@ -45,23 +45,24 @@
               <!-- 縣市 -->
               <div class="me-3 addRegion-input">
                 <select id="cityRegion" name="縣市">
-                  <option value="縣市">縣市</option>
                   <!-- areaData放入 -->
                 </select>
               </div>
               <!-- 行政區 -->
               <div class="me-3 addRegion-input">
                 <select id="districtRegion" name="行政區">
-                  <option value="行政區">行政區</option>
                   <!-- areaData放入 -->
                 </select>
               </div>
               <!-- 路、街-->
               <div class="me-3 addRegion-input">
-                <select id="pathRegion" name="路或街">
-                  <option value="路或街">路、街</option>
-                  <!-- areaData放入 -->
-                </select>
+                <input
+                  class="inputWidth"
+                  type="text"
+                  id="pathRegion"
+                  placeholder="請填路或街"
+                  name="路或街"
+                />
               </div>
               <!-- 巷 -->
               <div class="me-3 addRegion-input">
@@ -96,8 +97,7 @@
 
               <div class="alert-message">
                 <p id="addRegion-message" data-message="地區">
-                  <!-- <i class="fas fa-exclamation-circle"></i>
-                            <span>必填!</span> -->
+                  <span>必填!</span>
                 </p>
               </div>
             </div>
@@ -127,7 +127,7 @@
               <!-- 整層住家 -->
               <div class="me-3 addType-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input housingType"
                   type="radio"
                   name="housingType"
                   id="wholeHome"
@@ -137,9 +137,9 @@
                 </label>
               </div>
               <!-- 獨立套房 -->
-              <div class="me-3 addRegion-input">
+              <div class="me-3 addType-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input housingType"
                   type="radio"
                   name="housingType"
                   id="separateHome"
@@ -149,9 +149,9 @@
                 </label>
               </div>
               <!-- 分租套房 -->
-              <div class="me-3 addRegion-input">
+              <div class="me-3 addType-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input housingType"
                   type="radio"
                   name="housingType"
                   id="familyHome"
@@ -161,9 +161,9 @@
                 </label>
               </div>
               <!-- 雅房 -->
-              <div class="me-3 addRegion-input">
+              <div class="me-3 addType-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input housingType"
                   type="radio"
                   name="housingType"
                   id="roomHome"
@@ -242,7 +242,7 @@
               <!-- 床 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="bed"
@@ -252,7 +252,7 @@
               <!-- 衣櫃 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="closet"
@@ -262,7 +262,7 @@
               <!-- 沙發 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="sofa"
@@ -272,7 +272,7 @@
               <!-- 桌子 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="table"
@@ -282,7 +282,7 @@
               <!-- 椅子 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="chair"
@@ -292,7 +292,7 @@
               <!-- 網路 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="internet"
@@ -302,7 +302,7 @@
               <!-- 冰箱 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="refrigerator"
@@ -314,7 +314,7 @@
               <!-- 電視 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="television"
@@ -324,7 +324,7 @@
               <!-- 冷氣 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="airConditioner"
@@ -336,7 +336,7 @@
               <!-- 洗衣機 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="washingMachine"
@@ -348,7 +348,7 @@
               <!-- 天然瓦斯 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="naturalGas"
@@ -360,7 +360,7 @@
               <!-- 熱水器 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="waterHeater"
@@ -372,7 +372,7 @@
               <!-- 電梯 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="elevator"
@@ -382,7 +382,7 @@
               <!-- 機車車位 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="motorcycleSpace"
@@ -394,7 +394,7 @@
               <!-- 汽車車位 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="checkbox"
                   value=""
                   id="carSpace"
@@ -406,7 +406,7 @@
               <!-- 無 -->
               <div class="me-3 addRegion-input">
                 <input
-                  class="form-check-input"
+                  class="form-check-input equipmentItem"
                   type="radio"
                   value=""
                   id="nothing"
@@ -996,5 +996,6 @@
     <%- include('./layout/footer'); -%>
 
     <script type="module" src="../main.js"></script>
+    <script type="module" src="../assets/js/user_addPost.js"></script>
   </body>
 </html>
