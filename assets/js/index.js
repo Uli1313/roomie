@@ -47,18 +47,19 @@ d3.json("/roomie/assets/COUNTY_MOI_1090820.json").then((data) => {
 });
 
 // 取得物件資料
-function rentInit() {
-  axios
-    .get(`${url}/rents?_sort=view&_order=desc`)
-    .then((res) => {
-      rentsData = res.data;
-      renderBannerRent(rentsData);
-      renderLatestRent(rentsData);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
+(async () => {
+  try {
+    const res = await axios.get(
+      `${url}/rents?status=刊登中&_sort=view&_order=desc`
+    );
+    rentsData = res.data;
+    renderBannerRent(rentsData);
+    renderLatestRent(rentsData);
+    renderLatestRentSwiper();
+  } catch (error) {
+    console.log(error);
+  }
+})();
 
 // 渲染物件
 function renderBannerRent(data) {
@@ -206,8 +207,6 @@ bannerSearchForm.addEventListener("submit", (e) => {
   renderBannerRent(filterData);
 });
 
-rentInit();
-
 // 撈取最新物件
 function renderLatestRent(data) {
   const showData = data.slice(0, 10);
@@ -280,7 +279,7 @@ function renderNews() {
   newsList.innerHTML = str;
 }
 
-// Swiper
+// 平台特色 swiper
 const swiperIntro = new Swiper(".intro-swiper", {
   slidesPerView: "auto",
   spaceBetween: 12,
@@ -291,34 +290,37 @@ const swiperIntro = new Swiper(".intro-swiper", {
   },
 });
 
-const swiperLatestRent = new Swiper(".latest-rent-swiper", {
-  slidesPerView: 1,
-  spaceBetween: 12,
-  grabCursor: true,
-  autoplay: {
-    delay: 1500,
-  },
-  loop: true,
-  centeredSlides: true,
-  effect: "coverflow",
-  coverflowEffect: {
-    rotate: 0,
-    stretch: 0,
-    depth: 100,
-    modifier: 1,
-    slideShadows: false,
-  },
-  breakpoints: {
-    576: {
-      slidesPerView: 2,
-      spaceBetween: 24,
+// 最新物件 swiper
+function renderLatestRentSwiper() {
+  const swiperLatestRent = new Swiper(".latest-rent-swiper", {
+    slidesPerView: 1,
+    spaceBetween: 12,
+    grabCursor: true,
+    autoplay: {
+      delay: 1500,
     },
-    992: {
-      slidesPerView: 3,
-      spaceBetween: 40,
+    loop: true,
+    centeredSlides: true,
+    effect: "coverflow",
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: false,
     },
-  },
-});
+    breakpoints: {
+      576: {
+        slidesPerView: 2,
+        spaceBetween: 24,
+      },
+      992: {
+        slidesPerView: 3,
+        spaceBetween: 40,
+      },
+    },
+  });
+}
 
 // 打字機
 const arr = ["工作室", "住處"];
