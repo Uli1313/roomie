@@ -210,7 +210,6 @@ bannerSearchForm.addEventListener("submit", (e) => {
 // 撈取最新物件
 function renderLatestRent(data) {
   const showData = data.slice(0, 10);
-  console.log(showData);
   latestRentItem.innerHTML = showData.reduce((a, c) => {
     return (
       a +
