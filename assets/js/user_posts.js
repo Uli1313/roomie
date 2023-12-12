@@ -204,7 +204,7 @@ function renderMatchedList(data) {
     const costDay = Math.abs(Math.trunc(costTime / (1000 * 3600 * 24)));
     const daysAway = Math.abs(Math.trunc(daysAwayTime / (1000 * 3600 * 24)));
 
-    div += `<div class="col-12 my-3 p-1 hover-primary-2 rounded">
+    div += `<div class="user-post-item col-12 my-3 p-1 hover-primary-2 rounded">
                     <div class="col-12 p-3 bg-white d-flex flex-wrap justify-content-evenly align-items-center text-end text-lg-center border rounded">
                         <div class="col-12 col-lg-4"><a href="matchArticle.html?id=${
                           v.id
@@ -594,14 +594,24 @@ function patchPostStatus(resultStatus, event) {
         if (result.isConfirmed) {
           axios
             .patch(apiUrl, data, token)
-            .then((res) => renderCurrentTab())
-            .catch((err) => console.log(err));
-          Swal.fire({
-            icon: "success",
-            title: "下架貼文成功",
-            timer: 1500,
-            showConfirmButton: false,
-          });
+            .then((res) => {
+              renderCurrentTab();
+              Swal.fire({
+                icon: "success",
+                title: "下架貼文成功",
+                timer: 1500,
+                showConfirmButton: false,
+              });
+            })
+            .catch((err) => {
+              Swal.fire({
+                icon: "error",
+                title: "下架貼文失敗",
+                timer: 1500,
+                showConfirmButton: false,
+              });
+              console.log(err);
+            });
         }
       });
       break;
@@ -622,14 +632,23 @@ function patchPostStatus(resultStatus, event) {
         if (result.isConfirmed) {
           axios
             .patch(apiUrl, matchedData, token)
-            .then((res) => renderCurrentTab())
-            .catch((err) => console.log(err));
-          Swal.fire({
-            icon: "success",
-            title: "恭喜您媒合成功",
-            timer: 1500,
-            showConfirmButton: false,
-          });
+            .then((res) => {
+              renderCurrentTab();
+              Swal.fire({
+                icon: "success",
+                title: "恭喜您媒合成功",
+                timer: 1500,
+                showConfirmButton: false,
+              });
+            })
+            .catch((err) => {
+              Swal.fire({
+                icon: "error",
+                title: "發生錯誤",
+                timer: 1500,
+                showConfirmButton: false,
+              });
+            });
         }
       });
       break;
@@ -644,14 +663,23 @@ function patchPostStatus(resultStatus, event) {
         if (result.isConfirmed) {
           axios
             .patch(apiUrl, data, token)
-            .then((res) => renderCurrentTab())
-            .catch((err) => console.log(err));
-          Swal.fire({
-            icon: "success",
-            title: "上架貼文成功",
-            timer: 1500,
-            showConfirmButton: false,
-          });
+            .then((res) => {
+              renderCurrentTab();
+              Swal.fire({
+                icon: "success",
+                title: "上架貼文成功",
+                timer: 1500,
+                showConfirmButton: false,
+              });
+            })
+            .catch((err) => {
+              Swal.fire({
+                icon: "error",
+                title: "上架貼文失敗",
+                timer: 1500,
+                showConfirmButton: false,
+              });
+            });
         }
       });
       break;
@@ -675,14 +703,23 @@ function deletePost(event) {
     if (result.isConfirmed) {
       axios
         .delete(apiUrl, token)
-        .then((res) => renderCurrentTab())
-        .catch((err) => console.log(err));
-      Swal.fire({
-        icon: "success",
-        title: "刪除貼文成功",
-        timer: 1500,
-        showConfirmButton: false,
-      });
+        .then((res) => {
+          renderCurrentTab();
+          Swal.fire({
+            icon: "success",
+            title: "刪除貼文成功",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "刪除貼文失敗",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+        });
     }
   });
 }
