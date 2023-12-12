@@ -169,32 +169,30 @@
           <!-- desktop accountMenu dropdown -->
           <ul class="dropdown-menu" style="width: 220px">
             <!-- desktop accountMenu dropdown 未登入 -->
-            <li>
-              <a class="dropdown-item rounded-top d-none" href="login.html"
-                >登入</a
-              >
+            <li class="nav-unlogged">
+              <a class="dropdown-item rounded-top" href="login.html">登入</a>
             </li>
-            <li>
+            <li class="nav-unlogged">
               <a
-                class="dropdown-item border-0 rounded-bottom d-none"
+                class="dropdown-item border-0 rounded-bottom"
                 href="signup.html"
                 >註冊</a
               >
             </li>
             <!-- desktop accountMenu dropdown 已登入 -->
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item rounded-top" href="user.html">會員專區</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_posts.html">發文列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_favorites.html">收藏列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_messages.html">留言列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item border-0 rounded-bottom" href="login.html"
                 >登出</a
               >
@@ -443,6 +441,68 @@
   >
 </div>
 
-<script>
-  console.log("header");
+<script type="module">
+  import axios from "axios";
+
+  const baseUrl = "https://roomie-lfta.onrender.com";
+  // const baseUrl = "http://localhost:3000";
+
+  const localUserId = localStorage.getItem("userId");
+  const localUserToken = localStorage.getItem("token");
+
+  const token = {
+    headers: {
+      Authorization: `Bearer ${localUserToken}`,
+    },
+  };
+
+  let user;
+
+  const navLogged = document.querySelectorAll(".nav-logged");
+  const navUnLogged = document.querySelectorAll(".nav-unlogged");
+
+  (async () => {
+    try {
+      const apiPath = `/600/users/${localUserId}`;
+      const apiUrl = `${baseUrl}${apiPath}`;
+      const response = await axios.get(apiUrl, token);
+
+      updateLocalStorage(); // 用最新的用戶資料更新 localStorage
+      navLogged.forEach((e) => {
+        e.classList.add("d-block");
+      });
+      navUnLogged.forEach((e) => {
+        e.classList.add("d-none");
+      });
+    } catch (err) {
+      console.log(err);
+      navLogged.forEach((e) => {
+        e.classList.add("d-none");
+      });
+      navUnLogged.forEach((e) => {
+        e.classList.add("d-block");
+      });
+
+      // if (err.response.status === 401 || err.response.statusText === 'Unauthorized') {
+      //   // 登入過期要回到登入頁
+      //   const needBack = ['user.html', 'user_posts.html', 'user_favorites.html', 'user_messages.html']
+      //   if (needBack.some(pageName => location.pathname.match(pageName))) {
+      //     const swal = Swal.fire({
+      //       icon: "warning",
+      //       title: "請重新登入",
+      //       scrollbarPadding: false,
+      //       didClose: () => {
+      //         clearUserInfo();
+      //         location.href = 'login.html';
+      //       }
+      //     });
+      //   }
+      // }
+    }
+  })();
+
+  // 用最新的用戶資料更新 localStorage
+  function updateLocalStorage() {
+    localStorage.setItem("user", JSON.stringify(user));
+  }
 </script>
