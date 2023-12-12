@@ -180,6 +180,7 @@ function getMatchedData() {
 
 // 渲染已媒合文章
 function renderMatchedList(data) {
+  let div = "";
   if (!data.length) {
     matchedList.innerHTML = `<div class="d-flex justify-content-center align-items-center">
     <p>尚無相關物件 ¯\_(ツ)_/¯</p>
@@ -187,115 +188,65 @@ function renderMatchedList(data) {
     return;
   }
 
-  matchedList.innerHTML = data.reduce((a, c) => {
-    const trafficList = c.traffic.reduce((acc, cur) => {
-      return (
-        acc +
-        `<span class="me-3 px-1 bg-primary-200"
-      >${cur}</span
-    >`
-      );
-    }, "");
-    return (
-      a +
-      `<div class="user-post-item row p-1 rounded hover-primary-2" data-post-id=${
-        c.id
-      }>
-    <div class="col-12 col-md-3 p-0 rounded-top rounded-md-start">
-      <img
-        src="${c.photo[0]}"
-        style="
-          width: auto;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
-        "
-        alt="house photo"
-        class="rounded-top rounded-md-start"
-      />
-    </div>
-    <div
-      class="col-12 col-md-9 py-3 px-5 border border-start-sm-0 bg-white rounded-bottom rounded-md-end"
-    >
-      <ul>
-        <li
-          class="w-100 d-flex justify-content-between align-items-center py-2"
-        >
-          <a href="rentArticle.html?id=${c.id}" class="h3 link-dark"
-            >${c.title}</a
-          >
-          <div class="dropdown">
-            <button
-              class="btn dropdown-toggle p-3 link-none border-0 rounded-3 d-flex justify-content-center align-items-center"
-              type="button"
-              id="dropdownBtn"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span class="material-symbols-outlined more-btn"
-                >more_vert</span
-              >
-            </button>
-            <ul
-              class="dropdown-menu"
-              aria-labelledby="dropdownBtn"
-            >
-              <li>
-                <a class="dropdown-item delete-post" href="#">刪除貼文</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="pb-3">${c.houseLayout} | ${c["square Footage"]}坪${
-        c.floor
-      }F/${c.totalFloor}F</li>
-        <li class="pb-2">
-          <span
-            class="material-symbols-outlined pe-2"
-            style="transform: translateY(25%)"
-            >location_on</span
-          >${c.address}${c.district[0]}-${c.district[1]}
-        </li>
-        <li class="pb-3">
-          <span
-            class="material-symbols-outlined pe-1"
-            style="transform: translateY(25%)"
-            >person</span
-          >
-          <span class="me-3 px-1 bg-primary-200">${c.gender}</span
-          ><span class="me-3 px-1 bg-primary-200">${
-            c.canCooking ? "可開伙" : "不可開伙"
-          }</span
-          ><span class="me-3 px-1 bg-primary-200"
-            >${c.canPet ? "可養寵物" : "不可養寵物"}</span
-          >
-        </li>
-        <li class="pb-2">
-          <span
-            class="material-symbols-outlined pe-1"
-            style="transform: translateY(25%)"
-            >map</span
-          >
- ${trafficList}
-        </li>
-        <li class="pb-2 h2 text-secondary text-end">
-          ${c.price}元/月
-        </li>
-        <li class="d-flex justify-content-between">
-          更新日期:${c.updateDate}
-          <div>
-            <span
-              class="material-symbols-outlined"
-              style="transform: translateY(25%)"
-              >visibility</span
-            ><span class="ps-2">${c.view}</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>`
-    );
-  }, "");
+  data.forEach(function (v) {
+    // 上傳日期
+    const dateString = `${v.updateDate}`;
+    const updateDate = new Date(dateString);
+    // 媒合日期
+    const dateString2 = `${v.soldDate}`;
+    const matchDate = new Date(dateString2);
+    // 今天日期
+    const todayDate = new Date();
+    // 時間
+    const costTime = updateDate.getTime() - matchDate.getTime();
+    const daysAwayTime = matchDate.getTime() - todayDate.getTime();
+    // 換算天數
+    const costDay = Math.abs(Math.trunc(costTime / (1000 * 3600 * 24)));
+    const daysAway = Math.abs(Math.trunc(daysAwayTime / (1000 * 3600 * 24)));
+
+    div += `<div class="col-12 my-3 p-1 hover-primary-2 rounded">
+                    <div class="col-12 p-3 bg-white d-flex flex-wrap justify-content-evenly align-items-center text-end text-lg-center border rounded">
+                        <div class="col-12 col-lg-4"><a href="matchArticle.html?id=${
+                          v.id
+                        }" class="link-dark fw-bold">${v.title}</a></div>
+                        <div class="col-12 col-lg pb-1 pb-lg-0"><span class="text-primary">${daysAway}日前&nbsp;</span>媒合成功</div>
+                        <div class="col-12 col-lg pb-1 pb-lg-0">${
+                          v["square Footage"]
+                        }坪&nbsp;/&nbsp;${v.type}</div>
+                        <div class="col-12 col-lg fw-bold text-primary">${v.price.toLocaleString(
+                          "zh-TW"
+                        )}元/月</div>
+                        <div class="col-12 col-lg d-flex align-items-center">
+                            <span class="text-primary">花費${costDay}日&nbsp;</span>
+                            媒合成功
+                            <span class="material-symbols-outlined ps-1 text-danger" style="margin-top:2px" >verified</span>
+                        </div>
+                        <div class="dropdown">
+                        <button
+                          class="btn dropdown-toggle p-3 link-none border-0 rounded-3 d-flex justify-content-center align-items-center"
+                          type="button"
+                          id="dropdownBtn"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <span class="material-symbols-outlined more-btn"
+                            >more_vert</span
+                          >
+                        </button>
+                        <ul
+                          class="dropdown-menu"
+                          aria-labelledby="dropdownBtn"
+                        >
+                          <li>
+                            <a class="dropdown-item delete-post" href="#">刪除貼文</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                </div>
+                `;
+  });
+  matchedList.innerHTML = div;
 }
 
 // 取得下架文章
@@ -615,6 +566,21 @@ function patchPostStatus(resultStatus, event) {
   const data = {
     status: resultStatus,
   };
+  let matchedData;
+
+  if (resultStatus === "已媒合") {
+    // 媒合成功日期
+    const currentTime = new Date();
+    const year = currentTime.getFullYear();
+    const month = (currentTime.getMonth() + 1).toString().padStart(2, "0");
+    const day = currentTime.getDate().toString().padStart(2, "0");
+    const soldDate = `${year}/${month}/${day}`;
+
+    matchedData = {
+      status: resultStatus,
+      soldDate: soldDate,
+    };
+  }
   switch (resultStatus) {
     case "下架":
       Swal.fire({
@@ -655,7 +621,7 @@ function patchPostStatus(resultStatus, event) {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .patch(apiUrl, data, token)
+            .patch(apiUrl, matchedData, token)
             .then((res) => renderCurrentTab())
             .catch((err) => console.log(err));
           Swal.fire({
