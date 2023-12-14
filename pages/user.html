@@ -263,19 +263,17 @@
                     <img
                       src="/assets/images/user_default.png"
                       alt="user photo"
+                      id="userPhoto"
                     />
                     <div class="d-flex justify-content-end my-5">
-                      <button
-                        class="btn btn-sm btn-primary text-white py-2 px-5 rounded-pill me-3"
-                      >
-                        上傳
-                      </button>
-                      <button
-                        class="btn btn-sm btn-primary text-white py-2 px-5 rounded-pill"
-                        pill
-                      >
-                        移除
-                      </button>
+                      <div class="selectFile d-none">
+                        <label
+                          for="updateFile"
+                          class="btn btn-sm btn-primary text-white py-2 px-5 rounded-pill"
+                          >上傳</label
+                        >
+                        <input type="file" id="updateFile" class="d-none" />
+                      </div>
                     </div>
                     <form>
                       <div class="mb-3">
