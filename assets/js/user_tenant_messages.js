@@ -13,7 +13,6 @@ const token = {
 function init() {
   getUserInfo();
   getTentantData();
-  // getRentComment();
 }
 init();
 
@@ -130,7 +129,7 @@ tenantList.addEventListener('click', (e) => {
   const targetClass = e.target.classList;
 
   rentId = parseInt(e.target.getAttribute('data-id'));
-  
+
   axios.get(`${baseUrl}/qas?userId=${localUserId}&_expand=rent&_expand=user&_sort=date&_order=asc`)
     .then((res) => {
       commentData = res.data;
@@ -138,7 +137,7 @@ tenantList.addEventListener('click', (e) => {
 
       let commentStr = '';
       commentData.forEach((item) => {
-        
+
         if (item.id === rentId) {
           commentStr += `<div
             class="offcanvas-header offcanvas-custom pt-5 d-flex justify-content-end"
@@ -197,74 +196,7 @@ tenantList.addEventListener('click', (e) => {
     .catch((err) => {
       console.log(err)
     })
-
-
 });
-// 取得留言內容
-
-// function getRentComment(rentId) {
-//   console.log(123, rentId);
-  
-// }
-
-// 渲染發文者列表留言
-// function renderTenantComment(commentData) {
-//   let commentStr = '';
-//   commentData.forEach((item) => {
-//     commentStr += `<div
-//     class="offcanvas-header offcanvas-custom pt-5 d-flex justify-content-end"
-//   >
-//     <button
-//       type="button"
-//       class="btn-close text-reset"
-//       data-bs-dismiss="offcanvas"
-//       aria-label="Close"
-//     ></button>
-//   </div>
-//   <div class="offcanvas-body px-7 pb-7 d-flex flex-column">
-//     <h5 class="mb-5" id="offcanvasRightLabel">
-//       ${item.rent.title}
-//     </h5>
-//     <div class="comment-wrap mb-5">
-//       <div class="d-flex border-bottom pb-3">
-//         <img
-//           class="account-img"
-//           src="${item.user.photo}"
-//           alt="user-photo"
-//         />
-//         <div class="ms-3">
-//           <p class="fw-bold">${item.user.name}</p>
-//           <span class="fs-7">${item.date}</span>
-//         </div>
-//       </div>
-//       <div class="my-3">
-//         <p>${item.content}</p>
-//       </div>
-//     </div>
-//     <div class="reply-content"></div>
-//     <div class="mt-auto">
-//     <textarea
-//       class="msg-area form-control border rounded-0"
-//       name=""
-//       id="postReplyTextarea"
-//       rows="8"
-//     ></textarea>
-//     <div class="invalid-feedback">請輸入回覆內容</div>
-
-//     <div class="d-flex justify-content-end mt-3">
-//       <button
-//         class="check-btn btn btn-sm btn-primary py-3 px-5 rounded-pill me-3"
-//         data-id="${item.id}"
-//       >
-//         回覆
-//       </button>
-//     </div>
-//   </div>
-//   </div>`
-
-//   })
-//   tenantComment.innerHTML = commentStr;
-// }
 
 // 刪除物件
 
