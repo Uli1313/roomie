@@ -17,26 +17,27 @@
     />
     <title>Roomie 屋伴</title>
     <link rel="icon" type="image/png" href="/roomie/assets/favicon-8f1f900a.ico" />
-    <script type="module" crossorigin src="/roomie/assets/index-c06c0329.js"></script>
-    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-340b141d.js">
+    <script type="module" crossorigin src="/roomie/assets/index-dc903e59.js"></script>
+    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-0d2201fe.js">
     <link rel="modulepreload" crossorigin href="/roomie/assets/transform-18031762.js">
-    <link rel="modulepreload" crossorigin href="/roomie/assets/axios-28bc18a3.js">
-    <link rel="stylesheet" href="/roomie/assets/bootstrap-8c7a45f6.css">
+    <link rel="stylesheet" href="/roomie/assets/bootstrap-f14ad3a0.css">
     <link rel="stylesheet" href="/roomie/assets/index-b7bf2630.css">
   </head>
   <body class="u-btn">
     <nav class="navbar navbar-expand-md bg-white border-bottom">
   <div class="container-xxl">
-    <a class="navbar-brand flex-grow-1 order-0" href="index.html">
-      <picture>
-        <source srcset="/roomie/assets/logo-a9bfd98d.png " media="(min-width:768px)" />
-        <img
-          src="/roomie/assets/logo-mobile-5c8b7082.png"
-          alt="roomie 屋伴"
-          class="logo"
-        />
-      </picture>
-    </a>
+    <div class="flex-grow-1">
+      <a class="navbar-brand order-0" href="index.html">
+        <picture>
+          <source srcset="/roomie/assets/logo-a9bfd98d.png " media="(min-width:768px)" />
+          <img
+            src="/roomie/assets/logo-mobile-5c8b7082.png"
+            alt="roomie 屋伴"
+            class="logo"
+          />
+        </picture>
+      </a>
+    </div>
     <div class="d-flex order-1 order-md-2">
       <ul class="d-flex ms-5 gap-0 gap-md-5">
         <!-- mobile notification icon -->
@@ -176,14 +177,27 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <a class="p-3 link-dark hover-primary border-0 rounded-3" href="#"
-            ><span class="material-icons-outlined"> account_circle </span></a
+          <a
+            class="nav-unlogged p-3 link-dark hover-primary border-0 rounded-3"
+            href="#"
           >
+            <span class="material-icons-outlined"> account_circle </span></a
+          >
+          <a
+            class="nav-logged p-3 link-dark hover-primary border-0 rounded-3"
+            href="#"
+          >
+            <img
+              class="nav-logged-photo nav-logged-photo-mobile object-fit-contain rounded-circle overflow-hidden"
+              src=""
+              alt="user-photo"
+            />
+          </a>
         </li>
         <!-- desktop accountMenu icon & dropdown-->
         <li class="navbar-account nav-item dropdown d-none d-md-block">
           <a
-            class="nav-link dropdown-toggle p-3 link-dark hover-primary border-0 rounded-3"
+            class="nav-unlogged nav-link dropdown-toggle p-3 link-dark hover-primary border-0 rounded-3"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
@@ -191,35 +205,46 @@
           >
             <span class="material-icons-outlined"> account_circle </span>
           </a>
+          <a
+            class="nav-logged nav-link p-0 dropdown-togglelink-dark hover-primary border-0 rounded-circle overflow-hidden d-none"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              class="nav-logged-photo object-fit-contain"
+              src=""
+              alt="user-photo"
+            />
+          </a>
           <!-- desktop accountMenu dropdown -->
           <ul class="dropdown-menu" style="width: 220px">
             <!-- desktop accountMenu dropdown 未登入 -->
-            <li>
-              <a class="dropdown-item rounded-top d-none" href="login.html"
-                >登入</a
-              >
+            <li class="nav-unlogged">
+              <a class="dropdown-item rounded-top" href="login.html">登入</a>
             </li>
-            <li>
+            <li class="nav-unlogged">
               <a
-                class="dropdown-item border-0 rounded-bottom d-none"
+                class="dropdown-item border-0 rounded-bottom"
                 href="signup.html"
                 >註冊</a
               >
             </li>
             <!-- desktop accountMenu dropdown 已登入 -->
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item rounded-top" href="user.html">會員專區</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_posts.html">發文列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_favorites.html">收藏列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_messages.html">留言列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item border-0 rounded-bottom" href="login.html"
                 >登出</a
               >
@@ -467,6 +492,8 @@
     >查看全部</a
   >
 </div>
+
+
     <div class="bg-primary">
       <div class="container-xxl py-5 py-md-10">
         <div class="row">
@@ -591,7 +618,7 @@
         <div
           class="intro container-xxl position-absolute start-50 translate-middle-x"
         >
-          <div class="text-white mb-4 mb-md-8 text-center fs-md-4 lh-sm">
+          <div class="text-white mb-4 mb-md-8 text-center fs-6 fs-md-4 lh-sm">
             <p class="mb-2 mb-md-4">受夠了高昂的租金嗎?</p>
             <p>
               我們的合租平台能幫助你找到經濟實惠的共享住宅，與合租夥伴共擔租金，輕鬆省錢！
@@ -680,183 +707,7 @@
               最新物件
             </h2>
             <div class="swiper latest-rent-swiper">
-              <div class="swiper-wrapper latest-rent-item">
-                <!-- <div class="swiper-slide">
-                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
-                    <img
-                      class="latest-rent-img"
-                      src="/assets/images/room-1.png"
-                      alt=""
-                    />
-                    <div class="p-4 px-md-5 py-md-6">
-                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                      <div
-                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                      >
-                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                          永和區｜雅房｜6坪2F/7F
-                        </p>
-                        <p
-                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
-                        >
-                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                          >元/月
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
-                    <img
-                      class="latest-rent-img"
-                      src="/assets/images/room-2.png"
-                      alt=""
-                    />
-                    <div class="p-4 px-md-5 py-md-6">
-                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                      <div
-                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                      >
-                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                          永和區｜雅房｜6坪2F/7F
-                        </p>
-                        <p
-                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
-                        >
-                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                          >元/月
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
-                    <img
-                      class="latest-rent-img"
-                      src="/assets/images/room-3.png"
-                      alt=""
-                    />
-                    <div class="p-4 px-md-5 py-md-6">
-                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                      <div
-                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                      >
-                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                          永和區｜雅房｜6坪2F/7F
-                        </p>
-                        <p
-                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
-                        >
-                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                          >元/月
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
-                    <img
-                      class="latest-rent-img"
-                      src="/assets/images/room-4.png"
-                      alt=""
-                    />
-                    <div class="p-4 px-md-5 py-md-6">
-                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                      <div
-                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                      >
-                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                          永和區｜雅房｜6坪2F/7F
-                        </p>
-                        <p
-                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
-                        >
-                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                          >元/月
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
-                    <img
-                      class="latest-rent-img"
-                      src="/assets/images/room-5.png"
-                      alt=""
-                    />
-                    <div class="p-4 px-md-5 py-md-6">
-                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                      <div
-                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                      >
-                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                          永和區｜雅房｜6坪2F/7F
-                        </p>
-                        <p
-                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
-                        >
-                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                          >元/月
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
-                    <img
-                      class="latest-rent-img"
-                      src="/assets/images/room-6.png"
-                      alt=""
-                    />
-                    <div class="p-4 px-md-5 py-md-6">
-                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                      <div
-                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                      >
-                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                          永和區｜雅房｜6坪2F/7F
-                        </p>
-                        <p
-                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
-                        >
-                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                          >元/月
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="rounded-5 rounded-md-8 bg-white shadow-sm">
-                    <img
-                      class="latest-rent-img"
-                      src="/assets/images/room-1.png"
-                      alt=""
-                    />
-                    <div class="p-4 px-md-5 py-md-6">
-                      <h4 class="fs-5 fs-md-4 mb-2">永和雅房轉租出租</h4>
-                      <div
-                        class="d-flex justify-content-between align-items-md-end flex-column flex-md-row"
-                      >
-                        <p class="text-light-400 fs-8 fs-md-7 order-md-1">
-                          永和區｜雅房｜6坪2F/7F
-                        </p>
-                        <p
-                          class="fw-medium fs-7 fs-md-6 text-primary order-md-0"
-                        >
-                          <span class="ms-1 fw-bold fs-4 fs-md-3">9,500</span
-                          >元/月
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-              </div>
+              <div class="swiper-wrapper latest-rent-item"></div>
             </div>
           </div>
         </div>
@@ -1127,6 +978,7 @@
   arrow_upward
 </a>
     <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.js"></script>
+    
     
     
   </body>

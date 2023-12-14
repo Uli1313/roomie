@@ -17,24 +17,25 @@
     />
     <title>最新公告 | Roomie 屋伴</title>
     <link rel="icon" type="image/png" href="/roomie/assets/favicon-8f1f900a.ico" />
-    <script type="module" crossorigin src="/roomie/assets/news-c86ed8c0.js"></script>
-    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-340b141d.js">
-    <link rel="modulepreload" crossorigin href="/roomie/assets/axios-28bc18a3.js">
-    <link rel="stylesheet" href="/roomie/assets/bootstrap-8c7a45f6.css">
+    <script type="module" crossorigin src="/roomie/assets/news-28017bcd.js"></script>
+    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-0d2201fe.js">
+    <link rel="stylesheet" href="/roomie/assets/bootstrap-f14ad3a0.css">
   </head>
   <body class="u-btn page-news">
     <nav class="navbar navbar-expand-md bg-white border-bottom">
   <div class="container-xxl">
-    <a class="navbar-brand flex-grow-1 order-0" href="index.html">
-      <picture>
-        <source srcset="/roomie/assets/logo-a9bfd98d.png " media="(min-width:768px)" />
-        <img
-          src="/roomie/assets/logo-mobile-5c8b7082.png"
-          alt="roomie 屋伴"
-          class="logo"
-        />
-      </picture>
-    </a>
+    <div class="flex-grow-1">
+      <a class="navbar-brand order-0" href="index.html">
+        <picture>
+          <source srcset="/roomie/assets/logo-a9bfd98d.png " media="(min-width:768px)" />
+          <img
+            src="/roomie/assets/logo-mobile-5c8b7082.png"
+            alt="roomie 屋伴"
+            class="logo"
+          />
+        </picture>
+      </a>
+    </div>
     <div class="d-flex order-1 order-md-2">
       <ul class="d-flex ms-5 gap-0 gap-md-5">
         <!-- mobile notification icon -->
@@ -174,14 +175,27 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <a class="p-3 link-dark hover-primary border-0 rounded-3" href="#"
-            ><span class="material-icons-outlined"> account_circle </span></a
+          <a
+            class="nav-unlogged p-3 link-dark hover-primary border-0 rounded-3"
+            href="#"
           >
+            <span class="material-icons-outlined"> account_circle </span></a
+          >
+          <a
+            class="nav-logged p-3 link-dark hover-primary border-0 rounded-3"
+            href="#"
+          >
+            <img
+              class="nav-logged-photo nav-logged-photo-mobile object-fit-contain rounded-circle overflow-hidden"
+              src=""
+              alt="user-photo"
+            />
+          </a>
         </li>
         <!-- desktop accountMenu icon & dropdown-->
         <li class="navbar-account nav-item dropdown d-none d-md-block">
           <a
-            class="nav-link dropdown-toggle p-3 link-dark hover-primary border-0 rounded-3"
+            class="nav-unlogged nav-link dropdown-toggle p-3 link-dark hover-primary border-0 rounded-3"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
@@ -189,35 +203,46 @@
           >
             <span class="material-icons-outlined"> account_circle </span>
           </a>
+          <a
+            class="nav-logged nav-link p-0 dropdown-togglelink-dark hover-primary border-0 rounded-circle overflow-hidden d-none"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              class="nav-logged-photo object-fit-contain"
+              src=""
+              alt="user-photo"
+            />
+          </a>
           <!-- desktop accountMenu dropdown -->
           <ul class="dropdown-menu" style="width: 220px">
             <!-- desktop accountMenu dropdown 未登入 -->
-            <li>
-              <a class="dropdown-item rounded-top d-none" href="login.html"
-                >登入</a
-              >
+            <li class="nav-unlogged">
+              <a class="dropdown-item rounded-top" href="login.html">登入</a>
             </li>
-            <li>
+            <li class="nav-unlogged">
               <a
-                class="dropdown-item border-0 rounded-bottom d-none"
+                class="dropdown-item border-0 rounded-bottom"
                 href="signup.html"
                 >註冊</a
               >
             </li>
             <!-- desktop accountMenu dropdown 已登入 -->
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item rounded-top" href="user.html">會員專區</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_posts.html">發文列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_favorites.html">收藏列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_messages.html">留言列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item border-0 rounded-bottom" href="login.html"
                 >登出</a
               >
@@ -465,6 +490,8 @@
     >查看全部</a
   >
 </div>
+
+
     <div class="page-news-bg bg-secondary pt-20 pt-md-25">
       <h2 class="text-center fs-3 fs-md-2 text-white">
         <span class="page-news-title position-relative">最新公告</span>

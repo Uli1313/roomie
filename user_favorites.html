@@ -21,22 +21,26 @@
     />
     <title>收藏列表</title>
     <link rel="icon" type="image/png" href="/roomie/assets/favicon-8f1f900a.ico" />
-    <script type="module" crossorigin src="/roomie/assets/bootstrap.min-340b141d.js"></script>
-    <link rel="stylesheet" href="/roomie/assets/bootstrap-8c7a45f6.css">
+    <script type="module" crossorigin src="/roomie/assets/user_favorites-3b9a6e13.js"></script>
+    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-0d2201fe.js">
+    <link rel="modulepreload" crossorigin href="/roomie/assets/sweetalert2.all-42322153.js">
+    <link rel="stylesheet" href="/roomie/assets/bootstrap-f14ad3a0.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-md bg-white border-bottom">
   <div class="container-xxl">
-    <a class="navbar-brand flex-grow-1 order-0" href="index.html">
-      <picture>
-        <source srcset="/roomie/assets/logo-a9bfd98d.png " media="(min-width:768px)" />
-        <img
-          src="/roomie/assets/logo-mobile-5c8b7082.png"
-          alt="roomie 屋伴"
-          class="logo"
-        />
-      </picture>
-    </a>
+    <div class="flex-grow-1">
+      <a class="navbar-brand order-0" href="index.html">
+        <picture>
+          <source srcset="/roomie/assets/logo-a9bfd98d.png " media="(min-width:768px)" />
+          <img
+            src="/roomie/assets/logo-mobile-5c8b7082.png"
+            alt="roomie 屋伴"
+            class="logo"
+          />
+        </picture>
+      </a>
+    </div>
     <div class="d-flex order-1 order-md-2">
       <ul class="d-flex ms-5 gap-0 gap-md-5">
         <!-- mobile notification icon -->
@@ -176,14 +180,27 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <a class="p-3 link-dark hover-primary border-0 rounded-3" href="#"
-            ><span class="material-icons-outlined"> account_circle </span></a
+          <a
+            class="nav-unlogged p-3 link-dark hover-primary border-0 rounded-3"
+            href="#"
           >
+            <span class="material-icons-outlined"> account_circle </span></a
+          >
+          <a
+            class="nav-logged p-3 link-dark hover-primary border-0 rounded-3"
+            href="#"
+          >
+            <img
+              class="nav-logged-photo nav-logged-photo-mobile object-fit-contain rounded-circle overflow-hidden"
+              src=""
+              alt="user-photo"
+            />
+          </a>
         </li>
         <!-- desktop accountMenu icon & dropdown-->
         <li class="navbar-account nav-item dropdown d-none d-md-block">
           <a
-            class="nav-link dropdown-toggle p-3 link-dark hover-primary border-0 rounded-3"
+            class="nav-unlogged nav-link dropdown-toggle p-3 link-dark hover-primary border-0 rounded-3"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
@@ -191,35 +208,46 @@
           >
             <span class="material-icons-outlined"> account_circle </span>
           </a>
+          <a
+            class="nav-logged nav-link p-0 dropdown-togglelink-dark hover-primary border-0 rounded-circle overflow-hidden d-none"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              class="nav-logged-photo object-fit-contain"
+              src=""
+              alt="user-photo"
+            />
+          </a>
           <!-- desktop accountMenu dropdown -->
           <ul class="dropdown-menu" style="width: 220px">
             <!-- desktop accountMenu dropdown 未登入 -->
-            <li>
-              <a class="dropdown-item rounded-top d-none" href="login.html"
-                >登入</a
-              >
+            <li class="nav-unlogged">
+              <a class="dropdown-item rounded-top" href="login.html">登入</a>
             </li>
-            <li>
+            <li class="nav-unlogged">
               <a
-                class="dropdown-item border-0 rounded-bottom d-none"
+                class="dropdown-item border-0 rounded-bottom"
                 href="signup.html"
                 >註冊</a
               >
             </li>
             <!-- desktop accountMenu dropdown 已登入 -->
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item rounded-top" href="user.html">會員專區</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_posts.html">發文列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_favorites.html">收藏列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_messages.html">留言列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item border-0 rounded-bottom" href="login.html"
                 >登出</a
               >
@@ -467,6 +495,8 @@
     >查看全部</a
   >
 </div>
+
+
     <main class="d-flex">
       <nav class="bg-white shadow-sm py-10 min-vh-100 d-none d-md-block">
   <ul class="navbar-nav flex-column">
@@ -511,7 +541,20 @@
           <h2 class="fs-3">收藏列表</h2>
           <ul class="d-flex">
             <li>
-              <button class="btn btn-sm border-0">
+              <button class="btn btn-sm border-0 me-3 delete-all-btn">
+                <div
+                  class="filter-btn d-flex justify-content-center align-items-center"
+                >
+                  <span class="material-symbols-outlined"
+                    >delete</span
+                  >
+                  <span>刪除全部收藏</span
+                  >
+                </div>
+              </button>
+            </li>
+            <li>
+              <button class="btn btn-sm border-0" id="filterDate">
                 <div
                   class="filter-btn d-flex justify-content-center align-items-center"
                 >
@@ -523,7 +566,7 @@
               </button>
             </li>
             <li>
-              <button class="btn btn-sm border-0">
+              <button class="btn btn-sm border-0" id="filterSquare">
                 <div
                   class="filter-btn d-flex justify-content-center align-items-center"
                 >
@@ -535,7 +578,7 @@
               </button>
             </li>
             <li>
-              <button class="btn btn-sm border-0">
+              <button class="btn btn-sm border-0" id="filterPrice">
                 <div
                   class="filter-btn d-flex justify-content-center align-items-center"
                 >
@@ -548,19 +591,7 @@
             </li>
           </ul>
         </div>
-        <!-- default content -->
-        <div
-          class="bg-white rounded-4 d-flex flex-column justify-content-center align-items-center p-20 d-none"
-        >
-          <p class="mb-5">
-            這裡什麼都沒有，先去找找看有沒有喜歡的物件，再加入收藏單吧！ ᕕ ( ᐛ )
-            ᕗ
-          </p>
-          <button class="btn btn-sm btn-primary text-white px-5 py-2 rounded-5">
-            搜尋物件
-          </button>
-        </div>
-        <!-- have items -->
+        <!-- items -->
         <div>
           <div
             class="tab-content bg-white rounded-4 p-md-5 p-2"
@@ -572,93 +603,21 @@
               role="tabpanel"
               aria-labelledby="publish-tab"
             >
-              <div class="container">
-                <div class="row p-1 rounded hover-primary-2">
-                  <div class="col-12 col-md-3 p-0 rounded-top rounded-md-start">
-                    <img
-                      src="/roomie/assets/room-1-bf8a56b6.png"
-                      style="
-                        width: auto;
-                        height: 100%;
-                        object-fit: cover;
-                        object-position: center;
-                      "
-                      alt="house photo"
-                      class="rounded-top rounded-md-start"
-                    />
-                  </div>
-                  <div
-                    class="col-12 col-md-9 py-3 px-5 border border-start-sm-0 bg-white rounded-bottom rounded-md-end"
-                  >
-                    <ul>
-                      <li
-                        class="w-100 d-flex justify-content-between align-items-center py-2"
-                      >
-                        <a href="rentArticle.html" class="h3 link-dark"
-                          >新竹市科學園區套房找室友</a
-                        >
-                        <button
-                          class="p-3 link-dark hover-primary border-0 rounded-3 d-flex justify-content-center align-items-center"
-                        >
-                          <span class="material-symbols-outlined"
-                            >heart_plus</span
-                          >
-                        </button>
-                      </li>
-                      <li class="pb-3">1房1廳1衛 | 15坪7F/21F</li>
-                      <li class="pb-2">
-                        <span
-                          class="material-symbols-outlined pe-2"
-                          style="transform: translateY(25%)"
-                          >location_on</span
-                        >新竹市東區-埔頂路一段
-                      </li>
-                      <li class="pb-3">
-                        <span
-                          class="material-symbols-outlined pe-1"
-                          style="transform: translateY(25%)"
-                          >person</span
-                        >
-                        <span class="me-3 px-1 bg-primary-200">女性</span
-                        ><span class="me-3 px-1 bg-primary-200">可開伙</span
-                        ><span class="me-3 px-1 bg-primary-200"
-                          >不可養寵物</span
-                        >
-                      </li>
-                      <li class="pb-2">
-                        <span
-                          class="material-symbols-outlined pe-1"
-                          style="transform: translateY(25%)"
-                          >map</span
-                        >
-                        <span class="me-3 px-1 bg-primary-200"
-                          >近新竹公車站</span
-                        ><span class="me-3 px-1 bg-primary-200"
-                          >近新竹火車站</span
-                        ><span class="me-3 px-1 bg-primary-200"
-                          >近新竹高鐵站</span
-                        >
-                      </li>
-                      <li class="pb-2 h2 text-secondary text-end">
-                        20,000元/月
-                      </li>
-                      <li class="d-flex justify-content-between">
-                        更新日期:2023/09/28 22:08
-                        <div>
-                          <span
-                            class="material-symbols-outlined"
-                            style="transform: translateY(25%)"
-                            >visibility</span
-                          ><span class="ps-2">456</span>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+              <div class="container favorites-list">
+                
               </div>
             </div>
           </div>
         </div>
+        <!-- pagination -->
+        <div class="row my-3">
+          <nav aria-label="Page navigation">
+              <ul class="pagination justify-content-end fw-bold">
+
+              </ul>
+          </nav>
+        </div>  
+        
       </div>
     </main>
     <footer class="bg-secondary py-10 py-md-16">
@@ -727,5 +686,8 @@
 </a>
 
     
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   </body>
 </html>
