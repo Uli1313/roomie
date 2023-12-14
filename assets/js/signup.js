@@ -163,7 +163,7 @@ function signUp(allTrueArr) {
       photo: "",
       contact: {
         person: ["", ""],
-        phone: "",
+        phone: "https://i.imgur.com/rUTLxZC.jpg",
         email: "",
         line: "",
       },
