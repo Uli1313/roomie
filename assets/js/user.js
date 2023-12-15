@@ -1,3 +1,4 @@
+import { loading } from './loading';
 import axios from "axios";
 import Swal from "sweetalert2";
 
