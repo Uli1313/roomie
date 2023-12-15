@@ -57,19 +57,20 @@ function getPosterData() {
   axios.get(`${baseUrl}/qas?rentId=${localUserId}&_expand=user&_expand=rent&_sort=date&_order=asc`)
     .then((res) => {
       posterData = res.data;
-      console.log('data', posterData)
       renderPosterData(posterData);
     })
     .catch((err) => {
       console.log(err)
     })
-}
+};
+
 // 渲染發文者列表
+let rentId = "";
 function renderPosterData(posterData) {
   if (!posterData.length) {
-    postList.innerHTML = `<div class="d-flex justify-content-center align-items-center">
-    <p>尚無相關留言 ¯\_(ツ)_/¯</p>
-  </div>`;
+    postList.innerHTML = `<tr>
+    <td colspan="5" class="text-center">尚無相關留言 ¯\_(ツ)_/¯</td>
+  </tr>`;
     return;
   }
   let postStr = '';
@@ -82,18 +83,7 @@ function renderPosterData(posterData) {
       replyStr = '未回覆'
     }
     postStr += `<tr>
-            <th scope="row">
-              <div>
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="checkboxNoLabel"
-                  value=""
-                  aria-label="..."
-                />
-              </div>
-            </th>
-            <td>${index + 1}</td>
+            <th scope="row">${index + 1}</th>
             <td><a href="rentArticle.html?id=${item.id}">${item.rent.title}</a></td>
             <td>${item.date}</td>
             <td>
@@ -108,7 +98,7 @@ function renderPosterData(posterData) {
             </td>
             <td>
               <button
-                class="replyBtn btn btn-sm btn-primary rounded-pill"
+                class="replyBtn btn btn-sm btn-primary rounded-pill me-1"
                 type="button"
                 data-id="${item.id}"
                 data-status="${replyStr}"
@@ -118,31 +108,70 @@ function renderPosterData(posterData) {
               >
                 回覆
               </button>
+              <button
+                class="deleBtn btn btn-sm btn-warning rounded-pill"
+                type="button"
+                data-id="${item.id}"
+              >
+                刪除
+              </button>
             </td>
           </tr>`
   })
   postList.innerHTML = postStr;
-}
+};
+
 postList.addEventListener('click', (e) => {
   e.preventDefault();
   const targetClass = e.target.classList;
-  console.log(targetClass)
-  let id = e.target.getAttribute('data-id');
+  let targetId = e.target.getAttribute('data-id');
+  // 回覆狀態
   if (targetClass.contains("js-replyStatus")) {
     let status = e.target.getAttribute('data-status');
-    console.log(status, id)
-    changeReplyStatus(status, id)
+    changeReplyStatus(status, targetId)
     return
   }
-  // if(targetClass.contains("form-check-input")){
-  //   alert('勾選')
-  //   return
-  // }
-  // if(targetClass.contains("replyBtn")){
-  //   alert('回覆')
-  //   return
-  // }
-})
+  // 刪除留言
+  if (targetClass.contains("deleBtn")) {
+    deleItem(targetId);
+    return
+  }
+});
+
+// 刪除留言
+function deleItem(targetId) {
+  Swal.fire({
+    icon: "question",
+    title: "確定要刪除留言嗎",
+    text: "一旦刪除後將無法復原",
+    showCancelButton: true,
+    confirmButtonText: "確定",
+    cancelButtonText: "取消",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axios
+        .delete(`${baseUrl}/qas/${targetId}`)
+        .then((res) => {
+          Swal.fire({
+            icon: "success",
+            title: "刪除留言成功",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+          getPosterData();
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "刪除留言失敗",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+        });
+    }
+  });
+}
+
 // 修改回覆狀態
 function changeReplyStatus(status, id) {
   let newStatus;
@@ -164,7 +193,8 @@ function changeReplyStatus(status, id) {
     .catch((err) => {
       console.log(err)
     })
-}
+};
+
 // 取得留言內容
 const postComment = document.querySelector('.js-postComment');
 let commentData = [];
@@ -172,13 +202,13 @@ function getPostComment() {
   axios.get(`${baseUrl}/qas?rentId=${localUserId}&_expand=user&_expand=rent&_sort=date&_order=asc`)
     .then((res) => {
       commentData = res.data;
-      console.log('comment', commentData)
       renderPosterComment(commentData);
     })
     .catch((err) => {
       console.log(err)
     })
-}
+};
+
 // 渲染發文者列表留言
 function renderPosterComment(commentData) {
   let commentStr = '';
@@ -233,7 +263,6 @@ function renderPosterComment(commentData) {
     </div>
   </div>
   </div>`
-
   })
   postComment.innerHTML = commentStr;
 
@@ -245,12 +274,12 @@ function renderPosterComment(commentData) {
   const year = now.getFullYear(); // 年份
   const month = String(now.getMonth() + 1).padStart(2, '0'); // 月份 (月份從 0 開始，所以需要加 1)，補置2位數
   const day = String(now.getDate()).padStart(2, '0'); // 日，補置2位數
+
   replyBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const msgArea = document.querySelector('.msg-area');
     const msgAreaValue = msgArea.value.trim();
     let id = e.target.getAttribute('data-id');
-    console.log('click', msgAreaValue, id)
     let replyData = {
       "reply": {
         "userId": parseInt(localUserId),
@@ -260,13 +289,12 @@ function renderPosterComment(commentData) {
     }
     axios.patch(`${baseUrl}/qas/${id}`, replyData)
       .then((res) => {
-        console.log('newcomment', commentData)
         commentData = res.data;
 
         axios.get(`${baseUrl}/qas?rentId=${localUserId}&_expand=user&_expand=rent&_sort=date&_order=asc`)
           .then((res) => {
             commentData = res.data;
-            console.log('replycomment', commentData)
+
             // 重新渲染留言
             const replyContent = document.querySelector('.reply-content');
             let replyStr = ''
@@ -288,6 +316,7 @@ function renderPosterComment(commentData) {
               </div>
             </div></p>`
             })
+
             replyContent.innerHTML = replyStr;
             document.querySelector('.msg-area').value = '';
           })
@@ -299,9 +328,7 @@ function renderPosterComment(commentData) {
         console.log(err)
       })
   });
-}
-
-// 刪除物件
+};
 
 
 
