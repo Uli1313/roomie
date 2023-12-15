@@ -170,7 +170,7 @@ function renderRentArticle(api){
     // 聯絡資訊
     contact.innerHTML = `
                         <li class="d-flex align-items-center gap-2 h5">
-                            <span class="material-symbols-outlined" style="font-size: 34px;">account_circle</span>
+                        <img class="nav-logged-photo object-fit-contain rounded-circle" src="${api.user.photo}" alt="user-photo">
                             <span>${person}</span></li>
                         <li class="my-2">電話: &nbsp;${phone}</li>
                         <li>Line: &nbsp;${line}</li>
@@ -184,7 +184,7 @@ function renderRentArticleCommet(api){
         qas.innerHTML += `
                         <li class="h5">
                                 <div class="d-flex align-items-center gap-2 my-4">
-                                    <span class="material-symbols-outlined" style="font-size: 34px;">account_circle</span>
+                                    <img class="nav-logged-photo object-fit-contain rounded-circle" src="${v.user.photo}" alt="user-photo">
                                     <span>${v.user.contact.person[0]+v.user.contact.person[1]}<span class="fs-7 border rounded bg-primary-200 mx-1">發文者</span>:</span>
                                 </div>
                                 <div class="d-flex justify-content-between px-2">
@@ -198,7 +198,7 @@ function renderRentArticleCommet(api){
             qas.innerHTML += `
                         <li class="h5">
                                 <div class="d-flex align-items-center gap-2 my-4">
-                                    <span class="material-symbols-outlined" style="font-size: 34px;">account_circle</span>
+                                    <img class="nav-logged-photo object-fit-contain rounded-circle" src="${v.user.photo}" alt="user-photo">
                                     <span>${v.user.contact.person[0]+v.user.contact.person[1]} : </span>
                                 </div>
                                 <div class="d-flex justify-content-between px-2">
