@@ -27,7 +27,7 @@ let currentTab = "publish-tab";
 
 // 取得刊登中文章
 function getPublishData() {
-  const apiUrl = `${url}/600/rents?userId=${localUserId}&status=刊登中`;
+  const apiUrl = `${url}/660/rents?userId=${localUserId}&status=刊登中`;
   axios
     .get(apiUrl, token)
     .then((res) => {
@@ -168,7 +168,7 @@ function renderPublishList(data) {
 
 // 取得已媒合文章
 function getMatchedData() {
-  const apiUrl = `${url}/600/rents?userId=${localUserId}&status=已媒合`;
+  const apiUrl = `${url}/660/rents?userId=${localUserId}&status=已媒合`;
   axios
     .get(apiUrl, token)
     .then((res) => {
@@ -204,7 +204,9 @@ function renderMatchedList(data) {
     const costDay = Math.abs(Math.trunc(costTime / (1000 * 3600 * 24)));
     const daysAway = Math.abs(Math.trunc(daysAwayTime / (1000 * 3600 * 24)));
 
-    div += `<div class="user-post-item col-12 my-3 p-1 hover-primary-2 rounded">
+    div += `<div class="user-post-item col-12 my-3 p-1 hover-primary-2 rounded" data-post-id=${
+      v.id
+    }>
                     <div class="col-12 p-3 bg-white d-flex flex-wrap justify-content-evenly align-items-center text-end text-lg-center border rounded">
                         <div class="col-12 col-lg-4"><a href="matchArticle.html?id=${
                           v.id
@@ -251,7 +253,7 @@ function renderMatchedList(data) {
 
 // 取得下架文章
 function getRemovedData() {
-  const apiUrl = `${url}/600/rents?userId=${localUserId}&status=下架`;
+  const apiUrl = `${url}/660/rents?userId=${localUserId}&status=下架`;
   axios
     .get(apiUrl, token)
     .then((res) => {
@@ -389,7 +391,7 @@ function renderRemovedList(data) {
 
 // 取得草稿文章
 function getDraftData() {
-  const apiUrl = `${url}/600/rents?userId=${localUserId}&status=草稿`;
+  const apiUrl = `${url}/660/rents?userId=${localUserId}&status=草稿`;
   axios
     .get(apiUrl, token)
     .then((res) => {
@@ -691,6 +693,7 @@ function deletePost(event) {
   const id = event.target
     .closest(".user-post-item")
     .getAttribute("data-post-id");
+  console.log(id);
   const apiUrl = `${url}/600/rents/${id}`;
   Swal.fire({
     icon: "question",
