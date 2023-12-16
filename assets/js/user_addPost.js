@@ -611,11 +611,7 @@ publishBtn.addEventListener("click", async (e) => {
     postState = "刊登中";
     addPost();
     addContactInfo();
-<<<<<<< HEAD
-    gotoPostsPage();
-=======
     gotoPostsPage("文章");
->>>>>>> 1a4ecbaadcdd2a18c143f2c48d71909ac71a2285
   }
 });
 // 草稿文章監聽
@@ -624,11 +620,7 @@ draftBtn.addEventListener("click", async (e) => {
     postState = "草稿";
     addPost();
     addContactInfo();
-<<<<<<< HEAD
-    gotoPostsPage();
-=======
     gotoPostsPage("草稿");
->>>>>>> 1a4ecbaadcdd2a18c143f2c48d71909ac71a2285
   }
 });
 // 確認表單資料都正確
@@ -766,12 +758,6 @@ function addContactInfo() {
     });
 }
 // 跳轉發文列表
-<<<<<<< HEAD
-function gotoPostsPage() {
-  setTimeout(() => {
-    window.location.href = "https://uli1313.github.io/roomie/user_posts.html";
-  }, 3000);
-=======
 function gotoPostsPage(postText) {
   Swal.fire({
     icon: "question",
@@ -791,5 +777,4 @@ function gotoPostsPage(postText) {
       location.href = "user_posts.html";
     }, 2000);
   });
->>>>>>> 1a4ecbaadcdd2a18c143f2c48d71909ac71a2285
 }
