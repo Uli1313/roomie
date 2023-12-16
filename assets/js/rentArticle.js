@@ -647,4 +647,3 @@ function map(api){
     document.head.appendChild(script);
   });
 }
-

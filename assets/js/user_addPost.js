@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 //API網址
 const webUrl = "https://roomie-lfta.onrender.com";
 // userId、token
@@ -610,7 +611,11 @@ publishBtn.addEventListener("click", async (e) => {
     postState = "刊登中";
     addPost();
     addContactInfo();
+<<<<<<< HEAD
     gotoPostsPage();
+=======
+    gotoPostsPage("文章");
+>>>>>>> 1a4ecbaadcdd2a18c143f2c48d71909ac71a2285
   }
 });
 // 草稿文章監聽
@@ -619,7 +624,11 @@ draftBtn.addEventListener("click", async (e) => {
     postState = "草稿";
     addPost();
     addContactInfo();
+<<<<<<< HEAD
     gotoPostsPage();
+=======
+    gotoPostsPage("草稿");
+>>>>>>> 1a4ecbaadcdd2a18c143f2c48d71909ac71a2285
   }
 });
 // 確認表單資料都正確
@@ -757,8 +766,30 @@ function addContactInfo() {
     });
 }
 // 跳轉發文列表
+<<<<<<< HEAD
 function gotoPostsPage() {
   setTimeout(() => {
     window.location.href = "https://uli1313.github.io/roomie/user_posts.html";
   }, 3000);
+=======
+function gotoPostsPage(postText) {
+  Swal.fire({
+    icon: "question",
+    title: `確定發表${postText}嗎`,
+    text: "一旦發表後...沒 沒有然後了",
+    showCancelButton: true,
+    confirmButtonText: "確定",
+    cancelButtonText: "取消",
+  }).then((result) => {
+    Swal.fire({
+      icon: "success",
+      title: "新增貼文成功",
+      timer: 1500,
+      showConfirmButton: false,
+    });
+    setTimeout(() => {
+      location.href = "user_posts.html";
+    }, 2000);
+  });
+>>>>>>> 1a4ecbaadcdd2a18c143f2c48d71909ac71a2285
 }
