@@ -1,15 +1,17 @@
 <nav class="navbar navbar-expand-md bg-white border-bottom">
   <div class="container-xxl">
-    <a class="navbar-brand flex-grow-1 order-0" href="index.html">
-      <picture>
-        <source srcset="/assets/images/logo.png" media="(min-width:768px)" />
-        <img
-          src="/assets/images/mobile/logo-mobile.png"
-          alt="roomie 屋伴"
-          class="logo"
-        />
-      </picture>
-    </a>
+    <div class="flex-grow-1">
+      <a class="navbar-brand order-0" href="index.html">
+        <picture>
+          <source srcset="/assets/images/logo.png" media="(min-width:768px)" />
+          <img
+            src="/assets/images/mobile/logo-mobile.png"
+            alt="roomie 屋伴"
+            class="logo"
+          />
+        </picture>
+      </a>
+    </div>
     <div class="d-flex order-1 order-md-2">
       <ul class="d-flex ms-5 gap-0 gap-md-5">
         <!-- mobile notification icon -->
@@ -149,14 +151,27 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <a class="p-3 link-dark hover-primary border-0 rounded-3" href="#"
-            ><span class="material-icons-outlined"> account_circle </span></a
+          <a
+            class="nav-unlogged p-3 link-dark hover-primary border-0 rounded-3"
+            href="#"
           >
+            <span class="material-icons-outlined"> account_circle </span></a
+          >
+          <a
+            class="nav-logged p-3 link-dark hover-primary border-0 rounded-3"
+            href="#"
+          >
+            <img
+              class="nav-logged-photo nav-logged-photo-mobile rounded-circle overflow-hidden object-fit-cover"
+              src=""
+              alt="user-photo"
+            />
+          </a>
         </li>
         <!-- desktop accountMenu icon & dropdown-->
         <li class="navbar-account nav-item dropdown d-none d-md-block">
           <a
-            class="nav-link dropdown-toggle p-3 link-dark hover-primary border-0 rounded-3"
+            class="nav-unlogged nav-link dropdown-toggle p-3 link-dark hover-primary border-0 rounded-3"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
@@ -164,36 +179,49 @@
           >
             <span class="material-icons-outlined"> account_circle </span>
           </a>
+          <a
+            class="nav-logged nav-link p-0 dropdown-togglelink-dark hover-primary border-0 d-none"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              class="nav-logged-photo rounded-circle overflow-hidden object-fit-cover"
+              src=""
+              alt="user-photo"
+            />
+          </a>
           <!-- desktop accountMenu dropdown -->
           <ul class="dropdown-menu" style="width: 220px">
             <!-- desktop accountMenu dropdown 未登入 -->
-            <li>
-              <a class="dropdown-item rounded-top d-none" href="login.html"
-                >登入</a
-              >
+            <li class="nav-unlogged">
+              <a class="dropdown-item rounded-top" href="login.html">登入</a>
             </li>
-            <li>
+            <li class="nav-unlogged">
               <a
-                class="dropdown-item border-0 rounded-bottom d-none"
+                class="dropdown-item border-0 rounded-bottom"
                 href="signup.html"
                 >註冊</a
               >
             </li>
             <!-- desktop accountMenu dropdown 已登入 -->
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item rounded-top" href="user.html">會員專區</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_posts.html">發文列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_favorites.html">收藏列表</a>
             </li>
-            <li>
+            <li class="nav-logged">
               <a class="dropdown-item" href="user_messages.html">留言列表</a>
             </li>
-            <li>
-              <a class="dropdown-item border-0 rounded-bottom" href="login.html"
+            <li class="nav-logged">
+              <a
+                class="logout-btn dropdown-item border-0 rounded-bottom"
+                href="##"
                 >登出</a
               >
             </li>
@@ -242,7 +270,7 @@
       </ul>
     </div>
     <!-- mobile accountMenu 已登入 -->
-    <div class="d-md-none">
+    <div class="nav-logged d-md-none">
       <div
         class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1 z-3 border-bottom"
         id="accountMenu"
@@ -255,13 +283,13 @@
             <a class="nav-link" href="user_posts.html">發文列表</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">收藏列表</a>
+            <a class="nav-link" href="user_favorites.html">收藏列表</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="user_messages.html">留言列表</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.html">登出</a>
+            <a class="logout-btn nav-link" href="##">登出</a>
           </li>
           <li
             class="nav-item"
@@ -279,7 +307,7 @@
       </div>
     </div>
     <!-- mobile accountMenu 未登入 -->
-    <div class="d-none">
+    <div class="nav-unlogged d-md-none">
       <div
         class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1 z-3 border-bottom"
         id="accountMenu"
@@ -440,3 +468,93 @@
     >查看全部</a
   >
 </div>
+
+<script type="module">
+  import axios from "axios";
+  import Swal from "sweetalert2";
+
+  const baseUrl = "https://roomie-lfta.onrender.com";
+  // const baseUrl = "http://localhost:3000";
+
+  const localUserId = localStorage.getItem("userId");
+  const localUserToken = localStorage.getItem("token");
+
+  const token = {
+    headers: {
+      Authorization: `Bearer ${localUserToken}`,
+    },
+  };
+
+  let user;
+
+  // 已登入時/未登入時要顯示的所有 HTML 元素
+  const navLogged = document.querySelectorAll(".nav-logged");
+  const navUnLogged = document.querySelectorAll(".nav-unlogged");
+  const navLoggedPhoto = document.querySelectorAll(".nav-logged-photo");
+
+  const logoutBtn = document.querySelector(".logout-btn");
+
+  // 登入/登出狀態選單顯示
+  (async () => {
+    try {
+      const apiPath = `/600/users/${localUserId}`;
+      const apiUrl = `${baseUrl}${apiPath}`;
+      const response = await axios.get(apiUrl, token);
+      const photoUrl = response.data.photo;
+
+      // 頭貼
+      navLoggedPhoto.forEach((e) => e.setAttribute("src", photoUrl));
+      user = response.data;
+      updateLocalStorage(); // 用最新的用戶資料更新 localStorage
+      navLogged.forEach((e) => {
+        e.classList.remove("d-none");
+      });
+      navUnLogged.forEach((e) => {
+        e.classList.add("d-none");
+      });
+    } catch (err) {
+      console.log(err);
+      navLogged.forEach((e) => {
+        e.classList.add("d-none");
+      });
+      navUnLogged.forEach((e) => {
+        e.classList.remove("d-none");
+      });
+    }
+  })();
+
+  // 用最新的用戶資料更新 localStorage
+  function updateLocalStorage() {
+    localStorage.setItem("user", JSON.stringify(user));
+  }
+
+  // 登出
+  logoutBtn.addEventListener("click", logout);
+
+  function logout() {
+    Swal.fire({
+      icon: "question",
+      title: "確定要登出嗎",
+      showCancelButton: true,
+      confirmButtonText: "確定",
+      cancelButtonText: "取消",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // 移除 localStorage 的資料
+        localStorage.removeItem("userId");
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        Swal.fire({
+          icon: "success",
+          title: "已登出",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+        // 回登入頁面
+        setTimeout(() => {
+          location.href = "login.html";
+        }, 1000);
+      }
+    });
+  }
+</script>

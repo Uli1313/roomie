@@ -16,3 +16,20 @@
   background-color: #beecf3;
   border-radius: 3px;
 }
+.post-alert-message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: none;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-start;
+  margin-top: 3px;
+  color: #b21c01;
+  font-size: 0.85rem;
+  @media screen and (max-width: 580px) {
+    font-size: 0.75rem;
+  }
+}
+.post-alert-message span {
+  font-weight: bold;
+}

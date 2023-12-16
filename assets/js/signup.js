@@ -146,8 +146,6 @@ function securityCodeMessage(state) {
 // 跳轉進入登入頁面
 function gotoLogInPage() {
   setTimeout(() => {
-    // 在实际应用中，你可能需要根据token跳转到不同的页面
-    // 例如：window.location.href = "/memberPage";
     window.location.href = "https://uli1313.github.io/roomie/login.html";
   }, 1000);
 }
@@ -160,7 +158,7 @@ function signUp(allTrueArr) {
       name: "",
       nickname: "",
       gender: "",
-      photo: "",
+      photo: "https://i.imgur.com/rUTLxZC.jpg",
       contact: {
         person: ["", ""],
         phone: "",

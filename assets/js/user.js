@@ -1,3 +1,4 @@
+import { loading } from './loading';
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -14,6 +15,8 @@ const nickNameInput = document.querySelector("#nickName");
 const nameInput = document.querySelector("#name");
 const genderMale = document.querySelector("#genderMale");
 const genderFemal = document.querySelector("#genderFemal");
+const phoneInput = document.querySelector("#phone");
+const lineInput = document.querySelector("#line");
 
 function init() {
   getUserInfo();
@@ -29,8 +32,10 @@ async function getUserInfo() {
     const apiUrl = `${baseUrl}${apiPath}`;
     const response = await axios.get(apiUrl, token);
     user = response.data;
-    updateLocalStorage(); // 用最新的用戶資料更新 localStorage
+
+    // 把原始資料渲染至畫面
     renderData();
+
   } catch (err) {
     console.log(err);
     if (err.response.status === 401 || err.response.statusText === 'Unauthorized') {
@@ -50,32 +55,22 @@ async function getUserInfo() {
     }
   }
 }
-// 用最新的用戶資料更新 localStorage
-function updateLocalStorage() {
-  localStorage.setItem("user", JSON.stringify(user));
-}
-
-// 從 localStorage 載入用戶資料
-function loadUserFromLocalStorage() {
-  const storedUser = localStorage.getItem("user");
-  if (storedUser) {
-    user = JSON.parse(storedUser);
-    renderData();
-  }
-}
-
-// 初始檢查 localStorage 是否有用戶資料
-loadUserFromLocalStorage();
 
 // 在頁面上渲染用戶資料
 function renderData() {
-  if (nickNameInput && nameInput && genderMale && genderFemal) {
+  if (nickNameInput && nameInput && genderMale && genderFemal && phoneInput && lineInput) {
     nickNameInput.value = user.nickname;
     nameInput.value = user.name;
+    phoneInput.value = user.phone;
+    lineInput.value = user.line;
 
     document.getElementById("userNickName").textContent = user.nickname;
     document.getElementById("userEmail").textContent = user.email;
     document.getElementById("signupEmail").value = user.email;
+    document.getElementById("userPhoto").src = user.photo;
+    document.getElementById("phone").textContent = user.phone;
+    document.getElementById("line").textContent = user.line;
+    document.getElementById("aboutMe").textContent = user.about;
 
     if (user.gender === "male") {
       genderMale.checked = true;
@@ -90,7 +85,9 @@ const infoEditBtn = document.querySelector(".infoEdit-btn");
 const infoSaveBtn = document.querySelector(".infoSave-btn");
 const inputFields = document.querySelectorAll(".editable-input");
 const aboutMeTextarea = document.querySelector("#aboutMe");
-
+const updateFile = document.querySelector('#updateFile');
+const selectFile = document.querySelector('.selectFile');
+const imageData = {};
 const toggleEditState = (editable, readOnly, disabled) => {
   editable.forEach((inputElement) => {
     inputElement[readOnly ? "setAttribute" : "removeAttribute"](
@@ -115,6 +112,7 @@ const updateUser = async (data, useNewSwal = false) => {
         showCancelButton: false,
         timer: 1500,
       });
+    // console.log(res.data)
     return res.data;
   } catch (err) {
     console.error(err);
@@ -127,6 +125,7 @@ infoEditBtn.addEventListener("click", (e) => {
   toggleEditState(inputFields, false, false);
   infoEditBtn.classList.add("d-none");
   infoSaveBtn.classList.remove("d-none");
+  selectFile.classList.remove("d-none");
 });
 
 infoSaveBtn.addEventListener("click", async (e) => {
@@ -138,17 +137,43 @@ infoSaveBtn.addEventListener("click", async (e) => {
     name: nameInput.value.trim(),
     gender: genderMale.checked ? "male" : "female",
     about: aboutMeTextarea.value.trim(),
+    photo: imageData.base64Image,
+    contact: {
+      person: [
+        "",
+        ""
+      ],
+      email: "",
+      phone: phoneInput.value.trim(),
+      line: lineInput.value.trim()
+    },
+    phone: phoneInput.value.trim(),
+    line: lineInput.value.trim()
   };
 
   // 更新用戶資訊到伺服器
   const updatedUserData = await updateUser(formData);
   // 用最新的資料從伺服器更新本地端的用戶物件
   user = { ...user, ...updatedUserData };
-  // 用最新的用戶資料更新 localStorage
-  updateLocalStorage();
 
   infoEditBtn.classList.remove("d-none");
   infoSaveBtn.classList.add("d-none");
+  selectFile.classList.add("d-none");
+});
+// 上傳圖片
+updateFile.addEventListener('change', (e) => {
+  const selectFile = e.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    const base64Data = e.target.result;
+    imageData.base64Image = base64Data;
+    imageData.fileName = selectFile.name;
+
+    let imgDom = document.getElementById('userPhoto');
+    imgDom.src = imageData.base64Image;
+  };
+  reader.readAsDataURL(selectFile);
 });
 
 // 取得發文/收藏/留言數量

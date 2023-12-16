@@ -222,19 +222,6 @@
                                 請輸入正確的手機號碼格式
                               </div>
                             </div>
-                            <div>
-                              <label for="facebook">FACEBOOK</label>
-                              <input
-                                class="form-control editable-input rounded-5 mt-3"
-                                type="text"
-                                value=""
-                                id="facebook"
-                                readonly
-                              />
-                              <div class="invalid-feedback">
-                                請輸入您的 FACEBOOK
-                              </div>
-                            </div>
                           </div>
                           <div class="col-12 col-md-6">
                             <div class="mb-3">
@@ -261,21 +248,19 @@
                   <!-- about -->
                   <div class="col-lg-3 col-md-12 mt-md-12">
                     <img
-                      src="/assets/images/user_default.png"
+                      src="https://i.imgur.com/rUTLxZC.jpg"
                       alt="user photo"
+                      id="userPhoto"
                     />
                     <div class="d-flex justify-content-end my-5">
-                      <button
-                        class="btn btn-sm btn-primary text-white py-2 px-5 rounded-pill me-3"
-                      >
-                        上傳
-                      </button>
-                      <button
-                        class="btn btn-sm btn-primary text-white py-2 px-5 rounded-pill"
-                        pill
-                      >
-                        移除
-                      </button>
+                      <div class="selectFile d-none">
+                        <label
+                          for="updateFile"
+                          class="btn btn-sm btn-primary text-white py-2 px-5 rounded-pill"
+                          >上傳</label
+                        >
+                        <input type="file" id="updateFile" class="d-none" />
+                      </div>
                     </div>
                     <form>
                       <div class="mb-3">
