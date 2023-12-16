@@ -27,9 +27,13 @@ let currentTab = "publish-tab";
 
 // 取得刊登中文章
 function getPublishData() {
-  const apiUrl = `${url}/600/rents?userId=${localUserId}&status=刊登中`;
+  const apiUrl = `${url}/660/rents?userId=${localUserId}&status=刊登中`;
   axios
-    .get(apiUrl, token)
+    .get(apiUrl, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
     .then((res) => {
       publishData = res.data;
       renderPublishList(publishData);
@@ -100,7 +104,7 @@ function renderPublishList(data) {
               aria-labelledby="dropdownBtn"
             >
               <li>
-                <a class="dropdown-item" href="#">編輯貼文</a>
+                <a class="dropdown-item edit-post" href="#">編輯貼文</a>
               </li>
               <li>
                 <a class="dropdown-item delete-post" href="#">刪除貼文</a>
@@ -168,7 +172,7 @@ function renderPublishList(data) {
 
 // 取得已媒合文章
 function getMatchedData() {
-  const apiUrl = `${url}/600/rents?userId=${localUserId}&status=已媒合`;
+  const apiUrl = `${url}/660/rents?userId=${localUserId}&status=已媒合`;
   axios
     .get(apiUrl, token)
     .then((res) => {
@@ -204,7 +208,9 @@ function renderMatchedList(data) {
     const costDay = Math.abs(Math.trunc(costTime / (1000 * 3600 * 24)));
     const daysAway = Math.abs(Math.trunc(daysAwayTime / (1000 * 3600 * 24)));
 
-    div += `<div class="user-post-item col-12 my-3 p-1 hover-primary-2 rounded">
+    div += `<div class="user-post-item col-12 my-3 p-1 hover-primary-2 rounded" data-post-id=${
+      v.id
+    }>
                     <div class="col-12 p-3 bg-white d-flex flex-wrap justify-content-evenly align-items-center text-end text-lg-center border rounded">
                         <div class="col-12 col-lg-4"><a href="matchArticle.html?id=${
                           v.id
@@ -251,7 +257,7 @@ function renderMatchedList(data) {
 
 // 取得下架文章
 function getRemovedData() {
-  const apiUrl = `${url}/600/rents?userId=${localUserId}&status=下架`;
+  const apiUrl = `${url}/660/rents?userId=${localUserId}&status=下架`;
   axios
     .get(apiUrl, token)
     .then((res) => {
@@ -324,7 +330,7 @@ function renderRemovedList(data) {
               aria-labelledby="dropdownBtn"
             >
               <li>
-                <a class="dropdown-item" href="#">編輯貼文</a>
+                <a class="dropdown-item edit-post" href="#">編輯貼文</a>
               </li>
               <li>
                 <a class="dropdown-item delete-post" href="#">刪除貼文</a>
@@ -389,7 +395,7 @@ function renderRemovedList(data) {
 
 // 取得草稿文章
 function getDraftData() {
-  const apiUrl = `${url}/600/rents?userId=${localUserId}&status=草稿`;
+  const apiUrl = `${url}/660/rents?userId=${localUserId}&status=草稿`;
   axios
     .get(apiUrl, token)
     .then((res) => {
@@ -462,7 +468,7 @@ function renderDraftList(data) {
               aria-labelledby="dropdownBtn"
             >
               <li>
-                <a class="dropdown-item" href="#">編輯貼文</a>
+                <a class="dropdown-item edit-post" href="#">編輯貼文</a>
               </li>
               <li>
                 <a class="dropdown-item delete-post" href="#">刪除貼文</a>
@@ -554,6 +560,7 @@ userPostList.forEach((elem) => {
     if (action.contains("to-matched")) return patchPostStatus("已媒合", e);
     if (action.contains("to-publish")) return patchPostStatus("刊登中", e);
     if (action.contains("delete-post")) return deletePost(e);
+    if (action.contains("edit-post")) return editPost(e);
   });
 });
 
@@ -691,6 +698,7 @@ function deletePost(event) {
   const id = event.target
     .closest(".user-post-item")
     .getAttribute("data-post-id");
+  console.log(id);
   const apiUrl = `${url}/600/rents/${id}`;
   Swal.fire({
     icon: "question",
@@ -722,6 +730,11 @@ function deletePost(event) {
         });
     }
   });
+}
+
+// 編輯文章
+function editPost(event) {
+  location.href = "user_editPost.html";
 }
 
 // 依當前頁面渲染文章

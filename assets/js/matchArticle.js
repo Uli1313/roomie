@@ -3,7 +3,6 @@ import Swal from 'sweetalert2';
 import { apiKey } from '/assets/js/ignore.js'; 
 
 const url = 'https://roomie-lfta.onrender.com/';
-let api = '';
 
 // 當前畫面的ID
 const getUrl = new URL(window.location.href);
@@ -33,24 +32,23 @@ let report = document.querySelector('.report');
 // GET畫面資料
 axios.get(`${url}rents/${getUrlId}?_expand=user`)
 .then(function(res){
-    api = res.data ;
+    let api = res.data ;
     document.title = `${api.title}`;
     renderRentArticle(api) ;
-    modal(photo);
+    modal(api);
     favorite();
-    map();
+    map(api);
 });
 
 // GET留言資料
 axios.get(`${url}qas?rentId=${getUrlId}&_expand=user&_expand=rent&_sort=date&_order=asc`)
 .then(function(res){
-    api = res.data ;
+    let api = res.data ;
     renderRentArticleCommet(api);
 });
 
 // 渲染畫面函式
 function renderRentArticle(api){
-    console.log(api);
     // 處理交通、設施陣列
     let trafficLifeEquipmentArr = api.traffic.concat(api.lifeEquipment);
     
@@ -59,7 +57,7 @@ function renderRentArticle(api){
     let canCookingYN = api.canCooking ? '可開伙':'不可開伙';
 
     // 處理聯絡資訊
-    let person = api.user.contact.person[0]+api.user.contact.person[1] ;
+    let person = api.user.nickname ;
     let phone = api.user.contact.phone;
     let line = api.user.contact.line;
 
@@ -184,7 +182,7 @@ function renderRentArticle(api){
     // 聯絡資訊
     contact.innerHTML = `
                         <li class="d-flex align-items-center gap-2 h5">
-                        <img class="nav-logged-photo object-fit-contain rounded-circle" src="${api.user.photo}" alt="user-photo">
+                        <img class="photo-size object-fit-contain rounded-circle" src="${api.user.photo}" alt="user-photo">
                             <span>${person}</span></li>
                         <li class="my-2">電話: &nbsp;${phone}</li>
                         <li>Line: &nbsp;${line}</li>
@@ -199,8 +197,8 @@ function renderRentArticleCommet(api){
         qas.innerHTML += `
                         <li class="h5">
                                 <div class="d-flex align-items-center gap-2 my-4">
-                                    <img class="nav-logged-photo object-fit-contain rounded-circle" src="${v.user.photo}" alt="user-photo">
-                                    <span>${v.user.contact.person[0]+v.user.contact.person[1]}<span class="fs-7 border rounded bg-primary-200 mx-1">發文者</span>:</span>
+                                    <img class="photo-size object-fit-contain rounded-circle" src="${v.user.photo}" alt="user-photo">
+                                    <span>${v.user.nickname}<span class="fs-7 border rounded bg-primary-200 mx-1">發文者</span>:</span>
                                 </div>
                                 <div class="d-flex justify-content-between px-2">
                                     <p class="fw-normal">${v.content}</p>
@@ -213,8 +211,8 @@ function renderRentArticleCommet(api){
             qas.innerHTML += `
                         <li class="h5">
                                 <div class="d-flex align-items-center gap-2 my-4">
-                                    <img class="nav-logged-photo object-fit-contain rounded-circle" src="${v.user.photo}" alt="user-photo">
-                                    <span>${v.user.contact.person[0]+v.user.contact.person[1]} : </span>
+                                    <img class="photo-size object-fit-contain rounded-circle" src="${v.user.photo}" alt="user-photo">
+                                    <span>${v.user.nickname} : </span>
                                 </div>
                                 <div class="d-flex justify-content-between px-2">
                                     <p class="fw-normal">${v.content}</p>
@@ -229,8 +227,7 @@ function renderRentArticleCommet(api){
 }
 
 // 彈跳遮罩
-function modal(photo){
-
+function modal(api){
     let imgModal = document.querySelector('.img-modal');
     let imgMain = document.querySelector('.img-main');
     let photoNum = 0;
@@ -238,11 +235,10 @@ function modal(photo){
     // 點擊哪個圖片打開遮罩效果、並渲染大圖
     photo.addEventListener('click',function(e){
         if (e.target.classList.contains('img-open')) {
-            photoNum = parseInt(e.target.dataset.open);
+            photoNum = e.target.dataset.open;
             imgModal.classList.remove('d-none'); 
             imgModal.classList.add('d-flex'); 
             document.body.style.overflow = 'hidden'; // 禁用背景滾動條
-            
             imgMain.setAttribute('src', `${api.photo[photoNum]}`);
             
         }
@@ -546,7 +542,7 @@ report.addEventListener('click',(e) => {
 })
 
 // 地圖
-function map(){
+function map(api){
 
     // 使用encode取得地址經緯度，url會得到json資料
     let markerTitle = api.title;
@@ -596,13 +592,4 @@ function map(){
         document.head.appendChild(script);
     })
 }
-
-
-
-
-
-
-
-
-
 

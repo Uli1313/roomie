@@ -1,74 +1,73 @@
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import { apiKey } from '/assets/js/ignore.js'; 
+import axios from "axios";
+import Swal from "sweetalert2";
+import { apiKey } from "/assets/js/ignore.js";
 
 const url = 'https://roomie-lfta.onrender.com/';
-let api = '';
 
 // 當前畫面的ID
 const getUrl = new URL(window.location.href);
 const getUrlId = getUrl.searchParams.get("id");
 
 // DOM元素
-let currentPage = document.querySelector('.current-page');
-let title = document.querySelector('.article-title');
-let photo = document.querySelector('.article-photo');
-let price = document.querySelector('.article-price');
-let detail = document.querySelector('.article-detail');
-let priceInclude = document.querySelector('.article-priceInclude');
-let equipment = document.querySelector('.article-equipment');
-let age = document.querySelector('.article-age');
-let identity = document.querySelector('.article-identity');
-let trafficLifeEquipment = document.querySelector('.article-trafficLifeEquipment');
-let otherdetail = document.querySelector('.article-otherdetail');
-let contact = document.querySelector('.article-contact');
-let qas = document.querySelector('.article-qas');
+let currentPage = document.querySelector(".current-page");
+let title = document.querySelector(".article-title");
+let photo = document.querySelector(".article-photo");
+let price = document.querySelector(".article-price");
+let detail = document.querySelector(".article-detail");
+let priceInclude = document.querySelector(".article-priceInclude");
+let equipment = document.querySelector(".article-equipment");
+let age = document.querySelector(".article-age");
+let identity = document.querySelector(".article-identity");
+let trafficLifeEquipment = document.querySelector(".article-trafficLifeEquipment");
+let otherdetail = document.querySelector(".article-otherdetail");
+let contact = document.querySelector(".article-contact");
+let qas = document.querySelector(".article-qas");
 
-let storageUserId = parseInt(localStorage.getItem('userId')) ;
-let messageBtn = document.querySelector('.message-btn');
-let messageArea = document.querySelector('.message-area');
-let report = document.querySelector('.report');
+let storageUserId = parseInt(localStorage.getItem("userId"));
+let messageBtn = document.querySelector(".message-btn");
+let messageArea = document.querySelector(".message-area");
+let report = document.querySelector(".report");
 
 // GET畫面資料
 axios.get(`${url}rents/${getUrlId}?_expand=user`)
 .then(function(res){
-    api = res.data ;
+    let api = res.data ;
     document.title = `${api.title}`;
     renderRentArticle(api) ;
-    modal(photo);
+    modal(api);
     favorite();
     comment();
-    map();
+    map(api);
 });
 
 // GET留言資料
 axios.get(`${url}qas?rentId=${getUrlId}&_expand=user&_expand=rent&_sort=date&_order=asc`)
 .then(function(res){
-    api = res.data ;
+    let api = res.data ;
     renderRentArticleCommet(api);
-});
+  });
 
 // 渲染畫面函式
-function renderRentArticle(api){
-    // 處理交通、設施陣列
-    let trafficLifeEquipmentArr = api.traffic.concat(api.lifeEquipment);
-    
-    // 處理寵物、開火判斷
-    let petYN = api.canPet ? '可養寵物':'不可養寵物' ;
-    let canCookingYN = api.canCooking ? '可開伙':'不可開伙';
+function renderRentArticle(api) {
+  // 處理交通、設施陣列
+  let trafficLifeEquipmentArr = api.traffic.concat(api.lifeEquipment);
+
+  // 處理寵物、開火判斷
+  let petYN = api.canPet ? "可養寵物" : "不可養寵物";
+  let canCookingYN = api.canCooking ? "可開伙" : "不可開伙";
 
     // 處理聯絡資訊
-    let person = api.user.contact.person[0]+api.user.contact.person[1] ;
+    let person = api.user.nickname ;
     let phone = api.user.contact.phone;
     let line = api.user.contact.line;
 
-    // --所有畫面渲染--
-    // 麵包屑
-    currentPage.textContent = `${api.title}`;
-    // 標題
-    title.textContent = `${api.title}`;
-    // 圖片
-    photo.innerHTML = `<div class="col-12 col-sm-6 pe-0 rounded">
+  // --所有畫面渲染--
+  // 麵包屑
+  currentPage.textContent = `${api.title}`;
+  // 標題
+  title.textContent = `${api.title}`;
+  // 圖片
+  photo.innerHTML = `<div class="col-12 col-sm-6 pe-0 rounded">
                             <div class="overflow-hidden rounded border me-3 me-sm-0 shadow-sm">
                                 <img src="${api.photo[0]}" class="img-fluid imgCursor rounded img-open" data-open="0" alt="house photo">
                             </div>    
@@ -89,13 +88,13 @@ function renderRentArticle(api){
                                 <img src="${api.photo[4]}" class="img-fluid imgCursor rounded img-open" data-open="4" alt="house photo">
                             </div>
                         </div>`;
-    // 租金
-    price.textContent = `${(api.price).toLocaleString('zh-TW')}元/月`;
-    // 詳細資訊
-    detail.innerHTML = `
+  // 租金
+  price.textContent = `${api.price.toLocaleString("zh-TW")}元/月`;
+  // 詳細資訊
+  detail.innerHTML = `
                         <li><span class="h6 pe-2">地址:</span>${api.address} &nbsp;${api.district[0]}-${api.district[1]}</li>
                         <li><span class="h6 pe-2">格局:</span>${api.houseLayout}</li>
-                        <li><span class="h6 pe-2">坪數:</span>${api['square Footage']}坪</li>
+                        <li><span class="h6 pe-2">坪數:</span>${api["square Footage"]}坪</li>
                         <li><span class="h6 pe-2">樓層/總樓層:</span>${api.floor}F&nbsp;/&nbsp;${api.totalFloor}F</li>
                         <li><span class="h6 pe-2">房屋類型:</span>${api.type}</li>
                         <li><span class="h6 pe-2">需求人數:</span>${api.needPartner}人</li>
@@ -106,71 +105,70 @@ function renderRentArticle(api){
                         <li><span class="h6 pe-2">最短租期:</span>${api.minPeriod}</li>
                         <li><span class="h6 pe-2">更新日期:</span>${api.updateDate}</li>
                         `;
-    // 租金包含
-    api['priceInclude'].forEach((v,i) => 
-        i == 0 ? priceInclude.textContent += `${v}` : priceInclude.textContent += `、${v}` 
-    );
-    // 設備
-    api['equipment'].forEach((v) => {
-        let icon =  '';
-        if (v == '床') icon = 'single_bed' ;
-        if (v == '衣櫃') icon = 'dresser' ;
-        if (v == '沙發') icon = 'chair' ;
-        if (v == '桌子') icon = 'table_restaurant' ;
-        if (v == '椅子') icon = 'chair_alt' ;
-        if (v == '網路') icon = 'wifi' ;
-        if (v == '冰箱') icon = 'kitchen' ;
-        if (v == '電視') icon = 'tv' ;
-        if (v == '冷氣') icon = 'air' ;
-        if (v == '電梯') icon = 'elevator' ;
-        if (v == '洗衣機') icon = 'local_laundry_service' ;
-        if (v == '熱水器') icon = 'water_heater' ;
-        if (v == '天然瓦斯') icon = 'gas_meter' ;
-        if (v == '機車車位') icon = 'local_parking' ;
-        if (v == '汽車車位') icon = 'local_parking' ;   
-        equipment.innerHTML += `<div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal">
+  // 租金包含
+  api["priceInclude"].forEach((v, i) =>
+    i == 0
+      ? (priceInclude.textContent += `${v}`)
+      : (priceInclude.textContent += `、${v}`)
+  );
+  // 設備
+  api["equipment"].forEach((v) => {
+    let icon = "";
+    if (v == "床") icon = "single_bed";
+    if (v == "衣櫃") icon = "dresser";
+    if (v == "沙發") icon = "chair";
+    if (v == "桌子") icon = "table_restaurant";
+    if (v == "椅子") icon = "chair_alt";
+    if (v == "網路") icon = "wifi";
+    if (v == "冰箱") icon = "kitchen";
+    if (v == "電視") icon = "tv";
+    if (v == "冷氣") icon = "air";
+    if (v == "電梯") icon = "elevator";
+    if (v == "洗衣機") icon = "local_laundry_service";
+    if (v == "熱水器") icon = "water_heater";
+    if (v == "天然瓦斯") icon = "gas_meter";
+    if (v == "機車車位") icon = "local_parking";
+    if (v == "汽車車位") icon = "local_parking";
+    equipment.innerHTML += `<div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal">
                                     <span class="material-symbols-outlined me-2 icon-size">${icon}</span>
                                     ${v}
-                                </div>`
-        }
-    );
-    // 年齡
-    age.innerHTML = `<span class="h6 pe-2 text-primary">適合年齡:</span>${api.minAge}&nbsp;~&nbsp;${api.maxAge}&nbsp;歲`;
-    // 身分
-    api['identity'].forEach((v) => {
-        let icon =  '';
-        if (v == '學生') icon = 'person' ;
-        if (v == '上班族') icon = 'person_apron' ;
-        if (v == '家庭') icon = 'groups' ;
-        identity.innerHTML += `<div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal">
+                                </div>`;
+  });
+  // 年齡
+  age.innerHTML = `<span class="h6 pe-2 text-primary">適合年齡:</span>${api.minAge}&nbsp;~&nbsp;${api.maxAge}&nbsp;歲`;
+  // 身分
+  api["identity"].forEach((v) => {
+    let icon = "";
+    if (v == "學生") icon = "person";
+    if (v == "上班族") icon = "person_apron";
+    if (v == "家庭") icon = "groups";
+    identity.innerHTML += `<div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal">
                                     <span class="material-symbols-outlined me-2 icon-size">${icon}</span>
                                     ${v}
-                                </div>`
-        }
-    );
-    // 鄰近、交通
-    trafficLifeEquipmentArr.forEach((v) => {
-            let icon = '';
-            if (v.includes('火車站')) icon = 'train' ;
-            if (v.includes('公車站')) icon = 'directions_bus' ;
-            if (v.includes('捷運站')) icon = 'directions_railway' ;
-            if (v.includes('學校')) icon = 'school' ;
-            if (v.includes('百貨公司')) icon = 'store' ;
-            if (v.includes('公園')) icon = 'park' ;
-            if (v.includes('夜市')) icon = 'storefront' ;
-            if (v.includes('醫療機構')) icon = 'local_hospital' ;
-            trafficLifeEquipment.innerHTML += `<div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal">
+                                </div>`;
+  });
+  // 鄰近、交通
+  trafficLifeEquipmentArr.forEach((v) => {
+    let icon = "";
+    if (v.includes("火車站")) icon = "train";
+    if (v.includes("公車站")) icon = "directions_bus";
+    if (v.includes("捷運站")) icon = "directions_railway";
+    if (v.includes("學校")) icon = "school";
+    if (v.includes("百貨公司")) icon = "store";
+    if (v.includes("公園")) icon = "park";
+    if (v.includes("夜市")) icon = "storefront";
+    if (v.includes("醫療機構")) icon = "local_hospital";
+    trafficLifeEquipment.innerHTML += `<div class="col-5 col-sm-3 col-lg-2 mb-2 h5 fw-normal">
                                                 <span class="material-symbols-outlined me-2 icon-size">${icon}</span>
                                                 ${v}
                                             </div>`;
-        }
-    );
-    // 其他事項
-    otherdetail.textContent = `${api.intro}`;
-    // 聯絡資訊
-    contact.innerHTML = `
+  });
+  // 其他事項
+  otherdetail.textContent = `${api.intro}`;
+  // 聯絡資訊
+  contact.innerHTML = `
                         <li class="d-flex align-items-center gap-2 h5">
-                        <img class="nav-logged-photo object-fit-contain rounded-circle" src="${api.user.photo}" alt="user-photo">
+                        <img class="photo-size object-fit-contain rounded-circle" src="${api.user.photo}" alt="user-photo">
                             <span>${person}</span></li>
                         <li class="my-2">電話: &nbsp;${phone}</li>
                         <li>Line: &nbsp;${line}</li>
@@ -178,14 +176,14 @@ function renderRentArticle(api){
 }
 
 // 渲染留言函示
-function renderRentArticleCommet(api){
-    api.forEach((v) => {
-        if (v.userId == v.rent.userId){
-        qas.innerHTML += `
+function renderRentArticleCommet(api) {
+  api.forEach((v) => {
+    if (v.userId == v.rent.userId) {
+      qas.innerHTML += `
                         <li class="h5">
                                 <div class="d-flex align-items-center gap-2 my-4">
-                                    <img class="nav-logged-photo object-fit-contain rounded-circle" src="${v.user.photo}" alt="user-photo">
-                                    <span>${v.user.contact.person[0]+v.user.contact.person[1]}<span class="fs-7 border rounded bg-primary-200 mx-1">發文者</span>:</span>
+                                    <img class="photo-size object-fit-contain rounded-circle" src="${v.user.photo}" alt="user-photo">
+                                    <span>${v.user.nickname}<span class="fs-7 border rounded bg-primary-200 mx-1">發文者</span>:</span>
                                 </div>
                                 <div class="d-flex justify-content-between px-2">
                                     <p class="fw-normal">${v.content}</p>
@@ -194,34 +192,32 @@ function renderRentArticleCommet(api){
                                 <hr class="m-1">
                         </li>
                         `;
-        } else {
-            qas.innerHTML += `
-                        <li class="h5">
-                                <div class="d-flex align-items-center gap-2 my-4">
-                                    <img class="nav-logged-photo object-fit-contain rounded-circle" src="${v.user.photo}" alt="user-photo">
-                                    <span>${v.user.contact.person[0]+v.user.contact.person[1]} : </span>
-                                </div>
-                                <div class="d-flex justify-content-between px-2">
-                                    <p class="fw-normal">${v.content}</p>
-                                    <p class="fs-7 fw-normal">日期:${v.date}</p>
-                                </div>
-                                <hr class="m-1">
-                        </li>
-                        `;
-        }
-    }
-    );
-    // 驗證是否登入改變placeholder文字
-    if (storageUserId) {
-        messageArea.setAttribute('placeholder','留言給發文者吧~');
     } else {
-        messageArea.setAttribute('placeholder','登入即可傳送訊息!');
+      qas.innerHTML += `
+                        <li class="h5">
+                                <div class="d-flex align-items-center gap-2 my-4">
+                                    <img class="photo-size object-fit-contain rounded-circle" src="${v.user.photo}" alt="user-photo">
+                                    <span>${v.user.nickname} : </span>
+                                </div>
+                                <div class="d-flex justify-content-between px-2">
+                                    <p class="fw-normal">${v.content}</p>
+                                    <p class="fs-7 fw-normal">日期:${v.date}</p>
+                                </div>
+                                <hr class="m-1">
+                        </li>
+                        `;
     }
+  });
+  // 驗證是否登入改變placeholder文字
+  if (storageUserId) {
+    messageArea.setAttribute("placeholder", "留言給發文者吧~");
+  } else {
+    messageArea.setAttribute("placeholder", "登入即可傳送訊息!");
+  }
 }
 
 // 彈跳遮罩
-function modal(photo){
-
+function modal(api){
     let imgModal = document.querySelector('.img-modal');
     let imgMain = document.querySelector('.img-main');
     let photoNum = 0;
@@ -229,11 +225,10 @@ function modal(photo){
     // 點擊哪個圖片打開遮罩效果、並渲染大圖
     photo.addEventListener('click',function(e){
         if (e.target.classList.contains('img-open')) {
-            photoNum = parseInt(e.target.dataset.open);
+            photoNum = e.target.dataset.open;
             imgModal.classList.remove('d-none'); 
             imgModal.classList.add('d-flex'); 
             document.body.style.overflow = 'hidden'; // 禁用背景滾動條
-            
             imgMain.setAttribute('src', `${api.photo[photoNum]}`);
             
         }
@@ -252,14 +247,12 @@ function modal(photo){
         }
     });
 
-    
-    
-    let imgGroup = document.querySelector('.img-group');
-    
-    // 渲染下方小圖
-    let ul = ''
-    api.photo.forEach(function(v,i){
-            ul += `
+  let imgGroup = document.querySelector(".img-group");
+
+  // 渲染下方小圖
+  let ul = "";
+  api.photo.forEach(function (v, i) {
+    ul += `
                 <li class="col-2 col-xxl-1 cursor">           
                     <img 
                     class="img-fluid rounded" 
@@ -268,104 +261,103 @@ function modal(photo){
                     data-id="${i}">
                 </li>
             `;
-        imgGroup.innerHTML = ul ;
-    });
+    imgGroup.innerHTML = ul;
+  });
 
-    // 接點擊小圖效果
-    imgGroup.addEventListener('click',function(e){
-                if (e.target.dataset.id == '0') {
-                    imgMain.setAttribute('src', `${api.photo[0]}`);
-                    photoNum = 0 ;
-                } else if (e.target.dataset.id == '1') {
-                    imgMain.setAttribute('src', `${api.photo[1]}`);
-                    photoNum = 1 ;
-                } else if (e.target.dataset.id == '2') {
-                    imgMain.setAttribute('src', `${api.photo[2]}`);
-                    photoNum = 2 ;
-                } else if (e.target.dataset.id == '3') {
-                    imgMain.setAttribute('src', `${api.photo[3]}`);
-                    photoNum = 3 ;
-                } else if (e.target.dataset.id == '4') {
-                    imgMain.setAttribute('src', `${api.photo[4]}`);
-                    photoNum = 4 ;
-                }
-            });
-    
-    let arrow = document.querySelectorAll('.arrow');
+  // 接點擊小圖效果
+  imgGroup.addEventListener("click", function (e) {
+    if (e.target.dataset.id == "0") {
+      imgMain.setAttribute("src", `${api.photo[0]}`);
+      photoNum = 0;
+    } else if (e.target.dataset.id == "1") {
+      imgMain.setAttribute("src", `${api.photo[1]}`);
+      photoNum = 1;
+    } else if (e.target.dataset.id == "2") {
+      imgMain.setAttribute("src", `${api.photo[2]}`);
+      photoNum = 2;
+    } else if (e.target.dataset.id == "3") {
+      imgMain.setAttribute("src", `${api.photo[3]}`);
+      photoNum = 3;
+    } else if (e.target.dataset.id == "4") {
+      imgMain.setAttribute("src", `${api.photo[4]}`);
+      photoNum = 4;
+    }
+  });
 
-    // 點擊左右鍵效果
-    arrow.forEach( v => {
-        v.addEventListener('click', function(e) {
-            if (e.target.classList.contains('img-arrow-left')) {
-                if (photoNum == 0) {
-                    return ;
-                } else if (photoNum > 0) {
-                    photoNum--;
-                    imgMain.setAttribute('src', `${api.photo[photoNum]}`);
-                }
-            }
-            if (e.target.classList.contains('img-arrow-right')) {
-                if (photoNum == 4) {
-                    return ;
-                } else if (photoNum < 4) {
-                    photoNum++;
-                    imgMain.setAttribute('src', `${api.photo[photoNum]}`);
-                }
-            }
-        });
+  let arrow = document.querySelectorAll(".arrow");
+
+  // 點擊左右鍵效果
+  arrow.forEach((v) => {
+    v.addEventListener("click", function (e) {
+      if (e.target.classList.contains("img-arrow-left")) {
+        if (photoNum == 0) {
+          return;
+        } else if (photoNum > 0) {
+          photoNum--;
+          imgMain.setAttribute("src", `${api.photo[photoNum]}`);
+        }
+      }
+      if (e.target.classList.contains("img-arrow-right")) {
+        if (photoNum == 4) {
+          return;
+        } else if (photoNum < 4) {
+          photoNum++;
+          imgMain.setAttribute("src", `${api.photo[photoNum]}`);
+        }
+      }
     });
+  });
 }
 
+
 // 我的收藏
-function favorite(){
-    let favorite = document.querySelector('.favorite');
-    let heartIcon = document.querySelector('#heartIcon');
-    favorite.setAttribute('data-id',getUrlId);
-    heartIcon.setAttribute('data-id',getUrlId);
-    favorite.addEventListener('click',function(e){
-            let pageRentId = parseInt(e.target.dataset.id) ;
-            let storageUserId = parseInt(localStorage.getItem('userId')) ;
-            let data = {
-                "rentId": pageRentId,
-                "userId": storageUserId
-            }
-            // 判斷有無登入
-            if (storageUserId) {
-                // GET userId的favorite資料
-                axios.get(`${url}users/${storageUserId}/favorites`)
-                .then(function(res){
-                    // 如果userId已經有這則貼文
-                    const foundProduct = res.data.find(v => v.rentId === pageRentId);
-                    if (foundProduct) {
-                        Swal.fire({
-                            icon: 'warning',
-                            title: '您已經有這則貼文',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    }
-                    // 如果userId沒有這則貼文
-                    if (foundProduct === undefined) {
-                        axios.post(`${url}favorites`,data)
-                        .then(function(res){
-                            Swal.fire({
-                                icon: 'success',
-                                title: '添加至您的收藏',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                        });
-                    }    
-                });
-            } else {
-                Swal.fire({
-                    icon: 'warning',
-                    title: '請先登入帳號',
-                    showConfirmButton: false,
-                    timer: 1500
-                }); 
-            }
-        })
+function favorite() {
+  let favorite = document.querySelector(".favorite");
+  let heartIcon = document.querySelector("#heartIcon");
+  favorite.setAttribute("data-id", getUrlId);
+  heartIcon.setAttribute("data-id", getUrlId);
+  favorite.addEventListener("click", function (e) {
+    let pageRentId = parseInt(e.target.dataset.id);
+    let storageUserId = parseInt(localStorage.getItem("userId"));
+    let data = {
+      rentId: pageRentId,
+      userId: storageUserId,
+    };
+    // 判斷有無登入
+    if (storageUserId) {
+      // GET userId的favorite資料
+      axios.get(`${url}users/${storageUserId}/favorites`).then(function (res) {
+        // 如果userId已經有這則貼文
+        const foundProduct = res.data.find((v) => v.rentId === pageRentId);
+        if (foundProduct) {
+          Swal.fire({
+            icon: "warning",
+            title: "您已經有這則貼文",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        // 如果userId沒有這則貼文
+        if (foundProduct === undefined) {
+          axios.post(`${url}favorites`, data).then(function (res) {
+            Swal.fire({
+              icon: "success",
+              title: "添加至您的收藏",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          });
+        }
+      });
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "請先登入帳號",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  });
 }
 
 // 留言
@@ -400,7 +392,7 @@ function comment(){
                         // 重新渲染留言
                         axios.get(`${url}qas?rentId=${getUrlId}&_expand=user&_expand=rent&_sort=date&_order=asc`)
                         .then(function(res){
-                            api = res.data ;
+                            let api = res.data ;
                             qas.innerHTML = ''; // 清空原本的 qas.innerHTML 字串
                             Swal.fire({
                                 icon: 'success',
@@ -429,21 +421,27 @@ function comment(){
                 icon: 'warning',
                 title: '請先登入帳號',
                 showConfirmButton: false,
-                timer: 1500
-            });
-        }
-    });
+                timer: 1500,
+              });
+              // 清空文字欄位
+              messageArea.value = "";
+              renderRentArticleCommet(api);
+        // }
+      } 
+  });
 }
 
 // 檢舉
-report.addEventListener('click',(e) => {
-
-    // 判斷有無登入
-    if (storageUserId){
-        // 彈跳視窗
-        if (e.target.classList.contains('report') || e.target.classList.contains('warning')) {
-            const newSwal = Swal.fire({
-                html: ` <p class="my-3">此貼文違反了哪一項規範事項 ?</p>
+report.addEventListener("click", (e) => {
+  // 判斷有無登入
+  if (storageUserId) {
+    // 彈跳視窗
+    if (
+      e.target.classList.contains("report") ||
+      e.target.classList.contains("warning")
+    ) {
+      const newSwal = Swal.fire({
+        html: ` <p class="my-3">此貼文違反了哪一項規範事項 ?</p>
                         <div class="border rounded py-2 px-3">
                             <div class="form-check text-start d-flex justify-content-start mb-3">
                                 <input class="form-check-input" type="checkbox" value="" id="report1" data-id="1">
@@ -548,122 +546,104 @@ report.addEventListener('click',(e) => {
                         <p class="mt-2 text-danger least-one d-none">*至少選擇一個欄位</p>
                         <input class="btn btn-primary mt-3 report-btn" type="submit" value="送出">
                         `,
-                showConfirmButton: false,
-            })
+        showConfirmButton: false,
+      });
 
-            let formCheckInput = document.querySelectorAll('.form-check-input');
-            let leastOne = document.querySelector('.least-one')
-            let reportBtn = document.querySelector('.report-btn')
-            reportBtn.addEventListener('click',  e => {
-                // 檢查有沒有checkbox被點擊
-                let atLeastOneChecked = false;
-                formCheckInput.forEach( v => {
-                    if (v.checked) {
-                        atLeastOneChecked = true;
-                    }
-                })
-                // 都沒有被點擊跳出 *至少選擇一個欄位
-                if (!atLeastOneChecked) {
-                    leastOne.classList.remove('d-none');
-                } else {
-                    let arr = [] ;
-                    let data = {} ;
-                    // 有點擊審查點擊哪一個checkbox
-                    formCheckInput.forEach( v => {
-                        if (v.checked) {
-                            //找到對應label的文字
-                            let labelForCheckbox = document.querySelector(`label[for="${v.id}"]`);
-                            arr.push(`第${v.dataset.id}條:${labelForCheckbox.textContent.trim()}`);
-                            data = {
-                                "rentId": parseInt(getUrlId),
-                                "userId": storageUserId,
-                                "content": arr
-                            }
-                        }
-                    })
-                    axios.post(`${url}reports`,data)
-                    .then(function(res){
-                        Swal.fire({
-                            icon: 'success',
-                            title: '已收到您的檢舉',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    });
-                }
-            })
-        }
-    } else {
-        Swal.fire({
-            icon: 'warning',
-            title: '請先登入帳號',
-            showConfirmButton: false,
-            timer: 1500
+      let formCheckInput = document.querySelectorAll(".form-check-input");
+      let leastOne = document.querySelector(".least-one");
+      let reportBtn = document.querySelector(".report-btn");
+      reportBtn.addEventListener("click", (e) => {
+        // 檢查有沒有checkbox被點擊
+        let atLeastOneChecked = false;
+        formCheckInput.forEach((v) => {
+          if (v.checked) {
+            atLeastOneChecked = true;
+          }
         });
+        // 都沒有被點擊跳出 *至少選擇一個欄位
+        if (!atLeastOneChecked) {
+          leastOne.classList.remove("d-none");
+        } else {
+          let arr = [];
+          let data = {};
+          // 有點擊審查點擊哪一個checkbox
+          formCheckInput.forEach((v) => {
+            if (v.checked) {
+              //找到對應label的文字
+              let labelForCheckbox = document.querySelector(
+                `label[for="${v.id}"]`
+              );
+              arr.push(
+                `第${v.dataset.id}條:${labelForCheckbox.textContent.trim()}`
+              );
+              data = {
+                rentId: parseInt(getUrlId),
+                userId: storageUserId,
+                content: arr,
+              };
+            }
+          });
+          axios.post(`${url}reports`, data).then(function (res) {
+            Swal.fire({
+              icon: "success",
+              title: "已收到您的檢舉",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          });
+        }
+      });
     }
-})
+  } else {
+    Swal.fire({
+      icon: "warning",
+      title: "請先登入帳號",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
+});
 
 // 地圖
-function map(){
+function map(api){
+    
+  // GET地址經緯度資料渲染地圖
+  axios.get(`${encodedURI}`).then(function (res) {
+    // 取到經緯度
+    let locationLat = res.data.results[0].geometry.location.lat;
+    let locationLng = res.data.results[0].geometry.location.lng;
 
-    // 使用encode取得地址經緯度，url會得到json資料
-    let markerTitle = api.title;
-    let address = api.district[0] + api.district[1] ;
-    const chineseAddress = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
-    const encodedURI = encodeURI(chineseAddress); 
+    // 建立目標經緯度的物件
+    let location = {
+      lat: locationLat,
+      lng: locationLng,
+    };
 
-    // GET地址經緯度資料渲染地圖
-    axios.get(`${encodedURI}`)
-    .then(function(res){
+    // 定義初始化地圖的函式
+    function initMap() {
+      // 建立地圖
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: location, // 經緯度(剛剛創好的物件格式)
+        zoom: 16, // 地圖縮放大小
+      });
 
-        // 取到經緯度
-        let locationLat = res.data.results[0].geometry.location.lat;
-        let locationLng = res.data.results[0].geometry.location.lng;
+      // 建立一個標記 (紅色的)
+      const marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        title: markerTitle, // 標記標題
+      });
+    }
 
-        // 建立目標經緯度的物件
-        let location = {
-            lat: locationLat, 
-            lng: locationLng 
-        }
+    // 動態建立並引入 Google Maps JavaScript API 的 script 標籤
+    var script = document.createElement("script");
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+    script.async = true;
 
-        // 定義初始化地圖的函式
-        function initMap() {
-            // 建立地圖
-            const map = new google.maps.Map(document.getElementById("map"), {
-                center: location, // 經緯度(剛剛創好的物件格式)
-                zoom: 16,         // 地圖縮放大小
-            });
+    // 將 'initMap' 函式附加到 'window' 物件
+    window.initMap = initMap;
 
-            // 建立一個標記 (紅色的)
-            const marker = new google.maps.Marker({
-                position: location,
-                map: map,
-                title: markerTitle // 標記標題
-            });
-        }
-
-        // 動態建立並引入 Google Maps JavaScript API 的 script 標籤
-        var script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
-        script.async = true;
-
-        // 將 'initMap' 函式附加到 'window' 物件
-        window.initMap = initMap;
-
-        // 將 'script' 元素附加到 'head' 標籤
-        document.head.appendChild(script);
-    })
+    // 將 'script' 元素附加到 'head' 標籤
+    document.head.appendChild(script);
+  });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
