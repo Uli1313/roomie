@@ -18,9 +18,7 @@ let priceInclude = document.querySelector(".article-priceInclude");
 let equipment = document.querySelector(".article-equipment");
 let age = document.querySelector(".article-age");
 let identity = document.querySelector(".article-identity");
-let trafficLifeEquipment = document.querySelector(
-  ".article-trafficLifeEquipment"
-);
+let trafficLifeEquipment = document.querySelector(".article-trafficLifeEquipment");
 let otherdetail = document.querySelector(".article-otherdetail");
 let contact = document.querySelector(".article-contact");
 let qas = document.querySelector(".article-qas");
@@ -423,10 +421,14 @@ function comment(){
                 icon: 'warning',
                 title: '請先登入帳號',
                 showConfirmButton: false,
-                timer: 1500
-            });
-        }
-    });
+                timer: 1500,
+              });
+              // 清空文字欄位
+              messageArea.value = "";
+              renderRentArticleCommet(api);
+        // }
+      } 
+  });
 }
 
 // 檢舉
@@ -604,13 +606,7 @@ report.addEventListener("click", (e) => {
 
 // 地圖
 function map(api){
-
-    // 使用encode取得地址經緯度，url會得到json資料
-    let markerTitle = api.title;
-    let address = api.district[0] + api.district[1] ;
-    const chineseAddress = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
-    const encodedURI = encodeURI(chineseAddress); 
-
+    
   // GET地址經緯度資料渲染地圖
   axios.get(`${encodedURI}`).then(function (res) {
     // 取到經緯度
@@ -651,5 +647,4 @@ function map(api){
     document.head.appendChild(script);
   });
 }
-
 
