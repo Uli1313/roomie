@@ -605,8 +605,13 @@ report.addEventListener("click", (e) => {
 });
 
 // 地圖
-function map(api){
-    
+function map(api) {
+  // 使用encode取得地址經緯度，url會得到json資料
+  let markerTitle = api.title;
+  let address = api.district[0] + api.district[1];
+  const chineseAddress = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
+  const encodedURI = encodeURI(chineseAddress);
+
   // GET地址經緯度資料渲染地圖
   axios.get(`${encodedURI}`).then(function (res) {
     // 取到經緯度
