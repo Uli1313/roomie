@@ -16,8 +16,8 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer"/>
-  <script type="module" crossorigin src="/roomie/assets/matchList-c731cf70.js"></script>
-  <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-f14bc68a.js">
+  <script type="module" crossorigin src="/roomie/assets/matchList-81f131ed.js"></script>
+  <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-ee9b3e4d.js">
   <link rel="stylesheet" href="/roomie/assets/bootstrap-416410b2.css">
 </head>
 <body>
@@ -242,7 +242,9 @@
               <a class="dropdown-item" href="user_messages.html">留言列表</a>
             </li>
             <li class="nav-logged">
-              <a class="dropdown-item border-0 rounded-bottom" href="login.html"
+              <a
+                class="logout-btn dropdown-item border-0 rounded-bottom"
+                href="##"
                 >登出</a
               >
             </li>
@@ -304,13 +306,13 @@
             <a class="nav-link" href="user_posts.html">發文列表</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">收藏列表</a>
+            <a class="nav-link" href="user_favorites.html">收藏列表</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="user_messages.html">留言列表</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.html">登出</a>
+            <a class="logout-btn nav-link" href="##">登出</a>
           </li>
           <li
             class="nav-item"
@@ -328,7 +330,7 @@
       </div>
     </div>
     <!-- mobile accountMenu 未登入 -->
-    <div class="nav-unlogged d-none">
+    <div class="nav-unlogged d-md-none">
       <div
         class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1 z-3 border-bottom"
         id="accountMenu"

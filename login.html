@@ -10,8 +10,8 @@
     />
     <title>Login</title>
     <link rel="icon" type="image/png" href="/roomie/assets/favicon-8f1f900a.ico" />
-    <script type="module" crossorigin src="/roomie/assets/login-da3ab9f8.js"></script>
-    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-f14bc68a.js">
+    <script type="module" crossorigin src="/roomie/assets/login-b088cf88.js"></script>
+    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-ee9b3e4d.js">
     <link rel="stylesheet" href="/roomie/assets/bootstrap-416410b2.css">
   </head>
   <body>
@@ -236,7 +236,9 @@
               <a class="dropdown-item" href="user_messages.html">留言列表</a>
             </li>
             <li class="nav-logged">
-              <a class="dropdown-item border-0 rounded-bottom" href="login.html"
+              <a
+                class="logout-btn dropdown-item border-0 rounded-bottom"
+                href="##"
                 >登出</a
               >
             </li>
@@ -298,13 +300,13 @@
             <a class="nav-link" href="user_posts.html">發文列表</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">收藏列表</a>
+            <a class="nav-link" href="user_favorites.html">收藏列表</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="user_messages.html">留言列表</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.html">登出</a>
+            <a class="logout-btn nav-link" href="##">登出</a>
           </li>
           <li
             class="nav-item"
@@ -322,7 +324,7 @@
       </div>
     </div>
     <!-- mobile accountMenu 未登入 -->
-    <div class="nav-unlogged d-none">
+    <div class="nav-unlogged d-md-none">
       <div
         class="accountMenu collapse navbar-collapse flex-grow-0 order-2 order-md-1 z-3 border-bottom"
         id="accountMenu"
@@ -641,6 +643,7 @@
   arrow_upward
 </a>
 
+    
     
     
   </body>
