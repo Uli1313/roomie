@@ -767,14 +767,16 @@ function gotoPostsPage(postText) {
     confirmButtonText: "確定",
     cancelButtonText: "取消",
   }).then((result) => {
-    Swal.fire({
-      icon: "success",
-      title: "新增貼文成功",
-      timer: 1500,
-      showConfirmButton: false,
-    });
-    setTimeout(() => {
-      location.href = "user_posts.html";
-    }, 2000);
+    if (result.isConfirmed) {
+      Swal.fire({
+        icon: "success",
+        title: "新增貼文成功",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+      setTimeout(() => {
+        location.href = "user_posts.html";
+      }, 2000);
+    }
   });
 }
