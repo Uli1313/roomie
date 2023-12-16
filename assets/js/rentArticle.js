@@ -2,8 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { apiKey } from "/assets/js/ignore.js";
 
-const url = "https://roomie-lfta.onrender.com/";
-let api = "";
+const url = 'https://roomie-lfta.onrender.com/';
 
 // 當前畫面的ID
 const getUrl = new URL(window.location.href);
@@ -19,9 +18,7 @@ let priceInclude = document.querySelector(".article-priceInclude");
 let equipment = document.querySelector(".article-equipment");
 let age = document.querySelector(".article-age");
 let identity = document.querySelector(".article-identity");
-let trafficLifeEquipment = document.querySelector(
-  ".article-trafficLifeEquipment"
-);
+let trafficLifeEquipment = document.querySelector(".article-trafficLifeEquipment");
 let otherdetail = document.querySelector(".article-otherdetail");
 let contact = document.querySelector(".article-contact");
 let qas = document.querySelector(".article-qas");
@@ -32,23 +29,21 @@ let messageArea = document.querySelector(".message-area");
 let report = document.querySelector(".report");
 
 // GET畫面資料
-axios.get(`${url}rents/${getUrlId}?_expand=user`).then(function (res) {
-  api = res.data;
-  document.title = `${api.title}`;
-  renderRentArticle(api);
-  modal(photo);
-  favorite();
-  comment();
-  map();
+axios.get(`${url}rents/${getUrlId}?_expand=user`)
+.then(function(res){
+    let api = res.data ;
+    document.title = `${api.title}`;
+    renderRentArticle(api) ;
+    modal(api);
+    favorite();
+    comment();
+    map(api);
 });
 
 // GET留言資料
-axios
-  .get(
-    `${url}qas?rentId=${getUrlId}&_expand=user&_expand=rent&_sort=date&_order=asc`
-  )
-  .then(function (res) {
-    api = res.data;
+axios.get(`${url}qas?rentId=${getUrlId}&_expand=user&_expand=rent&_sort=date&_order=asc`)
+.then(function(res){
+    let api = res.data ;
     renderRentArticleCommet(api);
   });
 
@@ -61,10 +56,10 @@ function renderRentArticle(api) {
   let petYN = api.canPet ? "可養寵物" : "不可養寵物";
   let canCookingYN = api.canCooking ? "可開伙" : "不可開伙";
 
-  // 處理聯絡資訊
-  let person = api.user.contact.person[0] + api.user.contact.person[1];
-  let phone = api.user.contact.phone;
-  let line = api.user.contact.line;
+    // 處理聯絡資訊
+    let person = api.user.nickname ;
+    let phone = api.user.contact.phone;
+    let line = api.user.contact.line;
 
   // --所有畫面渲染--
   // 麵包屑
@@ -173,7 +168,7 @@ function renderRentArticle(api) {
   // 聯絡資訊
   contact.innerHTML = `
                         <li class="d-flex align-items-center gap-2 h5">
-                        <img class="nav-logged-photo object-fit-contain rounded-circle" src="${api.user.photo}" alt="user-photo">
+                        <img class="photo-size object-fit-contain rounded-circle" src="${api.user.photo}" alt="user-photo">
                             <span>${person}</span></li>
                         <li class="my-2">電話: &nbsp;${phone}</li>
                         <li>Line: &nbsp;${line}</li>
@@ -187,13 +182,8 @@ function renderRentArticleCommet(api) {
       qas.innerHTML += `
                         <li class="h5">
                                 <div class="d-flex align-items-center gap-2 my-4">
-                                    <img class="nav-logged-photo object-fit-contain rounded-circle" src="${
-                                      v.user.photo
-                                    }" alt="user-photo">
-                                    <span>${
-                                      v.user.contact.person[0] +
-                                      v.user.contact.person[1]
-                                    }<span class="fs-7 border rounded bg-primary-200 mx-1">發文者</span>:</span>
+                                    <img class="photo-size object-fit-contain rounded-circle" src="${v.user.photo}" alt="user-photo">
+                                    <span>${v.user.nickname}<span class="fs-7 border rounded bg-primary-200 mx-1">發文者</span>:</span>
                                 </div>
                                 <div class="d-flex justify-content-between px-2">
                                     <p class="fw-normal">${v.content}</p>
@@ -206,13 +196,8 @@ function renderRentArticleCommet(api) {
       qas.innerHTML += `
                         <li class="h5">
                                 <div class="d-flex align-items-center gap-2 my-4">
-                                    <img class="nav-logged-photo object-fit-contain rounded-circle" src="${
-                                      v.user.photo
-                                    }" alt="user-photo">
-                                    <span>${
-                                      v.user.contact.person[0] +
-                                      v.user.contact.person[1]
-                                    } : </span>
+                                    <img class="photo-size object-fit-contain rounded-circle" src="${v.user.photo}" alt="user-photo">
+                                    <span>${v.user.nickname} : </span>
                                 </div>
                                 <div class="d-flex justify-content-between px-2">
                                     <p class="fw-normal">${v.content}</p>
@@ -232,35 +217,35 @@ function renderRentArticleCommet(api) {
 }
 
 // 彈跳遮罩
-function modal(photo) {
-  let imgModal = document.querySelector(".img-modal");
-  let imgMain = document.querySelector(".img-main");
-  let photoNum = 0;
+function modal(api){
+    let imgModal = document.querySelector('.img-modal');
+    let imgMain = document.querySelector('.img-main');
+    let photoNum = 0;
 
-  // 點擊哪個圖片打開遮罩效果、並渲染大圖
-  photo.addEventListener("click", function (e) {
-    if (e.target.classList.contains("img-open")) {
-      photoNum = parseInt(e.target.dataset.open);
-      imgModal.classList.remove("d-none");
-      imgModal.classList.add("d-flex");
-      document.body.style.overflow = "hidden"; // 禁用背景滾動條
-
-      imgMain.setAttribute("src", `${api.photo[photoNum]}`);
-    }
-  });
-
-  // 關閉遮罩
-  imgModal.addEventListener("click", function (e) {
-    let inImg = e.target.classList.contains("img-fluid");
-    let inArrow = e.target.classList.contains("material-symbols-outlined");
-    if (inImg || inArrow) {
-      return;
-    } else {
-      imgModal.classList.remove("d-flex");
-      imgModal.classList.add("d-none");
-      document.body.style.overflow = "auto"; // 啟用背景滾動
-    }
-  });
+    // 點擊哪個圖片打開遮罩效果、並渲染大圖
+    photo.addEventListener('click',function(e){
+        if (e.target.classList.contains('img-open')) {
+            photoNum = e.target.dataset.open;
+            imgModal.classList.remove('d-none'); 
+            imgModal.classList.add('d-flex'); 
+            document.body.style.overflow = 'hidden'; // 禁用背景滾動條
+            imgMain.setAttribute('src', `${api.photo[photoNum]}`);
+            
+        }
+    });
+    
+    // 關閉遮罩
+    imgModal.addEventListener('click',function(e){
+        let inImg = e.target.classList.contains('img-fluid');
+        let inArrow = e.target.classList.contains('material-symbols-outlined');
+        if(inImg || inArrow){
+            return ;
+        } else {
+            imgModal.classList.remove('d-flex'); 
+            imgModal.classList.add('d-none');
+            document.body.style.overflow = 'auto'; // 啟用背景滾動
+        }
+    });
 
   let imgGroup = document.querySelector(".img-group");
 
@@ -324,6 +309,7 @@ function modal(photo) {
   });
 }
 
+
 // 我的收藏
 function favorite() {
   let favorite = document.querySelector(".favorite");
@@ -375,68 +361,73 @@ function favorite() {
 }
 
 // 留言
-function comment() {
-  messageBtn.addEventListener("click", (e) => {
-    const now = new Date();
-    const year = now.getFullYear(); // 年份
-    const month = String(now.getMonth() + 1).padStart(2, "0"); // 月份 (月份從 0 開始，所以需要加 1)，補置2位數
-    const day = String(now.getDate()).padStart(2, "0"); // 日，補置2位數
-    // 驗證是否登入
-    if (storageUserId) {
-      // 驗證文字欄位是否有輸入文字
-      if (messageArea.value.length > 0) {
-        // if (api[api.length-1].user.contact.person[0] == '') {
-        //     Swal.fire({
-        //         icon: 'warning',
-        //         title: '請先至會員專區填寫您的稱呼',
-        //         showConfirmButton: false,
-        //         timer: 1500
-        //     });
-        //     return ;
-        // } else {
-        let data = {
-          rentId: parseInt(getUrlId),
-          userId: storageUserId,
-          date: `${year}/${month}/${day}`,
-          content: messageArea.value,
-        };
-        axios.post(`${url}qas`, data).then(function (res) {
-          // 重新渲染留言
-          axios
-            .get(
-              `${url}qas?rentId=${getUrlId}&_expand=user&_expand=rent&_sort=date&_order=asc`
-            )
-            .then(function (res) {
-              api = res.data;
-              qas.innerHTML = ""; // 清空原本的 qas.innerHTML 字串
-              Swal.fire({
-                icon: "success",
-                title: "已留言成功",
+function comment(){
+    
+    messageBtn.addEventListener('click', (e) => {
+        const now = new Date();
+        const year = now.getFullYear(); // 年份
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // 月份 (月份從 0 開始，所以需要加 1)，補置2位數
+        const day = String(now.getDate()).padStart(2, '0'); // 日，補置2位數
+        // 驗證是否登入
+        if (storageUserId) {
+            // 驗證文字欄位是否有輸入文字
+            if (messageArea.value.length > 0) {
+                // if (api[api.length-1].user.contact.person[0] == '') {
+                //     Swal.fire({
+                //         icon: 'warning',
+                //         title: '請先至會員專區填寫您的稱呼',
+                //         showConfirmButton: false,
+                //         timer: 1500
+                //     });
+                //     return ;
+                // } else {
+                    let data = {
+                        "rentId": parseInt(getUrlId),
+                        "userId": storageUserId,
+                        "date": `${year}/${month}/${day}`,
+                        "content": messageArea.value
+                      }
+                    axios.post(`${url}qas`,data)
+                    .then(function(res){
+                        // 重新渲染留言
+                        axios.get(`${url}qas?rentId=${getUrlId}&_expand=user&_expand=rent&_sort=date&_order=asc`)
+                        .then(function(res){
+                            let api = res.data ;
+                            qas.innerHTML = ''; // 清空原本的 qas.innerHTML 字串
+                            Swal.fire({
+                                icon: 'success',
+                                title: '已留言成功',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            // 清空文字欄位
+                            messageArea.value = '';
+                            renderRentArticleCommet(api);
+                            
+                        });
+                    });
+                // }
+                
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '文字欄位不能為空',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        } else {
+            Swal.fire({
+                icon: 'warning',
+                title: '請先登入帳號',
                 showConfirmButton: false,
                 timer: 1500,
               });
               // 清空文字欄位
               messageArea.value = "";
               renderRentArticleCommet(api);
-            });
-        });
         // }
-      } else {
-        Swal.fire({
-          icon: "warning",
-          title: "文字欄位不能為空",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    } else {
-      Swal.fire({
-        icon: "warning",
-        title: "請先登入帳號",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    }
+      } 
   });
 }
 
@@ -614,13 +605,8 @@ report.addEventListener("click", (e) => {
 });
 
 // 地圖
-function map() {
-  // 使用encode取得地址經緯度，url會得到json資料
-  let markerTitle = api.title;
-  let address = api.district[0] + api.district[1];
-  const chineseAddress = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
-  const encodedURI = encodeURI(chineseAddress);
-
+function map(api){
+    
   // GET地址經緯度資料渲染地圖
   axios.get(`${encodedURI}`).then(function (res) {
     // 取到經緯度
