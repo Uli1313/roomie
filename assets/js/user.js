@@ -32,7 +32,6 @@ async function getUserInfo() {
     const apiUrl = `${baseUrl}${apiPath}`;
     const response = await axios.get(apiUrl, token);
     user = response.data;
-    console.log(user)
 
     // 把原始資料渲染至畫面
     renderData();
@@ -68,8 +67,8 @@ function renderData() {
     document.getElementById("userNickName").textContent = user.nickname;
     document.getElementById("userEmail").textContent = user.email;
     document.getElementById("signupEmail").value = user.email;
-    document.getElementById("phone").src = user.phone;
-    document.getElementById("userPhoto").textContent = user.photo;
+    document.getElementById("userPhoto").src = user.photo;
+    document.getElementById("phone").textContent = user.phone;
     document.getElementById("line").textContent = user.line;
     document.getElementById("aboutMe").textContent = user.about;
 
@@ -140,9 +139,16 @@ infoSaveBtn.addEventListener("click", async (e) => {
     about: aboutMeTextarea.value.trim(),
     photo: imageData.base64Image,
     contact: {
+      person: [
+        "",
+        ""
+      ],
+      email: "",
       phone: phoneInput.value.trim(),
       line: lineInput.value.trim()
-    }
+    },
+    phone: phoneInput.value.trim(),
+    line: lineInput.value.trim()
   };
 
   // 更新用戶資訊到伺服器
