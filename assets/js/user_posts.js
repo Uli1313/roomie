@@ -29,7 +29,11 @@ let currentTab = "publish-tab";
 function getPublishData() {
   const apiUrl = `${url}/660/rents?userId=${localUserId}&status=刊登中`;
   axios
-    .get(apiUrl, token)
+    .get(apiUrl, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
     .then((res) => {
       publishData = res.data;
       renderPublishList(publishData);

@@ -5,6 +5,7 @@ const webUrl = "https://roomie-lfta.onrender.com";
 // const webUrl = "http://localhost:3000";
 // 宣告變數
 const confirmEmailBtn = document.querySelector(".confirmEmail");
+const inputNickName = document.querySelector("#inputNickName");
 const inputEmail = document.querySelector("#inputEmail");
 const inputPassword = document.querySelector("#inputPassword");
 const inputConfirmPassword = document.querySelector("#inputConfirmPassword");
@@ -156,7 +157,7 @@ function signUp(allTrueArr) {
       email: `${allTrueArr[0]}`,
       password: `${allTrueArr[1]}`,
       name: "",
-      nickname: "",
+      nickname: `${allTrueArr[2]}`,
       gender: "",
       photo: "https://i.imgur.com/rUTLxZC.jpg",
       contact: {
@@ -177,7 +178,12 @@ function signUp(allTrueArr) {
 }
 // 確認輸入監聽
 confirmEmailBtn.addEventListener("click", async (e) => {
-  const signUpArr = [inputEmail, inputPassword, inputConfirmPassword];
+  const signUpArr = [
+    inputEmail,
+    inputPassword,
+    inputNickName,
+    inputConfirmPassword,
+  ];
   allTrueArr = [];
   for (const item of signUpArr) {
     if (item === inputEmail) {
@@ -198,7 +204,7 @@ confirmEmailBtn.addEventListener("click", async (e) => {
   } else {
     alertContext(rulesChecked, "閱讀完請勾選");
   }
-  if (allTrueArr.length === 4) {
+  if (allTrueArr.length === 5) {
     inputSecurityCode.parentElement.style.display = "flex";
     signUpSuccess(allTrueArr);
   }
