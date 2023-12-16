@@ -10,10 +10,10 @@
     />
     <title>Sign Up</title>
     <link rel="icon" type="image/png" href="/roomie/assets/favicon-8f1f900a.ico" />
-    <script type="module" crossorigin src="/roomie/assets/signup-4d74e224.js"></script>
-    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-b3783de9.js">
+    <script type="module" crossorigin src="/roomie/assets/signup-e7b9c575.js"></script>
+    <link rel="modulepreload" crossorigin href="/roomie/assets/bootstrap.min-acd3fe77.js">
     <link rel="modulepreload" crossorigin href="/roomie/assets/transform-18031762.js">
-    <link rel="stylesheet" href="/roomie/assets/bootstrap-8cd4f79d.css">
+    <link rel="stylesheet" href="/roomie/assets/bootstrap-f8c88ec5.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-md bg-white border-bottom">
@@ -519,6 +519,21 @@
             <hr />
 
             <div class="py-8">
+              <!-- nickName   -->
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputNickName"
+                  placeholder="name@example.com"
+                />
+                <label for="inputNickName">請輸入小名</label>
+                <div class="alert-message">
+                  <p id="emailMessage" data-message="註冊信箱">
+                    <span>必填!</span>
+                  </p>
+                </div>
+              </div>
               <!-- Email   -->
               <div class="form-floating mb-3">
                 <input
