@@ -1,44 +1,40 @@
-import 'https://unpkg.com/@wangeditor/editor@latest/dist/index.js'
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
 // const baseUrl = 'http://localhost:3000';
 const baseUrl = 'https://roomie-lfta.onrender.com/';
-const apiPath = '/contacts';
+const apiPath = 'contacts';
 const apiUrl = `${baseUrl}${apiPath}`;
 const contactForm = document.querySelector('.contact-form');
-const textarea = contactForm.querySelector('#form-content');
+const textarea = contactForm.querySelector('#content-txt');
 const emailInput = contactForm.querySelector('#contact-email');
 const emailError = contactForm.querySelector('.email-error');
 
-const contacts = {
-    post: function (params) {
-        const data = {
-            ...params,
-            userId: Number(localStorage.getItem('userId')),
-            isReply: false,
-        };
-
-        return axios.post(apiUrl, data)
-            .then(function (res) {
-                Swal.fire({
-                    scrollbarPadding: false,
-                    icon: 'success',
-                    title: '謝謝您的意見，我們將會在兩週內透過電子郵件聯絡您。',
-                    showConfirmButton: false,
-                    timer: 1500,
-                    allowOutsideClick: false
-                });
-                console.log(res);
-                return res.data;
-            })
-            .catch(function (err) {
-                console.log(err);
+const UserMail = {
+    async post(params) {
+        try {
+            const data = {
+                ...params,
+                userId: Number(localStorage.getItem('userId')),
+                isReply: false,
+            };
+            const res = await axios.post(`${apiUrl}`, data);
+            Swal.fire({
+                scrollbarPadding: false,
+                icon: 'success',
+                title: '感謝您的留言，我們將於 7 - 14 天內給予您答覆！',
+                showConfirmButton: false,
+                timer: 1500,
+                allowOutsideClick: false
             });
+            console.log(res);
+            return res.data;
+        } catch (err) {
+            console.log(err);
+        }
     }
-};
+}
 
-let content;
 emailInput.addEventListener('input', (e) => {
     const { value } = e.target;
     if (!value) {
@@ -53,6 +49,7 @@ contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = contactForm['contact-name'].value;
     const mail = contactForm['contact-email'].value;
+    const txt = contactForm['content-txt'].value;
 
     if (!name) {
         contactForm['contact-name'].classList.add('is-invalid');
@@ -66,22 +63,22 @@ contactForm.addEventListener('submit', (e) => {
         contactForm['contact-email'].classList.remove('is-invalid');
     }
 
-    if (!content || content === '<p><br></p>') {
+    if (!txt) {
         textarea.classList.add('is-invalid');
     } else {
         textarea.classList.remove('is-invalid');
     }
 
     console.log(contactForm.querySelectorAll('.invalid-feedback'));
-    if (!name || !mail || !checkMail(mail) || !content || content === '<p><br></p>') {
+    if (!name || !mail || !checkMail(mail) || !txt) {
         return
     }
     const params = {
         name,
         mail,
-        content
+        txt
     }
-    contacts.post(params);
+    UserMail.post(params);
     console.log(params)
     contactForm.reset();
 })
@@ -89,21 +86,3 @@ contactForm.addEventListener('submit', (e) => {
 function checkMail(value) {
     return /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value)
 }
-
-// 富文本編輯器配置
-const { createEditor, createToolbar } = window.wangEditor
-
-const editorConfig = {
-    placeholder: '請輸入留言內容',
-    onChange(editor) {
-        const html = editor.getHtml() // 獲取用戶輸入的 html 結構
-        content = html
-    }
-}
-
-const editor = createEditor({
-    selector: '#editor-container',
-    html: '<p><br></p>',
-    config: editorConfig,
-    mode: 'simple', // or 'simple'
-})
