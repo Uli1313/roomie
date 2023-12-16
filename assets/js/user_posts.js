@@ -27,9 +27,14 @@ let currentTab = "publish-tab";
 
 // 取得刊登中文章
 function getPublishData() {
-  const apiUrl = `${url}/600/rents?userId=${localUserId}&status=刊登中`;
+  const apiUrl = `${url}/660/rents?userId=${localUserId}&status=刊登中`;
+  console.log(apiUrl);
   axios
-    .get(apiUrl, token)
+    .get(apiUrl, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
     .then((res) => {
       publishData = res.data;
       renderPublishList(publishData);
@@ -168,7 +173,7 @@ function renderPublishList(data) {
 
 // 取得已媒合文章
 function getMatchedData() {
-  const apiUrl = `${url}/600/rents?userId=${localUserId}&status=已媒合`;
+  const apiUrl = `${url}/660/rents?userId=${localUserId}&status=已媒合`;
   axios
     .get(apiUrl, token)
     .then((res) => {
@@ -251,7 +256,7 @@ function renderMatchedList(data) {
 
 // 取得下架文章
 function getRemovedData() {
-  const apiUrl = `${url}/600/rents?userId=${localUserId}&status=下架`;
+  const apiUrl = `${url}/660/rents?userId=${localUserId}&status=下架`;
   axios
     .get(apiUrl, token)
     .then((res) => {
@@ -389,7 +394,7 @@ function renderRemovedList(data) {
 
 // 取得草稿文章
 function getDraftData() {
-  const apiUrl = `${url}/600/rents?userId=${localUserId}&status=草稿`;
+  const apiUrl = `${url}/660/rents?userId=${localUserId}&status=草稿`;
   axios
     .get(apiUrl, token)
     .then((res) => {
