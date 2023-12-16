@@ -266,9 +266,7 @@ function renderPosterComment(commentData) {
   })
   postComment.innerHTML = commentStr;
 
-  // 渲染回覆留言
-  // 因為 innerHTML 重繪畫面，所以事件監聽要寫在這裡面
-
+  // 渲染回覆留言，因為 innerHTML 重繪畫面，所以事件監聽要寫在這裡面
   const replyBtn = document.querySelector('.reply-btn');
   const now = new Date();
   const year = now.getFullYear(); // 年份
@@ -295,7 +293,7 @@ function renderPosterComment(commentData) {
           .then((res) => {
             commentData = res.data;
 
-            // 重新渲染留言
+            // 渲染發文者回覆
             const replyContent = document.querySelector('.reply-content');
             let replyStr = ''
             commentData.forEach((item) => {
@@ -316,9 +314,9 @@ function renderPosterComment(commentData) {
               </div>
             </div></p>`
             })
-
             replyContent.innerHTML = replyStr;
             document.querySelector('.msg-area').value = '';
+
           })
           .catch((err) => {
             console.log(err)
@@ -330,9 +328,39 @@ function renderPosterComment(commentData) {
   });
 };
 
-
-
-
-
+// 取得最新留言及回覆
+function getReRenderData(commentData) {
+  axios.get(`${baseUrl}/qas?rentId=${localUserId}&_expand=user&_expand=rent&_sort=date&_order=asc`)
+    .then((res) => {
+      commentData = res.data
+      // 渲染發文者回覆
+      const replyContent = document.querySelector('.reply-content');
+      let replyStr = ''
+      commentData.forEach((item) => {
+        replyStr += `<div class="comment-wrap mb-5">
+              <div class="d-flex border-bottom pb-3">
+                <img
+                  class="account-img"
+                  src="${item.user.photo}"
+                  alt="user-photo"
+                />
+                <div class="ms-3">
+                  <p class="fw-bold">發文者</p>
+                  <span class="fs-7">${item.reply.date}</span>
+                </div>
+              </div>
+              <div class="my-3">
+                <p>${item.reply.replyContent}</p>
+              </div>
+            </div></p>`
+      })
+      replyContent.innerHTML = replyStr;
+      document.querySelector('.msg-area').value = '';
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+getReRenderData(commentData)
 
 
