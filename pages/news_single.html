@@ -20,38 +20,40 @@
   </head>
   <body class="u-btn">
     <%- include('./layout/header'); -%>
-    <div class="container-xxl position-relative deco-house py-10 py-md-20">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">首頁</a></li>
-          <li class="breadcrumb-item active" aria-current="page">最新公告</li>
-        </ol>
-      </nav>
-      <div class="row">
-        <div class="col-md-10 col-lg-8 mx-auto mb-10 mb-lg-0">
-          <div class="bg-white rounded-10 py-8 px-4 p-md-13 shadow-sm">
-            <h2 class="news-title mb-2 fs-3 fs-md-2"></h2>
-            <p
-              class="news-date text-light-400 fs-7 fs-md-6 pb-2 mb-8 border-bottom"
-            ></p>
-            <div class="news-content"></div>
-          </div>
-        </div>
-        <div class="col-md-10 col-lg-4 mx-auto">
-          <div class="sticky-md-top">
-            <div class="bg-white rounded-5 py-8 mb-4 shadow-sm">
-              <h6 class="text-center">看更多消息</h6>
+    <div class="deco-house position-relative">
+      <div class="container-xxl position-relative py-10 py-md-20">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">首頁</a></li>
+            <li class="breadcrumb-item active" aria-current="page">最新公告</li>
+          </ol>
+        </nav>
+        <div class="row">
+          <div class="col-md-10 col-lg-8 mx-auto mb-10 mb-lg-0">
+            <div class="bg-white rounded-10 py-8 px-4 p-md-13 shadow-sm">
+              <h2 class="news-title mb-2 fs-3 fs-md-2"></h2>
+              <p
+                class="news-date text-light-400 fs-7 fs-md-6 pb-2 mb-8 border-bottom"
+              ></p>
+              <div class="news-content"></div>
             </div>
-            <div
-              class="bg-white rounded-5 fw-bold d-flex flex-column px-6 py-4 shadow-sm"
-            >
-              <ul class="more-news mb-2"></ul>
-              <a class="py-2 align-self-end" href="news.html"
-                >回最新消息列表
-                <span class="material-icons">
-                  keyboard_double_arrow_right
-                </span></a
+          </div>
+          <div class="col-md-10 col-lg-4 mx-auto">
+            <div class="sticky-md-top">
+              <div class="bg-white rounded-5 py-8 mb-4 shadow-sm">
+                <h6 class="text-center">看更多消息</h6>
+              </div>
+              <div
+                class="bg-white rounded-5 fw-bold d-flex flex-column px-6 py-4 shadow-sm"
               >
+                <ul class="more-news mb-2"></ul>
+                <a class="py-2 align-self-end" href="news.html"
+                  >回最新消息列表
+                  <span class="material-icons">
+                    keyboard_double_arrow_right
+                  </span></a
+                >
+              </div>
             </div>
           </div>
         </div>

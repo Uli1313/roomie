@@ -4,7 +4,7 @@ const url = "https://roomie-lfta.onrender.com";
 
 let newsData;
 let currentPage = 1;
-const limit = 2;
+const limit = 10;
 const newsList = document.querySelector(".news-list");
 const pagination = document.querySelector(".pagination");
 const newsSearch = document.querySelector(".news-search");
