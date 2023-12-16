@@ -158,7 +158,7 @@ function signUp(allTrueArr) {
       name: "",
       nickname: "",
       gender: "",
-      photo: "",
+      photo: "https://i.imgur.com/rUTLxZC.jpg",
       contact: {
         person: ["", ""],
         phone: "",

@@ -1,3 +1,4 @@
+import { loading } from './loading';
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -76,6 +77,7 @@ function renderData() {
     document.getElementById("userNickName").textContent = user.nickname;
     document.getElementById("userEmail").textContent = user.email;
     document.getElementById("signupEmail").value = user.email;
+    document.getElementById("userPhoto").src = user.photo;
 
     if (user.gender === "male") {
       genderMale.checked = true;
@@ -90,7 +92,9 @@ const infoEditBtn = document.querySelector(".infoEdit-btn");
 const infoSaveBtn = document.querySelector(".infoSave-btn");
 const inputFields = document.querySelectorAll(".editable-input");
 const aboutMeTextarea = document.querySelector("#aboutMe");
-
+const updateFile = document.querySelector('#updateFile');
+const selectFile = document.querySelector('.selectFile');
+const imageData = {};
 const toggleEditState = (editable, readOnly, disabled) => {
   editable.forEach((inputElement) => {
     inputElement[readOnly ? "setAttribute" : "removeAttribute"](
@@ -115,6 +119,7 @@ const updateUser = async (data, useNewSwal = false) => {
         showCancelButton: false,
         timer: 1500,
       });
+    console.log(res.data)
     return res.data;
   } catch (err) {
     console.error(err);
@@ -127,6 +132,7 @@ infoEditBtn.addEventListener("click", (e) => {
   toggleEditState(inputFields, false, false);
   infoEditBtn.classList.add("d-none");
   infoSaveBtn.classList.remove("d-none");
+  selectFile.classList.remove("d-none");
 });
 
 infoSaveBtn.addEventListener("click", async (e) => {
@@ -138,6 +144,7 @@ infoSaveBtn.addEventListener("click", async (e) => {
     name: nameInput.value.trim(),
     gender: genderMale.checked ? "male" : "female",
     about: aboutMeTextarea.value.trim(),
+    photo: imageData.base64Image
   };
 
   // 更新用戶資訊到伺服器
@@ -149,6 +156,22 @@ infoSaveBtn.addEventListener("click", async (e) => {
 
   infoEditBtn.classList.remove("d-none");
   infoSaveBtn.classList.add("d-none");
+  selectFile.classList.add("d-none");
+});
+// 上傳圖片
+updateFile.addEventListener('change', (e) => {
+  const selectFile = e.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    const base64Data = e.target.result;
+    imageData.base64Image = base64Data;
+    imageData.fileName = selectFile.name;
+
+    let imgDom = document.getElementById('userPhoto');
+    imgDom.src = imageData.base64Image;
+  };
+  reader.readAsDataURL(selectFile);
 });
 
 // 取得發文/收藏/留言數量
