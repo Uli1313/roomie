@@ -204,7 +204,9 @@ function renderMatchedList(data) {
     const costDay = Math.abs(Math.trunc(costTime / (1000 * 3600 * 24)));
     const daysAway = Math.abs(Math.trunc(daysAwayTime / (1000 * 3600 * 24)));
 
-    div += `<div class="user-post-item col-12 my-3 p-1 hover-primary-2 rounded">
+    div += `<div class="user-post-item col-12 my-3 p-1 hover-primary-2 rounded" data-post-id=${
+      v.id
+    }>
                     <div class="col-12 p-3 bg-white d-flex flex-wrap justify-content-evenly align-items-center text-end text-lg-center border rounded">
                         <div class="col-12 col-lg-4"><a href="matchArticle.html?id=${
                           v.id
@@ -691,6 +693,7 @@ function deletePost(event) {
   const id = event.target
     .closest(".user-post-item")
     .getAttribute("data-post-id");
+  console.log(id);
   const apiUrl = `${url}/600/rents/${id}`;
   Swal.fire({
     icon: "question",
