@@ -100,7 +100,7 @@ function renderPublishList(data) {
               aria-labelledby="dropdownBtn"
             >
               <li>
-                <a class="dropdown-item" href="#">編輯貼文</a>
+                <a class="dropdown-item edit-post" href="#">編輯貼文</a>
               </li>
               <li>
                 <a class="dropdown-item delete-post" href="#">刪除貼文</a>
@@ -326,7 +326,7 @@ function renderRemovedList(data) {
               aria-labelledby="dropdownBtn"
             >
               <li>
-                <a class="dropdown-item" href="#">編輯貼文</a>
+                <a class="dropdown-item edit-post" href="#">編輯貼文</a>
               </li>
               <li>
                 <a class="dropdown-item delete-post" href="#">刪除貼文</a>
@@ -464,7 +464,7 @@ function renderDraftList(data) {
               aria-labelledby="dropdownBtn"
             >
               <li>
-                <a class="dropdown-item" href="#">編輯貼文</a>
+                <a class="dropdown-item edit-post" href="#">編輯貼文</a>
               </li>
               <li>
                 <a class="dropdown-item delete-post" href="#">刪除貼文</a>
@@ -556,6 +556,7 @@ userPostList.forEach((elem) => {
     if (action.contains("to-matched")) return patchPostStatus("已媒合", e);
     if (action.contains("to-publish")) return patchPostStatus("刊登中", e);
     if (action.contains("delete-post")) return deletePost(e);
+    if (action.contains("edit-post")) return editPost(e);
   });
 });
 
@@ -725,6 +726,11 @@ function deletePost(event) {
         });
     }
   });
+}
+
+// 編輯文章
+function editPost(event) {
+  location.href = "user_editPost.html";
 }
 
 // 依當前頁面渲染文章
